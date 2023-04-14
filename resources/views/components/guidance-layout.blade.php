@@ -207,7 +207,7 @@
                 <!-- header -->
                 <div class="w-full flex items-center justify-end py-2 px-8 border-b border-gray-300 shadow z-10">
                     <div class="flex items-center space-x-4 py-4 z-20">
-                        <i class='bx bx-bell text-2xl text-lightestgray '></i>
+                        <i class='bx bx-cog text-2xl text-lightestgray '></i>
                         <img class="h-8 w-8 rounded-full" src="{{asset('image/profile.png')}}" alt="">
                     </div>
                 </div>

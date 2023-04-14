@@ -39,15 +39,17 @@ $(document).ready(function () {
                                 
                             } else {
                                 message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-red-100 px-20 py-3"><p class="poppins text-lg text-red-800 ">' + response.message + '</p></div>');   
+                            
+                                $('#container').append(message);
+                            
+                                setTimeout(function(){
+                                    message.fadeOut('slow', function() {
+                                        message.remove();
+                                    });
+                                }, 3000);
+                                removeBtn.text('Remove');
                             }
     
-                            $('#container').append(message);
-                            
-                            setTimeout(function(){
-                                message.fadeOut('slow', function() {
-                                    message.remove();
-                                });
-                            }, 3000);
                         },
                         error: function(xhr) {
                             removeBtn.text('error');
@@ -72,7 +74,7 @@ $(document).ready(function () {
 
                 $('.addstudentbtn').on('click', function() {
                     const addBtn = $(this);
-                    addBtn.text('Adding..');
+                    addBtn.text('adding..');
                     var student_id = $(this).attr('id');
                     var section_id =  $('.get-id').attr('id');
                     sec = section_id;
@@ -88,20 +90,22 @@ $(document).ready(function () {
                         success: function(response) {
                             var message;
                             if (response.success) {
-                                addBtn.text('Added');
+                                addBtn.text('added');
                                 fetch_section_students(sec);
                                 
                             } else {
                                 message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-red-100 px-20 py-3"><p class="poppins text-lg text-red-800 ">' + response.message + '</p></div>');   
+                                $('#container').append(message);
+    
+                                setTimeout(function(){
+                                    message.fadeOut('slow', function() {
+                                        message.remove();
+                                    });
+                                }, 3000);
+
+                                addBtn.text('add');
                             }
     
-                            $('#container').append(message);
-    
-                            setTimeout(function(){
-                                message.fadeOut('slow', function() {
-                                    message.remove();
-                                });
-                            }, 3000);
                         },
                         error: function(xhr) {
                             addBtn.text('error');

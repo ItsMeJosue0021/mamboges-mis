@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('section_id');
             $table->foreignId('student_id');
             $table->foreignId('school_year_id');
-            $table->boolean('is_archived')->default(false);
             $table->timestamps();
         });
     }

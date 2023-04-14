@@ -246,9 +246,9 @@ class SectionController extends Controller
             $query = $request->get('query');
             if($query != '') {
                 $data = DB::table('students')
-                    ->where('section_id', null)
+                    ->where('section_id', '=', null)
                     ->where('is_archived', false)
-                    ->where('first_name', 'like', '%'.$query.'%')
+                    ->orwhere('first_name', 'like', '%'.$query.'%')
                     ->orWhere('last_name', 'like', '%'.$query.'%')
                     ->orWhere('middle_name', 'like', '%'.$query.'%')
                     ->orWhere('suffix', 'like', '%'.$query.'%')
@@ -261,7 +261,7 @@ class SectionController extends Controller
             } else {
                 $data = DB::table('students')
                     ->orderBy('id', 'desc')
-                    ->where('section_id', null)
+                    ->where('section_id', '=', null)
                     ->where('is_archived', false)
                     ->get();
             }
@@ -279,7 +279,7 @@ class SectionController extends Controller
                             <p class="poppins text-base text-gray-700">'.$row->middle_name.'</p>
                         </div>
                         <div id="button-container">
-                            <button id="'.$row->id.'" class="addstudentbtn poppins text-xs text-blue-500 py-1 px-2 rounded border border-blue-500 hover:bg-blue-500 hover:text-white">Add</button>
+                            <button id="'.$row->id.'" class="addstudentbtn poppins text-xs text-blue-500 py-1 px-2 rounded border border-blue-500 hover:bg-blue-500 hover:text-white">add</button>
                         </div>
                     </div>
                     ';

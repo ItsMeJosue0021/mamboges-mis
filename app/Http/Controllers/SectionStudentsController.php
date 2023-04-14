@@ -33,6 +33,8 @@ class SectionStudentsController extends Controller
     {
         $current_school_year = SchoolYear::where('is_current', true)->first();
 
+        $existingStudent = SectionStudents::where('student_id', $request->student_id)->first();
+
         $student = Student::find($request->student_id);
         if ($student) {
             $student->section_id = $request->section_id;
@@ -47,14 +49,17 @@ class SectionStudentsController extends Controller
             'school_year_id' => $current_school_year->id
         ];
 
-        $addedStudent = SectionStudents::create($addStudent);
-
-        if (!is_null($addedStudent)) {
-            return response()->json(['success' => true]);
+        if ($existingStudent) {
+            return response()->json(['success' => false, 'message' => 'Student already added.']);
         } else {
-            return response()->json(['success' => false]);
-        }
+            $addedStudent = SectionStudents::create($addStudent);
 
+            if (!is_null($addedStudent)) {
+                return response()->json(['success' => true]);
+            } else {
+                return response()->json(['success' => false]);
+            }
+        }
     }
 
     public function getStudents(Request $request) {
@@ -66,7 +71,6 @@ class SectionStudentsController extends Controller
             $students = DB::table('section_students')
                     ->orderBy('id', 'desc')
                     ->where('section_id', $request->section_id)
-                    ->where('is_archived', false)
                     ->get();
                 
 
@@ -77,7 +81,6 @@ class SectionStudentsController extends Controller
                 {
                     $stud = DB::table('students')
                     ->where('id', $student->student_id)
-                    ->where('is_archived', false)
                     ->first();
 
                     $output .= '
@@ -122,10 +125,12 @@ class SectionStudentsController extends Controller
                 $student->save();
             }
 
-            $sectionStudent->is_archived = true;
-            $sectionStudent->save();
+            if ($sectionStudent->delete()) {
+                return response()->json(['success' => true]);
+            } else {
+                return response()->json(['success' => false, 'message' => 'Unable to delete student.']);
+            }
 
-            return response()->json(['success' => true]);
         } else {
             return response()->json(['success' => false, 'message' => 'Student not found.']);
         }

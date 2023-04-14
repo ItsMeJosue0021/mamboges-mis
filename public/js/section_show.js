@@ -56,12 +56,6 @@ $(document).ready(function() {
 
 
 
-
-
-
-
-
-
     // $(document).on('click', '.delete-btn', function () {
     //     var sectionId = $(this).data('section-id');
     //     if (confirm('Are you sure you want to delete this section?')) {
