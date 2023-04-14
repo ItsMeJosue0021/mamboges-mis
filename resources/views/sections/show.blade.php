@@ -45,12 +45,24 @@
             </div>
 
             <div class="w-full">
-                <div class="w-full px-3 py-2">
-                    <h1 class="poppins text-xl text-gray-700 font-medium">Students</h1>
+                <div class="w-full flex space-x-8 py-2">
+                    <div class="w-full flex">
+                        <h1 class="poppins text-lg text-blue-400 font-medium px-2 py-1 rounded border border-blue-400">Students</h1>
+                    </div>
+
+                    <div class="w-full flex">
+                        <h1 class="poppins text-lg text-red-400 font-medium px-2 py-1 rounded border border-red-400">Subjects</h1>
+                    </div>
                 </div>
 
-                <div id="students-list1" class="w-full h-auto">
+                <div class="w-full flex space-x-8">
+                    <div id="students-list1" class="w-full h-auto">
                     
+                    </div>
+
+                    <div id="subjects-list" class="w-full h-auto">
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -117,7 +129,7 @@
             <div class="flex flex-col w-full h-full items-center justify-center space-y-6 bg-black bg-opacity-5">
                 <div class="flex flex-col w-fit items-center justify-center space-y-6 bg-white p-6 rounded-md shadow-lg">
                     {{-- action="javascript:void(0)" --}}
-                    <form id="add-subject-form" method="POST" action="javascript:void(0)" class="w-700px flex flex-col space-y-3">
+                    <form id="add-subject-form" method="POST" action="/sections/{{$section->id}}" class="w-700px flex flex-col space-y-3">
                         @csrf
                         <div class="w-full flex">
                             <h1 class="poppins text-xl text-gray-800 font-medium">ADD SUBJECTS</h1>
@@ -125,11 +137,11 @@
 
                         <div class="flex flex-col space-y-1">
                             <div class="flex items-baseline space-x-2">
-                                <label for="grade_level"
+                                <label for="subject"
                                 class="poppins text-sm font-medium text-gray-600">SUBJECT</label>
                                 <span class="error text-xs text-red-600"></span>
                             </div>
-                            <select name="grade_level" id="grade_level"
+                            <select name="subject" id="subject"
                             class="poppins py-2 px-4 text-base border border-gray-300 rounded focus:outline-none focus:border-blue-500">
                                 <option disabled selected value="">Select a Subject</option>
                                 @foreach ($subjects as $subject)
@@ -140,11 +152,11 @@
 
                         <div class="flex flex-col space-y-1">
                             <div class="flex items-baseline space-x-2">
-                                <label for="adviser"
+                                <label for="teacher"
                                 class="poppins text-sm font-medium text-gray-600">SUBJECT TEACHER</label>
                                 <span class="error text-xs text-red-600"></span>
                             </div>
-                            <select name="adviser" id="adviser"
+                            <select name="teacher" id="teacher"
                             class="poppins py-2 px-4 text-base border border-gray-300 rounded focus:outline-none focus:border-blue-500">
                                 <option disabled selected value="">Select a Teacher</option>    
                                 @foreach ($faculties as $teacher)

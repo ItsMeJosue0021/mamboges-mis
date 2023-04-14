@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SectionSubjects;
+use App\Models\SchoolYear;
 use Illuminate\Http\Request;
+use App\Models\SectionSubjects;
 
 class SectionSubjectsController extends Controller
 {
@@ -26,9 +27,27 @@ class SectionSubjectsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $current_school_year = SchoolYear::where('is_current', true)->first();
+
+        $sectionSubject = [
+            'section_id' => $id,
+            'subject_id' => $request->subject,
+            'faculty_id' => $request->teacher,
+            'school_year_id' => $current_school_year->id
+        ];
+
+        $savedSectionSubjects = SectionSubjects::create($sectionSubject);
+
+        if (!is_null($savedSectionSubjects)) {
+            return response()->json(['success' => true, 'message' => 'The Subjects has been added!']);
+        } else {
+            return response()->json(['success' => false, 'message' => 'Adding unsuccessful!']);
+        }
+        
+
+
     }
 
     /**

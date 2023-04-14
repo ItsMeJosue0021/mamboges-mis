@@ -14,6 +14,7 @@ use App\Http\Controllers\GuardianController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\SectionStudentsController;
+use App\Http\Controllers\SectionSubjectsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -158,6 +159,19 @@ Route::post('/sections/{section}/importstudent', [SectionController::class, 'imp
 
 Route::post('/sections/{section}/student/save', [SectionController::class, 'addStudent']);
 
+//              SECTION STUDENTS
+
+Route::get('/sections/students/all', [SectionStudentsController::class, 'getStudents']);
+
+Route::post('/sections/students/save', [SectionStudentsController::class, 'store']);
+
+Route::put('/sections/students/remove', [SectionStudentsController::class, 'remove']);
+
+
+//             SECTION SUBJECTS
+
+Route::post('/sections/{section}', [SectionSubjectsController::class, 'store']);
+
 
 
 //                        PARENTS
@@ -187,15 +201,5 @@ Route::get('/subjects/edit/{subject}', [SubjectsController::class, 'getSubject']
 Route::put('/subjects/{subject}/update', [SubjectsController::class, 'update']);
 
 Route::delete('/subjects/{subject}/delete', [SubjectsController::class, 'delete']);
-
-
-//              SECTION STUDENTS
-
-Route::get('/sections/students/all', [SectionStudentsController::class, 'getStudents']);
-
-Route::post('/sections/students/save', [SectionStudentsController::class, 'store']);
-
-Route::put('/sections/students/remove', [SectionStudentsController::class, 'remove']);
-
 
 
