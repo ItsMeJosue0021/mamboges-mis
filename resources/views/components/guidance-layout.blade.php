@@ -137,7 +137,7 @@
                     </div>
 
                     <!-- links -->
-                    <div id="links" class="flex flex-col">
+                    <div id="links" class="h-full flex flex-col">
                         <div class="space-y-1 py-2">
                             <a id="link1" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/sections">
                                 <i class='bx bx-folder text-2xl text-lightblack group-hover:text-red-600'></i>
@@ -160,7 +160,7 @@
                             </a>
 
                             <a id="link4" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/departments">
-                                <i class='bx bx-book-alt text-2xl text-lightblack group-hover:text-red-600'></i>
+                                <i class='bx bx-category text-2xl text-lightblack group-hover:text-red-600'></i>
                                 <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Departments</p>
                             </a>
 
@@ -195,6 +195,13 @@
                             </a>
                         </div>
 
+                        <div class="w-full self-end border-t-2 border-gray-200 py-2 space-y-1">
+                            <a id="link10" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" >
+                                <i class='bx bx-cog text-2xl text-lightblack group-hover:text-red-600'></i>
+                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Settings</p>
+                            </a>
+                        </div>
+
                     
 
 
@@ -207,7 +214,7 @@
                 <!-- header -->
                 <div class="w-full flex items-center justify-end py-2 px-8 border-b border-gray-300 shadow z-10">
                     <div class="flex items-center space-x-4 py-4 z-20">
-                        <i class='bx bx-cog text-2xl text-lightestgray '></i>
+                        {{-- <i class='bx bx-cog text-2xl text-lightestgray '></i> --}}
                         <img class="h-8 w-8 rounded-full" src="{{asset('image/profile.png')}}" alt="">
                     </div>
                 </div>

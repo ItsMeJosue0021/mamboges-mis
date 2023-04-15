@@ -51,6 +51,8 @@ class SectionSubjectsController extends Controller
 
     public function getSubjects(Request $request) {
 
+        $current_school_year = SchoolYear::where('is_current', true)->first();
+
         if($request->ajax()) {
 
             $output = '';
@@ -58,6 +60,7 @@ class SectionSubjectsController extends Controller
             $subjects = DB::table('section_subjects')
                     ->orderBy('id', 'desc')
                     ->where('section_id', $request->section_id)
+                    ->where('school_year_id', $current_school_year->id)
                     ->get();
                 
 

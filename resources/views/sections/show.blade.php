@@ -33,10 +33,10 @@
                             <h3 class="poppins text-base font-medium text-gray-600">S.Y. {{$school_year->name}}</h3>
                         </div>
                     </div>
-                    <div class="flex flex-col space-y-2 px-2">
+                    {{-- <div class="flex flex-col space-y-2 px-2">
                         <a id="add-student" class="poppins py-2 px-2 bg-blue-600 text-base text-white font-medium rounded cursor-pointer">Add Student</a>
                         <a id="add-subject" class="poppins py-2 px-2 bg-white text-base text-blue-600 border border-blue-600 font-medium rounded cursor-pointer">Add Subjects</a>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="flex flex-col bg-blue-50 border border-blue-500 justify-center items-center py-6 px-8 h-full rounded">
                     <h1 id="student-count" class="poppins text-blue-500 text-5xl font-bold"></h1>
@@ -46,12 +46,20 @@
 
             <div class="w-full">
                 <div class="w-full flex space-x-8 py-2">
-                    <div class="w-full flex">
-                        <h1 class="poppins text-lg text-gray-600 font-medium px-2 py-1 rounded border border-gray-600">STUDENTS</h1>
+                    <div class="w-full flex justify-between items-center">
+                        <h1 class="poppins text-lg text-white bg-gray-400 font-medium px-2 py-1 rounded border border-gray-400">STUDENTS</h1>
+                        <a id="add-student" class="poppins py-1 px-2 bg-white text-sm text-blue-600 border border-blue-600 font-medium rounded cursor-pointer flex items-center">
+                            <i class='bx bx-user-plus text-lg px-1'></i>
+                            Add New
+                        </a>
                     </div>
 
-                    <div class="w-full flex">
-                        <h1 class="poppins text-lg text-gray-600 font-medium px-2 py-1 rounded border border-gray-600">SUBJECTS</h1>
+                    <div class="w-full flex justify-between items-center">
+                        <h1 class="poppins text-lg text-white bg-gray-400 font-medium px-2 py-1 rounded border border-gray-400">SUBJECTS</h1>
+                        <a id="add-subject" class="poppins py-1 px-2 bg-white text-sm text-blue-600 border border-blue-600 font-medium rounded cursor-pointer flex items-center">
+                            <i class='bx bx-list-plus text-lg px-1'></i>
+                            Add New
+                        </a>
                     </div>
                 </div>
 
@@ -166,7 +174,7 @@
                         </div>
 
                         <div class="flex items-center justify-start space-x-4 pt-4 ">
-                            <button type="submit" 
+                            <button id="add-subject-button" type="submit" 
                                 class="poppins text-base font-medium text-white bg-blue-500 hover:bg-blue-600  border border-blue-500 hover:border-blue-600 py-2 px-8 rounded">
                                 Add 
                             </button>

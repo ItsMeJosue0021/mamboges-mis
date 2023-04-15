@@ -67,8 +67,6 @@ $(document).ready(function () {
         fetch_students_data(query);
     }); 
 
-
-
     if ($("#add-subject-form").length > 0) {
         $("#add-subject-form").validate({
             rules: {
@@ -89,7 +87,7 @@ $(document).ready(function () {
 
             submitHandler: function(form) {
                 var $saveBtn = $('#dd-subject-form button[type="submit"]');
-                $saveBtn.text('Saving...');
+                $saveBtn.text('Ading...');
 
                 $.ajaxSetup({
                     headers: {
@@ -107,7 +105,7 @@ $(document).ready(function () {
                             message =  $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-20 py-3"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');
                             $('#add-subject-form')[0].reset();
                             fetch_section_subjects(section);
-                            add_subject_modal.addClass('hidden');
+                            // add_subject_modal.addClass('hidden');
                             
                         } else {
                             message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-orange-100 px-20 py-3"><p class="poppins text-lg text-orange-800 ">' + response.message + '</p></div>');   
@@ -121,11 +119,11 @@ $(document).ready(function () {
                             });
                         }, 3000);
 
-                        $saveBtn.text('Save');
+                        $saveBtn.text('Add');
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         console.log('Error:', errorThrown);
-                        $saveBtn.text('Save');
+                        $saveBtn.text('Add');
                     }
                 });
             }

@@ -64,6 +64,8 @@ class SectionStudentsController extends Controller
 
     public function getStudents(Request $request) {
 
+        $current_school_year = SchoolYear::where('is_current', true)->first();
+
         if($request->ajax()) {
 
             $output = '';
@@ -71,6 +73,7 @@ class SectionStudentsController extends Controller
             $students = DB::table('section_students')
                     ->orderBy('id', 'desc')
                     ->where('section_id', $request->section_id)
+                    ->where('school_year_id', $current_school_year->id)
                     ->get();
                 
 
