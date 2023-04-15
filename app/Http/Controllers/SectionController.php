@@ -246,22 +246,20 @@ class SectionController extends Controller
             $query = $request->get('query');
             if($query != '') {
                 $data = DB::table('students')
-                    ->where('section_id', '=', null)
+                    ->where('section_id', null)
                     ->where('is_archived', false)
                     ->orwhere('first_name', 'like', '%'.$query.'%')
                     ->orWhere('last_name', 'like', '%'.$query.'%')
                     ->orWhere('middle_name', 'like', '%'.$query.'%')
                     ->orWhere('suffix', 'like', '%'.$query.'%')
-                    ->orWhere('grade_level', 'like', '%'.$query.'%')
                     ->orWhere('lrn', 'like', '%'.$query.'%')
-                    ->orWhere('sex', 'like', '%'.$query.'%')
                     ->orderBy('id', 'desc')
                     ->get();
                     
             } else {
                 $data = DB::table('students')
                     ->orderBy('id', 'desc')
-                    ->where('section_id', '=', null)
+                    ->where('section_id', null)
                     ->where('is_archived', false)
                     ->get();
             }

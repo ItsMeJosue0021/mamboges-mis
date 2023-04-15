@@ -76,7 +76,7 @@ class SectionSubjectsController extends Controller
                             <p class="poppins text-base text-gray-700">'.$subj->subject_name.'</p>
                         </div>
                         <div id="button-container">
-                            <button id="'.$subj->id.'" class="addstudentbtn poppins text-xs text-red-400 py-1 px-2 rounded border border-red-400 hover:border-red-500 hover:bg-red-500 hover:text-white">remove</button>
+                            <button id="'.$subj->id.'" class="removesubjectbtn poppins text-xs text-red-400 py-1 px-2 rounded border border-red-400 hover:border-red-500 hover:bg-red-500 hover:text-white">remove</button>
                         </div>
                     </div>
                     ';
@@ -94,6 +94,24 @@ class SectionSubjectsController extends Controller
             echo json_encode($subjects);       
         }
     }   
+
+    public function remove(Request $request) {
+
+        $sectionSubject = SectionSubjects::where('subject_id', $request->subject_id)
+                        ->where('section_id', $request->section_id)->first();
+
+        if ($sectionSubject) {
+            if ($sectionSubject->delete()) {
+                return response()->json(['success' => true]);
+            } else {
+                return response()->json(['success' => false, 'message' => 'Unable to delete student.']);
+            }
+
+        } else {
+            return response()->json(['success' => false, 'message' => 'Subject not found.']);
+        }
+        
+    }
 
     /**
      * Display the specified resource.

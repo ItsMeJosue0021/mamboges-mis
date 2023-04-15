@@ -165,7 +165,7 @@ Route::get('/sections/students/all', [SectionStudentsController::class, 'getStud
 
 Route::post('/sections/students/save', [SectionStudentsController::class, 'store']);
 
-Route::put('/sections/students/remove', [SectionStudentsController::class, 'remove']);
+Route::delete('/sections/students/remove', [SectionStudentsController::class, 'remove']);
 
 
 //             SECTION SUBJECTS
@@ -173,6 +173,8 @@ Route::put('/sections/students/remove', [SectionStudentsController::class, 'remo
 Route::post('/sections/{section}', [SectionSubjectsController::class, 'store']);
 
 Route::get('/sections/subjects/all', [SectionSubjectsController::class, 'getSubjects']);
+
+Route::delete('/sections/subjects/remove', [SectionSubjectsController::class, 'remove']);
 
 
 

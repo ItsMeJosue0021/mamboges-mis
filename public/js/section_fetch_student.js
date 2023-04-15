@@ -1,116 +1,71 @@
 $(document).ready(function () {
-    const addButton = $('#add');
-    const modal = $('#modal');
-
-    addButton.click(function() {
-        modal.removeClass('hidden');
-    });
-
-    const cancelButton = $('#cancel');
-    const backButton = $('#backfromadd');
-
-    cancelButton.click(function() {
-        modal.addClass('hidden');
-        $('#student-form')[0].reset();
-    });
-
-    backButton.click(function() {
-        modal.addClass('hidden');
-        $('#student-form')[0].reset();
-    });
-
-
-    const add_student_btn = $('#add-student');
-    const add_student_modal = $('#add-student-modal');
-
-    add_student_btn.click(function() {
-        add_student_modal.removeClass('hidden');
-    });
-
-    const add_cancel = $('#add-cancel');
-    const done = $('#done');
-
-    add_cancel.click(function() {
-        add_student_modal.addClass('hidden');
-    });
-
-    done.click(function() {
-        add_student_modal.addClass('hidden');
-    });
     
+    var csrf_token = $('meta[name="csrf-token"]').attr('content');
+    fetch_students_data();
 
-    const add_subject_btn = $('#add-subject');
-    const add_subject_modal = $('#add-subject-modal');
+    var sec = $('.get-id').attr('id');
+    fetch_section_students(sec);
+    fetch_section_subjects(sec);
 
-    add_subject_btn.click(function() {
-        add_subject_modal.removeClass('hidden');
-    });
+    function fetch_students_data(query = '') {
+        $.ajax({
+            url:"/sections/search",
+            method:'GET',
+            data:{query:query},
+            dataType:'json',
+            success:function(data)
+            {
+                $('#students-container').html(data.student_data);
 
-    const add_subject_cancel = $('#add-subject-cancel');
+                $('.addstudentbtn').on('click', function() {
+                    const addBtn = $(this);
+                    addBtn.text('adding..');
+                    var student_id = $(this).attr('id');
+                    var section_id =  $('.get-id').attr('id');
+                    sec = section_id;
+                    
+                    $.ajax({
+                        url: "/sections/students/save",
+                        method: "POST",
+                        data: {
+                            section_id: section_id,
+                            student_id: student_id,
+                            _token: csrf_token
+                        },
+                        success: function(response) {
+                            var message;
+                            if (response.success) {
+                                addBtn.text('added');
+                                fetch_section_students(sec);
+                                
+                            } else {
+                                message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-red-100 px-20 py-3"><p class="poppins text-lg text-red-800 ">' + response.message + '</p></div>');   
+                                $('#container').append(message);
+    
+                                setTimeout(function(){
+                                    message.fadeOut('slow', function() {
+                                        message.remove();
+                                    });
+                                }, 3000);
 
-    add_subject_cancel.click(function() {
-        add_subject_modal.addClass('hidden');
-    });
-
-
-    if ($("#student-form").length > 0) {
-        $("#student-form").validate({
-            rules: {
-                first_name: "required",
-            },
-            messages: {
-                first_name: "Please enter the first name",
-            },
-
-            errorPlacement: function(error, element) {
-                error.appendTo(element.closest('div').find('span'));
-            },
-            success: function(label) {
-                label.closest('div').find('span').empty();
-            },
-
-            submitHandler: function(form) {
-                var $saveBtn = $('#student-form button[type="submit"]');
-                $saveBtn.text('Saving...');
-
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-
-                const section = $('.get-id').attr('id');
-                var formData = new FormData(form);
-                $.ajax({
-                    url: '/sections/'+ section + '/savestudent', type: 'POST', data: formData, processData: false, contentType: false,
-                    success: function(response) {
-                        var message;
-                        if (response.success) {
-                            message =  $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-20 py-3"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');
-                            $('#student-form')[0].reset();
-                            
-                        } else {
-                            message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-20 py-3"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');   
+                                addBtn.text('add');
+                            }
+    
+                        },
+                        error: function(xhr) {
+                            addBtn.text('error');
                         }
-
-                        $('#container').append(message);
-
-                        setTimeout(function(){
-                            message.fadeOut('slow', function() {
-                                message.remove();
-                            });
-                        }, 3000);
-
-                        $saveBtn.text('Save');
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        console.log('Error:', errorThrown);
-                        $saveBtn.text('Save');
-                    }
+                    });
+                
                 });
             }
         });
     }
+
+    $('#search').on('keyup', function(){
+        var query = $(this).val();
+        fetch_students_data(query);
+    }); 
 
 
 
@@ -177,14 +132,6 @@ $(document).ready(function () {
         });
     }
 
-
-    var csrf_token = $('meta[name="csrf-token"]').attr('content');
-    fetch_students_data();
-
-    var sec = $('.get-id').attr('id');
-    fetch_section_students(sec);
-    fetch_section_subjects(sec);
-
     function fetch_section_students(section_id) {
         $.ajax({
             url: "/sections/students/all",
@@ -205,7 +152,7 @@ $(document).ready(function () {
 
                     $.ajax({
                         url: "/sections/students/remove",
-                        method: "PUT",
+                        method: "DELETE",
                         data: {
                             student_id: student_id,
                             _token: csrf_token
@@ -240,67 +187,6 @@ $(document).ready(function () {
         });
     }
 
- 
-    function fetch_students_data(query = '') {
-        $.ajax({
-            url:"/sections/search",
-            method:'GET',
-            data:{query:query},
-            dataType:'json',
-            success:function(data)
-            {
-                $('#students-container').html(data.student_data);
-
-                $('.addstudentbtn').on('click', function() {
-                    const addBtn = $(this);
-                    addBtn.text('adding..');
-                    var student_id = $(this).attr('id');
-                    var section_id =  $('.get-id').attr('id');
-                    sec = section_id;
-                    
-                    $.ajax({
-                        url: "/sections/students/save",
-                        method: "POST",
-                        data: {
-                            section_id: section_id,
-                            student_id: student_id,
-                            _token: csrf_token
-                        },
-                        success: function(response) {
-                            var message;
-                            if (response.success) {
-                                addBtn.text('added');
-                                fetch_section_students(sec);
-                                
-                            } else {
-                                message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-red-100 px-20 py-3"><p class="poppins text-lg text-red-800 ">' + response.message + '</p></div>');   
-                                $('#container').append(message);
-    
-                                setTimeout(function(){
-                                    message.fadeOut('slow', function() {
-                                        message.remove();
-                                    });
-                                }, 3000);
-
-                                addBtn.text('add');
-                            }
-    
-                        },
-                        error: function(xhr) {
-                            addBtn.text('error');
-                        }
-                    });
-                
-                });
-            }
-        });
-    }
-
-    $('#search').on('keyup', function(){
-        var query = $(this).val();
-        fetch_students_data(query);
-    }); 
-
 
     function fetch_section_subjects(section_id) {
         $.ajax({
@@ -313,46 +199,81 @@ $(document).ready(function () {
             success: function(data) {
                 $('#subjects-list').html(data.subject_data);
 
-                // $('.removestudentbtn').on('click', function() {
-                //     const removeBtn = $(this);
-                //     removeBtn.text('Removing..');
-                //     var student_id = $(this).attr('id');
+                $('.removesubjectbtn').on('click', function() {
+                    const section_id = $('.get-id').attr('id');
+                    const removeBtn = $(this);
+                    removeBtn.text('removing..');
+                    var subject_id = $(this).attr('id');
 
-                //     $.ajax({
-                //         url: "/sections/students/remove",
-                //         method: "PUT",
-                //         data: {
-                //             student_id: student_id,
-                //             _token: csrf_token
-                //         },
-                //         success: function(response) {
-                //             var message;
-                //             if (response.success) {
-                //                 removeBtn.text('Removed');
-                //                 fetch_section_students(sec);
+                    $.ajax({
+                        url: "/sections/subjects/remove",
+                        method: "DELETE",
+                        data: {
+                            subject_id: subject_id,
+                            section_id: section_id,
+                            _token: csrf_token
+                        },
+                        success: function(response) {
+                            var message;
+                            if (response.success) {
+                                removeBtn.text('removed');
+                                fetch_section_subjects(sec);
                                 
-                //             } else {
-                //                 message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-red-100 px-20 py-3"><p class="poppins text-lg text-red-800 ">' + response.message + '</p></div>');   
+                            } else {
+                                message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-red-100 px-20 py-3"><p class="poppins text-lg text-red-800 ">' + response.message + '</p></div>');   
                             
-                //                 $('#container').append(message);
+                                $('#container').append(message);
                             
-                //                 setTimeout(function(){
-                //                     message.fadeOut('slow', function() {
-                //                         message.remove();
-                //                     });
-                //                 }, 3000);
-                //                 removeBtn.text('Remove');
-                //             }
+                                setTimeout(function(){
+                                    message.fadeOut('slow', function() {
+                                        message.remove();
+                                    });
+                                }, 3000);
+                                removeBtn.text('remove');
+                            }
     
-                //         },
-                //         error: function(xhr) {
-                //             removeBtn.text('error');
-                //         }
-                //     });
-                // });
+                        },
+                        error: function(xhr) {
+                            removeBtn.text('error');
+                        }
+                    });
+                });
 
             }
         });
     }
+
+
+    const add_student_btn = $('#add-student');
+    const add_student_modal = $('#add-student-modal');
+
+    add_student_btn.click(function() {
+        add_student_modal.removeClass('hidden');
+    });
+
+    const add_cancel = $('#add-cancel');
+    const done = $('#done');
+
+    add_cancel.click(function() {
+        add_student_modal.addClass('hidden');
+    });
+
+    done.click(function() {
+        add_student_modal.addClass('hidden');
+    });
+    
+
+    const add_subject_btn = $('#add-subject');
+    const add_subject_modal = $('#add-subject-modal');
+
+    add_subject_btn.click(function() {
+        add_subject_modal.removeClass('hidden');
+    });
+
+    const add_subject_cancel = $('#add-subject-cancel');
+
+    add_subject_cancel.click(function() {
+        add_subject_modal.addClass('hidden');
+    });
  
 });

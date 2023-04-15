@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
-    <link rel="icon" href="images/mambog.png"/>
+    <link rel="icon" href="{{asset('image/mambog.png')}}"/>
     <title>Mambog Elementary School</title>
 
     <style type="text/tailwindcss">
