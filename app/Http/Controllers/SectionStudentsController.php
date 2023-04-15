@@ -91,7 +91,7 @@ class SectionStudentsController extends Controller
                             <p class="poppins text-base text-gray-700">'.$stud->middle_name.'</p>
                         </div>
                         <div id="button-container">
-                            <button id="'.$stud->id.'" class="removestudentbtn poppins text-xs text-red-500 py-1 px-2 rounded border border-red-500 hover:bg-red-500 hover:text-white">remove</button>
+                            <button id="'.$stud->id.'" class="removestudentbtn poppins text-xs text-red-400 py-1 px-2 rounded border border-red-400 hover:border-red-500 hover:bg-red-500 hover:text-white">remove</button>
                         </div>
                     </div>
                     ';

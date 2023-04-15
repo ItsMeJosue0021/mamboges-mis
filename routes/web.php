@@ -172,6 +172,8 @@ Route::put('/sections/students/remove', [SectionStudentsController::class, 'remo
 
 Route::post('/sections/{section}', [SectionSubjectsController::class, 'store']);
 
+Route::get('/sections/subjects/all', [SectionSubjectsController::class, 'getSubjects']);
+
 
 
 //                        PARENTS
@@ -201,5 +203,9 @@ Route::get('/subjects/edit/{subject}', [SubjectsController::class, 'getSubject']
 Route::put('/subjects/{subject}/update', [SubjectsController::class, 'update']);
 
 Route::delete('/subjects/{subject}/delete', [SubjectsController::class, 'delete']);
+
+
+//                       LOGS
+
 
 

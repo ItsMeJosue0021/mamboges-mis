@@ -34,8 +34,8 @@
                         </div>
                     </div>
                     <div class="flex flex-col space-y-2 px-2">
-                        <a id="add-student" class="poppins py-2 px-4 bg-blue-600 text-base text-white font-medium rounded cursor-pointer">Add Student</a>
-                        <a id="add-subject" class="poppins py-2 px-4 bg-white text-base text-blue-600 border border-blue-600 font-medium rounded cursor-pointer">Add Subjects</a>
+                        <a id="add-student" class="poppins py-2 px-2 bg-blue-600 text-base text-white font-medium rounded cursor-pointer">Add Student</a>
+                        <a id="add-subject" class="poppins py-2 px-2 bg-white text-base text-blue-600 border border-blue-600 font-medium rounded cursor-pointer">Add Subjects</a>
                     </div>
                 </div>
                 <div class="flex flex-col bg-blue-50 border border-blue-500 justify-center items-center py-6 px-8 h-full rounded">
@@ -47,11 +47,11 @@
             <div class="w-full">
                 <div class="w-full flex space-x-8 py-2">
                     <div class="w-full flex">
-                        <h1 class="poppins text-lg text-blue-400 font-medium px-2 py-1 rounded border border-blue-400">Students</h1>
+                        <h1 class="poppins text-lg text-gray-600 font-medium px-2 py-1 rounded border border-gray-600">STUDENTS</h1>
                     </div>
 
                     <div class="w-full flex">
-                        <h1 class="poppins text-lg text-red-400 font-medium px-2 py-1 rounded border border-red-400">Subjects</h1>
+                        <h1 class="poppins text-lg text-gray-600 font-medium px-2 py-1 rounded border border-gray-600">SUBJECTS</h1>
                     </div>
                 </div>
 
@@ -61,7 +61,7 @@
                     </div>
 
                     <div id="subjects-list" class="w-full h-auto">
-
+                        
                     </div>
                 </div>
             </div>
@@ -126,10 +126,10 @@
 
          {{-- ADD SUBJECT MODAL --}}
          <div id="add-subject-modal" class="hidden absolute top-0 left-0 w-full h-full">
-            <div class="flex flex-col w-full h-full items-center justify-center space-y-6 bg-black bg-opacity-5">
+            <div class="flex flex-col w-full h-full items-center justify-start space-y-6 bg-black bg-opacity-5 pt-40">
                 <div class="flex flex-col w-fit items-center justify-center space-y-6 bg-white p-6 rounded-md shadow-lg">
-                    {{-- action="javascript:void(0)" --}}
-                    <form id="add-subject-form" method="POST" action="/sections/{{$section->id}}" class="w-700px flex flex-col space-y-3">
+                    {{-- action="javascript:void(0)" /sections/{{$section->id}}--}}
+                    <form id="add-subject-form" method="POST" action="javascript:void(0)" class="w-700px flex flex-col space-y-3">
                         @csrf
                         <div class="w-full flex">
                             <h1 class="poppins text-xl text-gray-800 font-medium">ADD SUBJECTS</h1>
@@ -184,8 +184,8 @@
     </div>
 </x-guidance-layout>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-<script src="{{ asset('js/section_show.js') }}"></script>
+{{-- <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script> --}}
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+{{-- <script src="{{ asset('js/section_show.js') }}"></script> --}}
 <script src="{{ asset('js/section_fetch_student.js') }}"></script>
