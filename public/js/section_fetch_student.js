@@ -86,7 +86,7 @@ $(document).ready(function() {
             },
 
             submitHandler: function(form) {
-                var $saveBtn = $('#dd-subject-form button[type="submit"]');
+                var $saveBtn = $('#add-subject-form button[type="submit"]');
                 $saveBtn.text('Ading...');
 
                 $.ajaxSetup({

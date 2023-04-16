@@ -223,9 +223,9 @@ Route::get('/settings', [SettingsController::class, 'index']);
 
 //               SCHOOL YEAR
 
-Route::post('/schoolyears/new', [SchoolYearController::class, 'store']);
-
 Route::get('/schoolyears', [SchoolYearController::class, 'getSchoolYears']);
+
+Route::post('/schoolyears/new', [SchoolYearController::class, 'store']);
 
 Route::put('/schoolyears/change', [SchoolYearController::class, 'changeSchoolYear']);
 

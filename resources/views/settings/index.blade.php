@@ -18,11 +18,12 @@
                                     <h1 class="poppins text-lg text-gray-800 font-semibold">CURRENT SCHOOL YEAR</h1>
                                 </div>
     
-                                <form method="POST" action="/schoolyears/change" class="flex flex-col space-y-1">
+                                <form method="POST" action="/schoolyears/change" id="change-sy-form" class="flex flex-col space-y-1">
                                     @csrf
                                     @method('PUT')
-                                    <div>
+                                    <div class="flex items-baseline space-x-2">
                                         <h1 class="poppins text-sm text-blue-400">CHANGE SCHOOL YEAR</h1>
+                                        <span class="error text-xs text-red-600"></span>
                                     </div>
                                     <div class="flex items-center space-x-3">
                                         <select name="new_school_year" id="new_school_year" 
@@ -40,25 +41,28 @@
                                 <div>
                                     <h1 class="poppins text-lg text-gray-800 font-semibold">ADD NEW SCHOOL YEAR</h1>
                                 </div>
-                                <form method="POST" action="/schoolyears/new" class="w-full flex items-end justify-between">
+                                <form method="POST" action="/schoolyears/new" id="add-newSY-form" class="w-full flex items-end justify-between">
                                     @csrf
                                     <div class="flex flex-col space-y-1 justify-end">
-                                        <div>
-                                            <label for="" class="poppins text-sm">SCHOOL YEAR</label>
+                                        <div  class="flex items-baseline space-x-2">
+                                            <label for="name" class="poppins text-sm">SCHOOL YEAR</label>
+                                            <span class="error text-xs text-red-600"></span>
                                         </div>
                                         <input type="text" name="name" id="name" class="w-full poppins text-gray-800 border border-gray-300 rounded py-2 px-2" placeholder="ex. 2022-2023">
                                     </div>
 
                                     <div class="flex flex-col space-y-1">
-                                        <div>
-                                            <label for="" class="poppins text-sm">START DATE</label>
+                                        <div  class="flex items-baseline space-x-2">
+                                            <label for="start_date" class="poppins text-sm">START DATE</label>
+                                            <span class="error text-xs text-red-600"></span>
                                         </div>
                                         <input type="date" name="start_date" id="start_date" class="w-full poppins text-gray-800 border border-gray-300 rounded py-2 px-2" placeholder="ex. 2022-2023">
                                     </div>
 
                                     <div class="flex flex-col space-y-1 justify-end">
-                                        <div>
-                                            <label for="" class="poppins text-sm">END DATE</label>
+                                        <div  class="flex items-baseline space-x-2">
+                                            <label for="end_date" class="poppins text-sm">END DATE</label>
+                                            <span class="error text-xs text-red-600"></span>
                                         </div>
                                         <input type="date" name="end_date" id="end_date" class="w-full poppins text-gray-800 border border-gray-300 rounded py-2 px-2" placeholder="ex. 2022-2023">
                                     </div>
