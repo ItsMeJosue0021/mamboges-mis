@@ -7,9 +7,9 @@
             </div>
             <div class="w-2/3 flex">
                 <form action="/students" class="flex w-full justify-end space-x-4">
-                    <input name="search" type="text" placeholder="Search for news and announcements" 
+                    <input name="search" id="search-student" type="text" placeholder="Search for news and announcements" 
                     class="w-500px poppins text-sm focus:outline-none focus:bg-blue-100 border border-gray-400 rounded focus:border-blue-400 py-2 px-4">
-                    <button type="submit" class="poppins text-sm bg-white text-blue-600 border border-blue-600 rounded py-2 px-6">Search</button>
+                    {{-- <button type="submit" class="poppins text-sm bg-white text-blue-600 border border-blue-600 rounded py-2 px-6">Search</button> --}}
                     <a id="add-student" class="poppins py-2 px-4 bg-blue-600 text-sm text-white font-medium rounded cursor-pointer">New Student</a>
                 </form>
             </div>
@@ -19,17 +19,20 @@
             <div class="h-full flex flex-col">
                 <div class="flex justify-between py-1 px-4 border-b border-gray-300  items-center">
                     <p class="w-full poppins text-lg font-semibold">NAME</p>
-                    <p class="w-full poppins text-center text-lg font-semibold">GRADE</p>
-                    <p class="w-full poppins text-end text-lg font-semibold">SECTION</p>
+                    <p class="w-full poppins text-center text-lg font-semibold">SEX</p>
+                    <p class="w-full poppins text-end text-lg font-semibold">LRN</p>
                 </div>
-            @if(count($students) == 0)
+            {{-- @if(count($students) == 0)
                 <div class="w-full h-96 flex flex-col items-center justify-center mt-20">
                     <img class="h-60 w-60" src="{{asset('image/search.png')}}" alt="">
                     <p class="poppins text-xl  text-red-500 mt-5">Oops! No result found.</p>
                     <a class="poppins text-xm text-blue-500 underline" href="/students">refresh</a>
                 </div>
-            @endif
-            @foreach ($students as $student)
+            @endif --}}
+            <div id="students-container">
+
+            </div>
+            {{-- @foreach ($students as $student)
                 <a class="w-full group flex items-center hover:bg-blue-50"  href="/students/{{$student->id}}"> 
                     <div class="w-full flex justify-between py-2 px-4 border-b border-gray-300 group-hover:border-blue-300 items-center">
                         <p class="w-full poppins text-base group-hover:text-blue-500">
@@ -57,7 +60,7 @@
                         @endif
                     </div>
                 </a>
-            @endforeach
+            @endforeach --}}
         <div>
 
 
@@ -125,8 +128,8 @@
                             </div>
                             <select name="sex" id="sex"
                             class="poppins py-2 px-4 text-base border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full">
-                                <option value="0">Male</option>
-                                <option value="1">Female</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
                             </select>
                         </div>
     
@@ -152,7 +155,7 @@
                             class="poppins py-2 px-4 text-base border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full" placeholder="12345678910">
                         </div>
 
-                        <div class="w-full flex flex-col space-y-1">
+                        {{-- <div class="w-full flex flex-col space-y-1">
                             <div class="flex items-baseline space-x-2">
                                 <label for="grade_level"
                                 class="poppins text-sm font-medium text-gray-600">Grade Level</label>
@@ -169,7 +172,7 @@
                                 <option value="5">Grade 5</option>
                                 <option value="6">Grade 6</option>
                             </select>
-                        </div>
+                        </div> --}}
                     </div>
 
                     {{-- PARENTS INFORMATION --}}

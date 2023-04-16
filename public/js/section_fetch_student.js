@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function() {
     
     var csrf_token = $('meta[name="csrf-token"]').attr('content');
     fetch_students_data();
@@ -11,7 +11,7 @@ $(document).ready(function () {
         $.ajax({
             url:"/sections/search",
             method:'GET',
-            data:{query:query},
+            data:{query: query},
             dataType:'json',
             success:function(data)
             {
@@ -62,7 +62,7 @@ $(document).ready(function () {
         });
     }
 
-    $('#search').on('keyup', function(){
+    $('#search-student').on('keyup', function(){
         var query = $(this).val();
         fetch_students_data(query);
     }); 

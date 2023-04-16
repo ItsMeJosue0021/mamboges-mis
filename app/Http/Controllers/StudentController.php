@@ -24,6 +24,60 @@ class StudentController extends Controller
         ]);
     }
 
+    public function getStudents(Request $request) {
+        if($request->ajax())
+        {
+            $output = '';
+            $query = $request->get('query');
+            if($query != '') {
+                $data = Student::where('first_name', 'like', '%'.$query.'%')
+                    ->orWhere('last_name', 'like', '%'.$query.'%')
+                    ->orWhere('middle_name', 'like', '%'.$query.'%')
+                    ->orWhere('suffix', 'like', '%'.$query.'%')
+                    ->orWhere('lrn', 'like', '%'.$query.'%')
+                    ->where('is_archived', false)
+                    ->orderBy('id', 'desc')
+                    ->get();
+                    
+            } else {
+                $data = Student::where('is_archived', false)
+                    ->orderBy('id', 'desc')
+                    ->get();
+            }
+             
+            $total_row = $data->count();
+            if($total_row > 0){
+                foreach($data as $row)
+                {
+                    $sections = Section::where('is_archived', false)->get();
+
+                    $output .= '
+                        <a class="w-full group flex items-center hover:bg-blue-50"  href="/students/'.$row->id.'"> 
+                            <div class="w-full flex justify-between py-2 px-4 border-b border-gray-300 group-hover:border-blue-300 items-center">
+                                <p class="w-full poppins text-base group-hover:text-blue-500">
+                                '.$row->first_name.' '.$row->middle_name.' '.$row->last_name.'
+                                </p>
+                                <p class="w-full poppins text-center text-base group-hover:text-blue-500">'.$row->sex.' </p>
+                                <p class="w-full poppins text-end text-base group-hover:text-blue-500">'.$row->lrn.' </p>
+                            </div>
+                        </a>
+                    ';
+
+                }
+            } else {
+                $output = '
+                <div class="w-full h-96 flex flex-col items-center justify-center mt-20">
+                    <p class="poppins text-xl  text-red-500 mt-5">Oops! No student found.</p>
+                </div>
+                ';
+            }
+            $data = array(
+                'student_data'  => $output
+            );
+            echo json_encode($data);
+        }
+    }
+
     public function show(Student $student) {
 
         $section = Section::where('id', $student->section_id)->where('is_archived', false)->first();

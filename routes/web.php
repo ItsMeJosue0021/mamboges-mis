@@ -11,6 +11,7 @@ use App\Http\Controllers\UpdatesController;
 use App\Http\Controllers\WebsiteController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\GuardianController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\SectionStudentsController;
@@ -121,14 +122,17 @@ Route::delete('/faculties/{faculty}/delete', [FacultyController::class, 'delete'
 //show all students
 Route::get('/students', [StudentController::class, 'index']);
 
-Route::get('students/{student}', [StudentController::class, 'show']);
+Route::get('/students/search', [StudentController::class, 'getStudents']);
 
-Route::put('students/{student}/edit', [StudentController::class, 'update']);
+Route::get('/students/{student}', [StudentController::class, 'show']);
 
-Route::delete('students/{student}/delete', [StudentController::class, 'delete']);
+Route::put('/students/{student}/edit', [StudentController::class, 'update']);
+
+Route::delete('/students/{student}/delete', [StudentController::class, 'delete']);
 
 //register students
 Route::post('/students/register', [StudentController::class, 'store']);
+
 
 
 //                           EVALUATION
@@ -137,6 +141,7 @@ Route::get('/evaluation', [GradeController::class, 'evaluation']);
 
 
 //                          SECTIONS
+
 Route::get('/sections', [SectionController::class, 'index']);
 
 Route::get('/sections/search', [SectionController::class, 'searchStudent']);
@@ -159,6 +164,7 @@ Route::post('/sections/{section}/importstudent', [SectionController::class, 'imp
 
 Route::post('/sections/{section}/student/save', [SectionController::class, 'addStudent']);
 
+
 //              SECTION STUDENTS
 
 Route::get('/sections/students/all', [SectionStudentsController::class, 'getStudents']);
@@ -175,6 +181,7 @@ Route::post('/sections/{section}', [SectionSubjectsController::class, 'store']);
 Route::get('/sections/subjects/all', [SectionSubjectsController::class, 'getSubjects']);
 
 Route::delete('/sections/subjects/remove', [SectionSubjectsController::class, 'remove']);
+
 
 
 
@@ -207,7 +214,9 @@ Route::put('/subjects/{subject}/update', [SubjectsController::class, 'update']);
 Route::delete('/subjects/{subject}/delete', [SubjectsController::class, 'delete']);
 
 
-//                       LOGS
+//                       SETTINGS
+
+Route::get('/settings', [SettingsController::class, 'index']);
 
 
 

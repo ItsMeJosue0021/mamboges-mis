@@ -12,9 +12,6 @@ $(document).ready(function() {
     cancel_add_student.click(function() {
         add_student_modal.addClass('hidden');
         $('#student-form')[0].reset();
-        setTimeout(function(){
-            location.reload();
-        }, 1000);
     });
 
     if ($("#student-form").length > 0) {
@@ -85,6 +82,7 @@ $(document).ready(function() {
                         if (response.success) {
                             message =  $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-20 py-3"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');
                             $('#student-form')[0].reset();
+                            fetch_students_data();
                             
                         } else {
                             message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-20 py-3"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');   
@@ -108,5 +106,67 @@ $(document).ready(function() {
             }
         });
     }
+
+    fetch_students_data();
+
+    function fetch_students_data(query = '') {
+        $.ajax({
+            url:"/students/search",
+            method:'GET',
+            data:{query: query},
+            dataType:'json',
+            success:function(data)
+            {
+                $('#students-container').html(data.student_data);
+
+                // $('.addstudentbtn').on('click', function() {
+                //     const addBtn = $(this);
+                //     addBtn.text('adding..');
+                //     var student_id = $(this).attr('id');
+                //     var section_id =  $('.get-id').attr('id');
+                //     sec = section_id;
+                    
+                //     $.ajax({
+                //         url: "/sections/students/save",
+                //         method: "POST",
+                //         data: {
+                //             section_id: section_id,
+                //             student_id: student_id,
+                //             _token: csrf_token
+                //         },
+                //         success: function(response) {
+                //             var message;
+                //             if (response.success) {
+                //                 addBtn.text('added');
+                //                 fetch_section_students(sec);
+                                
+                //             } else {
+                //                 message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-red-100 px-20 py-3"><p class="poppins text-lg text-red-800 ">' + response.message + '</p></div>');   
+                //                 $('#container').append(message);
+    
+                //                 setTimeout(function(){
+                //                     message.fadeOut('slow', function() {
+                //                         message.remove();
+                //                     });
+                //                 }, 3000);
+
+                //                 addBtn.text('add');
+                //             }
+    
+                //         },
+                //         error: function(xhr) {
+                //             addBtn.text('error');
+                //         }
+                //     });
+                
+                // });
+            }
+        });
+    }
+
+    $('#search-student').on('keyup', function(){
+        var query = $(this).val();
+        fetch_students_data(query);
+    }); 
 });
 

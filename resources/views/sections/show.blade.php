@@ -33,10 +33,6 @@
                             <h3 class="poppins text-base font-medium text-gray-600">S.Y. {{$school_year->name}}</h3>
                         </div>
                     </div>
-                    {{-- <div class="flex flex-col space-y-2 px-2">
-                        <a id="add-student" class="poppins py-2 px-2 bg-blue-600 text-base text-white font-medium rounded cursor-pointer">Add Student</a>
-                        <a id="add-subject" class="poppins py-2 px-2 bg-white text-base text-blue-600 border border-blue-600 font-medium rounded cursor-pointer">Add Subjects</a>
-                    </div> --}}
                 </div>
                 <div class="flex flex-col bg-blue-50 border border-blue-500 justify-center items-center py-6 px-8 h-full rounded">
                     <h1 id="student-count" class="poppins text-blue-500 text-5xl font-bold"></h1>
@@ -83,14 +79,9 @@
                         <div class=" flex space-x-4 mb-6">
                             <div class="">
                                 <div class="flex space-between">
-                                    <input type="text" name="search" id="search"
-                                    class="poppins w-700px py-2 px-4 text-base border border-gray-300 rounded focus:outline-none focus:border-blue-500 mr-3" placeholder="Seach for student..">
-                                </div>
-                                <div class="error">
-                                    <span class="error text-xs text-red-600"></span>
+                                    <input type="text" name="search-student" id="search-student" class="poppins w-700px py-2 px-4 text-base border border-gray-300 rounded focus:outline-none focus:border-blue-500 mr-3" placeholder="Seach for student.."/>
                                 </div>
                             </div>
-
                             <div>
                                 <h1 class="poppins text-base py-2 font-medium">Current Student</h1>
                             </div>
@@ -99,18 +90,10 @@
     
                         <div class="flex space-x-4">
                             <div class="w-700px h-400px overflow-auto">
-                                @if(count($all_students) == 0)
-                                    <div class="w-full h-full flex flex-col items-center justify-center">
-                                        <img class="h-60 w-60" src="{{asset('image/search.png')}}" alt="">
-                                        <p class="poppins text-xl  text-red-500 mt-5">Oops! No result found.</p>
-                                    </div>
-                                @endif
-
                                 <div id="students-container">
                                     
                                 </div>
                             </div>
-
                             <div id="students-list2" class="w-400px h-400px overflow-auto">
                                 
                             </div>
@@ -191,9 +174,8 @@
 
     </div>
 </x-guidance-layout>
-{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
+
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
-{{-- <script src="{{ asset('js/section_show.js') }}"></script> --}}
 <script src="{{ asset('js/section_fetch_student.js') }}"></script>

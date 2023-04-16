@@ -238,34 +238,31 @@ class SectionController extends Controller
 
     }
 
-    function searchStudent(Request $request)
+    public function searchStudent(Request $request)
     {
         if($request->ajax())
         {
             $output = '';
             $query = $request->get('query');
             if($query != '') {
-                $data = DB::table('students')
-                    ->where('section_id', null)
-                    ->where('is_archived', false)
-                    ->orwhere('first_name', 'like', '%'.$query.'%')
+                $data = Student::where('first_name', 'like', '%'.$query.'%')
                     ->orWhere('last_name', 'like', '%'.$query.'%')
                     ->orWhere('middle_name', 'like', '%'.$query.'%')
                     ->orWhere('suffix', 'like', '%'.$query.'%')
                     ->orWhere('lrn', 'like', '%'.$query.'%')
+                    ->where('is_archived', false)
+                    ->where('section_id', null)
                     ->orderBy('id', 'desc')
                     ->get();
                     
             } else {
-                $data = DB::table('students')
-                    ->orderBy('id', 'desc')
+                $data = Student::where('is_archived', false)
                     ->where('section_id', null)
-                    ->where('is_archived', false)
+                    ->orderBy('id', 'desc')
                     ->get();
             }
              
             $total_row = $data->count();
-
             if($total_row > 0){
                 foreach($data as $row)
                 {

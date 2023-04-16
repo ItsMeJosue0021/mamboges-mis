@@ -139,11 +139,7 @@
                     <!-- links -->
                     <div id="links" class="h-full flex flex-col">
                         <div class="space-y-1 py-2">
-                            <a id="link1" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/sections">
-                                <i class='bx bx-folder text-2xl text-lightblack group-hover:text-red-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Sections</p>
-                            </a>
-    
+                           
                             <a id="link2" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/students">
                                 <i class='bx bx-user-circle text-2xl text-lightblack group-hover:text-red-600'></i>
                                 <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Students</p>
@@ -154,6 +150,11 @@
                                 <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Faculty</p>
                             </a>
 
+                            <a id="link1" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/sections">
+                                <i class='bx bx-folder text-2xl text-lightblack group-hover:text-red-600'></i>
+                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Sections</p>
+                            </a>
+                            
                             <a id="link8" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/subjects">
                                 <i class='bx bx-book-alt text-2xl text-lightblack group-hover:text-red-600'></i>
                                 <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Subjects</p>
@@ -196,7 +197,7 @@
                         </div>
 
                         <div class="w-full self-end border-t-2 border-gray-200 py-2 space-y-1">
-                            <a id="link10" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" >
+                            <a id="link10" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/settings">
                                 <i class='bx bx-cog text-2xl text-lightblack group-hover:text-red-600'></i>
                                 <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Settings</p>
                             </a>
