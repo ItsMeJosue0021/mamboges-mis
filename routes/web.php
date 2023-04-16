@@ -14,6 +14,7 @@ use App\Http\Controllers\GuardianController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\SectionStudentsController;
 use App\Http\Controllers\SectionSubjectsController;
 
@@ -217,6 +218,18 @@ Route::delete('/subjects/{subject}/delete', [SubjectsController::class, 'delete'
 //                       SETTINGS
 
 Route::get('/settings', [SettingsController::class, 'index']);
+
+
+
+//               SCHOOL YEAR
+
+Route::post('/schoolyears/new', [SchoolYearController::class, 'store']);
+
+Route::get('/schoolyears', [SchoolYearController::class, 'getSchoolYears']);
+
+Route::put('/schoolyears/change', [SchoolYearController::class, 'changeSchoolYear']);
+
+
 
 
 

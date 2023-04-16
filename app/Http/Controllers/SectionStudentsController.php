@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Section;
 use App\Models\Student;
 use App\Models\SchoolYear;
 use Illuminate\Http\Request;
@@ -33,11 +34,16 @@ class SectionStudentsController extends Controller
     {
         $current_school_year = SchoolYear::where('is_current', true)->first();
 
-        $existingStudent = SectionStudents::where('student_id', $request->student_id)->first();
+        $existingStudent = SectionStudents::where('student_id', $request->student_id)
+                                            ->where('school_year_id', $current_school_year->id)
+                                            ->first();
+
+        $section = Section::where('id', $request->section_id)->first();
 
         $student = Student::find($request->student_id);
         if ($student) {
             $student->section_id = $request->section_id;
+            $student->grade_level = $section->grade_level;
             $student->save();
         } else {
             return response()->json(['success' => false, 'message' => 'Student not found.']);
@@ -125,6 +131,7 @@ class SectionStudentsController extends Controller
 
             if ($student) {
                 $student->section_id = null;
+                $student->grade_level = null;
                 $student->save();
             }
 

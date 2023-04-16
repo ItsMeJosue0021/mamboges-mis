@@ -21,7 +21,7 @@
                             <h1 class="poppins text-2xl font-medium">{{$student->last_name}}</h1>
                         </div>
                         <div class="flex justify-between border border-gray-300 border-t-0 py-1 px-2">
-                            <h1 class="poppins text-base">Birthday: </h1>
+                            <h1 class="poppins text-base">BIRTHDATE: </h1>
                             <h1 class="poppins text-base">{{date('F j, Y', strtotime($student->dob))}}</h1>
                         </div>
                         <div class="flex justify-between border border-gray-300 border-t-0 py-1 px-2">
@@ -29,9 +29,11 @@
                             <h1 class="poppins text-base">{{$student->sex}}</h1>
                         </div>
                         <div class="flex justify-between border border-gray-300 border-t-0 py-1 px-2">
-                            <h1 class="poppins text-base">Grade Level: </h1>
+                            <h1 class="poppins text-base">GRADE LEVEL: </h1>
                             <h1 class="poppins text-base">
-                                @if ($student->grade_level == 0)
+                                @if ($student->grade_level == null)
+                                <span class="text-blue-400 text-sm">Waiting for section assignment</span>
+                                @elseif ($student->grade_level == 0)
                                     Kinder
                                 @else
                                     Grade {{ $student->grade_level }}
@@ -40,7 +42,7 @@
                         </div>
                         <div class="flex justify-between items-center border border-gray-300 border-t-0 py-1 px-2">
                             {{-- && $section->has($student->section_id) --}}
-                            <h1 class="poppins text-base">Section: </h1>
+                            <h1 class="poppins text-base">SECTION: </h1>
                             @if ($student->section_id)
                                 <h1 class="poppins text-base">{{$section->name}}</h1>
                             @else

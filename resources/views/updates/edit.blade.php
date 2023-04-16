@@ -23,16 +23,15 @@
                             file:mr-5 file:py-2 file:px-4
                             file:rounded-md file:border-0
                             file:text-sm file:font-medium
-                            file:bg-gray-100 file:text-gray-600
-                            hover:file:cursor-pointer hover:file:bg-green-100
-                            hover:file:text-green-600" 
+                            file:bg-green-100 file:text-green-600
+                            hover:file:cursor-pointer" 
                             value="{{$updates->image}}"/>
                         </label>
                         <span class="error poppins text-red-500 text-sm"></span>
                     </div>
                     <div class="w-full flex space-x-4 items-center py-4">
                         <button type="submit" 
-                        class="poppins text-base text-white bg-blue-500 hover:bg-blue-600 border border-blue-500 hover:border-blue-600 py-2 px-10 rounded">Save</button>
+                        class="poppins text-base text-white bg-blue-500 hover:bg-blue-600 border border-blue-500 hover:border-blue-600 py-2 px-10 rounded">Update</button>
                         <a href="/updates/list" 
                         class="poppins py-2 px-6 text-base text-red-600 border border-red-400 hover:border-red-400 hover:text-red-600 rounded">Cancel</a>
                     </div>
@@ -137,10 +136,8 @@
                 },
 
                 submitHandler: function(form) {
-                    // Store a reference to the button element
                     var $submitButton = $('#updates-form button[type="submit"]');
-                    // Change the text of the button to 'Sending...'
-                    $submitButton.text('Posting...');
+                    $submitButton.text('Updating...');
 
                     $.ajaxSetup({
                         headers: {
@@ -179,11 +176,11 @@
                                 });
                             }, 3000);
 
-                            $submitButton.text('Post');
+                            $submitButton.text('Update');
                         },
                         error: function(jqXHR, textStatus, errorThrown) {
                             console.log('Error:', errorThrown);
-                            $submitButton.text('Post');
+                            $submitButton.text('Update');
                         }
                     });
                 }
