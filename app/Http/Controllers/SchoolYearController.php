@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
 use App\Models\SchoolYear;
 use Illuminate\Http\Request;
 use App\Http\Controllers\SchoolYearController;
@@ -46,6 +47,8 @@ class SchoolYearController extends Controller
 
     public function changeSchoolYear(Request $request)
     {
+        $students = Student::where('is_archived', false)->get();
+        
         $currentSchoolYear = SchoolYear::where('is_current', true)->first();
 
         $newSchoolYear = SchoolYear::where('id', $request->new_school_year)->first();
@@ -59,6 +62,13 @@ class SchoolYearController extends Controller
             $newSchoolYear->save();
 
             if ($currentSchoolYear && $newSchoolYear) {
+
+                foreach($students as $student) {
+                    $student->grade_level = null;
+                    $student->section_id = null;
+                    $student->save();
+                }
+                
                 return response()->json(['success' => true, 'message' => 'School year has been changed']);
             } else {
                 return response()->json(['success' => true, 'message' => 'Please try again']);

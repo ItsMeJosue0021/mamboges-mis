@@ -22,45 +22,11 @@
                     <p class="w-full poppins text-center text-lg font-semibold">SEX</p>
                     <p class="w-full poppins text-end text-lg font-semibold">LRN</p>
                 </div>
-            {{-- @if(count($students) == 0)
-                <div class="w-full h-96 flex flex-col items-center justify-center mt-20">
-                    <img class="h-60 w-60" src="{{asset('image/search.png')}}" alt="">
-                    <p class="poppins text-xl  text-red-500 mt-5">Oops! No result found.</p>
-                    <a class="poppins text-xm text-blue-500 underline" href="/students">refresh</a>
-                </div>
-            @endif --}}
+
             <div id="students-container">
 
             </div>
-            {{-- @foreach ($students as $student)
-                <a class="w-full group flex items-center hover:bg-blue-50"  href="/students/{{$student->id}}"> 
-                    <div class="w-full flex justify-between py-2 px-4 border-b border-gray-300 group-hover:border-blue-300 items-center">
-                        <p class="w-full poppins text-base group-hover:text-blue-500">
-                            {{$student->first_name}} {{$student->middle_name}} {{$student->last_name}}
-                        </p>
-
-                        <p class="w-full poppins text-center text-base group-hover:text-blue-500"> 
-                            @if ($student->grade_level == 0)
-                                Kinder
-                            @else
-                                Grade {{ $student->grade_level }}
-                            @endif
-                        </p>
-
-                        @if ($student->section_id)
-                            <p class="w-full poppins text-end text-base group-hover:text-blue-500">
-                                @foreach ($sections as $section)
-                                    @if ($section->id == $student->section_id) 
-                                        {{$section->name}}
-                                    @endif
-                                @endforeach
-                            </p>
-                        @else
-                            <p class="w-full poppins text-end text-sm text-red-500 group-hover:text-blue-500">No Section Yet</p>
-                        @endif
-                    </div>
-                </a>
-            @endforeach --}}
+            
         <div>
 
 

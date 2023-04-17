@@ -27,7 +27,7 @@ class StudentFactory extends Factory
             'address' => $this->faker->address(),
             // 'section_id' => $this->faker->numberBetween(1, 20),
             'parent_id' => $this->faker->numberBetween(1, 100),
-            'school_year_id' => $this->faker->numberBetween(1, 2),
+            // 'school_year_id' => $this->faker->numberBetween(1, 2),
         ];
     }
 }

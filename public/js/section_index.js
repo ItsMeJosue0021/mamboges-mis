@@ -12,8 +12,14 @@ $(document).ready(function() {
     const add_back_btn = $('#add-back');
 
     add_cancel_btn.click(function() {
+
         add_modal.addClass('hidden');
+
         $('#section-form')[0].reset();
+
+        setTimeout(function(){
+            location.reload();
+        }, 1000);
     });
 
     add_back_btn.click(function() {

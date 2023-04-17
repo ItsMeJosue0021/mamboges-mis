@@ -79,9 +79,9 @@ class FacultyController extends Controller
 
         $currentAccount = User::where('email', $currentFaculty->email)->where('status', 'active')->first();
 
-        if (is_null($currentAccount)) {
-            return response()->json(['success' => false, 'message' => 'Something went wrong!']);
-        }
+        // if (is_null($currentAccount)) {
+        //     return response()->json(['success' => false, 'message' => 'Something went wrong!']);
+        // }
 
         $existingEmail = Faculty::where('email', $request->email)->where('id', '!=', $id)->where('is_archived', false)->first();
 
@@ -113,7 +113,7 @@ class FacultyController extends Controller
 
         $currentFaculty->update($faculty);
 
-        $currentAccount->update($facultyAccount);
+        // $currentAccount->update($facultyAccount);
 
         if ($currentFaculty->wasChanged()) {
             return response()->json(['success' => true, 'message' => 'Faculty has been updated']);

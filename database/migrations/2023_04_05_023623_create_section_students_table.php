@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('section_id');
             $table->foreignId('student_id');
             $table->foreignId('school_year_id');
+            $table->string('grade_level')->nullable();
             $table->timestamps();
         });
     }

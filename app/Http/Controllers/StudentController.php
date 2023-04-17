@@ -8,6 +8,7 @@ use App\Models\Student;
 use App\Models\Guardian;
 use App\Models\SchoolYear;
 use Illuminate\Http\Request;
+use App\Models\SectionStudents;
 use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
@@ -37,15 +38,15 @@ class StudentController extends Controller
                     ->orWhere('lrn', 'like', '%'.$query.'%')
                     ->where('is_archived', false)
                     ->orderBy('id', 'desc')
-                    ->get();
+                    ->paginate(50);
                     
             } else {
                 $data = Student::where('is_archived', false)
                     ->orderBy('id', 'desc')
-                    ->get();
+                    ->paginate(50);
             }
              
-            $total_row = $data->count();
+            $total_row = $data->total();
             if($total_row > 0){
                 foreach($data as $row)
                 {
@@ -64,6 +65,9 @@ class StudentController extends Controller
                     ';
 
                 }
+
+                $output .= '<div class="pagination my-5">' . $data->links() . '</div>';
+
             } else {
                 $output = '
                 <div class="w-full h-96 flex flex-col items-center justify-center mt-20">
@@ -80,7 +84,15 @@ class StudentController extends Controller
 
     public function show(Student $student) {
 
-        $section = Section::where('id', $student->section_id)->where('is_archived', false)->first();
+        $current_school_year = SchoolYear::where('is_current', true)->first();
+
+        $studentSection = SectionStudents::where('student_id', $student->id)->where('school_year_id', $current_school_year->id)->first();
+
+        if (!is_null($studentSection)) {
+            $section = Section::where('id', $studentSection->section_id)->where('is_archived', false)->first();
+        } else {
+            $section = Section::where('id', $student->section_id)->where('is_archived', false)->first();
+        }
 
         $parent = Guardian::where('id', $student->parent_id)->first();
         
@@ -88,6 +100,7 @@ class StudentController extends Controller
             'student' => $student,
             'section' => $section,
             'parent' => $parent,
+            'student_section' => $studentSection
         ]);
     }
 
@@ -136,7 +149,7 @@ class StudentController extends Controller
                 'address' => $request->address,
                 'grade_level' => $request->grade_level,
                 'parent_id' => $guardian->id,
-                'school_year_id' => $current_school_year->id
+                // 'school_year_id' => $current_school_year->id
             ];
     
             $studentAccount = [
@@ -211,7 +224,7 @@ class StudentController extends Controller
                 'address' => $request->address,
                 'grade_level' => $request->grade_level,
                 'parent_id' => $guardian->id,
-                'school_year_id' => $current_school_year->id
+                // 'school_year_id' => $current_school_year->id
             ];
     
             $student->update($studentArray);

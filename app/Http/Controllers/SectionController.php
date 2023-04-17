@@ -251,13 +251,13 @@ class SectionController extends Controller
                     ->orWhere('suffix', 'like', '%'.$query.'%')
                     ->orWhere('lrn', 'like', '%'.$query.'%')
                     ->where('is_archived', false)
-                    ->where('section_id', null)
+                    // ->where('section_id', null)
                     ->orderBy('id', 'desc')
                     ->get();
                     
             } else {
                 $data = Student::where('is_archived', false)
-                    ->where('section_id', null)
+                    // ->where('section_id', null)
                     ->orderBy('id', 'desc')
                     ->get();
             }

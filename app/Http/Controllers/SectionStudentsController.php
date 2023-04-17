@@ -41,23 +41,26 @@ class SectionStudentsController extends Controller
         $section = Section::where('id', $request->section_id)->first();
 
         $student = Student::find($request->student_id);
-        if ($student) {
-            $student->section_id = $request->section_id;
-            $student->grade_level = $section->grade_level;
-            $student->save();
-        } else {
-            return response()->json(['success' => false, 'message' => 'Student not found.']);
-        }
+
+        // if ($student) {
+        //     // $student->section_id = $request->section_id;
+        //     // $student->grade_level = $section->grade_level;
+        //     // $student->save();
+        // // } else {
+        //     return response()->json(['success' => false, 'message' => 'Student not found.']);
+        // }
 
         $addStudent = [
             'section_id' => $request->section_id,
             'student_id' => $request->student_id,
-            'school_year_id' => $current_school_year->id
+            'school_year_id' => $current_school_year->id,
+            'grade_level' => $section->grade_level
         ];
 
         if ($existingStudent) {
             return response()->json(['success' => false, 'message' => 'Student already added.']);
         } else {
+
             $addedStudent = SectionStudents::create($addStudent);
 
             if (!is_null($addedStudent)) {
@@ -122,8 +125,12 @@ class SectionStudentsController extends Controller
     }
 
     public function remove(Request $request) {
+        
+        $current_school_year = SchoolYear::where('is_current', true)->first();
 
-        $sectionStudent = SectionStudents::where('student_id', $request->student_id)->first();
+        $sectionStudent = SectionStudents::where('student_id', $request->student_id)
+                                            ->where('school_year_id', $current_school_year->id)
+                                            ->first();
 
         if ($sectionStudent) {
 

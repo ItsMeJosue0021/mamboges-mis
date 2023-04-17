@@ -79,7 +79,7 @@
                         class="poppins py-2 px-4 text-base border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full" placeholder="Subject Name">
                     </div>
 
-                    <div class="w-full flex flex-col space-y-1">
+                    {{-- <div class="w-full flex flex-col space-y-1">
                         <div class="flex items-baseline space-x-2">
                             <label for="grade_level"
                             class="poppins text-sm font-medium text-gray-600">Grade Level</label>
@@ -96,7 +96,7 @@
                             <option value="5">Grade 5</option>
                             <option value="6">Grade 6</option>
                         </select>
-                    </div>
+                    </div> --}}
     
                     <div class="flex items-center justify-start space-x-4 pt-4 ">
                         <button type="submit" 
@@ -149,7 +149,7 @@
                         class="poppins py-2 px-4 text-base border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full" placeholder="Departmen Name">
                     </div>
 
-                    <div class="w-full flex flex-col space-y-1">
+                    {{-- <div class="w-full flex flex-col space-y-1">
                         <div class="flex items-baseline space-x-2">
                             <label for="edit_grade_level"
                             class="poppins text-sm font-medium text-gray-600">Grade Level</label>
@@ -166,7 +166,7 @@
                             <option value="5">Grade 5</option>
                             <option value="6">Grade 6</option>
                         </select>
-                    </div>
+                    </div> --}}
     
                     <div class="flex items-center justify-start space-x-4 pt-4 ">
                         <button type="submit" 

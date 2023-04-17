@@ -31,19 +31,19 @@
                         <div class="flex justify-between border border-gray-300 border-t-0 py-1 px-2">
                             <h1 class="poppins text-base">GRADE LEVEL: </h1>
                             <h1 class="poppins text-base">
-                                @if ($student->grade_level == null)
+                                @if ($student_section == null)
                                 <span class="text-blue-400 text-sm">Waiting for section assignment</span>
-                                @elseif ($student->grade_level == 0)
+                                @elseif ($student_section->grade_level == 0)
                                     Kinder
                                 @else
-                                    Grade {{ $student->grade_level }}
+                                    Grade {{ $student_section->grade_level }}
                                 @endif
                             </h1>
                         </div>
                         <div class="flex justify-between items-center border border-gray-300 border-t-0 py-1 px-2">
                             {{-- && $section->has($student->section_id) --}}
                             <h1 class="poppins text-base">SECTION: </h1>
-                            @if ($student->section_id)
+                            @if ($section)
                                 <h1 class="poppins text-base">{{$section->name}}</h1>
                             @else
                                 <h1 class="poppins text-sm text-red-400">No section yet</h1>
