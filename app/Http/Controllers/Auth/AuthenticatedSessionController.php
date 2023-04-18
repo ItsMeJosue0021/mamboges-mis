@@ -31,11 +31,11 @@ class AuthenticatedSessionController extends Controller
 
         $url = '';
         if ($request->user()->type === 'guidance') {
-            $url = '/updates/list';
+            $url = '/students';
         } elseif ($request->user()->type === 'lr') {
             $url = '/lr/dashboard';
         } elseif ($request->user()->type === 'faculty') {
-            $url = '/faculty/dashboard';
+            $url = '/evaluation';
         } elseif ($request->user()->type === 'student') {
             $url = '/student/dashboard';
         }
