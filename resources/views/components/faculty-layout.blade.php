@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
-    <link rel="icon" href="images/mambog.png"/>
+    <link rel="icon" href="{{asset('image/mambog.png')}}"/>
     <title>Mambog Elementary School</title>
 
     <style type="text/tailwindcss">
@@ -126,12 +126,12 @@
 
                     <!-- links -->
                     <div id="links" class="flex flex-col space-y-1">
-                        <a id="link2" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="#">
+                        {{-- <a id="link1" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="#">
                             <i class='bx bx-comment-dots text-2xl text-lightblack group-hover:text-red-600'></i>
                             <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Classes</p>
-                        </a>
+                        </a> --}}
 
-                        <a id="link1" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/evaluation">
+                        <a id="link2" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/evaluation">
                             <i class='bx bx-news text-2xl text-lightblack group-hover:text-red-600'></i>
                             <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Evaluation</p>
                         </a>
@@ -145,7 +145,7 @@
                 <div class="w-full flex items-center justify-end py-2 px-8 border-b border-gray-300 ">
                     <div class="flex items-center space-x-4 py-4">
                         <i class='bx bx-bell text-2xl text-lightestgray '></i>
-                        <img class="h-8 w-8 rounded-full" src="{{asset('image/profile.jpg')}}" alt="">
+                        <img class="h-8 w-8 rounded-full" src="{{asset('image/profile.png')}}" alt="">
                     </div>
                 </div>
 

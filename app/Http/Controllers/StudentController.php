@@ -31,12 +31,12 @@ class StudentController extends Controller
             $output = '';
             $query = $request->get('query');
             if($query != '') {
-                $data = Student::where('first_name', 'like', '%'.$query.'%')
+                $data = Student::where('is_archived', false)
+                    ->where('first_name', 'like', '%'.$query.'%')
                     ->orWhere('last_name', 'like', '%'.$query.'%')
                     ->orWhere('middle_name', 'like', '%'.$query.'%')
                     ->orWhere('suffix', 'like', '%'.$query.'%')
                     ->orWhere('lrn', 'like', '%'.$query.'%')
-                    ->where('is_archived', false)
                     ->orderBy('id', 'desc')
                     ->paginate(50);
                     

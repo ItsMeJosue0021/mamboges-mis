@@ -50,6 +50,10 @@ class SectionStudentsController extends Controller
         //     return response()->json(['success' => false, 'message' => 'Student not found.']);
         // }
 
+        if ($student->is_archived == true) {
+            return response()->json(['success' => false, 'message' => 'Student has been archived already']);
+        }
+
         $addStudent = [
             'section_id' => $request->section_id,
             'student_id' => $request->student_id,
