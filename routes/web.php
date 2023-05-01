@@ -2,6 +2,7 @@
 use App\Models\SectionStudents;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LrController;
+use App\Http\Controllers\LogsController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\ProfileController;
@@ -229,6 +230,10 @@ Route::post('/schoolyears/new', [SchoolYearController::class, 'store']);
 
 Route::put('/schoolyears/change', [SchoolYearController::class, 'changeSchoolYear']);
 
+
+
+//               LOGS
+Route::get('/logs', [LogsController::class, 'index']);
 
 
 

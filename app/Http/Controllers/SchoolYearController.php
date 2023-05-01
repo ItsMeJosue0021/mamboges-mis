@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Logs;
 use App\Models\Student;
 use App\Models\SchoolYear;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\SchoolYearController;
 
 class SchoolYearController extends Controller
@@ -63,11 +65,14 @@ class SchoolYearController extends Controller
 
             if ($currentSchoolYear && $newSchoolYear) {
 
+
                 foreach($students as $student) {
                     $student->grade_level = null;
                     $student->section_id = null;
                     $student->save();
                 }
+
+                Logs::addToLog('School year has been changed');
                 
                 return response()->json(['success' => true, 'message' => 'School year has been changed']);
             } else {
@@ -92,6 +97,7 @@ class SchoolYearController extends Controller
         $saveSchoolYear = SchoolYear::create($schoolYear);
 
         if ($saveSchoolYear) {
+            Logs::addToLog('New school year has been created');
             return response()->json(['success' => true, 'message' => 'New school year has been added.']);
         } else {
             return response()->json(['success' => true, 'message' => 'Please try again']);

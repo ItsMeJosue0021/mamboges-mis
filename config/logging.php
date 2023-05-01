@@ -51,6 +51,34 @@ return [
     */
 
     'channels' => [
+        'teacher_activity' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/teacher_activity.log'),
+            'level' => 'info',
+            'days' => 60,
+        ],
+
+        'student_activity' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/student_activity.log'),
+            'level' => 'info',
+            'days' => 60,
+        ],
+
+        'guidance_officer_activity' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/guidance_officer_activity.log'),
+            'level' => 'info',
+            'days' => 60,
+        ],
+
+        'learning_resources_officer_activity' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/learning_resources_officer_activity.log'),
+            'level' => 'info',
+            'days' => 60,
+        ],
+        
         'stack' => [
             'driver' => 'stack',
             'channels' => ['single'],

@@ -185,7 +185,7 @@
                         </div>
 
                         <div class="w-full border-t-2 border-gray-200 py-2 space-y-1">
-                            <a id="link9" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" >
+                            <a id="link9" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/logs">
                                 <i class='bx bx-list-ul text-2xl text-lightblack group-hover:text-red-600'></i>
                                 <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Logs</p>
                             </a>
