@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Exception;
+use App\Helpers\Logs;
 use App\Models\Feedback;
 use App\Mail\FeedbackReply;
 use Illuminate\Http\Request;
@@ -36,6 +37,7 @@ class FeedbackController extends Controller
         $feedback = Feedback::create($feedbackAarray);
     
         if (!is_null($feedback)) {
+            Logs::addToLog('Feedback recieved from [' . $feedback->email . ']');
             return response()->json(['success' => true, 'message' => 'Thank you for you feedback!']);
         } else {
             return response()->json(['success' => false, 'message' => 'Sending unsuccessful!']);
@@ -46,6 +48,7 @@ class FeedbackController extends Controller
         $feedback = Feedback::findOrFail($id);
         $feedback->isRead = true;
         $feedback->save();
+        Logs::addToLog('Feedback from [' . $feedback->email . '] has been read');
     }
 
     public function reply(Request $request, $feedbackId)
@@ -73,6 +76,7 @@ class FeedbackController extends Controller
             Mail::send('emails.feedback.reply-temp', $data, function($message) use ($feedbackEmail, $subject) {
                 $message->to($feedbackEmail)->subject($subject);
             });
+            Logs::addToLog('A feedback reply email has been sent to [' . $feedbackEmail . ']');
             return redirect()->back()->with('success', 'Email sent successfully');
         } catch (Exception $e) {
             return redirect()->back()->with('error', 'Error sending email: ' . $e->getMessage());

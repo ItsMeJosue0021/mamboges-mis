@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Logs;
 use App\Models\Subjects;
 use Illuminate\Http\Request;
 
@@ -37,6 +38,7 @@ class SubjectsController extends Controller
         $savedSubject = Subjects::create($subject);
 
         if (!is_null($savedSubject)) {
+            Logs::addToLog('New subject has been added | SUBJECT [' . $savedSubject->subject_name . ']');
             return response()->json(['success' => true, 'message' => 'New subject has been added!']);
         } else {
             return response()->json(['success' => false, 'message' => 'Saving unsuccessful!']);
@@ -46,6 +48,8 @@ class SubjectsController extends Controller
 
     public function update(Request $request, $id)
     {
+        $subject_before = Subjects::find($id);
+
         $subject = Subjects::find($id);
 
         $editSubject = [
@@ -56,6 +60,7 @@ class SubjectsController extends Controller
         $subject->update($editSubject);
 
         if ($subject->wasChanged()) {
+            Logs::addToLog('A subject has been updated from [' . $subject_before->subject_name . '] to [' . $subject->subject_name . ']');
             return response()->json(['success' => true, 'message' => 'Subject has been updated!']);
         } else {
             return response()->json(['success' => false, 'message' => 'Nothing was changed!']);
@@ -71,6 +76,7 @@ class SubjectsController extends Controller
         if ($subject) {
             $subject->is_archived = true;
             $subject->save();
+            Logs::addToLog('A subject has been deleted | SUBJECT [' . $subject->subject_name . ']');
             return response()->json(['success' => true, 'message' => 'Subject deleted successfully']);
         } else {
             return response()->json(['success' => false, 'message' => 'Subject not found.']);

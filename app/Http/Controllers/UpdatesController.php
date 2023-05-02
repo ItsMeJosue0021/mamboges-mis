@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Logs;
 use App\Models\Updates;
 use Illuminate\Http\Request;
 
@@ -42,6 +43,7 @@ class UpdatesController extends Controller
         $update = Updates::create($updateArray);
 
         if (!is_null($update)) {
+            Logs::addToLog('A News/Announcement has been posted | NEWS/ANNOUNCEMENT [' . $update->title . ']');
             return response()->json(['success' => true, 'message' => 'The update has been posted!!']);
         } else {
             return response()->json(['success' => false, 'message' => 'Sending unsuccessful!']);
@@ -67,6 +69,7 @@ class UpdatesController extends Controller
         $editUpdate = $update->update($updateArray);
 
         if (!is_null($editUpdate)) {
+            Logs::addToLog('An News/Announcement has been updated | NEWS/ANNOUNCEMENT [' . $update->title . ']');
             return response()->json(['success' => true, 'message' => 'Editing successful!']);
         } else {
             return response()->json(['success' => false, 'message' => 'Editing unsuccessful!']);
