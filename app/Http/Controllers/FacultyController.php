@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Helpers\Logs;
 use App\Models\Faculty;
 use App\Models\Department;
 use App\Models\SchoolYear;
@@ -68,6 +69,7 @@ class FacultyController extends Controller
         $accountSaved = User::create($facultyAccount);
 
         if (!is_null($facultySaved) && !is_null($accountSaved)) {
+            Logs::addToLog('New faculty has been added to the list | EMAIL [' . $accountSaved->email . ']');
             return response()->json(['success' => true, 'message' => 'Faculty has been saved!']);
         } else {
             return response()->json(['success' => false, 'message' => 'Saving unsuccessful!']);
@@ -116,6 +118,7 @@ class FacultyController extends Controller
         // $currentAccount->update($facultyAccount);
 
         if ($currentFaculty->wasChanged()) {
+            Logs::addToLog('A faculty member information has been updated | EMAIL [' . $currentFaculty->email . ']');
             return response()->json(['success' => true, 'message' => 'Faculty has been updated']);
         } else {
             return response()->json(['success' => false, 'message' => 'Nothing was changed']);
@@ -127,6 +130,7 @@ class FacultyController extends Controller
         if ($faculty) {
             $faculty->is_archived = true;
             $faculty->save();
+            Logs::addToLog('A faculty member has been moved to archive | EMAIL [' . $faculty->email . ']');
             return response()->json(['success' => true, 'message' => 'Faculty deleted successfully']);
         } else {
             return response()->json(['success' => false, 'message' => 'Faculty not found.']);

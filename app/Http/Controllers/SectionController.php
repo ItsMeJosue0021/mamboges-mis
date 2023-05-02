@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\User;
+use App\Helpers\Logs;
 use App\Models\Faculty;
 use App\Models\Section;
 use App\Models\Student;
@@ -120,6 +121,7 @@ class SectionController extends Controller
         $section = Section::create($sectionArray);
     
         if (!is_null($section)) {
+            Logs::addToLog('New section has been created | SECTION [' . $section->name . ']');
             return response()->json(['success' => true, 'message' => 'The Section has been saved!']);
         } else {
             return response()->json(['success' => false, 'message' => 'Saving unsuccessful!']);
@@ -130,6 +132,7 @@ class SectionController extends Controller
     //update section
     public function update(Request $request, $id) {
         $section = Section::find($id);
+        $sectionBefore = Section::find($id);
         if (!$section) {
             return response()->json(['success' => false, 'message' => 'Section not found.']);
         }
@@ -155,6 +158,7 @@ class SectionController extends Controller
         $section->adviser_faculty_id = $request->adviser;
     
         if ($section->save()) {
+            Logs::addToLog('Section has been updated | from: [' . $sectionBefore->name . '] [' . $sectionBefore->grade_level . '] [' . $sectionBefore->adviser_faculty_id . '] to [' . $request->name . '] [' . $request->grade_level . '] [' . $request->adviser . ']');
             return response()->json(['success' => true, 'message' => 'The Section has been updated!']);
         } else {
             return response()->json(['success' => false, 'message' => 'Updating unsuccessful!']);
@@ -167,6 +171,7 @@ class SectionController extends Controller
         if ($section) {
             $section->is_archived = true;
             $section->save();
+            Logs::addToLog('Section has been deleted | SECTION [' . $section->name . ']');
             return response()->json(['success' => true, 'message' => 'Section deleted successfully']);
         } else {
             return response()->json(['success' => false, 'message' => 'Section not found.']);

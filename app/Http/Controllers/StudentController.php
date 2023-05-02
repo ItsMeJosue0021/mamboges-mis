@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Helpers\Logs;
 use App\Models\Section;
 use App\Models\Student;
 use App\Models\Guardian;
@@ -163,11 +164,14 @@ class StudentController extends Controller
             $account = User::create($studentAccount);
 
             if (!is_null($student) && !is_null($account)) {
+                Logs::addToLog('New student has been added to the masterlist | LRN [' . $student->lrn . ']');
                 return response()->json(['success' => true, 'message' => 'Student has been saved!']);
             } else {
+                Logs::addToLog('Failed to add new student');
                 return response()->json(['success' => false, 'message' => 'Saving unsuccessful!']);
             }
         } else {
+            Logs::addToLog('Failed to add the guradian and new student');
             return response()->json(['success' => false, 'message' => 'Saving unsuccessful, please check the details of Guirdian.']);
         }  
 
@@ -230,11 +234,14 @@ class StudentController extends Controller
             $student->update($studentArray);
     
             if ($student->wasChanged()) {
+                Logs::addToLog('Student information has been altered | LRN [' . $student->lrn . ']');
                 return response()->json(['success' => true, 'message' => 'Student information has been updated']);
             } else {
+                Logs::addToLog('Failed to alter student information | LRN [' . $student->lrn . ']');
                 return response()->json(['success' => false, 'message' => 'Nothing was changed']);
             }
         } else {
+            Logs::addToLog('Failed to alter the gaurdian and student information');
             return response()->json(['success' => false, 'message' => 'Saving unsuccessful, please check the details of Guardian']);
         }
     }
@@ -243,15 +250,16 @@ class StudentController extends Controller
         $student = Student::find($id);
         if ($student) {
             $student->is_archived = true;
-            $student->save();
-            return response()->json(['success' => true, 'message' => 'Student deleted successfully']);
+
+            if ($student->save()) {
+                Logs::addToLog('Student has been moved to archive | LRN [' . $student->lrn . ']');
+                return response()->json(['success' => true, 'message' => 'Student deleted successfully']);
+            } else {
+                return response()->json(['success' => false, 'message' => 'Cannot delete student.']);
+            }
         } else {
             return response()->json(['success' => false, 'message' => 'Section not found.']);
         }
     }
     
-
-    public function import() {
-
-    }
 }
