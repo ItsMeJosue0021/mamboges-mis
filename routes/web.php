@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LrController;
 use App\Http\Controllers\LogsController;
 use App\Http\Controllers\GradeController;
+use App\Http\Controllers\ArchiveController;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SectionController;
@@ -234,6 +235,10 @@ Route::put('/schoolyears/change', [SchoolYearController::class, 'changeSchoolYea
 
 //               LOGS
 Route::get('/logs', [LogsController::class, 'index']);
+
+//                 ARCHIVE
+Route::get('/archive', [ArchiveController::class, 'index']);
+
 
 
 

@@ -11,8 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        
-        Schema::create('students', function (Blueprint $table) {
+        Schema::create('graduates', function (Blueprint $table) {
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
@@ -22,10 +21,9 @@ return new class extends Migration
             $table->string('lrn')->nullable();
             $table->date('dob');
             $table->string('address');
-            $table->string('grade_level')->nullable();
             $table->foreignId('section_id')->nullable();
             $table->foreignId('parent_id');
-            $table->boolean('is_archived')->default(false);
+            $table->string('year_graduated');
             $table->timestamps();
         });
     }
@@ -35,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('students');
+        Schema::dropIfExists('graduates');
     }
 };

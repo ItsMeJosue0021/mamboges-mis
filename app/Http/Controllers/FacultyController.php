@@ -8,6 +8,7 @@ use App\Models\Faculty;
 use App\Models\Department;
 use App\Models\SchoolYear;
 use Illuminate\Http\Request;
+use App\Models\ArchivedFaculties;
 use Illuminate\Support\Facades\Hash;
 
 class FacultyController extends Controller
@@ -126,16 +127,55 @@ class FacultyController extends Controller
     }
 
     public function delete($id) {
-        $faculty = Faculty::find($id);
+
+        $faculty = Faculty::where('id', $id)->first();
+
         if ($faculty) {
-            $faculty->is_archived = true;
-            $faculty->save();
-            Logs::addToLog('A faculty member has been moved to archive | EMAIL [' . $faculty->email . ']');
-            return response()->json(['success' => true, 'message' => 'Faculty deleted successfully']);
+
+            $toBeArchived = [
+                'first_name' => $faculty->first_name,
+                'last_name' => $faculty->last_name,
+                'middle_name' => $faculty->middle_name,
+                'suffix' => $faculty->suffix,
+                'sex' => $faculty->sex,
+                'email' => $faculty->email,
+                'contact_no' => $faculty->contact_no,
+                'department_id' => $faculty->department_id,
+            ];
+
+            $archivedFaculty = ArchivedFaculties::create($toBeArchived);
+
+            if (!is_null($archivedFaculty)) {
+
+                if ($faculty->delete()) {
+
+                    Logs::addToLog('A faculty member has been moved to archive | EMAIL [' . $faculty->email . ']');
+
+                    return response()->json(['success' => true, 'message' => 'Faculty deleted successfully']);
+                    
+                } else {
+                    return response()->json(['success' => false, 'message' => 'Unable to delete faculty']);
+                }
+            } else {
+                return response()->json(['success' => false, 'message' => 'Something went wrong']);
+            }
         } else {
             return response()->json(['success' => false, 'message' => 'Faculty not found.']);
         }
+        
     }
+
+    // public function delete($id) {
+    //     $faculty = Faculty::find($id);
+    //     if ($faculty) {
+    //         $faculty->is_archived = true;
+    //         $faculty->save();
+    //         Logs::addToLog('A faculty member has been moved to archive | EMAIL [' . $faculty->email . ']');
+    //         return response()->json(['success' => true, 'message' => 'Faculty deleted successfully']);
+    //     } else {
+    //         return response()->json(['success' => false, 'message' => 'Faculty not found.']);
+    //     }
+    // }
 
     public function dashboard() {
         return view('faculty.dashboard');

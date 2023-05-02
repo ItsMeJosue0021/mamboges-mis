@@ -11,21 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        
-        Schema::create('students', function (Blueprint $table) {
+        Schema::create('archived_faculties', function (Blueprint $table) {
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('middle_name')->nullable();
             $table->string('suffix')->nullable();
             $table->string('sex');
-            $table->string('lrn')->nullable();
-            $table->date('dob');
-            $table->string('address');
-            $table->string('grade_level')->nullable();
-            $table->foreignId('section_id')->nullable();
-            $table->foreignId('parent_id');
-            $table->boolean('is_archived')->default(false);
+            $table->string('email');
+            $table->string('contact_no')->nullable();
+            $table->foreignId('department_id');
             $table->timestamps();
         });
     }
@@ -35,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('students');
+        Schema::dropIfExists('archived_faculties');
     }
 };
