@@ -15,6 +15,9 @@
     <link rel="icon" href="image/mambog.png"/>
     <title>Mambog Elementary School</title>
 
+     <!-- Scripts -->
+     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     <style type="text/tailwindcss">
         @layer utilities {
             .poppins {
@@ -121,9 +124,9 @@
                 <!-- student portal and social media icons -->
                 <div class="flex justify-between items-center">
                     <div class="flex px-2 items-center space-x- 2 border-r-2">
-                        @if (Route::has('login'))
+                        @if (Route::has('student.login'))
                             </i><i class='bx bx-log-in text-xl mb-1px text-yellow'></i>
-                            <a href="{{ url('/dashboard') }}" class="text-white poppins text-sm">Login</a>
+                            <a href="/student/login" class="text-white poppins text-sm">Login</a>
                         @endif
                     </div>
 

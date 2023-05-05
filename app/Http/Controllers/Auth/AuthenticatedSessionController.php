@@ -15,9 +15,14 @@ class AuthenticatedSessionController extends Controller
     /**
      * Display the login view.
      */
-    public function create(): View
+    public function studentLogin(): View
     {
-        return view('auth.login');
+        return view('auth.student-login');
+    }
+
+    public function staffLogin(): View
+    {
+        return view('auth.staff-login');
     }
 
     /**
@@ -30,14 +35,21 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         $url = '';
-        if ($request->user()->type === 'guidance') {
-            $url = '/students';
-        } elseif ($request->user()->type === 'lr') {
-            $url = '/lr/dashboard';
-        } elseif ($request->user()->type === 'faculty') {
-            $url = '/evaluation';
-        } elseif ($request->user()->type === 'student') {
-            $url = '/student/dashboard';
+        switch ($request->user()->type) {
+            case 'guidance':
+                $url = '/students';
+                break;
+            case 'student':
+                $url = '/student/dashboard';
+                break;
+            case 'faculty':
+                $url = '/evaluation';
+                break;
+            case 'lr':
+                $url = '/lr/dashboard';
+                break;
+            default:
+                $url = '/';
         }
         
         $request->session()->put('url.intended', $url);
