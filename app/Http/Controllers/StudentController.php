@@ -55,24 +55,25 @@ class StudentController extends Controller
                     $sections = Section::where('is_archived', false)->get();
 
                     $output .= '
-                        <a class="w-full group flex items-center hover:bg-blue-50"  href="/students/'.$row->id.'"> 
-                            <div class="w-full flex justify-between py-2 px-4 border-b border-gray-300 group-hover:border-blue-300 items-center">
-                                <p class="w-full poppins text-base group-hover:text-blue-500">
-                                '.$row->first_name.' '.$row->middle_name.' '.$row->last_name.'
-                                </p>
-                                <p class="w-full poppins text-center text-base group-hover:text-blue-500">'.$row->sex.' </p>
-                                <p class="w-full poppins text-end text-base group-hover:text-blue-500">'.$row->lrn.' </p>
+                        <a class="p-2 lg:w-1/3 md:w-1/2 w-full" href="/students/'.$row->id.'">
+                            <div class="h-full flex items-center border-gray-200 hover:border-gray-400 hover:shadow border p-4 rounded-lg">
+                                <img alt="team" class="w-14 h-14 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="storage/' . $row->image . '">
+                                <div class="flex-grow">
+                                    <h2 class="poppins text-base text-gray-900 title-font font-medium">'.$row->first_name.' '.$row->middle_name.' '.$row->last_name.'</h2>
+                                    <p class="poppins text-sm text-gray-500">LRN: '.$row->lrn.'</p>
+                                </div>
                             </div>
                         </a>
                     ';
-
                 }
 
-                $output .= '<div class="pagination my-5">' . $data->links() . '</div>';
+                $output .= '<div class="w-full poppins px-2">
+                                <div class="pagination my-5">' . $data->links() . '</div>
+                            </div>';
 
             } else {
                 $output = '
-                <div class="w-full h-96 flex flex-col items-center justify-center mt-20">
+                <div class="p-2 w-full h-96 flex flex-col items-center justify-center mt-20">
                     <p class="poppins text-xl  text-red-500 mt-5">Oops! No student found.</p>
                 </div>
                 ';

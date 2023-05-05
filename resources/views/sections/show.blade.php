@@ -1,19 +1,19 @@
 <x-guidance-layout>
     <div id="container" class="w-full flex flex-col p-4 pb-0 relative">
-        <div class="py-2">
+        <div class="pb-2">
             <a id="back" class="flex w-fit justify-start items-center space-x-2 group rounded cursor-pointer" href="/sections">
                 <i class='bx bx-left-arrow-alt text-gray-600 text-2xl group-hover:text-red-700'></i>
                 <p class="poppins text-base text-gray-600 group-hover:text-red-700">back</p>
             </a>
         </div>
         <div class="w-full h-auto min-h-600px flex flex-col items-start justify-start space-y-2">
-            <div class=" get-id w-full h-auto flex justify-between items-start shadow border border-gray-200 rounded p-3" id="{{$section->id}}">
+            <div class=" get-id w-full h-auto flex justify-between items-start shadow border border-gray-200 rounded p-3 bg-blue-500" id="{{$section->id}}">
                 <div class="w-full flex justify-between">
-                    <div class="flex flex-col space-y-2">
+                    <div class="flex flex-col space-y-1">
                         <div class="flex space-x-2 items-start">
-                            <h1 class="poppins text-3xl font-medium text-gray-700">{{$section->name}}</h1>
+                            <h1 class="poppins text-4xl font-medium text-white">{{$section->name}}</h1>
                         </div>
-                        <h2 class="poppins text-lg text-gray-700">
+                        <h2 class="poppins text-lg text-white">
                             @if ($section->adviser_faculty_id && $adviser->has($section->adviser_faculty_id))
                                 {{ optional($adviser[$section->adviser_faculty_id])->suffix }} 
                                 {{ optional($adviser[$section->adviser_faculty_id])->first_name }} 
@@ -23,14 +23,14 @@
                             @endif
                         </h2>
                         <div class="flex space-x-4">
-                            <h2 class="poppins text-base text-white bg-blue-400 rounded px-2 w-fit">
+                            <h2 class="poppins text-sm text-white bg-blue-400 rounded px-2 w-fit">
                                 @if ($section->grade_level == 0)
                                     Kinder
                                 @else
                                     Grade {{ $section->grade_level }}
                                 @endif
                             </h2>
-                            <h3 class="poppins text-base font-medium text-gray-600">S.Y. {{$school_year->name}}</h3>
+                            <h3 class="poppins text-sm font-medium text-white">S.Y. {{$school_year->name}}</h3>
                         </div>
                     </div>
                 </div>

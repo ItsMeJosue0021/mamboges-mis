@@ -26,6 +26,7 @@ return new class extends Migration
             $table->foreignId('section_id')->nullable();
             $table->foreignId('parent_id');
             $table->boolean('is_archived')->default(false);
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

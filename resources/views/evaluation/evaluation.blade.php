@@ -1,4 +1,4 @@
-<x-faculty-layout>
+<x-guidance-layout>
     <section class="w-full flex items-start">
         <div class="w-full h-660px flex items-start p-2 overflow-auto">
             <form action="" class="w-full">
@@ -249,4 +249,4 @@
             </form>
         </div>
     </section>
-</x-faculty-layout>
+</x-guidance-layout>

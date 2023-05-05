@@ -28,6 +28,7 @@ class StudentFactory extends Factory
             // 'section_id' => $this->faker->numberBetween(1, 20),
             'parent_id' => $this->faker->numberBetween(1, 100),
             // 'school_year_id' => $this->faker->numberBetween(1, 2),
+            'image' => 'images/4wA6Q0E6zrDMQVo0zFNlUZwrEWUIjOek2bPxY8Kq.png'
         ];
     }
 }

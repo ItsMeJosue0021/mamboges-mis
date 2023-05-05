@@ -49,6 +49,11 @@
                 color: white;
             }
 
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+                display: none;
+            }
+
         }
     </style>
 
@@ -150,8 +155,8 @@
 
                     <!-- links -->
                     <div id="links" class="h-full flex flex-col">
-                        <div class="space-y-1 py-2">
-                           
+                        @if (Auth::user()->type === 'guidance')
+                        <div class="space-y-1 py-2">                         
                             <a id="link2" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/students">
                                 <i class='bx bx-user-circle text-2xl text-lightblack group-hover:text-red-600'></i>
                                 <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Students</p>
@@ -215,8 +220,17 @@
                             </a>
                         </div>
 
-                    
+                        @elseif(Auth::user()->type === 'faculty') 
 
+                        <div class="w-full self-end border-t-2 border-gray-200 py-2 space-y-1">
+                            <a id="link11" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/evaluation">
+                                <i class='bx bx-cog text-2xl text-lightblack group-hover:text-red-600'></i>
+                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Evaluation</p>
+                            </a>
+                        </div>
+
+
+                        @endif
 
                     </div>
                 </div>

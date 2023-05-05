@@ -16,15 +16,58 @@
         </div>
 
         <div class="w-full h-600px px-4 overflow-auto">
-            <div class="h-full flex flex-col">
+            {{-- <div class="h-full flex flex-col">
                 <div class="flex justify-between py-1 px-4 border-b border-gray-300  items-center">
                     <p class="w-full poppins text-lg font-semibold">NAME</p>
                     <p class="w-full poppins text-center text-lg font-semibold">SEX</p>
                     <p class="w-full poppins text-end text-lg font-semibold">LRN</p>
                 </div>
+            </div> --}}
+            <div class="w-full py-4 px-2">
+                <div class="w-fit flex space-x-2">
+                    <div class="active-archive link flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                        {{-- <i class='bx bx-user-circle text-2xl text-lightblack group-hover:text-white cursor-pointer'></i> --}}
+                        <label class="poppins text-base cursor-pointer">All</label>
+                    </div>
 
-            <div id="students-container">
+                    <div class="link flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                        {{-- <i class='bx bx-user-pin text-2xl text-lightblack group-hover:text-white cursor-pointer'></i> --}}
+                        <label class="poppins text-base cursor-pointer">Kinder</label>
+                    </div>
 
+                    <div class="link flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                        {{-- <i class='bx bx-user-pin text-2xl text-lightblack group-hover:text-white cursor-pointer'></i> --}}
+                        <label class="poppins text-base cursor-pointer">Grade 1</label>
+                    </div>
+
+                    <div class="link flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                        {{-- <i class='bx bx-user-pin text-2xl text-lightblack group-hover:text-white cursor-pointer'></i> --}}
+                        <label class="poppins text-base cursor-pointer">Grade 2</label>
+                    </div>
+
+                    <div class="link flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                        {{-- <i class='bx bx-user-pin text-2xl text-lightblack group-hover:text-white cursor-pointer'></i> --}}
+                        <label class="poppins text-base cursor-pointer">Grade 3</label>
+                    </div>
+
+                    <div class="link flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                        {{-- <i class='bx bx-user-pin text-2xl text-lightblack group-hover:text-white cursor-pointer'></i> --}}
+                        <label class="poppins text-base cursor-pointer">Grade 4</label>
+                    </div>
+
+                    <div class="link flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                        {{-- <i class='bx bx-user-pin text-2xl text-lightblack group-hover:text-white cursor-pointer'></i> --}}
+                        <label class="poppins text-base cursor-pointer">Grade 5</label>
+                    </div>
+
+                    <div class="link flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                        {{-- <i class='bx bx-user-pin text-2xl text-lightblack group-hover:text-white cursor-pointer'></i> --}}
+                        <label class="poppins text-base cursor-pointer">Grade 6</label>
+                    </div>
+                </div>
+            </div>
+            <div id="students-container" class="w-full flex flex-wrap -m-2 px-2">
+                
             </div>
             
         <div>
