@@ -218,16 +218,26 @@
                                 <i class='bx bx-cog text-2xl text-lightblack group-hover:text-red-600'></i>
                                 <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Settings</p>
                             </a>
+
+                            <a id="link12" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/profile">
+                                <i class='bx bxs-user-detail text-2xl text-lightblack group-hover:text-red-600'></i>
+                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Profile</p>
+                            </a>
                         </div>
 
                         @elseif(Auth::user()->type === 'faculty') 
 
-                        <div class="w-full self-end border-t-2 border-gray-200 py-2 space-y-1">
-                            <a id="link11" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/evaluation">
-                                <i class='bx bx-cog text-2xl text-lightblack group-hover:text-red-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Evaluation</p>
-                            </a>
-                        </div>
+                            <div class="w-full self-end py-2 space-y-1">
+                                <a id="link13" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/classes">
+                                    <i class='bx bx-spreadsheet text-2xl text-lightblack group-hover:text-red-600'></i>
+                                    <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Classes</p>
+                                </a>
+
+                                <a id="link14" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/profile">
+                                    <i class='bx bxs-user-detail text-2xl text-lightblack group-hover:text-red-600'></i>
+                                    <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Profile</p>
+                                </a>
+                            </div>
 
 
                         @endif

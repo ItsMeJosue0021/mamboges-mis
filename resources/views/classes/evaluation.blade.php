@@ -2,50 +2,50 @@
     <section class="w-full flex items-start">
         <div class="w-full h-660px flex items-start p-2 overflow-auto">
             <form action="" class="w-full">
-                <div class="w-full border border-gray-400">
-                    {{-- row 1 --}}
-                    <div class="w-full flex justify-between bg-gray-200">
-                        <div class="w-1/4 flex justify-center items-center border-r boder-l border-gray-400 py-6">
-                            <h1 class="poppins text-base font-medium">LEARNERS' NAMES</h1>
-                        </div>
-                        <div class="w-3/4 ">
-                            {{-- loop the table evaluation --}}
-                            <div class="flex">
-                                <div class="flex justify-center items-center  w-full border-r boder-l border-gray-400 py-6">
-                                    <div class="flex flex-col justify-center items-center space-x-2">
-                                        <h1 class="poppins text-base font-medium">WRITTEN WORKS</h1>
-                                        <span class="poppins text-base font-medium">20%</span>
-                                    </div>
+                {{-- row 1 --}}
+                <div class="w-full flex justify-between mb-2 space-x-2">
+                    <div class="w-1/4 flex justify-center items-center py-6 bg-gray-100 rounded">
+                        <h1 class="poppins text-base font-medium">LEARNERS' NAMES</h1>
+                    </div>
+                    <div class="w-3/4 ">
+                        {{-- loop the table evaluation --}}
+                        <div class="flex space-x-2">
+                            <div class="flex justify-center items-center  w-full py-6 bg-gray-100 cursor-pointer hover:bg-gray-300 rounded">
+                                <div class="flex flex-col justify-center items-center space-x-2">
+                                    <h1 class="poppins text-sm font-medium">WRITTEN WORKS</h1>
+                                    <span class="poppins text-sm font-medium">20%</span>
                                 </div>
-                                <div class="flex justify-center items-center w-full border-r boder-l border-gray-400 py-6">
-                                    <div class="flex flex-col justify-center items-center space-x-2">
-                                        <h1 class="poppins text-base font-medium">PERFORMANCE TASKS</h1>
-                                        <span class="poppins text-base font-medium">60%</span>
-                                    </div>
+                            </div>
+                            <div class="flex justify-center items-center w-full py-6 bg-gray-100 cursor-pointer hover:bg-gray-300 rounded">
+                                <div class="flex flex-col justify-center items-center space-x-2 ">
+                                    <h1 class="poppins text-sm font-medium">PERFORMANCE TASKS</h1>
+                                    <span class="poppins text-sm font-medium">60%</span>
                                 </div>
-                                <div class="flex justify-center items-center w-full border-r boder-l border-gray-400 py-6">
-                                    <div class="flex flex-col justify-center items-center space-x-2">
-                                        <h1 class="poppins text-base font-medium">QUARTERLY</h1>
-                                        <h1 class="poppins text-base font-medium">ASSESSMENT</h1>
-                                        <span class="poppins text-base font-medium">20%</span>
-                                    </div>
+                            </div>
+                            <div class="flex justify-center items-center w-full py-6 bg-gray-100 cursor-pointer hover:bg-gray-300 rounded">
+                                <div class="flex flex-col justify-center items-center space-x-2">
+                                    <h1 class="poppins text-sm font-medium">QUARTERLY</h1>
+                                    <h1 class="poppins text-sm font-medium">ASSESSMENT</h1>
+                                    <span class="poppins text-sm font-medium">20%</span>
                                 </div>
+                            </div>
 
-                                <div class="flex justify-center items-center w-full border-r boder-l border-gray-400 py-6">
-                                    <div class="flex space-x-2">
-                                        <h1 class="poppins text-base font-medium">INITIAL GRADE</h1>
-                                    </div>
+                            <div class="flex justify-center items-center w-full py-6 bg-gray-100 cursor-pointer hover:bg-gray-300 rounded">
+                                <div class="flex space-x-2">
+                                    <h1 class="poppins text-sm font-medium">INITIAL GRADE</h1>
                                 </div>
+                            </div>
 
-                                <div class="flex justify-center items-center w-full border-r boder-l border-gray-400 py-6">
-                                    <div class="flex space-x-2">
-                                        <h1 class="poppins text-base font-medium">FINAL GRADE</h1>
-                                    </div>
+                            <div class="flex justify-center items-center w-full py-6 bg-gray-100 cursor-pointer hover:bg-gray-300 rounded">
+                                <div class="flex space-x-2">
+                                    <h1 class="poppins text-sm font-medium">FINAL GRADE</h1>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
+                <div class="w-full border border-gray-400">
                     {{-- row 2 --}}
                     <div class="w-full flex border-t border-b border-gray-400 bg-gray-100">
                         <div class="w-1/4 flex justify-center items-center py-2 border-r border-gray-400">
@@ -156,19 +156,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                     {{-- row 4 --}}
                     <div>

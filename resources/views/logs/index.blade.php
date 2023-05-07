@@ -12,11 +12,11 @@
                     <table class="w-full border-collapse border border-gray-400">
                         <thead>
                             <tr>
-                                <th class="poppins border border-gray-400 px-4 py-2 text-center">ACTIVITY</th>
-                                <th class="poppins border border-gray-400 px-4 py-2 text-center">DATE & TIME</th>
-                                <th class="poppins border border-gray-400 px-4 py-2 text-center">IP ADDRESS</th>
-                                <th class="poppins border border-gray-400 px-4 py-2 text-center" width="300px">USER AGENT</th>
-                                <th class="poppins border border-gray-400 px-4 py-2 text-center">USER</th>
+                                <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">ACTIVITY</th>
+                                <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">DATE & TIME</th>
+                                <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">IP ADDRESS</th>
+                                <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center" width="300px">USER AGENT</th>
+                                <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">USER</th>
                             </tr>
                         </thead>
                         <tbody>

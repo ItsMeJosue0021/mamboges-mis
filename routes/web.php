@@ -5,6 +5,7 @@ use App\Http\Controllers\LrController;
 use App\Http\Controllers\LogsController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\ArchiveController;
+use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SectionController;
@@ -57,7 +58,7 @@ require __DIR__.'/auth.php';
 
 //                       WEBSITE
 //home page
-Route::get('/', [WebsiteController::class, 'index']);
+Route::get('/', [WebsiteController::class, 'index'])->name('home');
 
 
 Route::middleware(['auth', 'role:guidance'])->group(function() {
@@ -243,12 +244,15 @@ Route::middleware(['auth', 'role:guidance'])->group(function() {
 
 
 
+Route::middleware(['auth', 'role:faculty'])->group(function() {
+    //                           EVALUATION
 
+    Route::get('/classes', [ClassesController::class, 'index']);
 
+    Route::get('/classes/evaluation', [ClassesController::class, 'evaluation']);
 
-//                           EVALUATION
+});
 
-Route::get('/evaluation', [GradeController::class, 'evaluation']);
 
 
 

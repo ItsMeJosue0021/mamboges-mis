@@ -43,7 +43,7 @@ class AuthenticatedSessionController extends Controller
                 $url = '/student/dashboard';
                 break;
             case 'faculty':
-                $url = '/evaluation';
+                $url = '/classes';
                 break;
             case 'lr':
                 $url = '/lr/dashboard';
