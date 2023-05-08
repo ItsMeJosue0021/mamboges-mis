@@ -25,42 +25,42 @@
             </div> --}}
             <div class="w-full py-4 px-2">
                 <div class="w-fit flex space-x-2">
-                    <div class="active-archive link flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                    <div class="active-archive archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         {{-- <i class='bx bx-user-circle text-2xl text-lightblack group-hover:text-white cursor-pointer'></i> --}}
-                        <label class="poppins text-base cursor-pointer">All</label>
+                        <p class="poppins text-base cursor-pointer no-underline">All</p>
                     </div>
 
-                    <div class="link flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                    <div class="archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         {{-- <i class='bx bx-user-pin text-2xl text-lightblack group-hover:text-white cursor-pointer'></i> --}}
                         <label class="poppins text-base cursor-pointer">Kinder</label>
                     </div>
 
-                    <div class="link flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                    <div class="archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         {{-- <i class='bx bx-user-pin text-2xl text-lightblack group-hover:text-white cursor-pointer'></i> --}}
                         <label class="poppins text-base cursor-pointer">Grade 1</label>
                     </div>
 
-                    <div class="link flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                    <div class="archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         {{-- <i class='bx bx-user-pin text-2xl text-lightblack group-hover:text-white cursor-pointer'></i> --}}
                         <label class="poppins text-base cursor-pointer">Grade 2</label>
                     </div>
 
-                    <div class="link flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                    <div class="archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         {{-- <i class='bx bx-user-pin text-2xl text-lightblack group-hover:text-white cursor-pointer'></i> --}}
                         <label class="poppins text-base cursor-pointer">Grade 3</label>
                     </div>
 
-                    <div class="link flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                    <div class="archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         {{-- <i class='bx bx-user-pin text-2xl text-lightblack group-hover:text-white cursor-pointer'></i> --}}
                         <label class="poppins text-base cursor-pointer">Grade 4</label>
                     </div>
 
-                    <div class="link flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                    <div class="archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         {{-- <i class='bx bx-user-pin text-2xl text-lightblack group-hover:text-white cursor-pointer'></i> --}}
                         <label class="poppins text-base cursor-pointer">Grade 5</label>
                     </div>
 
-                    <div class="link flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                    <div class="archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         {{-- <i class='bx bx-user-pin text-2xl text-lightblack group-hover:text-white cursor-pointer'></i> --}}
                         <label class="poppins text-base cursor-pointer">Grade 6</label>
                     </div>

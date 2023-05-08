@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Section;
+use App\Models\Subjects;
 use App\Models\SchoolYear;
 use Illuminate\Http\Request;
 use App\Models\SectionSubjects;
@@ -9,30 +11,16 @@ use Illuminate\Support\Facades\DB;
 
 class SectionSubjectsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request, $id)
     {
         $current_school_year = SchoolYear::where('is_current', true)->first();
 
+        $subject = Subjects::where('id', $request->subject)->first();
+
+        $section = Section::where('id', $id)->first();
+
         $sectionSubject = [
+            'name' => $section->name . " " . $subject->subject_name,
             'section_id' => $id,
             'subject_id' => $request->subject,
             'faculty_id' => $request->teacher,
@@ -116,35 +104,4 @@ class SectionSubjectsController extends Controller
         
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(SectionSubjects $sectionSubjects)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(SectionSubjects $sectionSubjects)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, SectionSubjects $sectionSubjects)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(SectionSubjects $sectionSubjects)
-    {
-        //
-    }
 }

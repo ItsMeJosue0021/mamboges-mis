@@ -292,7 +292,7 @@
                 </div>
 
                 <!-- main content -->
-                <div class="w-full h-full z-10">
+                <div class="w-full h-full z-10 relative">
                     <main>
                         {{$slot}}
                     </main>

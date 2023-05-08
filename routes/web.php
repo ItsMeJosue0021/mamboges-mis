@@ -249,7 +249,7 @@ Route::middleware(['auth', 'role:faculty'])->group(function() {
 
     Route::get('/classes', [ClassesController::class, 'index']);
 
-    Route::get('/classes/evaluation', [ClassesController::class, 'evaluation']);
+    Route::get('/classes/{class}/class-record', [ClassesController::class, 'classRecord']);
 
 });
 

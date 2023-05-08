@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('section_subjects', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->foreignId('section_id');
             $table->foreignId('subject_id');
             $table->foreignId('faculty_id');

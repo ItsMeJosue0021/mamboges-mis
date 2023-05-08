@@ -93,6 +93,7 @@
                     backgroundImage: {
                         'school': "url('image/school-blur.png')",
                         'deped': "url('images/deped.png')",
+                        'mambog': "url('image/mamboges.jpg')",
                     }
                 }
             }

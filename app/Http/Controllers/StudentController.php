@@ -59,8 +59,8 @@ class StudentController extends Controller
                             <div class="h-full flex items-center border-gray-200 hover:border-gray-400 hover:shadow border p-4 rounded-lg">
                                 <img alt="team" class="w-14 h-14 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="storage/' . $row->image . '">
                                 <div class="flex-grow">
-                                    <h2 class="poppins text-base text-gray-900 title-font font-medium">'.$row->first_name.' '.$row->middle_name.' '.$row->last_name.'</h2>
-                                    <p class="poppins text-sm text-gray-500">LRN: '.$row->lrn.'</p>
+                                    <h2 class="no-underline poppins text-base text-gray-900 title-font font-medium">'.$row->first_name.' '.$row->middle_name.' '.$row->last_name.'</h2>
+                                    <p class="no-underline poppins text-sm text-gray-500">LRN: '.$row->lrn.'</p>
                                 </div>
                             </div>
                         </a>
