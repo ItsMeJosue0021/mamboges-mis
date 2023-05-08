@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Logs;
 use App\Models\Section;
 use App\Models\Student;
 use App\Models\SchoolYear;
@@ -68,6 +69,7 @@ class SectionStudentsController extends Controller
             $addedStudent = SectionStudents::create($addStudent);
 
             if (!is_null($addedStudent)) {
+                Logs::addToLog('Student [' . $request->student_id . '] has been added to Section [' . $request->section_id . ']');
                 return response()->json(['success' => true]);
             } else {
                 return response()->json(['success' => false]);
@@ -147,6 +149,7 @@ class SectionStudentsController extends Controller
             }
 
             if ($sectionStudent->delete()) {
+                Logs::addToLog('Student [' . $request->student_id . '] has been remove from Section [' . $sectionStudent->section_id . ']');
                 return response()->json(['success' => true]);
             } else {
                 return response()->json(['success' => false, 'message' => 'Unable to delete student.']);
@@ -158,35 +161,4 @@ class SectionStudentsController extends Controller
         
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(SectionStudents $sectionStudents)
-    {
-        
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(SectionStudents $sectionStudents)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, SectionStudents $sectionStudents)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(SectionStudents $sectionStudents)
-    {
-        //
-    }
 }

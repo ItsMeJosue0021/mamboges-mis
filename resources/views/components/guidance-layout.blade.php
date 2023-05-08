@@ -54,6 +54,10 @@
                 display: none;
             }
 
+            .active-eval {
+                background-color: #60a5fa;
+            }
+
         }
     </style>
 

@@ -1,5 +1,5 @@
 <x-guidance-layout>
-    <div class="w-full flex p-4">
+    <div class="w-full flex flex-col p-4">
         <div class="pb-2">
             <a id="back" class="flex w-fit justify-start items-center space-x-2 group rounded cursor-pointer" href="/classes">
                 <i class='bx bx-left-arrow-alt text-gray-600 text-2xl group-hover:text-red-700'></i>

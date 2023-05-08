@@ -8,12 +8,12 @@
             {{-- header --}}
             <div class="w-full mb-5">
                 <div class="w-fit flex space-x-2">
-                    <div class="active-archive link flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                    <div class="active-archive archive-link flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <i class='bx bx-user-circle text-2xl text-lightblack group-hover:text-white cursor-pointer'></i>
                         <label class="poppins text-base cursor-pointer">Student</label>
                     </div>
 
-                    <div class="link flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                    <div class="archive-link flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <i class='bx bx-user-pin text-2xl text-lightblack group-hover:text-white cursor-pointer'></i>
                         <label class="poppins text-base cursor-pointer">Faculty</label>
                     </div>
