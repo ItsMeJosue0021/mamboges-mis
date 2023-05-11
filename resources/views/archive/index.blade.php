@@ -61,9 +61,9 @@
 <script>
    $(document).ready(function() {
         // Add click handlers to the link elements
-        $(".link").click(function() {
+        $(".archive-link").click(function() {
             // Remove active class from all links
-            $(".link").removeClass("active-archive");
+            $(".archive-link").removeClass("active-archive");
             // Add active class to the clicked link
             $(this).addClass("active-archive");
 

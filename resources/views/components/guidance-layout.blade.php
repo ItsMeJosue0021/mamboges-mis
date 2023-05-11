@@ -56,6 +56,7 @@
 
             .active-eval {
                 background-color: #60a5fa;
+                color: white;
             }
 
         }

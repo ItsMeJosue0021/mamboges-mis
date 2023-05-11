@@ -19,7 +19,7 @@ $(document).ready(function() {
 
                 $('.addstudentbtn').on('click', function() {
                     const addBtn = $(this);
-                    addBtn.text('adding..');
+                    addBtn.text('enrolling..');
                     var student_id = $(this).attr('id');
                     var section_id =  $('.get-id').attr('id');
                     sec = section_id;
@@ -35,7 +35,7 @@ $(document).ready(function() {
                         success: function(response) {
                             var message;
                             if (response.success) {
-                                addBtn.text('added');
+                                addBtn.text('enrolled');
                                 fetch_section_students(sec);
                                 
                             } else {
@@ -48,7 +48,7 @@ $(document).ready(function() {
                                     });
                                 }, 3000);
 
-                                addBtn.text('add');
+                                addBtn.text('enroll');
                             }
     
                         },

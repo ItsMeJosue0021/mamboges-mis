@@ -279,7 +279,7 @@ class SectionController extends Controller
                             <p class="poppins text-base text-gray-700">'.$row->middle_name.'</p>
                         </div>
                         <div id="button-container">
-                            <button id="'.$row->id.'" class="addstudentbtn poppins text-xs text-blue-500 py-1 px-2 rounded border border-blue-500 hover:bg-blue-500 hover:text-white">add</button>
+                            <button id="'.$row->id.'" class="addstudentbtn poppins text-xs text-blue-500 py-1 px-2 rounded border border-blue-500 hover:bg-blue-500 hover:text-white">enroll</button>
                         </div>
                     </div>
                     ';

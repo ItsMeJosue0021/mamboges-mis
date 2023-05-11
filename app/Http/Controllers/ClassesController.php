@@ -43,6 +43,5 @@ class ClassesController extends Controller
         return view('classes.class-record', [
             'students' => $students
         ]);
-    }
-    
+    } 
 }

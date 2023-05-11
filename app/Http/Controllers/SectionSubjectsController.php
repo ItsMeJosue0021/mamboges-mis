@@ -27,6 +27,10 @@ class SectionSubjectsController extends Controller
             'school_year_id' => $current_school_year->id
         ];
 
+        $class_evaluation = [
+            
+        ];
+
         $savedSectionSubjects = SectionSubjects::create($sectionSubject);
 
         if (!is_null($savedSectionSubjects)) {

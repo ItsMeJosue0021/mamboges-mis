@@ -1,6 +1,12 @@
 <x-guidance-layout>
-    <section class="w-full flex items-start ">
-        <div class="w-full h-660px flex items-start p-2 overflow-auto">
+    <section class="w-full flex items-start relative">
+        <div class="w-full h-660px flex flex-col items-start p-2 overflow-auto">
+            <div class="pb-2">
+                <a id="back" class="flex w-fit justify-start items-center space-x-2 group rounded cursor-pointer" href="/classes">
+                    <i class='bx bx-left-arrow-alt text-gray-600 text-2xl group-hover:text-red-700'></i>
+                    <p class="poppins text-base text-gray-600 group-hover:text-red-700">back</p>
+                </a>
+            </div>
             <form action="" class="w-full">
                 {{-- row 1 --}}
                 <div class="w-full flex justify-between mb-2 space-x-2">
@@ -54,7 +60,7 @@
 
                                     <div class="flex items-center space-x-2">
                                         <div class="flex items-center space-x-2 rounded py-1 px-2 border border-gray-300">
-                                            <input class="w-10 py-0 px-1 poppins text-sm rounded border-0 focus:outline-none" type="number" placeholder="60">
+                                            <input class="w-10 py-0 px-1 poppins text-sm rounded border-0 focus:outline-none" type="number" placeholder="20">
                                             <p class="poppins text-base">%</p>
                                         </div>
                                         <button class="poppins text-xs text-white bg-blue-400 p-2 rounded">CHANGE</button>
@@ -62,9 +68,9 @@
                                 </div>
 
                                 <div class="w-fit h-full px-3 flex items-center space-x-4 border-l-2 border-gray-300">
-                                    <h1 class="poppins text-sm">TOTAL ACTIVITIES</h1>
+                                    <h1 class="poppins text-sm">NUMBER OF ACTIVITIES</h1>
                                     <p class="poppins py-1 px-3 rounded border border-gray-300 text-sm">10</p>
-                                    <button class="poppins text-xs text-white bg-green-400 p-2 rounded">NEW</button>
+                                    <a id="new-written-act" class="poppins text-xs text-white bg-green-400 p-2 rounded cursor-pointer">NEW</a>
                                 </div>
                             </div>
                         </div>
@@ -81,33 +87,9 @@
                                         <div class="w-60px flex justify-center items-center border-r border-gray-400">
                                             <p class="poppins text-sm">1</p>
                                         </div>
-                                        {{-- <div class="w-60px flex justify-center items-center border-r  border-gray-400">
-                                            <p class="poppins text-sm">2</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r  border-gray-400">
-                                            <p class="poppins text-sm">3</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r  border-gray-400">
-                                            <p class="poppins text-sm">4</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r  border-gray-400">
-                                            <p class="poppins text-sm">5</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r  border-gray-400">
-                                            <p class="poppins text-sm">6</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r  border-gray-400">
-                                            <p class="poppins text-sm">7</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r  border-gray-400">
-                                            <p class="poppins text-sm">8</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r  border-gray-400">
-                                            <p class="poppins text-sm">9</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r  border-gray-400">
-                                            <p class="poppins text-sm">10</p> 
-                                        </div>--}}
+                                        
+                                        {{--  --}}
+
                                     </div>
     
                                     <div class="flex">
@@ -136,33 +118,9 @@
                                         <div class="w-60px flex justify-center items-center border-r border-gray-400">
                                             <p class="poppins text-sm">20</p>
                                         </div>
-                                        {{-- <div class="w-60px flex justify-center items-center border-r border-gray-400">
-                                            <p class="poppins text-sm">20</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r border-gray-400">
-                                            <p class="poppins text-sm">20</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r border-gray-400">
-                                            <p class="poppins text-sm">20</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r border-gray-400">
-                                            <p class="poppins text-sm">20</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r border-gray-400">
-                                            <p class="poppins text-sm">20</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r border-gray-400">
-                                            <p class="poppins text-sm">20</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r border-gray-400">
-                                            <p class="poppins text-sm">20</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r border-gray-400">
-                                            <p class="poppins text-sm">20</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r border-gray-400">
-                                            <p class="poppins text-sm">20</p>
-                                        </div> --}}
+
+                                        {{--  --}}
+                                        
                                     </div>
     
                                     <div class="flex">
@@ -180,9 +138,7 @@
                             </div>
     
                             {{-- row 4 --}}
-                            <div>
-                                {{-- loop the table student --}}
-                                {{-- @for ($i = 0; $i < 20; $i++) --}}
+                            <div>                       
                                 @foreach ($students as $student)
                                     
                                 <div class="flex justify-start border-t border-b border-gray-400">
@@ -202,33 +158,8 @@
                                             <div class="w-60px justify-start border-r border-gray-400 focus:border-r-0">
                                                 <input class="w-full h-full poppins appearance-none px-5 text-sm border-0" type="number" name="score" placeholder="20">
                                             </div>
-                                            {{-- <div class="w-60px justify-start border-r border-gray-400">
-                                                <input class="w-full h-full poppins appearance-none px-5 text-sm border-0" type="number" name="score" placeholder="20">
-                                            </div>
-                                            <div class="w-60px justify-start border-r border-gray-400">
-                                                <input class="w-full h-full poppins appearance-none px-5 text-sm border-0" type="number" name="score" placeholder="20">
-                                            </div>
-                                            <div class="w-60px justify-start border-r border-gray-400">
-                                                <input class="w-full h-full poppins appearance-none px-5 text-sm border-0" type="number" name="score" placeholder="20">
-                                            </div>
-                                            <div class="w-60px justify-start border-r border-gray-400">
-                                                <input class="w-full h-full poppins appearance-none px-5 text-sm border-0" type="number" name="score" placeholder="20">
-                                            </div>
-                                            <div class="w-60px justify-start border-r border-gray-400">
-                                                <input class="w-full h-full poppins appearance-none px-5 text-sm border-0" type="number" name="score" placeholder="20">
-                                            </div>
-                                            <div class="w-60px justify-start border-r border-gray-400">
-                                                <input class="w-full h-full poppins appearance-none px-5 text-sm border-0" type="number" name="score" placeholder="20">
-                                            </div>
-                                            <div class="w-60px justify-start border-r border-gray-400">
-                                                <input class="w-full h-full poppins appearance-none px-5 text-sm border-0" type="number" name="score" placeholder="20">
-                                            </div>
-                                            <div class="w-60px justify-start border-r border-gray-400">
-                                                <input class="w-full h-full poppins appearance-none px-5 text-sm border-0" type="number" name="score" placeholder="20">
-                                            </div>
-                                            <div class="w-60px justify-start border-r border-gray-400">
-                                                <input class="w-full h-full poppins appearance-none px-5 text-sm border-0" type="number" name="score" placeholder="20">
-                                            </div> --}}
+                                            
+                                            {{--  --}}
                                             
                                         </div>
     
@@ -272,9 +203,9 @@
                                 </div>
 
                                 <div class="w-fit h-full px-3 flex items-center space-x-4 border-l-2 border-gray-300">
-                                    <h1 class="poppins text-sm">TOTAL ACTIVITIES</h1>
+                                    <h1 class="poppins text-sm">NUMBER OF TASKS</h1>
                                     <p class="poppins py-1 px-3 rounded border border-gray-300 text-sm">10</p>
-                                    <button class="poppins text-xs text-white bg-green-400 p-2 rounded">NEW</button>
+                                    <a id="new-pt-act" class="poppins text-xs text-white bg-green-400 p-2 rounded cursor-pointer">NEW</a>
                                 </div>
                             </div>
                         </div>
@@ -291,33 +222,9 @@
                                         <div class="w-60px flex justify-center items-center border-r border-gray-400">
                                             <p class="poppins text-sm">1</p>
                                         </div>
-                                        {{-- <div class="w-60px flex justify-center items-center border-r  border-gray-400">
-                                            <p class="poppins text-sm">2</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r  border-gray-400">
-                                            <p class="poppins text-sm">3</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r  border-gray-400">
-                                            <p class="poppins text-sm">4</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r  border-gray-400">
-                                            <p class="poppins text-sm">5</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r  border-gray-400">
-                                            <p class="poppins text-sm">6</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r  border-gray-400">
-                                            <p class="poppins text-sm">7</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r  border-gray-400">
-                                            <p class="poppins text-sm">8</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r  border-gray-400">
-                                            <p class="poppins text-sm">9</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r  border-gray-400">
-                                            <p class="poppins text-sm">10</p> 
-                                        </div>--}}
+                                        
+                                        {{--  --}}
+
                                     </div>
     
                                     <div class="flex">
@@ -346,33 +253,10 @@
                                         <div class="w-60px flex justify-center items-center border-r border-gray-400">
                                             <p class="poppins text-sm">20</p>
                                         </div>
-                                        {{-- <div class="w-60px flex justify-center items-center border-r border-gray-400">
-                                            <p class="poppins text-sm">20</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r border-gray-400">
-                                            <p class="poppins text-sm">20</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r border-gray-400">
-                                            <p class="poppins text-sm">20</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r border-gray-400">
-                                            <p class="poppins text-sm">20</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r border-gray-400">
-                                            <p class="poppins text-sm">20</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r border-gray-400">
-                                            <p class="poppins text-sm">20</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r border-gray-400">
-                                            <p class="poppins text-sm">20</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r border-gray-400">
-                                            <p class="poppins text-sm">20</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r border-gray-400">
-                                            <p class="poppins text-sm">20</p>
-                                        </div> --}}
+                                        
+                                        {{--  --}}
+
+
                                     </div>
     
                                     <div class="flex">
@@ -391,8 +275,6 @@
     
                             {{-- row 4 --}}
                             <div>
-                                {{-- loop the table student --}}
-                                {{-- @for ($i = 0; $i < 20; $i++) --}}
                                 @foreach ($students as $student)
                                     
                                 <div class="flex justify-start border-t border-b border-gray-400">
@@ -412,33 +294,8 @@
                                             <div class="w-60px justify-start border-r border-gray-400 focus:border-r-0">
                                                 <input class="w-full h-full poppins appearance-none px-5 text-sm border-0" type="number" name="score" placeholder="20">
                                             </div>
-                                            {{-- <div class="w-60px justify-start border-r border-gray-400">
-                                                <input class="w-full h-full poppins appearance-none px-5 text-sm border-0" type="number" name="score" placeholder="20">
-                                            </div>
-                                            <div class="w-60px justify-start border-r border-gray-400">
-                                                <input class="w-full h-full poppins appearance-none px-5 text-sm border-0" type="number" name="score" placeholder="20">
-                                            </div>
-                                            <div class="w-60px justify-start border-r border-gray-400">
-                                                <input class="w-full h-full poppins appearance-none px-5 text-sm border-0" type="number" name="score" placeholder="20">
-                                            </div>
-                                            <div class="w-60px justify-start border-r border-gray-400">
-                                                <input class="w-full h-full poppins appearance-none px-5 text-sm border-0" type="number" name="score" placeholder="20">
-                                            </div>
-                                            <div class="w-60px justify-start border-r border-gray-400">
-                                                <input class="w-full h-full poppins appearance-none px-5 text-sm border-0" type="number" name="score" placeholder="20">
-                                            </div>
-                                            <div class="w-60px justify-start border-r border-gray-400">
-                                                <input class="w-full h-full poppins appearance-none px-5 text-sm border-0" type="number" name="score" placeholder="20">
-                                            </div>
-                                            <div class="w-60px justify-start border-r border-gray-400">
-                                                <input class="w-full h-full poppins appearance-none px-5 text-sm border-0" type="number" name="score" placeholder="20">
-                                            </div>
-                                            <div class="w-60px justify-start border-r border-gray-400">
-                                                <input class="w-full h-full poppins appearance-none px-5 text-sm border-0" type="number" name="score" placeholder="20">
-                                            </div>
-                                            <div class="w-60px justify-start border-r border-gray-400">
-                                                <input class="w-full h-full poppins appearance-none px-5 text-sm border-0" type="number" name="score" placeholder="20">
-                                            </div> --}}
+                                            
+                                            {{--  --}}
                                             
                                         </div>
     
@@ -474,7 +331,7 @@
 
                                     <div class="flex items-center space-x-2">
                                         <div class="flex items-center space-x-2 rounded py-1 px-2 border border-gray-300">
-                                            <input class="w-10 py-0 px-1 poppins text-sm rounded border-0 focus:outline-none" type="number" placeholder="60">
+                                            <input class="w-10 py-0 px-1 poppins text-sm rounded border-0 focus:outline-none" type="number" placeholder="20">
                                             <p class="poppins text-base">%</p>
                                         </div>
                                         <button class="poppins text-xs text-white bg-blue-400 p-2 rounded">CHANGE</button>
@@ -482,9 +339,9 @@
                                 </div>
 
                                 <div class="w-fit h-full px-3 flex items-center space-x-4 border-l-2 border-gray-300">
-                                    <h1 class="poppins text-sm">TOTAL ACTIVITIES</h1>
+                                    <h1 class="poppins text-sm">NUMBER OF ASSESSMENT</h1>
                                     <p class="poppins py-1 px-3 rounded border border-gray-300 text-sm">10</p>
-                                    <button class="poppins text-xs text-white bg-green-400 p-2 rounded">NEW</button>
+                                    <a id="new-assessment" class="poppins text-xs text-white bg-green-400 p-2 rounded cursor-pointer">NEW</a>
                                 </div>
                             </div>
                         </div>
@@ -501,33 +358,9 @@
                                         <div class="w-60px flex justify-center items-center border-r border-gray-400">
                                             <p class="poppins text-sm">1</p>
                                         </div>
-                                        {{-- <div class="w-60px flex justify-center items-center border-r  border-gray-400">
-                                            <p class="poppins text-sm">2</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r  border-gray-400">
-                                            <p class="poppins text-sm">3</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r  border-gray-400">
-                                            <p class="poppins text-sm">4</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r  border-gray-400">
-                                            <p class="poppins text-sm">5</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r  border-gray-400">
-                                            <p class="poppins text-sm">6</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r  border-gray-400">
-                                            <p class="poppins text-sm">7</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r  border-gray-400">
-                                            <p class="poppins text-sm">8</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r  border-gray-400">
-                                            <p class="poppins text-sm">9</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r  border-gray-400">
-                                            <p class="poppins text-sm">10</p> 
-                                        </div>--}}
+                                        
+                                        {{--  --}}
+
                                     </div>
     
                                     <div class="flex">
@@ -556,33 +389,9 @@
                                         <div class="w-60px flex justify-center items-center border-r border-gray-400">
                                             <p class="poppins text-sm">20</p>
                                         </div>
-                                        {{-- <div class="w-60px flex justify-center items-center border-r border-gray-400">
-                                            <p class="poppins text-sm">20</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r border-gray-400">
-                                            <p class="poppins text-sm">20</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r border-gray-400">
-                                            <p class="poppins text-sm">20</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r border-gray-400">
-                                            <p class="poppins text-sm">20</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r border-gray-400">
-                                            <p class="poppins text-sm">20</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r border-gray-400">
-                                            <p class="poppins text-sm">20</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r border-gray-400">
-                                            <p class="poppins text-sm">20</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r border-gray-400">
-                                            <p class="poppins text-sm">20</p>
-                                        </div>
-                                        <div class="w-60px flex justify-center items-center border-r border-gray-400">
-                                            <p class="poppins text-sm">20</p>
-                                        </div> --}}
+                                        
+                                        {{--  --}}
+
                                     </div>
     
                                     <div class="flex">
@@ -601,8 +410,6 @@
     
                             {{-- row 4 --}}
                             <div>
-                                {{-- loop the table student --}}
-                                {{-- @for ($i = 0; $i < 20; $i++) --}}
                                 @foreach ($students as $student)
                                     
                                 <div class="flex justify-start border-t border-b border-gray-400">
@@ -622,33 +429,8 @@
                                             <div class="w-60px justify-start border-r border-gray-400 focus:border-r-0">
                                                 <input class="w-full h-full poppins appearance-none px-5 text-sm border-0" type="number" name="score" placeholder="20">
                                             </div>
-                                            {{-- <div class="w-60px justify-start border-r border-gray-400">
-                                                <input class="w-full h-full poppins appearance-none px-5 text-sm border-0" type="number" name="score" placeholder="20">
-                                            </div>
-                                            <div class="w-60px justify-start border-r border-gray-400">
-                                                <input class="w-full h-full poppins appearance-none px-5 text-sm border-0" type="number" name="score" placeholder="20">
-                                            </div>
-                                            <div class="w-60px justify-start border-r border-gray-400">
-                                                <input class="w-full h-full poppins appearance-none px-5 text-sm border-0" type="number" name="score" placeholder="20">
-                                            </div>
-                                            <div class="w-60px justify-start border-r border-gray-400">
-                                                <input class="w-full h-full poppins appearance-none px-5 text-sm border-0" type="number" name="score" placeholder="20">
-                                            </div>
-                                            <div class="w-60px justify-start border-r border-gray-400">
-                                                <input class="w-full h-full poppins appearance-none px-5 text-sm border-0" type="number" name="score" placeholder="20">
-                                            </div>
-                                            <div class="w-60px justify-start border-r border-gray-400">
-                                                <input class="w-full h-full poppins appearance-none px-5 text-sm border-0" type="number" name="score" placeholder="20">
-                                            </div>
-                                            <div class="w-60px justify-start border-r border-gray-400">
-                                                <input class="w-full h-full poppins appearance-none px-5 text-sm border-0" type="number" name="score" placeholder="20">
-                                            </div>
-                                            <div class="w-60px justify-start border-r border-gray-400">
-                                                <input class="w-full h-full poppins appearance-none px-5 text-sm border-0" type="number" name="score" placeholder="20">
-                                            </div>
-                                            <div class="w-60px justify-start border-r border-gray-400">
-                                                <input class="w-full h-full poppins appearance-none px-5 text-sm border-0" type="number" name="score" placeholder="20">
-                                            </div> --}}
+                                           
+                                            {{--  --}}
                                             
                                         </div>
     
@@ -731,30 +513,135 @@
                                             <p class="poppins text-sm">{{ substr($student->middle_name, 0, 1) }}.</p>
                                         </div>
                                     </div>
-
                                 </div>
                                 @endforeach
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </form>
         </div>
+
+        <div id="written-modal" class="hidden w-full h-full absolute top-0 left-0 flex pt-40 justify-center bg-black bg-opacity-5">
+            <div class="w-96 h-fit rounded-md bg-white">
+                <form class="flex flex-col space-y-3 py-4 px-6" action="">
+                    <div>
+                        <h1 class="poppins font-semibold">New Written Activity</h1>
+                    </div>
+                    <div class="flex flex-col space-y-1">
+                        <label class="poppins text-xs" for="">TITLE</label>
+                        <input class="poppins text-sm px-4 rounded" type="text">
+                    </div>
+                    <div class="flex flex-col space-y-1">
+                        <label class="poppins text-xs" for="">HIGHEST POSSIBLE SCORE</label>
+                        <input class="poppins text-sm px-4 rounded" type="text">
+                    </div>
+                    <div class="flex items-center justify-end space-x-4 pt-2">
+                        <button class="poppins py-2 px-4 bg-blue-400 text-white hover:bg-blue-500 rounded">Save</button>
+                        <a id="written-act-cancel" class="poppins cursor-pointer hover:text-red-500">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="pt-modal" class="hidden w-full h-full absolute top-0 left-0 flex pt-40 justify-center bg-black bg-opacity-5">
+            <div class="w-96 h-fit rounded-md bg-white">
+                <form class="flex flex-col space-y-3 py-4 px-6" action="">
+                    <div>
+                        <h1 class="poppins font-semibold">New Performace Task</h1>
+                    </div>
+                    <div class="flex flex-col space-y-1">
+                        <label class="poppins text-xs" for="">TITLE</label>
+                        <input class="poppins text-sm px-4 rounded" type="text">
+                    </div>
+                    <div class="flex flex-col space-y-1">
+                        <label class="poppins text-xs" for="">HIGHEST POSSIBLE SCORE</label>
+                        <input class="poppins text-sm px-4 rounded" type="text">
+                    </div>
+                    <div class="flex items-center justify-end space-x-4 pt-2">
+                        <button class="poppins py-2 px-4 bg-blue-400 text-white hover:bg-blue-500 rounded">Save</button>
+                        <a id="pt-act-cancel" class="poppins cursor-pointer hover:text-red-500">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="assessment-modal" class="hidden w-full h-full absolute top-0 left-0 flex pt-40 justify-center bg-black bg-opacity-5">
+            <div class="w-96 h-fit rounded-md bg-white">
+                <form class="flex flex-col space-y-3 py-4 px-6" action="">
+                    <div>
+                        <h1 class="poppins font-semibold">New Assessment</h1>
+                    </div>
+                    <div class="flex flex-col space-y-1">
+                        <label class="poppins text-xs" for="">TITLE</label>
+                        <input class="poppins text-sm px-4 rounded" type="text">
+                    </div>
+                    <div class="flex flex-col space-y-1">
+                        <label class="poppins text-xs" for="">HIGHEST POSSIBLE SCORE</label>
+                        <input class="poppins text-sm px-4 rounded" type="text">
+                    </div>
+                    <div class="flex items-center justify-end space-x-4 pt-2">
+                        <button class="poppins py-2 px-4 bg-blue-400 text-white hover:bg-blue-500 rounded">Save</button>
+                        <a id="assessment-cancel" class="poppins cursor-pointer hover:text-red-500">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
     </section>
 </x-guidance-layout>
 
 <script>
     $(document).ready(function() {
-         // Add click handlers to the link elements
+
+        const newWrittenActBtn = $('#new-written-act');
+        const nenwWrittenActModal = $('#written-modal');
+        const nreWrittenActCancel = $('#written-act-cancel');
+
+        newWrittenActBtn.click(function() {
+            nenwWrittenActModal.removeClass('hidden');
+        });
+
+        nreWrittenActCancel.click(function() {
+            nenwWrittenActModal.addClass('hidden');
+        });
+
+        const newPTActBtn = $('#new-pt-act');
+        const nenwPTActModal = $('#pt-modal');
+        const nrePTActCancel = $('#pt-act-cancel');
+
+        newPTActBtn.click(function() {
+            nenwPTActModal.removeClass('hidden');
+        });
+
+        nrePTActCancel.click(function() {
+            nenwPTActModal.addClass('hidden');
+        });
+
+        const newAssessmentBtn = $('#new-assessment');
+        const nenwAssessmentModal = $('#assessment-modal');
+        const assessmentCancel = $('#assessment-cancel');
+
+        newAssessmentBtn.click(function() {
+            nenwAssessmentModal.removeClass('hidden');
+        });
+
+        assessmentCancel.click(function() {
+            nenwAssessmentModal.addClass('hidden');
+        });
+
+
+
+
+
+
+
+
          $(".evalnav").click(function() {
-             // Remove active class from all links
+
              $(".evalnav").removeClass("active-eval");
-             // Add active class to the clicked link
              $(this).addClass("active-eval");
  
-             // Show/hide the corresponding container based on which link was clicked
              if ($(this).find("h1").text() === "WRITTEN WORKS") {
 
                 $("#pt").addClass("hidden");

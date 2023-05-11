@@ -118,5 +118,19 @@ class DatabaseSeeder extends Seeder
             'is_current' => false,
         ]);
 
+
+        // evaluations
+        DB::table('evaluations')->insert([
+            'name' => 'Written Works'
+        ]);
+
+        DB::table('evaluations')->insert([
+            'name' => 'Performance Tasks'
+        ]);
+
+        DB::table('evaluations')->insert([
+            'name' => 'Quarterly Assessment'
+        ]);
+
     }
 }

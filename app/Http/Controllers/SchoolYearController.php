@@ -102,7 +102,6 @@ class SchoolYearController extends Controller
         } else {
             return response()->json(['success' => true, 'message' => 'Please try again']);
         }
-
     }
 
     public function show(SchoolYear $schoolYear) 

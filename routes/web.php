@@ -65,9 +65,6 @@ Route::middleware(['auth', 'role:guidance'])->group(function() {
 
     //                        FEEDBACK
 
-    //storing feedback
-    Route::post('/feedback/save', [FeedbackController::class, 'store']);
-
     //show all feedback
     Route::get('/feedback', [FeedbackController::class, 'index']); //only guidance can access this route
 
@@ -252,6 +249,12 @@ Route::middleware(['auth', 'role:faculty'])->group(function() {
     Route::get('/classes/{class}/class-record', [ClassesController::class, 'classRecord']);
 
 });
+
+
+
+    // feedback send
+    //storing feedback
+    Route::post('/feedback/save', [FeedbackController::class, 'store']);
 
 
 

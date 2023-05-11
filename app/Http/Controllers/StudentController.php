@@ -176,7 +176,6 @@ class StudentController extends Controller
             Logs::addToLog('Failed to add the guradian and new student');
             return response()->json(['success' => false, 'message' => 'Saving unsuccessful, please check the details of Guirdian.']);
         }  
-
     }
 
     public function update(Request $request, $id) {
