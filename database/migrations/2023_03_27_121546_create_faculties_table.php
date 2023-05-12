@@ -23,6 +23,7 @@ return new class extends Migration
             $table->foreignId('department_id');
             $table->boolean('is_archived')->default(false);
             $table->foreignId('school_year_id');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

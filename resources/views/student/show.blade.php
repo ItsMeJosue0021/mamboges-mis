@@ -9,8 +9,13 @@
 
         <div class="w-full flex flex-col space-y-6 py-4 pb-6">
             <div class="w-full h-250px flex space-x-4">
-                <div class="min-w-250px w-250px h-250px bg-gray-200 rounded border border-gray-200">
-                    <img src="{{asset('image/profile.png')}}" alt="" class="w-full h-full shadow-lg rounded">
+                <div class="min-w-250px w-250px h-250px rounded border border-gray-200 p-2 shadow-lg">
+                    {{-- <img src="{{$student->image ? asset('storage/' . $student->image) : asset('image/male.png')}}" 
+                    alt="" class="w-full h-full shadow-lg rounded"> --}}
+
+                    <img src="{{$student->image ? asset('storage/' . $student->image) : ($student->sex == 'female' ? asset('image/female.png') : asset('image/male.png'))}}" 
+                    alt="" class="w-full h-full rounded">
+
                 </div>
     
                 <div class="w-full h-fit flex justify-between p-4 rounded shadow space-x-8 border border-gray-200">

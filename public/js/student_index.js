@@ -1,5 +1,44 @@
 $(document).ready(function() {
 
+    const photoInput = $('#photo-input');
+    const photoPreview = $('#photo-preview');
+    const photoPlaceholder = photoPreview.find('p');
+    
+    photoInput.on('change', function() {
+        const file = this.files[0];
+        const reader = new FileReader();
+    
+        reader.addEventListener('load', function() {
+            photoPreview.css('background-image', `url(${reader.result})`);
+
+            if (photoPreview.css('background-image') !== 'none') {
+                photoPlaceholder.hide();
+            }
+        });
+    
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    });
+
+    dobException();
+
+    function dobException() {
+        // Set the max date to 5 years ago from today
+        var maxDate = new Date();
+        maxDate.setFullYear(maxDate.getFullYear() - 5);
+        var maxDateString = maxDate.toISOString().slice(0, 10);
+        
+        // Set the min date to 100 years ago from today
+        var minDate = new Date();
+        minDate.setFullYear(minDate.getFullYear() - 100);
+        var minDateString = minDate.toISOString().slice(0, 10);
+        
+        // Set the min and max attributes
+        $('#dob').attr('max', maxDateString);
+        $('#dob').attr('min', minDateString);
+    }
+
     const add_student_btn = $('#add-student');
     const add_student_modal = $('#add-student-modal');
 
@@ -27,6 +66,9 @@ $(document).ready(function() {
                 },
                 dob: "required",
                 address: "required",
+                parent_contact_no: {
+                    pattern: /^\d{11}$/
+                },
                 email: {
                     required: true,
                     email: true
@@ -47,6 +89,9 @@ $(document).ready(function() {
                 },
                 dob: "Please enter your date of birth",
                 address: "Please enter the address",
+                parent_contact_no: {
+                    pattern: "Please enter a valid contact number"
+                },
                 email: {
                     required: "Please enter an email",
                     email: 'Please use a valid email'
