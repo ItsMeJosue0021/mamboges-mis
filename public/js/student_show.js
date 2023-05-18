@@ -1,5 +1,26 @@
 $(document).ready(function() {
 
+    const photoInput = $('#photo-input');
+    const photoPreview = $('#photo-preview');
+    const photoPlaceholder = photoPreview.find('p');
+    
+    photoInput.on('change', function() {
+        const file = this.files[0];
+        const reader = new FileReader();
+    
+        reader.addEventListener('load', function() {
+            photoPreview.css('background-image', `url(${reader.result})`);
+
+            if (photoPreview.css('background-image') !== 'none') {
+                photoPlaceholder.hide();
+            }
+        });
+    
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    });
+
     const edit_student_btn = $('#edit-student');
     const edit_student_modal = $('#edit-student-modal');
 
@@ -132,6 +153,7 @@ $(document).ready(function() {
                         if (response.success) {
                             message =  $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-20 py-3"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');
                             $('#edit-student-form')[0].reset();
+                            $('#photo-preview').css('background-image', '');
 
                             setTimeout(function(){
                                 edit_student_modal.addClass('hidden');

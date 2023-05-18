@@ -68,14 +68,13 @@ class StudentController extends Controller
                     $output .= '
                         <a class="p-2 lg:w-1/3 md:w-1/2 w-full" href="/students/'.$row->id.'">
                             <div class="h-full flex items-center border-gray-200 hover:border-gray-400 hover:shadow border p-4 rounded-lg">
-                                <img class="w-14 h-14 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src=" ' . $imageURL . '">
+                                <img class="w-12 h-12 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src=" ' . $imageURL . '">
                                 <div class="flex-grow">
                                     <h2 class="no-underline poppins text-base text-gray-900 title-font font-medium">'.$row->first_name.' '.$row->middle_name.' '.$row->last_name.'</h2>
                                     <p class="no-underline poppins text-sm text-gray-500">LRN: '.$row->lrn.'</p>
                                 </div>
                             </div>
-                        </a>
-                        
+                        </a>    
                     ';
                 }
 
@@ -244,8 +243,11 @@ class StudentController extends Controller
                 'address' => $request->address,
                 'grade_level' => $request->grade_level,
                 'parent_id' => $guardian->id,
-                // 'school_year_id' => $current_school_year->id
             ];
+
+            if ($request->hasFile('image') ) {
+                $studentArray['image'] = $request->file('image')->store('profile', 'public');
+            }
     
             $student->update($studentArray);
     

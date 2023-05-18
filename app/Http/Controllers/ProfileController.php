@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Http\RedirectResponse;
+use App\Models\User;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
+use App\Http\Requests\ProfileUpdateRequest;
 
 class ProfileController extends Controller
 {
@@ -24,17 +25,47 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        // dd($request->all());
+        $id = Auth::user()->id;
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        $user = User::where('id', $id)->first();
+
+        $userInfo = [
+            'name' => $request->name,
+            'email' => $request->email,
+        ];
+
+        if ($user->type == 'guidance' || $user->type == 'faculty') {
+            $userInfo['username'] = $request->email;
         }
 
-        $request->user()->save();
+        if ($request->hasFile('image') ) {
+            $userInfo['image'] = $request->file('image')->store('profile', 'public');
+        }
+
+        $user->update($userInfo);
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
+
+
+
+        // dd($request->all());
+        // $request->user()->fill($request->validated());
+
+        // if ($request->user()->isDirty('email')) {
+        //     $request->user()->email_verified_at = null;
+        // }
+
+        // $imagePath = $request->user()->storeUploadedFile('image');
+        // if ($imagePath !== null) {
+        //     $request->user()->image = $imagePath;
+        // }
+
+        // $request->user()->save();
+
+        // return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
     /**

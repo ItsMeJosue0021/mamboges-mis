@@ -3,7 +3,7 @@
 
         <div class="w-full flex flex-col p-4">
 
-            <div class="w-full flex border-l-4 border-red-400 py-1 px-2 mb-4 border-b border-gray-400">
+            <div class="w-full flex border-l-4 border-red-400 px-2 py-2 mb-4 border-b border-gray-400">
                 <h1 class="poppins text-2xl font-medium">LOGS</h1>
             </div>
             
@@ -23,7 +23,7 @@
                             @if($logs->count())
                                 @foreach($logs as $key => $log)
                                 <tr>
-                                    <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">{{ $log->subject }}</td>
+                                    <td class="poppins text-sm border border-gray-400 px-4 py-2 text-left">{{ $log->subject }}</td>
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">{{ $log->created_at }}</td>
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">{{ $log->ip }}</td>
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">{{ $log->agent }}</td>

@@ -17,9 +17,21 @@ class UserTableSeeder extends Seeder
         DB::table('users')->insert(
             [
                 'name' => 'joshua salceda',
-                'email' => 'guidance@email.com',
-                'username' => 'guidance@email.com',
-                'password' => Hash::make('123'),
+                'email' => 'guidance1@email.com',
+                'username' => 'guidance1@email.com',
+                'password' => Hash::make('josh'),
+                'type' => 'guidance',
+                'status' => 'active',
+                'created_at' => now()
+            ]
+        );
+
+        DB::table('users')->insert(
+            [
+                'name' => 'Abigael Albaniel',
+                'email' => 'guidance2@email.com',
+                'username' => 'guidance2@email.com',
+                'password' => Hash::make('abi'),
                 'type' => 'guidance',
                 'status' => 'active',
                 'created_at' => now()

@@ -127,6 +127,8 @@ $(document).ready(function() {
                         if (response.success) {
                             message =  $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-20 py-3"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');
                             $('#student-form')[0].reset();
+                            $('#photo-preview').css('background-image', '');
+                            photoPlaceholder.show();
                             fetch_students_data();
                             
                         } else {
