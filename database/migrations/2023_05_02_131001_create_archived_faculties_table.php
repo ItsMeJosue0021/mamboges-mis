@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('sex');
             $table->string('email');
             $table->string('contact_no')->nullable();
+            $table->string('reason')->nullable();
             $table->foreignId('department_id');
             $table->timestamps();
         });

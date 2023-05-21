@@ -51,8 +51,10 @@ module.exports = {
                 '700px': '700px',
                 '300px': '300px',
                 '250px': '250px',
+                '48px': '48px',
             },
             height: {
+                '48px': '48px',
                 '60px': '60px',
                 '560px': '560px',
                 '565px': '565px',

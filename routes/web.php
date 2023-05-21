@@ -20,6 +20,8 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\SectionStudentsController;
 use App\Http\Controllers\SectionSubjectsController;
+use App\Http\Controllers\Portal\StudentPortalController;
+use App\Http\Controllers\StudentAccess\PortalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -252,9 +254,14 @@ Route::middleware(['auth', 'role:faculty'])->group(function() {
 
 
 
-    // feedback send
-    //storing feedback
-    Route::post('/feedback/save', [FeedbackController::class, 'store']);
+// feedback send
+//storing feedback
+Route::post('/feedback/save', [FeedbackController::class, 'store']);
+
+
+// student portal
+Route::get('/portal/classes', [PortalController::class, 'portal']);
+
 
 
 

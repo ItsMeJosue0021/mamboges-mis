@@ -98,12 +98,21 @@
         {{-- DELETE STUDENT MODAL --}}
         <div id="delete-modal" class="hidden absolute top-0 left-0 w-full h-full">
             <div class="flex flex-col w-full h-full items-center justify-start space-y-6 bg-black bg-opacity-5 ">
-                <div class="flex flex-col p-4 rounded-md bg-white shadow-lg space-y-2 mt-60" id="delete-student-id">
+                <div class="flex flex-col p-4 rounded-md bg-white shadow-lg space-y-3 mt-60" id="delete-student-id">
                     <div class="flex space-x-2">
                         <i class='bx bx-trash text-red-500 text-xl  cursor-pointer ' ></i>
                         <h1 class="poppins text-lg font-medium">Delete Student</h1>
                     </div>
-                    <h1 class="poppins ">Are you sure you want to delete this Student?</h1>
+                    <h1 class="poppins text-base">Are you sure you want to delete this Student?</h1>
+                    <div class="flex flex-col space-y-1 pt-3 border-t border-gray-200">
+                        <label for="reason" class="poppins text-sm">Please specify your reason:</label>
+                        <select name="reason" id="reason" class="poppins text-sm border border-gray-300 rounded">
+                            <option value="" disabled selected>Select a reason</option>
+                            <option value="No Longer Participating">No Longer Participating</option>
+                            <option value="Transfered To Another School">Transfered To Another School</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
                     <div class="flex justify-end space-x-2 pt-4">
                         <button id="delete-cancel" class="poppins text-gray-700 bg-gray-200 rounded px-3 py-1 hover:bg-gray-300">Cancel</button>
                         <button class="delete-btn poppins text-white bg-red-500 rounded px-3 py-1">Delete</button>
@@ -112,9 +121,6 @@
             </div>
         </div>
     </div>
-
-
-
 
      
 </x-guidance-layout>

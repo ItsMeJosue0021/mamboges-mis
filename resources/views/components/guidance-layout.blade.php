@@ -164,7 +164,7 @@
                         <div class="space-y-1 py-2">                         
                             <a id="link2" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/students">
                                 <i class='bx bx-user-circle text-2xl text-lightblack group-hover:text-red-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Students</p>
+                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Learners</p>
                             </a>
     
                             <a id="link3" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/faculties">

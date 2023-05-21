@@ -53,6 +53,7 @@ $(document).ready(function() {
     // DELETE STUDENT
     $(document).on('click', '.delete-btn', function () {
         const student_id = $('#delete-student-id').val();
+        const reason = $('#reason').val();
         $('.delete-btn').text('Deleting..');
         $.ajax({
             type: 'DELETE',
@@ -60,11 +61,14 @@ $(document).ready(function() {
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
+            data: {
+                reason: reason 
+              },
             success: function(response) {
                 if (response.success) {
-                    message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-20 py-3"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');
+                    message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-14 py-3"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');
                 } else  {
-                    message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-20 py-3"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');
+                    message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-red-100 px-14 py-3"><p class="poppins text-lg text-red-800 ">' + response.message + '</p></div>');
                 }
 
                 $('.delete-btn').text('Delete');

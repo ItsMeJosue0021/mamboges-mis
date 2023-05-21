@@ -42,11 +42,11 @@
                                 </div>
                             </div>
 
-                            <div class="flex evalnav justify-center items-center w-full py-4 bg-gray-100 cursor-pointer hover:bg-blue-400 border border-gray-300 rounded">
+                            {{-- <div class="flex evalnav justify-center items-center w-full py-4 bg-gray-100 cursor-pointer hover:bg-blue-400 border border-gray-300 rounded">
                                 <div class="flex space-x-2">
                                     <h1 class="poppins text-sm font-medium">FINAL GRADE</h1>
                                 </div>
-                            </div> 
+                            </div>  --}}
                         </div>
                     </div>
                 </div>
@@ -489,7 +489,7 @@
                         </div>
                     </div>
 
-                    <div id="final" class="hidden w-full ">
+                    {{-- <div id="final" class="hidden w-full ">
                         <div class="w-full flex items-center bg-gray-100 border border-gray-300 rounded py-1 px-2 mb-2">
                             <div class="w-full flex items-center space-x-4 rounded">
                                 <div class="w-fit flex items-center space-x-4">
@@ -497,16 +497,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="w-full border border-gray-400">
+                        <div class="w-full border border-gray-400"> --}}
                            
                             {{-- row 4 --}}
-                            <div>
+                            {{-- <div>
                                 @foreach ($students as $student)
                                     
-                                <div class="flex justify-start border-t border-b border-gray-400">
+                                <div class="flex justify-start border-t border-b border-gray-400"> --}}
                                     
                                             {{-- name --}}
-                                    <div class="w-1/4 flex justify-start items-center py-1 border-r border-gray-400">
+                                    {{-- <div class="w-1/4 flex justify-start items-center py-1 border-r border-gray-400">
                                         <div class="flex space-x-2 px-2">
                                             <p class="poppins text-sm">{{$student->last_name}},</p>
                                             <p class="poppins text-sm">{{$student->first_name}}</p>
@@ -517,7 +517,7 @@
                                 @endforeach
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </form>
         </div>

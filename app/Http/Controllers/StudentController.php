@@ -68,7 +68,9 @@ class StudentController extends Controller
                     $output .= '
                         <a class="p-2 lg:w-1/3 md:w-1/2 w-full" href="/students/'.$row->id.'">
                             <div class="h-full flex items-center border-gray-200 hover:border-gray-400 hover:shadow border p-4 rounded-lg">
-                                <img class="w-12 h-12 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src=" ' . $imageURL . '">
+                                <div class="w-12 h-12 bg-gray-100 rounded-full mr-4 border border-gray-400">
+                                    <img class="w-full h-full" src="' . $imageURL . '">
+                                </div>
                                 <div class="flex-grow">
                                     <h2 class="no-underline poppins text-base text-gray-900 title-font font-medium">'.$row->first_name.' '.$row->middle_name.' '.$row->last_name.'</h2>
                                     <p class="no-underline poppins text-sm text-gray-500">LRN: '.$row->lrn.'</p>
@@ -264,9 +266,13 @@ class StudentController extends Controller
         }
     }
 
-    public function delete($id) {
+    public function delete(Request $request, $id) {
         
         $student = Student::where('id', $id)->first();
+
+        $lastClassAttended = SectionStudents::where('student_id', $student->id)->latest()->first();
+
+        // $section = Section::where('id', $lastClassAttended->section_id)->first();
 
         if ($student) {
             
@@ -279,8 +285,9 @@ class StudentController extends Controller
                 'lrn' => $student->lrn,
                 'dob' => $student->dob,
                 'address' => $student->address,
-                'grade_level' => $student->grade_level,
-                'section_id' => $student->section_id,
+                'grade_level' => $lastClassAttended->grade_level,
+                'reason' => $request->reason,
+                'section_id' => $lastClassAttended->section_id,
                 'parent_id' => $student->parent_id,
             ];
 
@@ -288,7 +295,7 @@ class StudentController extends Controller
 
             if (!is_null($archivedStudent)) {
 
-                if ($student->delete()) {
+                if ($student->delete() && $lastClassAttended->delete()) {
 
                     Logs::addToLog('Student has been moved to archive | LRN [' . $student->lrn . ']');
                     

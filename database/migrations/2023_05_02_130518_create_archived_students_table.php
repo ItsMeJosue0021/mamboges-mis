@@ -22,6 +22,7 @@ return new class extends Migration
             $table->date('dob');
             $table->string('address');
             $table->string('grade_level')->nullable();
+            $table->string('reason')->nullable();
             $table->foreignId('section_id')->nullable();
             $table->foreignId('parent_id');
             $table->timestamps();

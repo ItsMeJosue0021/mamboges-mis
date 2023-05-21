@@ -2,7 +2,7 @@
     <div id="container" class="w-full relative">
         <div class="flex justify-between items-center px-4 py-4 border-b border-gray-300">
             <div class="flex border-l-4 border-red-400 py-1 px-2">
-                <h1 class="poppins text-2xl font-medium">STUDENTS</h1>
+                <h1 class="poppins text-2xl font-medium">LEARNERS</h1>
             </div>
             <div class="w-2/3 flex">
                 <form action="/students" class="flex w-full justify-end space-x-4">

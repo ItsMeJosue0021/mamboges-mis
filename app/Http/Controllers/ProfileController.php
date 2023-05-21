@@ -50,22 +50,6 @@ class ProfileController extends Controller
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
 
 
-
-        // dd($request->all());
-        // $request->user()->fill($request->validated());
-
-        // if ($request->user()->isDirty('email')) {
-        //     $request->user()->email_verified_at = null;
-        // }
-
-        // $imagePath = $request->user()->storeUploadedFile('image');
-        // if ($imagePath !== null) {
-        //     $request->user()->image = $imagePath;
-        // }
-
-        // $request->user()->save();
-
-        // return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
     /**
@@ -81,7 +65,9 @@ class ProfileController extends Controller
 
         Auth::logout();
 
-        $user->delete();
+        $user->status = 'inactive';
+
+        // $user->delete();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
