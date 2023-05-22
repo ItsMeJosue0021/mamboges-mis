@@ -16,7 +16,7 @@
                 <!-- Session Status -->
                 <x-auth-session-status class="mb-4" :status="session('status')" />
     
-                <form method="POST" action="{{ route('student.login') }}" class="w-full">
+                <form method="POST" action="{{ route('staff.login') }}" class="w-full">
                     @csrf
     
                     <!-- Email Address -->

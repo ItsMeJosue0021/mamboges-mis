@@ -7,7 +7,7 @@
     <form method="post" action="{{ route('profile.update') }}" class="w-full mt-6 flex justify-between" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        <div class="w-full flex items-start space-x-12">
+        <div class="w-full flex flex-col md:flex-row items-start md:space-x-12 space-y-6">
             <div class="lg:w-1/2 sm:w-full space-y-6">
                 <header>
                     <h2 class="poppins text-lg font-medium text-gray-900">

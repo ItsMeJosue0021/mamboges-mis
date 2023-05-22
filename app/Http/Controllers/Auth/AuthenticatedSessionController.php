@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use App\Providers\RouteServiceProvider;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Requests\Auth\StudentLoginRequest;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -29,35 +30,42 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function loginStaff(LoginRequest $request): RedirectResponse
+    {
+        $request->authenticate();
+    
+        $userType = $request->user()->type;
+    
+        if ($userType === 'guidance') {
+            $url = '/students';
+        } elseif ($userType === 'faculty') {
+            $url = '/classes';
+        } elseif ($userType === 'lr') {
+            $url = '/lr/dashboard';
+        } else {
+            $url = '/';
+           
+        }
+    
+        $request->session()->regenerate();
+        $request->session()->put('url.intended', $url);
+    
+        Logs::addToLog(Auth::user()->username . ' has logged in.');
+    
+        return redirect()->intended($url);
+    }
+    
+
+    public function loginStudent(StudentLoginRequest $request): RedirectResponse
     {
         $request->authenticate();
 
         $request->session()->regenerate();
 
-        $url = '';
-        switch ($request->user()->type) {
-            case 'guidance':
-                $url = '/students';
-                break;
-            case 'student':
-                $url = '/student/dashboard';
-                break;
-            case 'faculty':
-                $url = '/classes';
-                break;
-            case 'lr':
-                $url = '/lr/dashboard';
-                break;
-            default:
-                $url = '/';
-        }
-        
-        $request->session()->put('url.intended', $url);
-
         Logs::addToLog(Auth::user()->username . 'has logged in.');
 
-        return redirect()->intended($url);
+        return redirect()->intended('/portal/classes');
+
     }
 
     /**

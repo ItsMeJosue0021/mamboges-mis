@@ -64,7 +64,7 @@ class UserTableSeeder extends Seeder
             [
                 'name' => 'mark villar',
                 'email' => 'mark@email.com',
-                'username' => '249186700789',
+                'username' => '249196700789',
                 'password' => Hash::make('123'),
                 'type' => 'student',
                 'status' => 'active',

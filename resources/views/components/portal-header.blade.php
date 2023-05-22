@@ -25,8 +25,16 @@
                     </div>
                 </label>
                 <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                    <li><a>Account Settings</a></li>
-                    <li><a>Logout</a></li>
+                    <li><a href="/account/settings">Account Settings</a></li>
+                    {{-- <li class="active:bg-blue-700"><a>Logout</a></li> --}}
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <x-dropdown-link :href="route('logout')"
+                                onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                            {{ __('Log Out') }}
+                        </x-dropdown-link>
+                    </form>
                 </ul>
             </div>
         </div>

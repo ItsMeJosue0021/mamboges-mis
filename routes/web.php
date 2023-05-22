@@ -232,6 +232,7 @@ Route::middleware(['auth', 'role:guidance'])->group(function() {
     //                 ARCHIVE
     Route::get('/archive', [ArchiveController::class, 'index']);
 
+
 });
 
 
@@ -253,14 +254,22 @@ Route::middleware(['auth', 'role:faculty'])->group(function() {
 });
 
 
+Route::middleware(['auth', 'role:student'])->group(function() {
+
+     // student portal
+     Route::get('/portal/classes', [PortalController::class, 'portal']);
+
+     Route::get('/account/settings', [PortalController::class, 'account']);
+
+});
+
+
 
 // feedback send
 //storing feedback
 Route::post('/feedback/save', [FeedbackController::class, 'store']);
 
 
-// student portal
-Route::get('/portal/classes', [PortalController::class, 'portal']);
 
 
 

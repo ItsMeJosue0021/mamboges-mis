@@ -127,7 +127,7 @@
                     <div class="flex px-2 items-center space-x- 2 border-r-2">
                         @if (Route::has('student.login'))
                             </i><i class='bx bx-log-in text-xl mb-1px text-yellow'></i>
-                            <a href="/student/login" class="text-white poppins text-sm">Login</a>
+                            <a href="{{ route('student.login') }}" class="text-white poppins text-sm">Login</a>
                         @endif
                     </div>
 

@@ -39,6 +39,113 @@
 
                             <div tabindex="0" class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-md">
                                 <div class="collapse-title">
+                                  <p>Grade 6</p>
+                                </div>
+                                <div class="collapse-content">
+
+                                    <div class="flex justify-between p-2 px-1 border-t border-gray-200">
+                                        <h2>Subject name</h2>
+                                        <p>remarks</p>
+                                    </div>
+                                    <div class="flex justify-between p-2 px-1 border-t border-gray-200">
+                                        <h2>Subject name</h2>
+                                        <p>remarks</p>
+                                    </div>
+                                    <div class="flex justify-between p-2 px-1 border-t border-gray-200">
+                                        <h2>Subject name</h2>
+                                        <p>remarks</p>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div tabindex="0" class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-md">
+                                <div class="collapse-title">
+                                  <p>Grade 5</p>
+                                </div>
+                                <div class="collapse-content">
+
+                                    <div class="flex justify-between p-2 px-1 border-t border-gray-200">
+                                        <h2>Subject name</h2>
+                                        <p>remarks</p>
+                                    </div>
+                                    <div class="flex justify-between p-2 px-1 border-t border-gray-200">
+                                        <h2>Subject name</h2>
+                                        <p>remarks</p>
+                                    </div>
+                                    <div class="flex justify-between p-2 px-1 border-t border-gray-200">
+                                        <h2>Subject name</h2>
+                                        <p>remarks</p>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div tabindex="0" class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-md">
+                                <div class="collapse-title">
+                                  <p>Grade 4</p>
+                                </div>
+                                <div class="collapse-content">
+
+                                    <div class="flex justify-between p-2 px-1 border-t border-gray-200">
+                                        <h2>Subject name</h2>
+                                        <p>remarks</p>
+                                    </div>
+                                    <div class="flex justify-between p-2 px-1 border-t border-gray-200">
+                                        <h2>Subject name</h2>
+                                        <p>remarks</p>
+                                    </div>
+                                    <div class="flex justify-between p-2 px-1 border-t border-gray-200">
+                                        <h2>Subject name</h2>
+                                        <p>remarks</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div tabindex="0" class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-md">
+                                <div class="collapse-title">
+                                  <p>Grade 3</p>
+                                </div>
+                                <div class="collapse-content">
+
+                                    <div class="flex justify-between p-2 px-1 border-t border-gray-200">
+                                        <h2>Subject name</h2>
+                                        <p>remarks</p>
+                                    </div>
+                                    <div class="flex justify-between p-2 px-1 border-t border-gray-200">
+                                        <h2>Subject name</h2>
+                                        <p>remarks</p>
+                                    </div>
+                                    <div class="flex justify-between p-2 px-1 border-t border-gray-200">
+                                        <h2>Subject name</h2>
+                                        <p>remarks</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div tabindex="0" class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-md">
+                                <div class="collapse-title">
+                                  <p>Grade 2</p>
+                                </div>
+                                <div class="collapse-content">
+
+                                    <div class="flex justify-between p-2 px-1 border-t border-gray-200">
+                                        <h2>Subject name</h2>
+                                        <p>remarks</p>
+                                    </div>
+                                    <div class="flex justify-between p-2 px-1 border-t border-gray-200">
+                                        <h2>Subject name</h2>
+                                        <p>remarks</p>
+                                    </div>
+                                    <div class="flex justify-between p-2 px-1 border-t border-gray-200">
+                                        <h2>Subject name</h2>
+                                        <p>remarks</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div tabindex="0" class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-md">
+                                <div class="collapse-title">
                                   <p>Grade 1</p>
                                 </div>
                                 <div class="collapse-content">
@@ -55,51 +162,6 @@
                                         <h2>Subject name</h2>
                                         <p>remarks</p>
                                     </div>
-
-                                </div>
-                            </div>
-
-                            <div tabindex="0" class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-md">
-                                <div class="collapse-title">
-                                  <p>Grade 2</p>
-                                </div>
-                                <div class="collapse-content">
-
-                                    <div class="flex justify-between p-2 px-1 border-t border-gray-200">
-                                        <h2>Subject name</h2>
-                                        <p>remarks</p>
-                                    </div>
-                                    <div class="flex justify-between p-2 px-1 border-t border-gray-200">
-                                        <h2>Subject name</h2>
-                                        <p>remarks</p>
-                                    </div>
-                                    <div class="flex justify-between p-2 px-1 border-t border-gray-200">
-                                        <h2>Subject name</h2>
-                                        <p>remarks</p>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div tabindex="0" class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-md">
-                                <div class="collapse-title">
-                                  <p>Grade 2</p>
-                                </div>
-                                <div class="collapse-content">
-
-                                    <div class="flex justify-between p-2 px-1 border-t border-gray-200">
-                                        <h2>Subject name</h2>
-                                        <p>remarks</p>
-                                    </div>
-                                    <div class="flex justify-between p-2 px-1 border-t border-gray-200">
-                                        <h2>Subject name</h2>
-                                        <p>remarks</p>
-                                    </div>
-                                    <div class="flex justify-between p-2 px-1 border-t border-gray-200">
-                                        <h2>Subject name</h2>
-                                        <p>remarks</p>
-                                    </div>
-
                                 </div>
                             </div>
 
@@ -107,7 +169,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </x-app-layout>
