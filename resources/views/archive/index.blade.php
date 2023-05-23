@@ -22,18 +22,35 @@
 
             <div id="archive-container" class="w-full flex flex-col">
                 <div id="student-container" class="w-full">   
-                    <div class="flex flex-wrap -m-2">
-                        @foreach ($students as $student)
-                            <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
-                                <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
-                                    <img alt="team" class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="{{asset('image/profile.png')}}">
-                                    <div class="flex-grow">
-                                        <h2 class="poppins text-lg text-gray-900 title-font font-medium">{{$student->last_name}}, {{$student->first_name}} {{$student->middle_name}}</h2>
-                                        <p class="poppins text-sm text-gray-500">LRN: {{$student->lrn}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
+                    <div class="w-full flex flex-col">
+                        <div class="w-full overflow-x-auto">
+                            <table class="w-full border-collapse border border-gray-400">
+                                <thead>
+                                    <tr>
+                                        <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">NAME</th>
+                                        <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">LAST SECTION ATTENDED</th>
+                                        <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">GRADE LEVEL</th>
+                                        <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">REASON</th>
+                                        <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">PROFILE</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if($students->count())
+                                        @foreach($students as $key => $student)
+                                        <tr>
+                                            <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">{{ $student->first_name . ' ' . $student->middle_name . ' ' . $student->last_name }}</td>
+                                            <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">{{ $sectionNames[$student->section_id] }}</td>
+                                            <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">{{ $student->grade_level }}</td>
+                                            <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">{{ $student->reason }}</td>
+                                            <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
+                                                <a href="/archive/{{$student->student_id}}" class="text-xs text-blue-500 underline">Open</a>
+                                            </td>
+                                        </tr>  
+                                        @endforeach
+                                    @endif
+                                </tbody>
+                            </table>
+                        </div>                
                     </div>
 
                 </div>
@@ -60,20 +77,23 @@
 
 <script>
    $(document).ready(function() {
-        // Add click handlers to the link elements
+        
         $(".archive-link").click(function() {
-            // Remove active class from all links
+       
             $(".archive-link").removeClass("active-archive");
-            // Add active class to the clicked link
+
             $(this).addClass("active-archive");
 
-            // Show/hide the corresponding container based on which link was clicked
             if ($(this).find("label").text() === "Student") {
-            $("#faculty-container").addClass("hidden");
-            $("#student-container").removeClass("hidden");
+
+                $("#faculty-container").addClass("hidden");
+                $("#student-container").removeClass("hidden");
+
             } else if ($(this).find("label").text() === "Faculty") {
-            $("#student-container").addClass("hidden");
-            $("#faculty-container").removeClass("hidden");
+
+                $("#student-container").addClass("hidden");
+                $("#faculty-container").removeClass("hidden");
+
             }
         });
     });

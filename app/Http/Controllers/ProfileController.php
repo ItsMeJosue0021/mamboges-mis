@@ -47,8 +47,11 @@ class ProfileController extends Controller
 
         $user->update($userInfo);
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
-
+        if (Auth::user()->type == 'student') {
+            return Redirect::route('student.profile')->with('status', 'profile-updated');
+        } else {
+            return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        }
 
     }
 

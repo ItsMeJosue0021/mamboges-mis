@@ -1,6 +1,6 @@
 <div id="add-student-modal" class="hidden absolute top-0 left-0 w-full h-full bg-white overflow-auto">
     <div class="w-fitt flex flex-col w-full items-center justify-center space-y-6 px-32 py-8">
-        <form id="student-form" method="POST" action="/students/register" class="w-full flex flex-col space-y-4">
+        <form id="student-form" method="POST" action="/students/register" class="w-full flex flex-col space-y-4" enctype="multipart/form-data>
             @csrf
 
             {{-- STUDENT'S INFORMATION --}}

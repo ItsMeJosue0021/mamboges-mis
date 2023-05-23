@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
 
         // Faculty::factory(30)->create();
 
-        // Student::factory(300)->create();
+        // Student::factory(30)->create();
 
         // Guardian::factory(200)->create();
 

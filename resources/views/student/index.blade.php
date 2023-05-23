@@ -16,35 +16,35 @@
         <div class="w-full h-600px px-4 overflow-auto">
             <div class="w-full py-4 px-2">
                 <div class="w-fit flex space-x-2">
-                    <div class="active-archive archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                    <div class="active-archive  all flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <p class="poppins text-base cursor-pointer no-underline">All</p>
                     </div>
 
-                    <div class="archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                    <div data-grade-level="0" class="archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <label class="poppins text-base cursor-pointer">Kinder</label>
                     </div>
 
-                    <div class="archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                    <div data-grade-level="1" class="archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <label class="poppins text-base cursor-pointer">Grade 1</label>
                     </div>
 
-                    <div class="archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                    <div data-grade-level="2" class="archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <label class="poppins text-base cursor-pointer">Grade 2</label>
                     </div>
 
-                    <div class="archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                    <div data-grade-level="3" class="archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <label class="poppins text-base cursor-pointer">Grade 3</label>
                     </div>
 
-                    <div class="archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                    <div data-grade-level="4" class="archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <label class="poppins text-base cursor-pointer">Grade 4</label>
                     </div>
 
-                    <div class="archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                    <div data-grade-level="5" class="archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <label class="poppins text-base cursor-pointer">Grade 5</label>
                     </div>
 
-                    <div class="archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                    <div data-grade-level="6" class="archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <label class="poppins text-base cursor-pointer">Grade 6</label>
                     </div>
                 </div>

@@ -9,7 +9,7 @@
     <div class="md:flex-grow">
         <div class="flex items-start space-x-4">
             <h2 class="poppins text-xl font-medium text-gray-900 title-font mb-1">{{$update->title}}</h2>
-            <a class="text-xs text-red-600 py-1 px-2 border border-red-600 rounded" href="/updates/list?tag={{$update->tag}}">{{$update->tag}}</a>
+            <a class="text-xs text-red-600 py-1 px-2 border border-red-600 rounded" href="/updates/list?tag={{$update->tag}}" >{{$update->tag}}</a>
         </div>
         <div class="mb-1">
             <span class="poppins mt-1 text-gray-500 text-sm">{{$update->created_at->format('M. d, Y')}}</span>

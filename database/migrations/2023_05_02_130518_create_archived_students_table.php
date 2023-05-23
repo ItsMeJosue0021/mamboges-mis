@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('archived_students', function (Blueprint $table) {
             $table->id();
+            $table->integer('student_id');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('middle_name')->nullable();

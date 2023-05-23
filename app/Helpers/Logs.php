@@ -9,7 +9,6 @@ use App\Models\Logs as LogsModel;
 class Logs
 {
 
-
     public static function addToLog($subject)
     {
     	$log = [];

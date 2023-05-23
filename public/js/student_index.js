@@ -169,11 +169,11 @@ $(document).ready(function() {
         fetch_students_data(page);
     });
 
-    function fetch_students_data(page, query = '') {
+    function fetch_students_data(page, query = '', gradeLevel = '') {
         $.ajax({
             url:"/students/search?page=" + page + "&query=" + query,
             method:'GET',
-            data:{query: query},
+            data:{query: query, grade_level: gradeLevel },
             dataType:'json',
             success:function(data)
             {
@@ -187,6 +187,19 @@ $(document).ready(function() {
         var query = $(this).val();
         fetch_students_data(1, query);
     }); 
+
+    $(document).on('click', '.archive-links', function(event) {
+        event.preventDefault();
+        var gradeLevel = $(this).data('grade-level');
+        console.log(gradeLevel);
+        fetch_students_data(1, '', gradeLevel);
+    });
+
+    $(document).on('click', '.all', function(event) {
+        event.preventDefault();
+        fetch_students_data(page);
+    });
+
 
     
 });

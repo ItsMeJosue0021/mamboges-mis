@@ -320,27 +320,27 @@
         const baseUrl = window.location.origin; 
         const activeLinkId = localStorage.getItem('activeLinkId');
         links.forEach((link) => {
-        if (link.href.startsWith(baseUrl)) {
-            link.addEventListener('click', function(event) {
-            localStorage.setItem('activeLinkId', link.id);
+            if (link.href.startsWith(baseUrl)) {
+                link.addEventListener('click', function(event) {
+                localStorage.setItem('activeLinkId', link.id);
 
-            links.forEach((link) => {
-                link.classList.remove('active');
-            });
+                links.forEach((link) => {
+                    link.classList.remove('active');
+                });
 
-            this.classList.add('active');
-            });
+                this.classList.add('active');
+                });
 
-            if (window.location.href.includes(link.href)) {
-            link.classList.add('active');
+                if (window.location.href.includes(link.href)) {
+                link.classList.add('active');
 
-            localStorage.setItem('activeLinkId', link.id);
+                localStorage.setItem('activeLinkId', link.id);
+                }
+
+                if (link.id === activeLinkId) {
+                link.classList.add('active');
+                }
             }
-
-            if (link.id === activeLinkId) {
-            link.classList.add('active');
-            }
-        }
         });
     </script>
 </body>

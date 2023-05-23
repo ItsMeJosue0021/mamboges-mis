@@ -32,6 +32,7 @@ class StudentController extends Controller
         {
             $output = '';
             $query = $request->get('query');
+            $gradeLevel = $request->get('grade_level');
             if($query != '') {
                 $data = Student::where('is_archived', false)
                     ->where('first_name', 'like', '%'.$query.'%')
@@ -42,7 +43,13 @@ class StudentController extends Controller
                     ->orderBy('id', 'desc')
                     ->paginate(50);
                     
+            } elseif (!empty($gradeLevel)) {
+                $data = Student::where('is_archived', false)
+                    ->where('grade_level', $gradeLevel)
+                    ->orderBy('id', 'desc')
+                    ->paginate(50);
             } else {
+
                 $data = Student::where('is_archived', false)
                     ->orderBy('id', 'desc')
                     ->paginate(50);
@@ -120,9 +127,9 @@ class StudentController extends Controller
         ]);
     }
 
-    public function dashboard() {
-        return view('student.dashboard');
-    }
+    // public function dashboard() {
+    //     return view('student.dashboard');
+    // }
 
     public function store(Request $request) {
 
@@ -154,6 +161,7 @@ class StudentController extends Controller
         $current_school_year = SchoolYear::where('is_current', true)->first();
 
         if (!is_null($guardian)) {
+            
             $studentArray = [
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
@@ -166,6 +174,11 @@ class StudentController extends Controller
                 'grade_level' => $request->grade_level,
                 'parent_id' => $guardian->id,
             ];
+
+            if ($request->hasFile('image') ) {
+                $studentArray['image'] = $request->file('image')->store('profile', 'public');
+            }
+
     
             $studentAccount = [
                 'name' => $request->first_name . " " . $request->last_name . " " . $request->middle_name,
@@ -173,8 +186,9 @@ class StudentController extends Controller
                 'password' => Hash::make($request->lrn),
             ];
         
+
             if ($request->hasFile('image') ) {
-                $studentArray['image'] = $request->file('image')->store('profile', 'public');
+                $studentAccount['image'] = $request->file('image')->store('profile', 'public');
             }
 
             $student = Student::create($studentArray);
@@ -272,44 +286,54 @@ class StudentController extends Controller
 
         $lastClassAttended = SectionStudents::where('student_id', $student->id)->latest()->first();
 
-        // $section = Section::where('id', $lastClassAttended->section_id)->first();
+        $grade_level = $lastClassAttended->grade_level;
+        $section = $lastClassAttended->section_id;
 
-        if ($student) {
+        if (is_null($grade_level) || is_null($section)) {
+            return response()->json(['success' => false, 'message' => 'Student cannot be deleted because of unssigned section.']);
+        } else {
+
+            if ($student) {
             
-            $toBeArchived = [
-                'first_name' => $student->first_name,
-                'last_name' => $student->last_name,
-                'middle_name' => $student->middle_name,
-                'suffix' => $student->suffix,
-                'sex' => $student->sex,
-                'lrn' => $student->lrn,
-                'dob' => $student->dob,
-                'address' => $student->address,
-                'grade_level' => $lastClassAttended->grade_level,
-                'reason' => $request->reason,
-                'section_id' => $lastClassAttended->section_id,
-                'parent_id' => $student->parent_id,
-            ];
-
-            $archivedStudent = ArchivedStudents::create($toBeArchived);
-
-            if (!is_null($archivedStudent)) {
-
-                if ($student->delete() && $lastClassAttended->delete()) {
-
-                    Logs::addToLog('Student has been moved to archive | LRN [' . $student->lrn . ']');
-                    
-                    return response()->json(['success' => true, 'message' => 'Student deleted successfully']);
-
+                $toBeArchived = [
+                    'student_id' => $student->id,
+                    'first_name' => $student->first_name,
+                    'last_name' => $student->last_name,
+                    'middle_name' => $student->middle_name,
+                    'suffix' => $student->suffix,
+                    'sex' => $student->sex,
+                    'lrn' => $student->lrn,
+                    'dob' => $student->dob,
+                    'address' => $student->address,
+                    'grade_level' => $lastClassAttended->grade_level,
+                    'reason' => $request->reason,
+                    'section_id' => $lastClassAttended->section_id,
+                    'parent_id' => $student->parent_id,
+                ];
+    
+                $archivedStudent = ArchivedStudents::create($toBeArchived);
+    
+                if (!is_null($archivedStudent)) {
+    
+                    if ($student->delete() && $lastClassAttended->delete()) {
+    
+                        Logs::addToLog('Student has been moved to archive | LRN [' . $student->lrn . ']');
+                        
+                        return response()->json(['success' => true, 'message' => 'Student deleted successfully']);
+    
+                    } else {
+                        return response()->json(['success' => false, 'message' => 'Unable to delete student']);
+                    }
                 } else {
-                    return response()->json(['success' => false, 'message' => 'Unable to delete student']);
+                    return response()->json(['success' => false, 'message' => 'Something went wrong']);
                 }
             } else {
-                return response()->json(['success' => false, 'message' => 'Something went wrong']);
+                return response()->json(['success' => false, 'message' => 'Student not found.']);
             }
-        } else {
-            return response()->json(['success' => false, 'message' => 'Student not found.']);
+
         }
+
+
 
     }
     

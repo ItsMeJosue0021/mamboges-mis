@@ -232,6 +232,8 @@ Route::middleware(['auth', 'role:guidance'])->group(function() {
     //                 ARCHIVE
     Route::get('/archive', [ArchiveController::class, 'index']);
 
+    Route::get('/archive/{id}', [ArchiveController::class, 'show']);
+
 
 });
 
@@ -259,7 +261,7 @@ Route::middleware(['auth', 'role:student'])->group(function() {
      // student portal
      Route::get('/portal/classes', [PortalController::class, 'portal']);
 
-     Route::get('/account/settings', [PortalController::class, 'account']);
+     Route::get('/account/settings', [PortalController::class, 'account'])->name('student.profile');;
 
 });
 

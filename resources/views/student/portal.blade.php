@@ -6,7 +6,7 @@
 
                 <div class="w-full lg:w-1/4 flex flex-col items-center p-4">
                     <div class="w-64 h-64 bg-white rounded-md p-2">
-                        <img class="w-full h-full rounded-md" src="{{asset('image/mamboges.jpg')}}" alt="" srcset="">
+                        <img class="w-full h-full rounded-md" src="{{Auth::user()->image ? asset('storage/' . Auth::user()->image) : asset('image/mamboges.jpg')}}" alt="" srcset="">
                     </div>
     
                     <div class="w-full flex flex-col space-y-4">
