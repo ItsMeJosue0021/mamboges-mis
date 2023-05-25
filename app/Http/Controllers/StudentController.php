@@ -33,6 +33,7 @@ class StudentController extends Controller
             $output = '';
             $query = $request->get('query');
             $gradeLevel = $request->get('grade_level');
+
             if($query != '') {
                 $data = Student::where('is_archived', false)
                     ->where('first_name', 'like', '%'.$query.'%')
@@ -41,18 +42,18 @@ class StudentController extends Controller
                     ->orWhere('suffix', 'like', '%'.$query.'%')
                     ->orWhere('lrn', 'like', '%'.$query.'%')
                     ->orderBy('id', 'desc')
-                    ->paginate(50);
+                    ->paginate(10);
                     
             } elseif (!empty($gradeLevel)) {
                 $data = Student::where('is_archived', false)
                     ->where('grade_level', $gradeLevel)
                     ->orderBy('id', 'desc')
-                    ->paginate(50);
-            } else {
+                    ->paginate(10);
 
+            } else {
                 $data = Student::where('is_archived', false)
                     ->orderBy('id', 'desc')
-                    ->paginate(50);
+                    ->paginate(10);
             }
              
             $total_row = $data->total();
@@ -87,23 +88,31 @@ class StudentController extends Controller
                     ';
                 }
 
-                $output .= '<div class="w-full poppins px-2">
-                                <div class="pagination my-5">' . $data->links() . '</div>
-                            </div>';
+                  $pagination = '<div class="my-5">' . $data->links() . '</div>';
+
 
             } else {
                 $output = '
-                <div class="p-2 w-full h-96 flex flex-col items-center justify-center mt-20">
-                    <p class="poppins text-xl  text-red-500 mt-5">Oops! No student found.</p>
-                </div>
+                    <div class="p-2 w-full h-96 flex flex-col items-center justify-center mt-20">
+                        <p class="poppins text-xl  text-red-500 mt-5">Oops! No student found.</p>
+                    </div>
                 ';
             }
             $data = array(
-                'student_data'  => $output
+                'student_data'  => $output,
+                'total' => $total_row,
+                'pagination' => $pagination
             );
-            echo json_encode($data);
+
+            return response()->json($data);
         }
     }
+
+                    // $output .= '
+                //             <div class="w-full poppins px-2">
+                //                 <div class="my-5">' . $data->links() . '</div>
+                //             </div>
+                //             ';
 
     public function show(Student $student) {
 

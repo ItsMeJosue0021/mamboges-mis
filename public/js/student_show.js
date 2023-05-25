@@ -66,9 +66,9 @@ $(document).ready(function() {
               },
             success: function(response) {
                 if (response.success) {
-                    message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-14 py-3"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');
+                    message = $('<div class="fixed z-30 top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-14 py-3"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');
                 } else  {
-                    message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-red-100 px-14 py-3"><p class="poppins text-lg text-red-800 ">' + response.message + '</p></div>');
+                    message = $('<div class="fixed z-30 top-3 rounded left-1/2 transform -translate-x-1/2 bg-red-100 px-14 py-3"><p class="poppins text-lg text-red-800 ">' + response.message + '</p></div>');
                 }
 
                 $('.delete-btn').text('Delete');

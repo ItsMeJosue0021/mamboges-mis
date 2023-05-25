@@ -1,5 +1,6 @@
 <x-guidance-layout>
     <div id="container" class="w-full flex flex-col p-4 px-6 pb-0 relative">
+        {{-- <div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-14 py-3"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div> --}}
         <div class="">
             <a id="back" class="flex w-fit justify-start items-center space-x-2 group rounded cursor-pointer" href="/students">
                 <i class='bx bx-left-arrow-alt text-gray-600 text-2xl group-hover:text-red-700'></i>

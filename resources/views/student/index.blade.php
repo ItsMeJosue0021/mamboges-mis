@@ -1,5 +1,6 @@
 <x-guidance-layout>
     <div id="container" class="w-full relative">
+        {{-- <div class="fixed z-30 top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-14 py-3"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div> --}}
         <div class="flex justify-between items-center px-4 py-4 border-b border-gray-300">
             <div class="flex border-l-4 border-red-400 py-1 px-2">
                 <h1 class="poppins text-2xl font-medium">LEARNERS</h1>
@@ -47,12 +48,25 @@
                     <div data-grade-level="6" class="archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <label class="poppins text-base cursor-pointer">Grade 6</label>
                     </div>
+                    <div data-grade-level="null" class="archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                        <label class="poppins text-base cursor-pointer">Unassigned</label>
+                    </div>
+                </div>
+                <div class="py-2 flex space-x-3 items-center">
+                    <h1>TOTAL LEARNER:</h1>
+                    <h1 id="total-student" class="text-base font-medium"></h1>
                 </div>
             </div>
 
             {{-- Students card container --}}
             <div id="students-container" class="w-full flex flex-wrap -m-2 px-2">
                 
+            </div>
+
+            <div class="w-full poppins px-2 py-6">
+                <div class="pagination my-5"> 
+
+                </div>
             </div>
 
             {{-- Add new student modal --}}
@@ -66,3 +80,4 @@
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 <script src="{{ asset('js/student_index.js') }}"></script>
+

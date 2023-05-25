@@ -171,7 +171,7 @@ $(document).ready(function() {
 
     function fetch_students_data(page, query = '', gradeLevel = '') {
         $.ajax({
-            url:"/students/search?page=" + page + "&query=" + query,
+            url:"/students/search?page=" + page + "&query=" + query + "&gradeLevel" + gradeLevel,
             method:'GET',
             data:{query: query, grade_level: gradeLevel },
             dataType:'json',
@@ -179,6 +179,7 @@ $(document).ready(function() {
             {
                 $('#students-container').html(data.student_data);
                 $('.pagination').html(data.pagination);
+                $('#total-student').text(data.total);
             }
         });
     }

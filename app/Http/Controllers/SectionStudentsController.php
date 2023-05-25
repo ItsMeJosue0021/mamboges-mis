@@ -44,10 +44,10 @@ class SectionStudentsController extends Controller
         $student = Student::find($request->student_id);
 
         // if ($student) {
-        //     // $student->section_id = $request->section_id;
-        //     // $student->grade_level = $section->grade_level;
-        //     // $student->save();
-        // // } else {
+        //     $student->section_id = $request->section_id;
+        //     $student->grade_level = $section->grade_level;
+        //     $student->save();
+        // } else {
         //     return response()->json(['success' => false, 'message' => 'Student not found.']);
         // }
 
@@ -69,6 +69,11 @@ class SectionStudentsController extends Controller
             $addedStudent = SectionStudents::create($addStudent);
 
             if (!is_null($addedStudent)) {
+
+                $student->section_id = $request->section_id;
+                $student->grade_level = $section->grade_level;
+                $student->save();
+
                 Logs::addToLog('Student [' . $request->student_id . '] has been added to Section [' . $request->section_id . ']');
                 return response()->json(['success' => true]);
             } else {

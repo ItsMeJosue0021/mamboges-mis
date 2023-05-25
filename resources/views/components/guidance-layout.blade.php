@@ -11,10 +11,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Castoro&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
     <link rel="icon" href="{{asset('image/mambog.png')}}"/>
     <title>Mambog Elementary School</title>
+
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -145,7 +148,7 @@
     <section class="w-full min-w-900px">
         <div class="h-fit min-h-screen container mx-auto flex">
             <!-- sidebar -->
-            <div class="min-h-full flex flex-grow border-r border-gray-300 bg-white shadow fixed z-20">
+            <div class="min-h-full flex flex-grow border-r border-gray-300 bg-white shadow fixed z-30">
                 <div class="h-full p-2 px-4 min-w-250px">
                     <!-- logo -->
                     <div class="flex items-center py-2 mb-4">
@@ -252,13 +255,13 @@
             </div>
 
             <!-- main -->
-            <div class="ml-250px w-full h-full flex flex-col container">
+            <div class="ml-250px relative w-full h-full flex flex-col container">
                 <!-- header -->
-                <div class="w-full flex items-center justify-end py-2 px-8 border-b border-gray-300 shadow z-20">
-                    <div class="flex items-center space-x-4 py-4 z-20">
+                <div class="fixed custom-width flex items-center justify-end py-2 px-8 border-b border-gray-300 bg-white shadow z-10">
+                    <div class="flex items-center space-x-4 py-4">
                         {{-- <i class='bx bx-cog text-2xl text-lightestgray '></i> --}}
-                        <div class="hidden sm:flex sm:items-center sm:ml-6">
-                            <x-dropdown align="right" width="48">
+                        <div class="hidden sm:flex sm:items-center">
+                            <x-dropdown  width="48">
                                 <x-slot name="trigger">
                                     <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                                         <div>
@@ -298,7 +301,7 @@
                 </div>
 
                 <!-- main content -->
-                <div class="w-full h-full z-10 relative">
+                <div class="h-full relative mt-20">
                     <main>
                         {{$slot}}
                     </main>
