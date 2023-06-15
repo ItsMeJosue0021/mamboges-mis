@@ -39,11 +39,15 @@
                                         @foreach($students as $key => $student)
                                         <tr>
                                             <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">{{ $student->first_name . ' ' . $student->middle_name . ' ' . $student->last_name }}</td>
-                                            <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">{{ $sectionNames[$student->section_id] }}</td>
-                                            <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">{{ $student->grade_level }}</td>
-                                            <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">{{ $student->reason }}</td>
                                             <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
-                                                <a href="/archive/{{$student->student_id}}" class="text-xs text-blue-500 underline">Open</a>
+                                                {{ $sectionNames[$student->section_id] ?? 'unassigned' }}
+                                              </td>
+                                              <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
+                                                {{ $student->grade_level ?? 'unassigned' }}
+                                              </td>
+                                            <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">{{ $student->reason ?? 'N/A' }}</td>
+                                            <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
+                                                <a href="/archive/{{$student->student_id}}" class="text-xs text-blue-500 underline">View Profile</a>
                                             </td>
                                         </tr>  
                                         @endforeach

@@ -42,10 +42,11 @@ class AuthenticatedSessionController extends Controller
             $url = '/classes';
         } elseif ($userType === 'lr') {
             $url = '/lr/dashboard';
-        } else {
-            $url = '/';
-           
-        }
+        } 
+        
+        // else {
+        //     $url = '/';
+        // }
     
         $request->session()->regenerate();
         $request->session()->put('url.intended', $url);

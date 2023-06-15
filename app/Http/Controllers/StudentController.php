@@ -295,54 +295,60 @@ class StudentController extends Controller
 
         $lastClassAttended = SectionStudents::where('student_id', $student->id)->latest()->first();
 
-        $grade_level = $lastClassAttended->grade_level;
-        $section = $lastClassAttended->section_id;
+        $grade_level = null;
+        $section = null;
 
-        if (is_null($grade_level) || is_null($section)) {
-            return response()->json(['success' => false, 'message' => 'Student cannot be deleted because of unssigned section.']);
-        } else {
-
-            if ($student) {
-            
-                $toBeArchived = [
-                    'student_id' => $student->id,
-                    'first_name' => $student->first_name,
-                    'last_name' => $student->last_name,
-                    'middle_name' => $student->middle_name,
-                    'suffix' => $student->suffix,
-                    'sex' => $student->sex,
-                    'lrn' => $student->lrn,
-                    'dob' => $student->dob,
-                    'address' => $student->address,
-                    'grade_level' => $lastClassAttended->grade_level,
-                    'reason' => $request->reason,
-                    'section_id' => $lastClassAttended->section_id,
-                    'parent_id' => $student->parent_id,
-                ];
-    
-                $archivedStudent = ArchivedStudents::create($toBeArchived);
-    
-                if (!is_null($archivedStudent)) {
-    
-                    if ($student->delete() && $lastClassAttended->delete()) {
-    
-                        Logs::addToLog('Student has been moved to archive | LRN [' . $student->lrn . ']');
-                        
-                        return response()->json(['success' => true, 'message' => 'Student deleted successfully']);
-    
-                    } else {
-                        return response()->json(['success' => false, 'message' => 'Unable to delete student']);
-                    }
-                } else {
-                    return response()->json(['success' => false, 'message' => 'Something went wrong']);
-                }
-            } else {
-                return response()->json(['success' => false, 'message' => 'Student not found.']);
-            }
-
+        if (!is_null($lastClassAttended)) {
+            $grade_level = $lastClassAttended->grade_level;
+            $section = $lastClassAttended->section_id; 
         }
 
+        if ($student) {
+            $toBeArchived = [
+                'student_id' => $student->id,
+                'first_name' => $student->first_name,
+                'last_name' => $student->last_name,
+                'middle_name' => $student->middle_name,
+                'suffix' => $student->suffix,
+                'sex' => $student->sex,
+                'lrn' => $student->lrn,
+                'dob' => $student->dob,
+                'address' => $student->address,
+                'grade_level' => $grade_level,
+                'reason' => $request->reason,
+                'section_id' => $section,
+                'parent_id' => $student->parent_id,
+            ];
 
+            $archivedStudent = ArchivedStudents::create($toBeArchived);
+
+            if (!is_null($archivedStudent)) {
+
+                $studentDeleted = $student->delete();
+
+                // $lastClassAttendedDeleted = $lastClassAttended->delete();
+
+                if ($lastClassAttended) {
+                    $lastClassAttendedDeleted = $lastClassAttended->delete();
+                } else {
+                    $lastClassAttendedDeleted = true; // If $lastClassAttended is null, consider it as deleted.
+                }
+
+                if ($studentDeleted && $lastClassAttendedDeleted) {
+
+                    Logs::addToLog('Student has been moved to archive | LRN [' . $student->lrn . ']');
+                    
+                    return response()->json(['success' => true, 'message' => 'Student deleted successfully']);
+
+                } else {
+                    return response()->json(['success' => false, 'message' => 'Unable to delete student']);
+                }
+            } else {
+                return response()->json(['success' => false, 'message' => 'Something went wrong']);
+            }
+        } else {
+            return response()->json(['success' => false, 'message' => 'Student not found.']);
+        }
 
     }
     

@@ -125,14 +125,14 @@ $(document).ready(function() {
                     success: function(response) {
                         var message;
                         if (response.success) {
-                            message =  $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-20 py-3"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');
+                            message =  $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-20 py-3 z-20"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');
                             $('#student-form')[0].reset();
                             $('#photo-preview').css('background-image', '');
                             photoPlaceholder.show();
                             fetch_students_data();
                             
                         } else {
-                            message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-20 py-3"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');   
+                            message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-red-100 px-20 py-3 z-20"><p class="poppins text-lg text-red-800 ">' + response.message + '</p></div>');   
                         }
 
                         $('#container').append(message);
@@ -186,7 +186,7 @@ $(document).ready(function() {
 
     $('#search-student').on('keyup', function(){
         var query = $(this).val();
-        fetch_students_data(1, query);
+        fetch_students_data(1, query, '');
     }); 
 
     $(document).on('click', '.archive-links', function(event) {

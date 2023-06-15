@@ -21,34 +21,34 @@
                         <p class="poppins text-base cursor-pointer no-underline">All</p>
                     </div>
 
-                    <div data-grade-level="0" class="archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                    <div data-grade-level="0" class="level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <label class="poppins text-base cursor-pointer">Kinder</label>
                     </div>
 
-                    <div data-grade-level="1" class="archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                    <div data-grade-level="1" class="level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <label class="poppins text-base cursor-pointer">Grade 1</label>
                     </div>
 
-                    <div data-grade-level="2" class="archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                    <div data-grade-level="2" class="level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <label class="poppins text-base cursor-pointer">Grade 2</label>
                     </div>
 
-                    <div data-grade-level="3" class="archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                    <div data-grade-level="3" class="level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <label class="poppins text-base cursor-pointer">Grade 3</label>
                     </div>
 
-                    <div data-grade-level="4" class="archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                    <div data-grade-level="4" class="level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <label class="poppins text-base cursor-pointer">Grade 4</label>
                     </div>
 
-                    <div data-grade-level="5" class="archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                    <div data-grade-level="5" class="level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <label class="poppins text-base cursor-pointer">Grade 5</label>
                     </div>
 
-                    <div data-grade-level="6" class="archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                    <div data-grade-level="6" class="level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <label class="poppins text-base cursor-pointer">Grade 6</label>
                     </div>
-                    <div data-grade-level="null" class="archive-links flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                    <div data-grade-level="null" class="level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <label class="poppins text-base cursor-pointer">Unassigned</label>
                     </div>
                 </div>
@@ -81,3 +81,13 @@
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 <script src="{{ asset('js/student_index.js') }}"></script>
 
+<script>
+    const levels = document.querySelectorAll('.level');
+
+    levels.forEach(level => {
+        level.addEventListener('click', () => {
+            const currrent = document.getElementByClass('current');
+            currrent.classList.remove('current');
+        });
+    });
+</script>

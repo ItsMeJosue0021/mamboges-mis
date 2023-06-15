@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "~aos/dist/aos.css";
 
+@import "~aos/dist/aos.css";
 
 @layer utilities {
     .poppins {

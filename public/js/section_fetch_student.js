@@ -34,12 +34,22 @@ $(document).ready(function() {
                         },
                         success: function(response) {
                             var message;
+
                             if (response.success) {
+                                message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-20 py-3"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');   
+                                $('#container').append(message);
+    
+                                setTimeout(function(){
+                                    message.fadeOut('slow', function() {
+                                        message.remove();
+                                    });
+                                }, 3000);
+                                
                                 addBtn.text('enrolled');
                                 fetch_section_students(sec);
                                 
                             } else {
-                                message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-red-100 px-20 py-3"><p class="poppins text-lg text-red-800 ">' + response.message + '</p></div>');   
+                                message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-red-100 px-20 py-3 z-50"><p class="poppins text-lg text-red-800 ">' + response.message + '</p></div>');   
                                 $('#container').append(message);
     
                                 setTimeout(function(){
@@ -94,7 +104,6 @@ $(document).ready(function() {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
-
                 const section = $('.get-id').attr('id');
                 var formData = new FormData(form);
                 $.ajax({

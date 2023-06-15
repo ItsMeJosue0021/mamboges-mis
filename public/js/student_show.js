@@ -66,20 +66,29 @@ $(document).ready(function() {
               },
             success: function(response) {
                 if (response.success) {
-                    message = $('<div class="fixed z-30 top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-14 py-3"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');
+                    message = $('<div class="fixed z-30 top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-14 py-3 z-20"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');
+                    
+                    setTimeout(function(){
+                        location = '/students'
+                    }, 1000);
+
                 } else  {
-                    message = $('<div class="fixed z-30 top-3 rounded left-1/2 transform -translate-x-1/2 bg-red-100 px-14 py-3"><p class="poppins text-lg text-red-800 ">' + response.message + '</p></div>');
+                    message = $('<div class="fixed z-30 top-3 rounded left-1/2 transform -translate-x-1/2 bg-red-100 px-14 py-3 z-20"><p class="poppins text-lg text-red-800 ">' + response.message + '</p></div>');
                 }
 
                 $('.delete-btn').text('Delete');
 
-                delete_modal.addClass('hidden'); 
+                setTimeout(function(){
+                    delete_modal.addClass('hidden'); 
+                }, 2000);
 
                 $('#container').append(message);
 
                 setTimeout(function(){
-                    location = '/students'
-                }, 1000);
+                    message.fadeOut('slow', function() {
+                        message.remove();
+                    });
+                }, 3000);
 
             },
             error: function(xhr, status, error) {

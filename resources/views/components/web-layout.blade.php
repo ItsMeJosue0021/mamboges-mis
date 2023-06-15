@@ -146,22 +146,22 @@
         </div>
     </section>
 
-    <header>
+    {{-- <header>
         <div class="container tablet:mx-auto py-2 tablet:px-24">
             <div class="flex items-center justify-between">
                 <!-- logo -->
-                <div class="flex items-center py-1">
+                <div class="flex items-center py-2">
                     <a href="/" class="flex items-center space-x-2">
                         <img class="w-70px h-70px" src="{{asset('image/mambog.png')}}" alt="">
                         <div class="flex flex-col">
-                            <p class="castoro text-lg font-bold">MAMBOG</p>
-                            <p class="castoro text-5px font-medium">ELEMENTARY SCHOOL</p>
+                            <p class="castoro text-base font-bold">MAMBOG</p>
+                            <p class="castoro text-sm font-medium">ELEMENTARY SCHOOL</p>
                         </div>
                     </a>
                 </div>
 
                 <!-- navigation -->
-                <nav >
+                <nav class="">
                     <div class="hidden tablet+:flex justify-between space-x-6">
                         <div class="flex items-center space-x-1">
                             <a href="/" class="poppins font-medium text-base">Home</a>
@@ -218,7 +218,7 @@
                 </nav>
             </div>
         </div>
-    </header>
+    </header> --}}
 
     <main>
         {{$slot}}

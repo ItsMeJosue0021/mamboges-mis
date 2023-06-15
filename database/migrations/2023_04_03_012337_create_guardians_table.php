@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('middle_name')->nullable();
             $table->string('suffix')->nullable();
             $table->string('sex');
-            $table->string('email')->nullable();;
-            $table->string('contact_no');
+            $table->string('email')->nullable();
+            $table->string('contact_no')->nullable();
             $table->string('address');
             $table->boolean('is_archived')->default(false);
             $table->timestamps();
