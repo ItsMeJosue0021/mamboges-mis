@@ -8,12 +8,14 @@
         </div>
 
         <div class="w-full flex flex-col space-y-6 py-4 pb-6">
-            <div class="w-full h-250px flex items-start space-x-4">
-                <div class="min-w-250px w-250px h-250px bg-gray-200 rounded border border-gray-200">
-                    <img src="{{asset('image/profile.png')}}" alt="" class="w-full h-full shadow-lg rounded">
+            <div class="w-full h-250px flex items-start space-x-4 rounded border border-gray-300 p-4">
+                <div class="w-64 p-2">
+                    <img  src="{{$faculty->image ? asset('storage/' . $faculty->image) : ($faculty->sex == 'Female' ? asset('image/female.png') : asset('image/male.png'))}}" alt="" class="w-full h-full rounded">
                 </div>
+
+                {{-- src="{{asset('image/profile.png')}}" --}}
     
-                <div class="w-full h-fit flex justify-between p-4 rounded shadow border border-gray-200">
+                <div class="w-full h-fit flex justify-between p-4 ">
                     <div class="flex flex-col space-y-2">
                         <div class="flex items-center space-x-2">
                             <h1 class="poppins text-2xl font-medium">{{$faculty->first_name}}</h1>
@@ -51,8 +53,76 @@
                 </div>
             </div>
 
-            <div class="w-full flex space-x-4 h-screen">
-               
+            {{-- <div class="w-full flex flex-wrap -m-2">
+                @if (count($classes) == 0)   
+                    <div class="h-64 w-full flex items-center justify-center">
+                        <h1 class="poppins text-red-500 text-sm">No classes assigned yet.</h1>
+                    </div>
+                @endif
+                @foreach ($classes as $class)
+                    <div class="p-2 lg:w-1/4 md:w-1/2 w-full">
+                        <div class="h-full flex flex-col border-gray-200 border rounded-lg hover:shadow-md hover:border-gray-400">
+                            <div class="w-full h-40 bg-mambog rounded-t-lg">
+                                <img class="w-full h-full rounded-t-lg opacity-90" src="{{asset('image/mamboges.jpg')}}" alt="">
+                            </div>
+                            <div class="flex-grow p-4">
+                                <h2 class="poppins text-gray-900 title-font font-semibold">{{$class->name}}</h2>
+                                <div class="group flex items-center">
+                                    <a class="poppins text-sm group-hover:underline text-gray-500 group-hover:text-blue-500" href="/classes/{{$class->id}}/class-record">Class record</a>
+                                    <i class='bx bx-right-arrow-alt text-lg text-gray-500 group-hover:text-blue-500'></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div> --}}
+
+            <div class="w-full flex flex-col space-y-2 h-screen">
+                @if (count($classes) == 0)   
+                    <div class="h-64 w-full flex items-center justify-center">
+                        <h1 class="poppins text-red-500 text-sm">No classes assigned yet.</h1>
+                    </div>
+                @endif
+
+                {{-- @foreach ($classes as $class)
+                    <div class="flex w-full space-y-2">
+                        <div tabindex="0" class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-md h-fit w-full">
+                            <div class="collapse-title">
+                            <p>{{$class->name}}</p>
+                            </div>
+                            <div class="collapse-content">
+                                @foreach ($students as $student)
+                                    <div class="flex justify-between p-2 px-1 border-t border-gray-200">
+                                        <h2>{{$student->last_name}} {{$student->first_name}} {{$student->middle_name}}</h2>
+                                        <p>remarks</p>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                @endforeach --}}
+
+                @foreach ($classes as $class)
+                    <div class="flex w-full space-y-2">
+                        <div tabindex="0" class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-md h-fit w-full">
+                            <div class="collapse-title">
+                                <p>{{$class->name}}</p>
+                            </div>
+                            <div class="collapse-content">
+                                @if (isset($students[$class->section_id]))
+                                    @foreach ($students[$class->section_id] as $student)
+                                        <div class="flex justify-between p-2 px-1 border-t border-gray-200">
+                                            <h2>{{$student->last_name}} {{$student->first_name}} {{$student->middle_name}}</h2>
+                                            <p>remarks</p>
+                                        </div>
+                                    @endforeach
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+
+
             </div>
 
         </div>

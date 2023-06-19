@@ -17,12 +17,8 @@
         <div class="w-full h-600px px-4 overflow-auto">
             <div class="w-full py-4 px-2">
                 <div class="w-fit flex space-x-2">
-                    <div class="active-level  all flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                    <div class="active-level level all flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <p class="poppins text-base cursor-pointer no-underline">All</p>
-                    </div>
-
-                    <div data-grade-level="unenrolled" class="level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
-                        <label class="poppins text-base cursor-pointer">Unenrolled</label>
                     </div>
 
                     <div data-grade-level="kinder" class="level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
@@ -53,9 +49,17 @@
                         <label class="poppins text-base cursor-pointer">Grade 6</label>
                     </div>
                 </div>
-                <div class="pt-4 py-2 flex space-x-3 items-center">
-                    <h1>TOTAL LEARNERS:</h1>
-                    <h1 id="total-student" class="text-base text-blue-400 font-medium px-2 border border-blue-400 rounded"></h1>
+
+                <div class="flex items-center space-x-4">
+                    <div class="pt-4 py-2 flex space-x-3 items-center">
+                        <h1>TOTAL LEARNERS:</h1>
+                        <h1 id="total-student" class="text-base text-blue-400 font-medium px-2 border border-blue-400 rounded"></h1>
+                    </div>
+
+                    <div class="pt-4 py-2 flex space-x-3 items-center">
+                        <h1>RESULT COUNT:</h1>
+                        <h1 id="enrolled-student" class="text-base text-blue-400 font-medium px-2 border border-blue-400 rounded"></h1>
+                    </div>
                 </div>
             </div>
 

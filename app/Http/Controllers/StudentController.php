@@ -28,6 +28,9 @@ class StudentController extends Controller
     }
 
     public function getStudents(Request $request) {
+
+        $current_school_year = SchoolYear::where('is_current', true)->first();
+
         if($request->ajax())
         {
             $output = '';
@@ -45,15 +48,29 @@ class StudentController extends Controller
                     ->paginate(10);
                     
             } elseif (!empty($gradeLevel)) {
+
+                $sectionStudents = SectionStudents::where('grade_level', $gradeLevel)
+                    ->where('school_year_id', $current_school_year->id)
+                    ->get();
+
+                $studentIds = $sectionStudents->pluck('student_id')->toArray();
+
                 $data = Student::where('is_archived', false)
-                    ->where('grade_level', $gradeLevel)
+                    ->whereIn('id', $studentIds)
                     ->orderBy('id', 'desc')
                     ->paginate(10);
 
             } else {
+
+                $sectionStudents = SectionStudents::where('school_year_id', $current_school_year->id)
+                ->get();
+
+                $studentIds = $sectionStudents->pluck('student_id')->toArray();
+
                 $data = Student::where('is_archived', false)
-                    ->orderBy('id', 'desc')
-                    ->paginate(10);
+                ->whereIn('id', $studentIds)
+                ->orderBy('id', 'desc')
+                ->paginate(10);
             }
              
             $total_row = $data->total();
@@ -91,7 +108,6 @@ class StudentController extends Controller
 
                 $pagination = '<div class="my-5">' . $data->links() . '</div>';
 
-
             } else {
 
                 $output .= '
@@ -103,21 +119,20 @@ class StudentController extends Controller
                 $pagination = '';
             }
 
+            $allStudents = Student::all();
+            $allStudentCount = $allStudents->count();
+
             $data = array(
                 'student_data'  => $output,
-                'total' => $total_row,
-                'pagination' => $pagination
+                'enrolled' => $total_row,
+                'pagination' => $pagination,
+                'total' => $allStudentCount
             );
 
             return response()->json($data);
         }
     }
 
-                    // $output .= '
-                //             <div class="w-full poppins px-2">
-                //                 <div class="my-5">' . $data->links() . '</div>
-                //             </div>
-                //             ';
 
     public function show(Student $student) {
 
@@ -271,7 +286,6 @@ class StudentController extends Controller
                 'lrn' => $request->lrn,
                 'dob' => $request->dob,
                 'address' => $request->address,
-                // 'grade_level' => $request->grade_level,
                 'parent_id' => $guardian->id,
             ];
 

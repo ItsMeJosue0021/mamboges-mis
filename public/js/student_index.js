@@ -180,6 +180,7 @@ $(document).ready(function() {
                 $('#students-container').html(data.student_data);
                 $('.pagination').html(data.pagination);
                 $('#total-student').text(data.total);
+                $('#enrolled-student').text(data.enrolled);
             }
         });
     }

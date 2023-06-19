@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Helpers\Logs;
 use App\Models\Faculty;
+use App\Models\Student;
 use App\Models\Department;
 use App\Models\SchoolYear;
 use Illuminate\Http\Request;
+use App\Models\SectionStudents;
+use App\Models\SectionSubjects;
 use App\Models\ArchivedFaculties;
 use Illuminate\Support\Facades\Hash;
 
@@ -19,21 +22,78 @@ class FacultyController extends Controller
 
         $departments = Department::all();
 
+
         return view('faculty.index', [
             'faculties' => $faculties,
             'departments' => $departments,
         ]);
     }
 
-    public function show(Faculty $faculty) {
+    // public function show(Faculty $faculty) {
 
+    //     $departments = Department::all();
+
+    //     $current_school_year = SchoolYear::where('is_current', true)->first();
+        
+    //     $classes = SectionSubjects::where('faculty_id', $faculty->id)->where('school_year_id',  $current_school_year->id)->get();
+
+    //     foreach($classes as $class) {
+    //         $section_students = SectionStudents::where('section_id', $class->section_id)->get();
+    
+    //         $students = [];
+        
+    //         foreach ($section_students as $student) {
+    //             $student_record = Student::where('id', $student->student_id)->first();
+    //             if ($student_record) {
+    //                 $students[] = $student_record;
+    //             }
+    //         }
+    //     }
+    
+    //     return view('faculty.show', [
+    //         'faculty' => $faculty,
+    //         'departments' => $departments,
+    //         'classes' => $classes,
+    //         'students' => $students
+    //     ]);
+    // }
+
+    public function show(Faculty $faculty)
+    {
         $departments = Department::all();
+        $current_school_year = SchoolYear::where('is_current', true)->first();
+        $classes = SectionSubjects::where('faculty_id', $faculty->id)
+            ->where('school_year_id',  $current_school_year->id)
+            ->get();
+
+        $students = [];
+
+        foreach ($classes as $class) {
+            $section_students = SectionStudents::where('section_id', $class->section_id)
+            ->where('school_year_id',  $current_school_year->id)
+            ->get();
+
+            $class_students = [];
+
+            foreach ($section_students as $student) {
+                $student_record = Student::where('id', $student->student_id)->first();
+                if ($student_record) {
+                    $class_students[] = $student_record;
+                }
+            }
+
+            $students[$class->section_id] = $class_students;
+        }
 
         return view('faculty.show', [
             'faculty' => $faculty,
             'departments' => $departments,
+            'classes' => $classes,
+            'students' => $students
         ]);
     }
+
+
 
     public function store(Request $request) {
 
@@ -165,17 +225,6 @@ class FacultyController extends Controller
         
     }
 
-    // public function delete($id) {
-    //     $faculty = Faculty::find($id);
-    //     if ($faculty) {
-    //         $faculty->is_archived = true;
-    //         $faculty->save();
-    //         Logs::addToLog('A faculty member has been moved to archive | EMAIL [' . $faculty->email . ']');
-    //         return response()->json(['success' => true, 'message' => 'Faculty deleted successfully']);
-    //     } else {
-    //         return response()->json(['success' => false, 'message' => 'Faculty not found.']);
-    //     }
-    // }
 
     public function dashboard() {
         return view('faculty.dashboard');

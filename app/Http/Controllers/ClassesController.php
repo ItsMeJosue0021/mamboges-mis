@@ -28,8 +28,12 @@ class ClassesController extends Controller
     }
 
     public function classRecord(SectionSubjects $class) {
+        
+        $current_school_year = SchoolYear::where('is_current', true)->first();
 
-        $section_students = SectionStudents::where('section_id', $class->section_id)->get();
+        $section_students = SectionStudents::where('section_id', $class->section_id)
+        ->where('school_year_id',  $current_school_year->id)
+        ->get();
     
         $students = [];
     

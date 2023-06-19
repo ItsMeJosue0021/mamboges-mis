@@ -20,7 +20,7 @@ class SectionSubjectsController extends Controller
         $section = Section::where('id', $id)->first();
 
         $sectionSubject = [
-            'name' => $section->name . " " . $subject->subject_name,
+            'name' => $section->name . " | " . $subject->subject_name,
             'section_id' => $id,
             'subject_id' => $request->subject,
             'faculty_id' => $request->teacher,

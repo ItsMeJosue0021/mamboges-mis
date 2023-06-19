@@ -2,7 +2,9 @@
     <div class="w-full flex flex-col p-4">
         <div class="w-full flex flex-wrap -m-2">
             @if (count($classes) == 0)   
-                <h1 class="poppins text-red-500 text-sm">No data</h1>
+                <div class="h-64 w-full flex items-center justify-center">
+                    <h1 class="poppins text-red-500 text-sm">No classes assigned yet.</h1>
+                </div>
             @endif
             @foreach ($classes as $class)
                 <div class="p-2 lg:w-1/4 md:w-1/2 w-full">

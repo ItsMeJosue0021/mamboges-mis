@@ -185,10 +185,6 @@ class SectionController extends Controller
                 $student->section_id = null;
                 $editedStudent = $student->save();
 
-                // if (!$editedStudent) {
-                //     return response()->json(['success' => false, 'message' => 'student grade level not edited']);
-                // }
-
                 $sectionStudent->delete();
             }
         }

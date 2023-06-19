@@ -113,18 +113,20 @@ class SectionStudentsController extends Controller
                     ->where('id', $student->student_id)
                     ->first();
 
-                    $output .= '
-                    <div class="flex justify-between space-x-6 px-2 py-2 border-b border-gray-300" >
-                        <div class="flex space-x-2">
-                            <p class="poppins text-base text-gray-700">'.$stud->first_name.'</p>
-                            <p class="poppins text-base text-gray-700">'.$stud->last_name.'</p>
-                            <p class="poppins text-base text-gray-700">'.$stud->middle_name.'</p>
+                    if ($stud) {
+                        $output .= '
+                        <div class="flex justify-between space-x-6 px-2 py-2 border-b border-gray-300" >
+                            <div class="flex space-x-2">
+                                <p class="poppins text-base text-gray-700">'.$stud->first_name.'</p>
+                                <p class="poppins text-base text-gray-700">'.$stud->last_name.'</p>
+                                <p class="poppins text-base text-gray-700">'.$stud->middle_name.'</p>
+                            </div>
+                            <div id="button-container">
+                                <button id="'.$stud->id.'" class="removestudentbtn poppins text-xs text-red-400 py-1 px-2 rounded border border-red-400 hover:border-red-500 hover:bg-red-500 hover:text-white">unenroll</button>
+                            </div>
                         </div>
-                        <div id="button-container">
-                            <button id="'.$stud->id.'" class="removestudentbtn poppins text-xs text-red-400 py-1 px-2 rounded border border-red-400 hover:border-red-500 hover:bg-red-500 hover:text-white">unenroll</button>
-                        </div>
-                    </div>
-                    ';
+                        ';
+                    }
                 }
             } else {
                 $output = '
