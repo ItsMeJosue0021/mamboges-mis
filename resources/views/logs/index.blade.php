@@ -1,12 +1,10 @@
 <x-guidance-layout>
     <div class="h-screen w-full flex justify-start items-start">
 
-        <div class="w-full flex flex-col p-4 ">
-
-            <div class="w-full flex border-l-4 border-red-400 px-2 py-2 mb-4 border-b border-gray-400 sticky top-20">
-                <h1 class="poppins text-2xl font-medium">LOGS</h1>
+        <div class="w-full flex flex-col p-4">
+            <div class="py-2">
+                <p class="poppins text-2xl font-medium">LOGS</p>
             </div>
-            
             <div class="w-full flex flex-col">
                 <div class="w-full overflow-x-auto">
                     <table class="w-full border-collapse border border-gray-400">
@@ -34,6 +32,9 @@
                         </tbody>
                     </table>
                 </div>                
+            </div>
+            <div class="py-4">
+                {{ $logs->links() }}
             </div>
         </div>
     </div>

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('contact_no')->nullable();
             $table->string('reason')->nullable();
+            $table->string('image')->nullable();
             $table->foreignId('department_id');
             $table->timestamps();
         });

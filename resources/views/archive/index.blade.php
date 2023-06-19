@@ -2,7 +2,7 @@
     <div class="w-full flex">
         <div class="w-full flex flex-col p-4">
 
-            <div class="w-full flex border-l-4 border-red-400 py-1 px-2 mb-5 border-b border-gray-400">
+            <div class="w-full flex py-2 px-2 mb-5 border-b border-gray-300">
                 <h1 class="poppins text-2xl font-medium">ARCHIVE</h1>
             </div>
             {{-- header --}}
@@ -21,7 +21,8 @@
             </div>
 
             <div id="archive-container" class="w-full flex flex-col">
-                <div id="student-container" class="w-full">   
+                <div id="student-container" class="w-full"> 
+
                     <div class="w-full flex flex-col">
                         <div class="w-full overflow-x-auto">
                             <table class="w-full border-collapse border border-gray-400">
@@ -60,18 +61,37 @@
                 </div>
 
                 <div id="faculty-container" class="hidden w-full">
-                    <div class="flex flex-wrap -m-2">
-                        @foreach ($faculties as $faculty)
-                            <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
-                                <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
-                                    <img alt="team" class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="{{asset('image/profile.png')}}">
-                                    <div class="flex-grow">
-                                        <h2 class="poppins text-lg text-gray-900 title-font font-medium">{{$faculty->last_name}}, {{$faculty->first_name}} {{$faculty->middle_name}}</h2>
-                                        <p class="poppins text-sm text-gray-500">{{$faculty->email}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
+                    
+                    <div class="w-full flex flex-col">
+                        <div class="w-full overflow-x-auto">
+                            <table class="w-full border-collapse border border-gray-400">
+                                <thead>
+                                    <tr>
+                                        <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">NAME</th>
+                                        <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">EMAIL</th>
+                                        <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">DEPARTMENT</th>
+                                        <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">REASON</th>
+                                        <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">PROFILE</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if($faculties->count())
+                                        @foreach($faculties as $key => $faculty)
+                                        <tr>
+                                            <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">{{ $faculty->first_name . ' ' . $faculty->middle_name . ' ' . $faculty->last_name }}</td>
+                                            <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">{{ $faculty->email }}</td>
+                                            <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center"> {{ $faculty->department }}</td>
+                                            <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">{{ $faculty->reason ?? 'N/A' }}</td>
+                                            <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
+                                                <a class="text-xs text-blue-500 underline">View Profile</a>
+                                                {{--  href="/archive/{{$faculty->faculty_id}}" --}}
+                                            </td>
+                                        </tr>  
+                                        @endforeach
+                                    @endif
+                                </tbody>
+                            </table>
+                        </div>                
                     </div>
                 </div>
             </div>

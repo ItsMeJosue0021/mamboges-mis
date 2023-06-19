@@ -16,7 +16,7 @@ $(document).ready(function() {
         }, 1000);
     });
 
-     //  DELETE STUDENT MODAL
+     //  DELETE DEPARTMENT MODAL
     const delete_btns = $('.show-delete-modal');
     const delete_modal = $('#delete-modal');
 
@@ -29,7 +29,7 @@ $(document).ready(function() {
     cancel_delete.click(function() { delete_modal.addClass('hidden'); });
 
 
-     // DELETE SECTION
+     // DELETE DEPARTMENT
      $(document).on('click', '.delete-btn', function () {
         const department_id = $('#delete-department-id').val();
         $('.delete-btn').text('Deleting..');
@@ -41,9 +41,9 @@ $(document).ready(function() {
             },
             success: function(response) {
                 if (response.success) {
-                    message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-20 py-3"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');
+                    message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-20 py-3 z-20"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');
                 } else  {
-                    message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-20 py-3"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');
+                    message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-red-100 px-20 py-3 z-20"><p class="poppins text-lg text-red-800 ">' + response.message + '</p></div>');
                 }
 
                 $('.delete-btn').text('Delete');
@@ -64,7 +64,7 @@ $(document).ready(function() {
     });
 
 
-    //  EDIT SECTION MODAL
+    //  EDIT DEPARTMENT MODAL
     const edit_btns = $('.edit-btn');
     const edit_modal = $('#edit-department-modal');
 
@@ -90,7 +90,7 @@ $(document).ready(function() {
     });
 
 
-    // SAVE SECTION
+    // SAVE DEPARTMENT
     if ($("#department-form").length > 0) {
         $("#department-form").validate({
             rules: {
@@ -122,7 +122,7 @@ $(document).ready(function() {
                     success: function(response) {
                         var message;
                         if (response.success) {
-                            message =  $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-20 py-3"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');
+                            message =  $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-20 py-3 z-20"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');
                             $('#department-form')[0].reset();
 
                             setTimeout(function(){
@@ -131,7 +131,7 @@ $(document).ready(function() {
                             }, 1000);
                             
                         } else {
-                            message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-red-100 px-20 py-3"><p class="poppins text-lg text-red-800 ">' + response.message + '</p></div>');   
+                            message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-red-100 px-20 py-3 z-20"><p class="poppins text-lg text-red-800 ">' + response.message + '</p></div>');   
                         }
 
                         $('#container').append(message);
@@ -190,14 +190,14 @@ $(document).ready(function() {
                     success: function(response) {
                         var message;
                         if (response.success) {
-                            message =  $('<div class="fixed top-3 w-fit rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-10 py-3"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');
+                            message =  $('<div class="fixed top-3 w-fit rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-10 py-3 z-20"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');
                             $('#edit-department-form')[0].reset();
                             edit_modal.addClass('hidden');
                             setTimeout(function(){
                                 window.location = "/departments";
                             }, 1000);
                         } else {
-                            message = $('<div class="fixed top-3 w-fit rounded left-1/2 transform -translate-x-1/2 bg-red-100 px-10 py-3"><p class="poppins text-lg text-red-800 ">' + response.message + '</p></div>');   
+                            message = $('<div class="fixed top-3 w-fit rounded left-1/2 transform -translate-x-1/2 bg-red-100 px-10 py-3 z-20"><p class="poppins text-lg text-red-800 ">' + response.message + '</p></div>');   
                         }
                         $('#container').append(message);
                         setTimeout(function(){

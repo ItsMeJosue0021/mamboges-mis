@@ -258,12 +258,12 @@
             <div class="ml-250px relative w-full h-full flex flex-col container">
                 <!-- header -->
                 <div class="fixed custom-width flex items-center justify-end py-2 px-8 border-b border-gray-300 bg-white shadow z-10">
-                    <div class="flex items-center space-x-4 py-4">
+                    <div class="flex items-center space-x-2 py-4">
                         {{-- <i class='bx bx-cog text-2xl text-lightestgray '></i> --}}
                         <div class="hidden sm:flex sm:items-center">
                             <x-dropdown  width="48">
                                 <x-slot name="trigger">
-                                    <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                    <button class="inline-flex items-center py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                                         <div>
                                             <h1 class="poppins">{{ Auth::user()->name }}</h1>
                                         </div>
@@ -295,7 +295,7 @@
                             </x-dropdown>
                         </div>
 
-                        <img class="h-8 w-8 rounded-full border bprder-gray-200"  src="{{Auth::user()->image ? asset('storage/' . Auth::user()->image) : asset('image/mamboges.jpg')}}" alt="">
+                        <img class="h-9 w-9 rounded-full border bprder-gray-200"  src="{{Auth::user()->image ? asset('storage/' . Auth::user()->image) : asset('image/mamboges.jpg')}}" alt="">
 
                     </div>
                 </div>

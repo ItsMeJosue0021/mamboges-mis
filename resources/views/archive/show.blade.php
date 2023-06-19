@@ -1,7 +1,7 @@
 <x-guidance-layout>
     <div id="container" class="w-full flex flex-col p-4 px-6 pb-0 relative">
         <div class="">
-            <a id="back" class="flex w-fit justify-start items-center space-x-2 group rounded cursor-pointer" href="/archive">
+            <a class="flex w-fit justify-start items-center space-x-2 group rounded cursor-pointer" href="/archive">
                 <i class='bx bx-left-arrow-alt text-gray-600 text-2xl group-hover:text-red-700'></i>
                 <p class="poppins text-base text-gray-600 group-hover:text-red-700">back</p>
             </a>
@@ -13,8 +13,8 @@
                     {{-- <img src="{{$student->image ? asset('storage/' . $student->image) : asset('image/male.png')}}" 
                     alt="" class="w-full h-full shadow-lg rounded"> --}}
 
-                    {{-- <img src="{{$student->image ? asset('storage/' . $student->image) : ($student->sex == 'Female' ? asset('image/female.png') : asset('image/male.png'))}}" 
-                    alt="" class="w-full h-full rounded"> --}}
+                    <img src="{{$student->image ? asset('storage/' . $student->image) : ($student->sex == 'Female' ? asset('image/female.png') : asset('image/male.png'))}}" 
+                    alt="" class="w-full h-full rounded">
 
                 </div>
     
@@ -36,14 +36,14 @@
                         <div class="flex justify-between border border-gray-300 border-t-0 py-1 px-2">
                             <h1 class="poppins text-base">GRADE LEVEL: </h1>
                             <h1 class="poppins text-base">
-                                @if ($student_section == null)
-                                <span class="text-blue-400 text-sm">Waiting for section assignment</span>
-                                @elseif ($student_section->grade_level == 0)
-                                    Kinder
+                                @if (is_null($grade_level))
+                                    <span class="text-red-400 text-sm">Unable to retrieve</span>
+                                @elseif ($grade_level != 'kinder')
+                                    Grade {{ $grade_level }}   
                                 @else
-                                    Grade {{ $student_section->grade_level }}
+                                    Kinder
                                 @endif
-                            </h1>
+                            </h1>                            
                         </div>
                         <div class="flex justify-between items-center border border-gray-300 border-t-0 py-1 px-2">
                             {{-- && $section->has($student->section_id) --}}

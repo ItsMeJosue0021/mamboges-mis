@@ -82,9 +82,9 @@ class SectionStudentsController extends Controller
                 $student->save();
 
                 Logs::addToLog('Student [' . $request->student_id . '] has been added to Section [' . $request->section_id . ']');
-                return response()->json(['success' => true]);
+                return response()->json(['success' => true, 'message' => 'Successfull Enrolled']);
             } else {
-                return response()->json(['success' => false]);
+                return response()->json(['success' => false, 'message' => 'Student can not be enrolled']);
             }
         }
     }

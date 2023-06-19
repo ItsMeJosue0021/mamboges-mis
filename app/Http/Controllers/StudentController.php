@@ -62,13 +62,17 @@ class StudentController extends Controller
 
             } else {
 
-                $sectionStudents = SectionStudents::where('school_year_id', $current_school_year->id)
-                ->get();
+                // $sectionStudents = SectionStudents::where('school_year_id', $current_school_year->id)
+                // ->get();
 
-                $studentIds = $sectionStudents->pluck('student_id')->toArray();
+                // $studentIds = $sectionStudents->pluck('student_id')->toArray();
+
+                // $data = Student::where('is_archived', false)
+                // ->whereIn('id', $studentIds)
+                // ->orderBy('id', 'desc')
+                // ->paginate(10);
 
                 $data = Student::where('is_archived', false)
-                ->whereIn('id', $studentIds)
                 ->orderBy('id', 'desc')
                 ->paginate(10);
             }
@@ -335,6 +339,7 @@ class StudentController extends Controller
                 'address' => $student->address,
                 'grade_level' => $grade_level,
                 'reason' => $request->reason,
+                'image' => $student->image,
                 'section_id' => $section,
                 'parent_id' => $student->parent_id,
             ];

@@ -31,34 +31,28 @@ class ArchiveController extends Controller
         ]);
     }
 
-    public function show($id) {
+    public function showArchivedStudent($id) {
 
         $current_school_year = SchoolYear::where('is_current', true)->first();
 
-        $archivedStudent = ArchivedStudents::where('id', $id)->first();
+        $archivedStudent = ArchivedStudents::where('student_id', $id)->first();
 
-        // return view('archive.show', [
-        //     'student' => $archivedStudent
-        // ]);
+        $section = Section::where('id', $archivedStudent->section_id)->where('is_archived', false)->first();
 
-
-        $studentSection = SectionStudents::where('student_id', $archivedStudent->student_id)
-                                          ->where('school_year_id', $current_school_year->id)->first();
-
-        if (!is_null($studentSection)) {
-            $section = Section::where('id', $studentSection->section_id)->where('is_archived', false)->first();
-        } else {
-            $section = Section::where('id', $archivedStudent->section_id)->where('is_archived', false)->first();
-        }
+        $gradeLevel = $archivedStudent->grade_level;
 
         $parent = Guardian::where('id', $archivedStudent->parent_id)->first();
         
-        return view('student.show', [
+        return view('archive.show', [
             'student' => $archivedStudent,
             'section' => $section,
             'parent' => $parent,
-            'student_section' => $studentSection
+            'grade_level' => $gradeLevel
         ]);
+
+    }
+
+    public function showArchivedFaculty($id) {
 
     }
     

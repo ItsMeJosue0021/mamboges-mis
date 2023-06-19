@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('address');
             $table->string('grade_level')->nullable();
             $table->string('reason')->nullable();
+            $table->string('image')->nullable();
             $table->foreignId('section_id')->nullable();
             $table->foreignId('parent_id')->nullable();
             $table->timestamps();

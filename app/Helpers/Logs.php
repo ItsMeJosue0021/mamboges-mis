@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 use Request;
+use Carbon\Carbon;
 use App\Models\Student;
 use App\Models\Logs as LogsModel;
 
@@ -25,7 +26,11 @@ class Logs
 
     public static function logActivityLists()
     {
-    	return LogsModel::latest()->get();
+		$startDate = Carbon::now()->subWeek(); 
+
+		return LogsModel::latest()
+			->where('created_at', '>=', $startDate)
+			->paginate(50);
     }
 
 
