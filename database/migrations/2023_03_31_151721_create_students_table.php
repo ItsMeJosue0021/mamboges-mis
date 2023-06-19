@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('lrn')->nullable();
             $table->date('dob');
             $table->string('address');
-            $table->string('grade_level')->nullable();
+            $table->string('grade_level')->default('unenrolled');
             $table->foreignId('section_id')->nullable();
             $table->foreignId('parent_id');
             $table->boolean('is_archived')->default(false);

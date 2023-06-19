@@ -189,7 +189,7 @@ $(document).ready(function() {
         fetch_students_data(1, query, '');
     }); 
 
-    $(document).on('click', '.archive-links', function(event) {
+    $(document).on('click', '.level', function(event) {
         event.preventDefault();
         var gradeLevel = $(this).data('grade-level');
         console.log(gradeLevel);

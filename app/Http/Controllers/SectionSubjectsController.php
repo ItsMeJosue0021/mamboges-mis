@@ -78,7 +78,7 @@ class SectionSubjectsController extends Controller
                 }
             } else {
                 $output = '
-                <div>
+                <div class="h-64 flex items-center justify-center">
                     <p class="poppins text-red-500 text-sm text-center">No Subjects Found</p>
                 </div>
                 ';

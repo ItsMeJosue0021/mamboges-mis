@@ -57,7 +57,8 @@ class StudentController extends Controller
             }
              
             $total_row = $data->total();
-            if($total_row > 0){
+
+            if ($total_row > 0) {
                 foreach($data as $row)
                 {
                     $sections = Section::where('is_archived', false)->get();
@@ -88,16 +89,20 @@ class StudentController extends Controller
                     ';
                 }
 
-                  $pagination = '<div class="my-5">' . $data->links() . '</div>';
+                $pagination = '<div class="my-5">' . $data->links() . '</div>';
 
 
             } else {
-                $output = '
+
+                $output .= '
                     <div class="p-2 w-full h-96 flex flex-col items-center justify-center mt-20">
-                        <p class="poppins text-xl  text-red-500 mt-5">Oops! No student found.</p>
+                        <p class="poppins text-base  text-red-500 mt-5">Oops! No student found.</p>
                     </div>
                 ';
+
+                $pagination = '';
             }
+
             $data = array(
                 'student_data'  => $output,
                 'total' => $total_row,
@@ -180,7 +185,7 @@ class StudentController extends Controller
                 'lrn' => $request->lrn,
                 'dob' => $request->dob,
                 'address' => $request->address,
-                'grade_level' => $request->grade_level,
+                // 'grade_level' => $request->grade_level,
                 'parent_id' => $guardian->id,
             ];
 
@@ -266,7 +271,7 @@ class StudentController extends Controller
                 'lrn' => $request->lrn,
                 'dob' => $request->dob,
                 'address' => $request->address,
-                'grade_level' => $request->grade_level,
+                // 'grade_level' => $request->grade_level,
                 'parent_id' => $guardian->id,
             ];
 
@@ -276,7 +281,7 @@ class StudentController extends Controller
     
             $student->update($studentArray);
     
-            if ($student->wasChanged()) {
+            if ($student->wasChanged() || $guardian->wasChanged()) {
                 Logs::addToLog('Student information has been altered | LRN [' . $student->lrn . ']');
                 return response()->json(['success' => true, 'message' => 'Student information has been updated']);
             } else {

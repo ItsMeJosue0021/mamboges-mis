@@ -41,6 +41,13 @@ class SectionStudentsController extends Controller
 
         $section = Section::where('id', $request->section_id)->first();
 
+        $section_gradeLevel = '';
+        if ($section->grade_level == 0) {
+            $section_gradeLevel = 'kinder';
+        } else {
+            $section_gradeLevel = $section->grade_level;
+        }
+
         $student = Student::find($request->student_id);
 
         // if ($student) {
@@ -59,7 +66,7 @@ class SectionStudentsController extends Controller
             'section_id' => $request->section_id,
             'student_id' => $request->student_id,
             'school_year_id' => $current_school_year->id,
-            'grade_level' => $section->grade_level
+            'grade_level' => $section_gradeLevel
         ];
 
         if ($existingStudent) {
@@ -71,7 +78,7 @@ class SectionStudentsController extends Controller
             if (!is_null($addedStudent)) {
 
                 $student->section_id = $request->section_id;
-                $student->grade_level = $section->grade_level;
+                $student->grade_level = $section_gradeLevel;
                 $student->save();
 
                 Logs::addToLog('Student [' . $request->student_id . '] has been added to Section [' . $request->section_id . ']');
@@ -107,7 +114,7 @@ class SectionStudentsController extends Controller
                     ->first();
 
                     $output .= '
-                    <div class="flex justify-between space-x-6 px-2 py-2 border-t border-gray-300" >
+                    <div class="flex justify-between space-x-6 px-2 py-2 border-b border-gray-300" >
                         <div class="flex space-x-2">
                             <p class="poppins text-base text-gray-700">'.$stud->first_name.'</p>
                             <p class="poppins text-base text-gray-700">'.$stud->last_name.'</p>
@@ -121,7 +128,7 @@ class SectionStudentsController extends Controller
                 }
             } else {
                 $output = '
-                <div>
+                <div class="h-64 flex items-center justify-center">
                     <p class="poppins text-red-500 text-sm text-center">No Students Found</p>
                 </div>
                 ';
@@ -149,7 +156,7 @@ class SectionStudentsController extends Controller
 
             if ($student) {
                 $student->section_id = null;
-                $student->grade_level = null;
+                $student->grade_level = "unenrolled";
                 $student->save();
             }
 

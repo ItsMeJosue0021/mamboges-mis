@@ -1,7 +1,7 @@
 
 <section class="bg-lightgray bg-mambog bg-cover bg-center bg-opacity-50" id="hero">
     <header class="bg-white bg-opacity-80">
-        <div class="container tablet:mx-auto py-2 tablet:px-24">
+        <div class="container tablet:mx-auto tablet:px-24">
             <div class="flex items-center justify-between">
                 <!-- logo -->
                 <div class="flex items-center py-2">

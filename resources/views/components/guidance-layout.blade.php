@@ -165,29 +165,29 @@
                     <div id="links" class="h-full flex flex-col">
                         @if (Auth::user()->type === 'guidance')
                         <div class="space-y-1 py-2">                         
-                            <a id="link2" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/students">
-                                <i class='bx bx-user-circle text-2xl text-lightblack group-hover:text-red-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Learners</p>
+                            <a id="link2" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/students">
+                                <i class='bx bx-user-circle text-2xl text-lightblack group-hover:text-blue-600'></i>
+                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Learners</p>
                             </a>
     
-                            <a id="link3" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/faculties">
-                                <i class='bx bx-user-pin text-2xl text-lightblack group-hover:text-red-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Faculty</p>
+                            <a id="link3" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/faculties">
+                                <i class='bx bx-user-pin text-2xl text-lightblack group-hover:text-blue-600'></i>
+                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Faculty</p>
                             </a>
 
-                            <a id="link1" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/sections">
-                                <i class='bx bx-folder text-2xl text-lightblack group-hover:text-red-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Sections</p>
+                            <a id="link1" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/sections">
+                                <i class='bx bx-folder text-2xl text-lightblack group-hover:text-blue-600'></i>
+                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Sections</p>
                             </a>
                             
-                            <a id="link8" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/subjects">
-                                <i class='bx bx-book-alt text-2xl text-lightblack group-hover:text-red-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Subjects</p>
+                            <a id="link8" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/subjects">
+                                <i class='bx bx-book-alt text-2xl text-lightblack group-hover:text-blue-600'></i>
+                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Subjects</p>
                             </a>
 
-                            <a id="link4" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/departments">
-                                <i class='bx bx-category text-2xl text-lightblack group-hover:text-red-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Departments</p>
+                            <a id="link4" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/departments">
+                                <i class='bx bx-category text-2xl text-lightblack group-hover:text-blue-600'></i>
+                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Departments</p>
                             </a>
 
                             {{-- <a id="link5" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/parents">
@@ -197,53 +197,53 @@
                         </div>
 
                         <div class="w-full border-t-2 border-gray-200 py-2 space-y-1">
-                            <a id="link6" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/updates/list">
-                                <i class='bx bx-news text-2xl text-lightblack group-hover:text-red-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">News & Updates</p>
+                            <a id="link6" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/updates/list">
+                                <i class='bx bx-news text-2xl text-lightblack group-hover:text-blue-600'></i>
+                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">News & Updates</p>
                             </a>
     
-                            <a id="link7" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/feedback">
-                                <i class='bx bx-comment-dots text-2xl text-lightblack group-hover:text-red-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Feedback</p>
+                            <a id="link7" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/feedback">
+                                <i class='bx bx-comment-dots text-2xl text-lightblack group-hover:text-blue-600'></i>
+                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Feedback</p>
                             </a>
     
                         </div>
 
                         <div class="w-full border-t-2 border-gray-200 py-2 space-y-1">
-                            <a id="link9" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/logs">
-                                <i class='bx bx-list-ul text-2xl text-lightblack group-hover:text-red-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Logs</p>
+                            <a id="link9" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/logs">
+                                <i class='bx bx-list-ul text-2xl text-lightblack group-hover:text-blue-600'></i>
+                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Logs</p>
                             </a>
     
-                            <a id="link10" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/archive">
-                                <i class='bx bx-archive text-2xl text-lightblack group-hover:text-red-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Archive</p>
+                            <a id="link10" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/archive">
+                                <i class='bx bx-archive text-2xl text-lightblack group-hover:text-blue-600'></i>
+                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Archive</p>
                             </a>
                         </div>
 
                         <div class="w-full self-end border-t-2 border-gray-200 py-2 space-y-1">
-                            <a id="link11" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/settings">
-                                <i class='bx bx-cog text-2xl text-lightblack group-hover:text-red-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Settings</p>
+                            <a id="link11" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/settings">
+                                <i class='bx bx-cog text-2xl text-lightblack group-hover:text-blue-600'></i>
+                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Settings</p>
                             </a>
 
-                            <a id="link12" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/profile">
-                                <i class='bx bxs-user-detail text-2xl text-lightblack group-hover:text-red-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Profile</p>
+                            <a id="link12" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/profile">
+                                <i class='bx bxs-user-detail text-2xl text-lightblack group-hover:text-blue-600'></i>
+                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Profile</p>
                             </a>
                         </div>
 
                         @elseif(Auth::user()->type === 'faculty') 
 
                             <div class="w-full self-end py-2 space-y-1">
-                                <a id="link13" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/classes">
-                                    <i class='bx bx-spreadsheet text-2xl text-lightblack group-hover:text-red-600'></i>
-                                    <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Classes</p>
+                                <a id="link13" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/classes">
+                                    <i class='bx bx-spreadsheet text-2xl text-lightblack group-hover:text-blue-600'></i>
+                                    <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Classes</p>
                                 </a>
 
-                                <a id="link14" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/profile">
-                                    <i class='bx bxs-user-detail text-2xl text-lightblack group-hover:text-red-600'></i>
-                                    <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Profile</p>
+                                <a id="link14" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/profile">
+                                    <i class='bx bxs-user-detail text-2xl text-lightblack group-hover:text-blue-600'></i>
+                                    <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Profile</p>
                                 </a>
                             </div>
 
@@ -345,6 +345,51 @@
                 }
             }
         });
+
+        // const links = document.querySelectorAll('#links a');
+        // const baseUrl = window.location.origin;
+        // const activeLinkId = localStorage.getItem('activeLinkId');
+
+        // links.forEach((link) => {
+        // if (link.href.startsWith(baseUrl)) {
+        //     link.addEventListener('click', function(event) {
+        //     localStorage.setItem('activeLinkId', link.id);
+
+        //     links.forEach((link) => {
+        //         link.classList.remove('active');
+        //     });
+
+        //     this.classList.add('active');
+        //     });
+
+        //     if (window.location.href.includes(link.href)) {
+        //     link.classList.add('active');
+        //     localStorage.setItem('activeLinkId', link.id);
+        //     }
+
+        //     if (link.id === activeLinkId) {
+        //     link.classList.add('active');
+        //     }
+        // }
+        // });
+
+        // const links = document.querySelectorAll('#links a');
+        // const baseUrl = window.location.origin;
+        // const activeLinkId = localStorage.getItem('activeLinkId');
+
+        // links.forEach((link) => {
+        // if (link.href.startsWith(baseUrl)) {
+        //     link.addEventListener('click', function(event) {
+        //     localStorage.setItem('activeLinkId', link.id);
+        //     });
+
+        //     if (link.id === activeLinkId) {
+        //         link.classList.add('active');
+        //     }
+        // }
+        // });
+
+
     </script>
 </body>
 

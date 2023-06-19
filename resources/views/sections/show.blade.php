@@ -1,5 +1,5 @@
 <x-guidance-layout>
-    <div id="container" class="w-full flex flex-col p-4 pb-0 relative">
+    <div id="container" class="w-full flex flex-col p-4 pb-0 relative h-auto min-h-screen">
         <div class="pb-2">
             <a id="back" class="flex w-fit justify-start items-center space-x-2 group rounded cursor-pointer" href="/sections">
                 <i class='bx bx-left-arrow-alt text-gray-600 text-2xl group-hover:text-red-700'></i>
@@ -7,13 +7,13 @@
             </a>
         </div>
         <div class="w-full h-auto min-h-600px flex flex-col items-start justify-start space-y-2">
-            <div class=" get-id w-full h-auto flex justify-between items-start shadow border border-gray-200 rounded p-3 bg-blue-500" id="{{$section->id}}">
+            <div class=" get-id w-full h-auto flex justify-between items-start border border-gray-400 rounded p-3 " id="{{$section->id}}">
                 <div class="w-full flex justify-between">
                     <div class="flex flex-col space-y-1">
                         <div class="flex space-x-2 items-start">
-                            <h1 class="poppins text-4xl font-medium text-white">{{$section->name}}</h1>
+                            <h1 class="poppins text-4xl font-medium text-gray-700">{{$section->name}}</h1>
                         </div>
-                        <h2 class="poppins text-lg text-white">
+                        <h2 class="poppins text-lg text-gray-600">
                             @if ($section->adviser_faculty_id && $adviser->has($section->adviser_faculty_id))
                                 {{ optional($adviser[$section->adviser_faculty_id])->suffix }} 
                                 {{ optional($adviser[$section->adviser_faculty_id])->first_name }} 
@@ -30,7 +30,7 @@
                                     Grade {{ $section->grade_level }}
                                 @endif
                             </h2>
-                            <h3 class="poppins text-sm font-medium text-white">S.Y. {{$school_year->name}}</h3>
+                            <h3 class="poppins text-sm font-medium text-gray-600">S.Y. {{$school_year->name}}</h3>
                         </div>
                     </div>
                 </div>
@@ -42,19 +42,19 @@
 
             <div class="w-full">
                 <div class="w-full flex space-x-8 py-2">
-                    <div class="w-full flex justify-between items-center">
-                        <h1 class="poppins text-lg text-white bg-gray-400 font-medium px-2 py-1 rounded border border-gray-400">STUDENTS</h1>
-                        <a id="add-student" class="poppins py-1 px-2 bg-white text-sm text-blue-600 border border-blue-600 font-medium rounded cursor-pointer flex items-center">
-                            <i class='bx bx-user-plus text-lg px-1'></i>
-                            Add New
+                    <div class="w-full flex items-center space-x-4 border-b border-gray-400 py-1">
+                        <h1 class="poppins text-lg text-gray-700 font-medium px-2 py-1 rounded border-l-3 border-gray-400">STUDENTS</h1>
+                        <a id="add-student" class="poppins px-2 text-xs text-white font-medium rounded cursor-pointer flex items-center bg-blue-500">
+                            <i class='bx bx-user-plus text-base px-1'></i>
+                            Add
                         </a>
                     </div>
 
-                    <div class="w-full flex justify-between items-center">
-                        <h1 class="poppins text-lg text-white bg-gray-400 font-medium px-2 py-1 rounded border border-gray-400">SUBJECTS</h1>
-                        <a id="add-subject" class="poppins py-1 px-2 bg-white text-sm text-blue-600 border border-blue-600 font-medium rounded cursor-pointer flex items-center">
-                            <i class='bx bx-list-plus text-lg px-1'></i>
-                            Add New
+                    <div class="w-full flex items-center space-x-4 border-b border-gray-400 py-1">
+                        <h1 class="poppins text-lg text-gray-700 font-medium px-2 py-1 rounded border-l-3 border-gray-400">SUBJECTS</h1>
+                        <a id="add-subject" class="poppins px-2 text-xs text-white font-medium rounded cursor-pointer flex items-center bg-blue-500">
+                            <i class='bx bx-list-plus text-base px-1'></i>
+                            Add
                         </a>
                     </div>
                 </div>

@@ -87,9 +87,9 @@ $(document).ready(function() {
             },
             success: function(response) {
                 if (response.success) {
-                    message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-20 py-3"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');
+                    message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-20 py-3 z-20"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');
                 } else  {
-                    message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-20 py-3"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');
+                    message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-20 py-3 z-20"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');
                 }
 
                 $('.delete-btn').text('Delete');
@@ -145,11 +145,11 @@ $(document).ready(function() {
                     success: function(response) {
                         var message;
                         if (response.success) {
-                            message =  $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-20 py-3"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');
+                            message =  $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-20 py-3 z-20"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');
                             $('#section-form')[0].reset();
                             
                         } else {
-                            message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-red-100 px-20 py-3"><p class="poppins text-lg text-red-800 ">' + response.message + '</p></div>');   
+                            message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-red-100 px-20 py-3 z-20"><p class="poppins text-lg text-red-800 ">' + response.message + '</p></div>');   
                         }
 
                         $('#container').append(message);
@@ -212,14 +212,14 @@ $(document).ready(function() {
                     success: function(response) {
                         var message;
                         if (response.success) {
-                            message =  $('<div class="fixed top-3 w-fit rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-10 py-3"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');
+                            message =  $('<div class="fixed top-3 w-fit rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-10 py-3 z-20"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');
                             $('#edit-section-form')[0].reset();
                             edit_modal.addClass('hidden');
                             setTimeout(function(){
                                 window.location = "/sections";
                             }, 1000);
                         } else {
-                            message = $('<div class="fixed top-3 w-fit rounded left-1/2 transform -translate-x-1/2 bg-red-100 px-10 py-3"><p class="poppins text-lg text-red-800 ">' + response.message + '</p></div>');   
+                            message = $('<div class="fixed top-3 w-fit rounded left-1/2 transform -translate-x-1/2 bg-red-100 px-10 py-3 z-20"><p class="poppins text-lg text-red-800 ">' + response.message + '</p></div>');   
                         }
                         $('#container').append(message);
                         setTimeout(function(){

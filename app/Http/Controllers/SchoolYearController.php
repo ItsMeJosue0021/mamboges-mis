@@ -67,7 +67,7 @@ class SchoolYearController extends Controller
 
 
                 foreach($students as $student) {
-                    $student->grade_level = null;
+                    $student->grade_level = 'unenrolled';
                     $student->section_id = null;
                     $student->save();
                 }
