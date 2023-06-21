@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Section;
+use App\Models\Student;
 use App\Models\Guardian;
+use App\Models\Department;
 use App\Models\SchoolYear;
 use Illuminate\Http\Request;
 use App\Models\SectionStudents;
+use App\Models\SectionSubjects;
 use App\Models\ArchivedStudents;
 use App\Models\ArchivedFaculties;
 
@@ -23,11 +26,14 @@ class ArchiveController extends Controller
         $sectionNames = $sections->pluck('name', 'id');
     
         $archivedFaculties = ArchivedFaculties::all();
+
+        $departments = Department::all();
     
         return view('archive.index', [
             'students' => $archivedStudents,
             'sectionNames' => $sectionNames,
-            'faculties' => $archivedFaculties
+            'faculties' => $archivedFaculties,
+            'departments'=> $departments
         ]);
     }
 
@@ -43,7 +49,7 @@ class ArchiveController extends Controller
 
         $parent = Guardian::where('id', $archivedStudent->parent_id)->first();
         
-        return view('archive.show', [
+        return view('archive.archived-student', [
             'student' => $archivedStudent,
             'section' => $section,
             'parent' => $parent,
@@ -54,6 +60,39 @@ class ArchiveController extends Controller
 
     public function showArchivedFaculty($id) {
 
+        $departments = Department::all();
+
+        $faculty = ArchivedFaculties::where('faculty_id', $id)->first();
+
+        $current_school_year = SchoolYear::where('is_current', true)->first();
+
+        $classes = SectionSubjects::where('faculty_id', $faculty->faculty_id)->get();
+
+        $students = [];
+
+        foreach ($classes as $class) {
+            $section_students = SectionStudents::where('section_id', $class->section_id)
+            ->where('school_year_id',  $current_school_year->id)
+            ->get();
+
+            $class_students = [];
+
+            foreach ($section_students as $student) {
+                $student_record = Student::where('id', $student->student_id)->first();
+                if ($student_record) {
+                    $class_students[] = $student_record;
+                }
+            }
+
+            $students[$class->section_id] = $class_students;
+        }
+
+        return view('archive.archived-faculty', [
+            'faculty' => $faculty,
+            'departments' => $departments,
+            'students' => $students,
+            'classes' => $classes
+        ]);
     }
     
 }

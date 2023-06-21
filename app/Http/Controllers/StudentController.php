@@ -21,9 +21,12 @@ class StudentController extends Controller
 
         $sections = Section::where('is_archived', false)->get();
 
+        $current_school_year = SchoolYear::where('is_current', true)->first();
+
         return view('student.index', [
             'students' => $students,
             'sections' => $sections,
+            'school_year' => $current_school_year->name,
         ]);
     }
 
@@ -97,9 +100,9 @@ class StudentController extends Controller
 
                     $output .= '
                         <a class="p-2 lg:w-1/3 md:w-1/2 w-full" href="/students/'.$row->id.'">
-                            <div class="h-full flex items-center border-gray-200 hover:border-gray-400 hover:shadow border p-4 rounded-lg">
+                            <div class="h-full flex items-center space-x-2 border-gray-200 hover:border-gray-400 hover:shadow border p-4 rounded-lg">
                                 <div class="w-12 h-12 bg-gray-100 rounded-full mr-4 border border-gray-400">
-                                    <img class="w-full h-full" src="' . $imageURL . '">
+                                    <img class="w-full h-full rounded-full" src="' . $imageURL . '">
                                 </div>
                                 <div class="flex-grow">
                                     <h2 class="no-underline poppins text-base text-gray-900 title-font font-medium">'.$row->first_name.' '.$row->middle_name.' '.$row->last_name.'</h2>

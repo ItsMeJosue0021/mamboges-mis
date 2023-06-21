@@ -193,6 +193,7 @@ class FacultyController extends Controller
         if ($faculty) {
 
             $toBeArchived = [
+                'faculty_id' => $faculty->id,
                 'first_name' => $faculty->first_name,
                 'last_name' => $faculty->last_name,
                 'middle_name' => $faculty->middle_name,
@@ -200,6 +201,7 @@ class FacultyController extends Controller
                 'sex' => $faculty->sex,
                 'email' => $faculty->email,
                 'contact_no' => $faculty->contact_no,
+                'image' => $faculty->image,
                 'department_id' => $faculty->department_id,
             ];
 

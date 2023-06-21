@@ -90,6 +90,9 @@ Route::middleware(['auth', 'role:guidance'])->group(function() {
     //list of updates
     Route::get('updates/list', [UpdatesController::class, 'list']); //only guidance can access this route
 
+     //update feedback
+     Route::delete('/updates/{update}/delete', [UpdatesController::class, 'delete']); //only guidance can access this route
+
     //edit update 
     Route::put('/updates/{update}/update', [UpdatesController::class, 'update']); //only guidance can access this route
 
@@ -102,8 +105,6 @@ Route::middleware(['auth', 'role:guidance'])->group(function() {
     //show edit updates form
     Route::get('/updates/{update}/edit', [UpdatesController::class, 'edit']); //only guidance can access this route
 
-    //update feedback
-    Route::delete('/updates/{update}delete', [UpdatesController::class, 'delete']); //only guidance can access this route
 
 
 
@@ -232,7 +233,9 @@ Route::middleware(['auth', 'role:guidance'])->group(function() {
     //                 ARCHIVE
     Route::get('/archive', [ArchiveController::class, 'index']);
 
-    Route::get('/archive/{id}', [ArchiveController::class, 'show']);
+    Route::get('/archive/student/{id}', [ArchiveController::class, 'showArchivedStudent']);
+
+    Route::get('/archive/faculty/{id}', [ArchiveController::class, 'showArchivedFaculty']);
 
 
 });

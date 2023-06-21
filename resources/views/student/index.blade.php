@@ -2,7 +2,7 @@
     <div id="container" class="w-full relative">
         {{-- <div class="fixed z-30 top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-14 py-3"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div> --}}
         <div class="flex justify-between items-center px-4 py-4 border-b border-gray-300">
-            <div class="flex border-l-4 border-blue-400 py-1 px-2">
+            <div class="flex space-x-4 items-center border-l-4 border-blue-400 py-1 px-2">
                 <h1 class="poppins text-2xl font-medium">LEARNERS</h1>
             </div>
             <div class="w-2/3 flex">

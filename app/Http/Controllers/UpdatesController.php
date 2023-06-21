@@ -76,7 +76,14 @@ class UpdatesController extends Controller
         }
     }
 
-    public function delete(Request $request) {
+    public function delete(Updates $update) {
 
+        $updateDeleted = $update->delete();
+
+        if ($updateDeleted ) {
+            return redirect()->back()->with('success', 'Deleted Successfully');
+        } else {
+            return redirect()->back()->with('eror', 'Something went wrong');
+        }
     }
 }

@@ -14,10 +14,18 @@
         <div class="mb-1">
             <span class="poppins mt-1 text-gray-500 text-sm">{{$update->created_at->format('M. d, Y')}}</span>
         </div>
-        <p class="poppins text-sm">{{substr($update->description, 0, 400)}}{{strlen($update->description) > 400 ? "..." : ""}}</p>
-        <a class="flex items-center space-x-2 border border-blue-500 px-2 rounded w-fit mt-4 hover:bg-lightgray" href="/updates/{{$update->id}}/edit">
-            <p class="poppins text-sm text-blue-500">Edit</p>
-            <i class='bx bx-right-arrow-alt text-base text-blue-500'></i>
-        </a>
+        <p class="poppins text-sm">{{substr($update->description, 0, 300)}}{{strlen($update->description) > 300 ? "..." : ""}}</p>
+        <div class="w-fit flex items-center space-x-2 py-1 px-2 mt-4 rounded border border-gray-200">
+            <a  href="/updates/{{$update->id}}/edit">
+                <i class='bx bx-edit text-blue-500 text-xl cursor-pointer rounded hover:bg-blue-50 py-1 px-2'></i>
+            </a>
+            <form method="POST" action="/updates/{{$update->id}}/delete">
+                @method('DELETE')
+                @csrf
+                <button>
+                    <i class='bx bx-trash text-red-500 text-xl rounded hover:bg-red-50 cursor-pointer py-1 px-2' ></i>
+                </button>
+            </form>
+        </div>
     </div>
 </div>

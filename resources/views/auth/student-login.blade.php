@@ -21,7 +21,7 @@
     
                     <!-- Email Address -->
                     <div>
-                        <x-input-label for="username" :value="__('Username')" />
+                        <x-input-label for="username" :value="__('LRN')" />
                         <x-text-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required autofocus autocomplete="username" placeholder="sample@email.com"/>
                         <x-input-error :messages="$errors->get('username')" class="mt-2" />
                     </div>
@@ -33,7 +33,11 @@
                         <x-text-input id="password" class="block mt-1 w-full"
                                         type="password"
                                         name="password"
-                                        required autocomplete="current-password" placeholder="password"/>
+                                        required
+                                        autocomplete="current-password"
+                                        placeholder="password"
+                                        data-type="password" />
+
                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
     
@@ -44,20 +48,40 @@
                             <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                         </label>
                     </div> --}}
+
+                    <!-- Show Password -->
+                    <div class="block mt-4">
+                        <label for="show_password" class="inline-flex items-center">
+                            <input id="show_password" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" onchange="togglePasswordVisibility()">
+                            <span class="ml-2 text-sm text-gray-600">{{ __('Show password') }}</span>
+                        </label>
+                    </div>
     
                     <div class="w-full flex items-center mt-4">
                         <button class="w-full poppins text-xm py-2 px-4 bg-red-600 text-white rounded">LOGIN</button>
                     </div>
     
-                    <div class="flex items-center mt-2 space-x-4">
+                    {{-- <div class="flex items-center mt-2 space-x-4">
                         @if (Route::has('password.request'))
                             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
                                 {{ __('Forgot your password?') }}
                             </a>
                         @endif
-                    </div>
+                    </div> --}}
                 </form>
             </div>
         </div>
     </div>
+    <script>
+        function togglePasswordVisibility() {
+            const passwordField = document.getElementById('password');
+            const showPasswordCheckbox = document.getElementById('show_password');
+            
+            if (showPasswordCheckbox.checked) {
+                passwordField.type = 'text';
+            } else {
+                passwordField.type = 'password';
+            }
+        }
+    </script>  
 </x-guest-layout>

@@ -48,7 +48,7 @@
                                               </td>
                                             <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">{{ $student->reason ?? 'N/A' }}</td>
                                             <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
-                                                <a href="/archive/{{$student->student_id}}" class="text-xs text-blue-500 underline">View Profile</a>
+                                                <a href="/archive/student/{{$student->student_id}}" class="text-xs text-blue-500 underline">View Profile</a>
                                             </td>
                                         </tr>  
                                         @endforeach
@@ -80,11 +80,16 @@
                                         <tr>
                                             <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">{{ $faculty->first_name . ' ' . $faculty->middle_name . ' ' . $faculty->last_name }}</td>
                                             <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">{{ $faculty->email }}</td>
-                                            <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center"> {{ $faculty->department }}</td>
+                                            <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center"> 
+                                                @foreach ($departments as $department)
+                                                    @if ($faculty->department_id == $department->id) 
+                                                        {{$department->department_name}}                                  
+                                                    @endif
+                                                @endforeach 
+                                            </td>
                                             <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">{{ $faculty->reason ?? 'N/A' }}</td>
                                             <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
-                                                <a class="text-xs text-blue-500 underline">View Profile</a>
-                                                {{--  href="/archive/{{$faculty->faculty_id}}" --}}
+                                                <a href="/archive/faculty/{{$faculty->faculty_id}}" class="text-xs text-blue-500 underline">View Profile</a>
                                             </td>
                                         </tr>  
                                         @endforeach

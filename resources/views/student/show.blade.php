@@ -39,7 +39,7 @@
                             <h1 class="poppins text-base">
                                 @if ($student_section == null)
                                 <span class="text-blue-400 text-sm">Waiting for section assignment</span>
-                                @elseif ($student_section->grade_level == 0)
+                                @elseif ($student_section->grade_level == 'kinder')
                                     Kinder
                                 @else
                                     Grade {{ $student_section->grade_level }}

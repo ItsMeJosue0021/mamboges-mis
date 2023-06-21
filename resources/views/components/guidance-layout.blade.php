@@ -12,7 +12,6 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     {{-- <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" /> --}}
     {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
-    {{-- <script src="//unpkg.com/alpinejs" defer></script> --}}
     <link rel="icon" href="{{asset('image/mambog.png')}}"/>
     <title>Mambog Elementary School</title>
 
@@ -257,7 +256,10 @@
             <!-- main -->
             <div class="ml-250px relative w-full h-full flex flex-col container">
                 <!-- header -->
-                <div class="fixed custom-width flex items-center justify-end py-2 px-8 border-b border-gray-300 bg-white shadow z-10">
+                <div class="fixed custom-width flex items-center justify-between py-2 px-4 border-b border-gray-300 bg-white shadow z-10">
+                    <div class="">
+                        <p>SCHOOL YEAR: <span class="text-blue-500">{{$schoolYear}}</span></p>
+                    </div>
                     <div class="flex items-center space-x-2 py-4">
                         {{-- <i class='bx bx-cog text-2xl text-lightestgray '></i> --}}
                         <div class="hidden sm:flex sm:items-center">
@@ -309,13 +311,14 @@
             </div>
 
         </div>
-        @if (session()->has('message')) 
-            <div x-data="{show: true}" x-init="setTimeout(() => show = false, 2000)" x-show="show" class="fixed top-0 left-1/2 transform -translate-x-1/2 bg-laravel text-white px-48 py-3">
+        @if (session()->has('success') || session()->has('error')) 
+            <div x-data="{show: true}" x-init="setTimeout(() => show = false, 2000)" x-show="show" class="fixed top-0 left-1/2 transform -translate-x-1/2 text-white px-10 py-3 z-50">
                 <p>{{session('message')}}</p>
             </div>
         @endif
     </section>
 
+    <script src="//unpkg.com/alpinejs" defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
