@@ -53,6 +53,10 @@
                 </div>
             </div>
 
+            <div class="w-full py-2 px-2 mb-4 border-b border-gray-300">
+                <p class="text-base">HANDLED CLASSES</p>
+            </div>
+
             <div class="w-full flex flex-col space-y-2 h-screen">
                 @if (count($classes) == 0)   
                     <div class="h-64 w-full flex items-center justify-center">

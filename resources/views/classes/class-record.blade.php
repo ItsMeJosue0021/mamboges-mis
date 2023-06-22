@@ -19,26 +19,26 @@
                             <div class="flex evalnav active-eval justify-center items-center  w-full py-4 bg-gray-100 cursor-pointer hover:bg-blue-400 border border-gray-300 rounded">
                                 <div class="flex flex-col justify-center items-center space-x-2">
                                     <h1 class="poppins text-sm font-medium">WRITTEN WORKS</h1>
-                                    <span class="poppins text-sm font-medium">20%</span>
+                                    <span class="poppins text-sm font-medium ">20%</span>
                                 </div>
                             </div>
                             <div class="flex evalnav justify-center items-center w-full py-4 bg-gray-100 cursor-pointer hover:bg-blue-400 border border-gray-300 rounded">
                                 <div class="flex flex-col justify-center items-center space-x-2 ">
                                     <h1 class="poppins text-sm font-medium">PERFORMANCE TASKS</h1>
-                                    <span class="poppins text-sm font-medium">60%</span>
+                                    <span class="poppins text-sm font-medium ">60%</span>
                                 </div>
                             </div>
                             <div class="flex evalnav justify-center items-center w-full py-4 bg-gray-100 cursor-pointer hover:bg-blue-400 border border-gray-300 rounded">
                                 <div class="flex flex-col justify-center items-center space-x-2">
                                     <h1 class="poppins text-sm font-medium">QUARTERLY</h1>
                                     <h2 class="poppins text-sm font-medium">ASSESSMENT</h2>
-                                    <span class="poppins text-sm font-medium">20%</span>
+                                    <span class="poppins text-sm font-medium ">20%</span>
                                 </div>
                             </div>
 
                             <div class="flex evalnav justify-center items-center w-full py-4 bg-gray-100 cursor-pointer hover:bg-blue-400 border border-gray-300 rounded">
                                 <div class="flex space-x-2">
-                                    <h1 class="poppins text-sm font-medium">INITIAL GRADE</h1>
+                                    <h1 class="poppins text-sm font-medium">FINAL GRADE</h1>
                                 </div>
                             </div>
 
@@ -458,11 +458,11 @@
                         </div>
                     </div>
 
-                    <div id="initial" class="hidden w-full ">
+                    <div id="final" class="hidden w-full ">
                         <div class="w-full flex items-center bg-gray-100 border border-gray-300 rounded py-1 px-2 mb-2">
                             <div class="w-full flex items-center space-x-4 rounded">
                                 <div class="w-fit flex items-center space-x-4">
-                                    <h1 class="poppins text-sm">INITIAL GRADE</h1>
+                                    <h1 class="poppins text-sm py-2">FINAL GRADE</h1>
                                 </div>
                             </div>
                         </div>
@@ -472,14 +472,20 @@
                             <div>
                                 @foreach ($students as $student)
                                     
-                                <div class="flex justify-start border-t border-b border-gray-400">
+                                <div class="flex justify-between border-t border-b border-gray-400">
                                     
                                             {{-- name --}}
-                                    <div class="w-1/4 flex justify-start items-center py-1 border-r border-gray-400">
+                                    <div class="w-1/4 flex justify-start items-center py-2 border-r border-gray-400">
                                         <div class="flex space-x-2 px-2">
                                             <p class="poppins text-sm">{{$student->last_name}},</p>
                                             <p class="poppins text-sm">{{$student->first_name}}</p>
                                             <p class="poppins text-sm">{{ substr($student->middle_name, 0, 1) }}.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex bg-gray-200">
+                                        <div class="w-60px flex justify-center items-center border-r border-l border-gray-400">
+                                            <p class="poppins text-sm">0</p>
                                         </div>
                                     </div>
 
@@ -631,12 +637,6 @@
         });
 
 
-
-
-
-
-
-
          $(".evalnav").click(function() {
 
              $(".evalnav").removeClass("active-eval");
@@ -666,13 +666,13 @@
                 $("#final").addClass("hidden");
                 $("#quarterly").removeClass("hidden");
 
-            } else if ($(this).find("h1").text() === "INITIAL GRADE") {
+            // } else if ($(this).find("h1").text() === "INITIAL GRADE") {
 
-                $("#pt").addClass("hidden");
-                $("#quarterly").addClass("hidden");
-                $("#written").addClass("hidden");
-                $("#final").addClass("hidden");
-                $("#initial").removeClass("hidden");
+            //     $("#pt").addClass("hidden");
+            //     $("#quarterly").addClass("hidden");
+            //     $("#written").addClass("hidden");
+            //     $("#final").addClass("hidden");
+            //     $("#initial").removeClass("hidden");
 
             } else if ($(this).find("h1").text() === "FINAL GRADE") {
 

@@ -162,10 +162,7 @@ class StudentController extends Controller
             'student_section' => $studentSection
         ]);
     }
-
-    // public function dashboard() {
-    //     return view('student.dashboard');
-    // }
+   
 
     public function store(Request $request) {
 

@@ -43,7 +43,7 @@
             </div>
         </div>
 
-        <div class="w-full py-2 mb-4 border-b border-gray-300">
+        <div class="w-full py-2 px-2 mb-4 border-b border-gray-300">
             <p class="text-base">HANDLED CLASSES</p>
         </div>
 

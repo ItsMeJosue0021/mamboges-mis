@@ -12,12 +12,12 @@
                     <div class="w-full flex flex-col space-y-4">
                         <div class="w-full flex items-center justify-center py-3 border-b border-gray-300">
                             <span>
-                                <h1 class="poppins text-lg font-semibold text-gray-600">Joshua C. Salceda</h1>
+                                <h1 class="poppins text-lg font-semibold text-gray-600">{{$student->first_name}} {{$student->middle_name}} {{$student->last_name}}</h1>
                             </span>
                         </div>
                         <div class="w-full">
                             <div class="border-b border-gray-200 hover:border-blue-500">
-                                <h1 class="poppins text-base  text-gray-600 hover:text-white hover:bg-blue-500 rounded px-2 py-1" >12123456789</h1>
+                                <h1 class="poppins text-base  text-gray-600 hover:text-white hover:bg-blue-500 rounded px-2 py-1" >{{$student->lrn}}</h1>
                             </div>
                             <div class="border-b border-gray-200 hover:border-blue-500">
                                 <h1 class="poppins text-base text-gray-600 hover:text-white hover:bg-blue-500 rounded px-2 py-1" >Section A</h1>
@@ -25,6 +25,10 @@
                             <div class="border-b border-gray-200 hover:border-blue-500">
                                 <h1 class="poppins text-base text-gray-600 hover:text-white hover:bg-blue-500 rounded px-2 py-1" >Grade 1</h1>
                             </div>
+                            <div class="border-b border-gray-200 hover:border-blue-500">
+                                <h1 class="poppins text-base text-gray-600 hover:text-white hover:bg-blue-500 rounded px-2 py-1" >Birthdate: {{date('F j, Y', strtotime($student->dob))}}</h1>
+                            </div>
+
                         </div>
                         <div class="">
                             <p>SCHOOL YEAR: <span class="text-blue-500">{{$schoolYear}}</span></p>

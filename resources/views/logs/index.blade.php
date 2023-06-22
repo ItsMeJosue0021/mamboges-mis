@@ -24,7 +24,7 @@
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 text-left">{{ $log->subject }}</td>
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">{{ $log->created_at }}</td>
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">{{ $log->ip }}</td>
-                                    <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">{{ $log->agent }}</td>
+                                    <td class="poppins text-xs border border-gray-400 px-4 py-2 text-center">{{ $log->agent }}</td>
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">{{ $log->user_id }}</td>
                                 </tr>
                                 @endforeach
