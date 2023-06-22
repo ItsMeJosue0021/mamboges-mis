@@ -7,7 +7,7 @@
             </a>
         </div>
         <div class="w-full h-auto min-h-600px flex flex-col items-start justify-start space-y-2">
-            <div class=" get-id w-full h-auto flex justify-between items-start border border-gray-400 rounded p-3 " id="{{$section->id}}">
+            <div class=" get-id w-full h-auto flex justify-between items-start border border-blue-400 rounded p-3 bg-blue-50 " id="{{$section->id}}">
                 <div class="w-full flex justify-between">
                     <div class="flex flex-col space-y-1">
                         <div class="flex space-x-2 items-start">

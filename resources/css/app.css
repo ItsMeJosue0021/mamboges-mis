@@ -5,43 +5,45 @@
 
 @import "~aos/dist/aos.css";
 
-@layer utilities {
-    .poppins {
-        font-family: 'Poppins', sans-serif;
-    }
-    .castoro {
-        font-family: 'Castoro', serif;
-    }
-    label.error {
-        color: red;
-        font-family: 'Poppins', sans-serif;
-        font-size: 12px;
-    }
-
-    .active {
-        background-color: #F0F9FF;
-    }
-
-    .active p, .active i {
-        color: #2563EB; 
-    }
-
-    .active-archive, .active-level, .active-eval {
-        background-color: #60a5fa;
-        color: white;
-    }
-
-    .active-archive label, .active-archive i  {
-        color: white;
-    }
-
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-        display: none;
-    }
-
-    .custom-width {
-        width: calc(100% - 250px);
-    }
-
+.poppins {
+font-family: 'Poppins', sans-serif;
 }
+.castoro {
+font-family: 'Castoro', serif;
+}
+label.error {
+color: red;
+font-family: 'Poppins', sans-serif;
+font-size: 12px;
+}
+
+.active {
+background-color: #F0F9FF;
+}
+
+.active p, .active i {
+color: #2563EB; 
+}
+
+.active-archive, .active-level, .active-eval {
+background-color: #60a5fa;
+color: white;
+}
+
+.active-archive label, .active-archive i  {
+color: white;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+display: none;
+}
+
+.custom-width {
+width: calc(100% - 250px);
+}
+
+.rotate-180 {
+transform: rotate(180deg);
+}
+    

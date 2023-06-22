@@ -27,4 +27,10 @@
     
     @include('website.partials._feedback')
 
+    @if(isset($removeActiveLinkId) && $removeActiveLinkId)
+        <script>
+            localStorage.removeItem('activeLinkId');
+        </script>
+    @endif
+
 </x-web-layout>

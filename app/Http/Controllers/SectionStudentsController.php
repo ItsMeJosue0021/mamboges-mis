@@ -70,7 +70,7 @@ class SectionStudentsController extends Controller
         ];
 
         if ($existingStudent) {
-            return response()->json(['success' => false, 'message' => 'Student already added.']);
+            return response()->json(['success' => false, 'message' => 'Student already enrolled.']);
         } else {
 
             $addedStudent = SectionStudents::create($addStudent);

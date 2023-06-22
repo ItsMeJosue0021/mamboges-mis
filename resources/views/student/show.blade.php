@@ -19,9 +19,9 @@
 
                 </div>
     
-                <div class="w-full h-fit flex justify-between p-4 rounded shadow space-x-8 border border-gray-200">
+                <div class="w-full h-fit flex justify-between p-4 rounded shadow space-x-4 border border-gray-200">
                     <div class="w-full flex flex-col">
-                        <div class="flex items-center space-x-2 border border-gray-300 py-1 px-2">
+                        <div class="flex items-center space-x-2 border border-gray-300 py-1 px-2 bg-blue-100">
                             <h1 class="poppins text-2xl font-medium">{{$student->first_name}}</h1>
                             <h1 class="poppins text-2xl font-medium">{{$student->middle_name}}</h1>
                             <h1 class="poppins text-2xl font-medium">{{$student->last_name}}</h1>
@@ -31,7 +31,7 @@
                             <h1 class="poppins text-base">{{date('F j, Y', strtotime($student->dob))}}</h1>
                         </div>
                         <div class="flex justify-between border border-gray-300 border-t-0 py-1 px-2">
-                            <h1 class="poppins text-base">Sex: </h1>
+                            <h1 class="poppins text-base">SEX: </h1>
                             <h1 class="poppins text-base">{{$student->sex}}</h1>
                         </div>
                         <div class="flex justify-between border border-gray-300 border-t-0 py-1 px-2">
@@ -62,12 +62,12 @@
                     </div>
 
                     <div class="flex items-start">
-                        <div class="flex items-start space-x-1">
-                            <a id="show-delete-modal" data-student-id="{{$student->id}}">
-                                <i class='bx bx-trash text-red-500 text-xl rounded bg-red-50 cursor-pointer py-1 px-2' ></i>
-                            </a>
+                        <div class="flex flex-col items-start space-y-2">
                             <a id="edit-student" class="edit-student" data-student-id="{{$student->id}}">
                                 <i class='bx bx-edit text-blue-500 text-xl cursor-pointer rounded bg-blue-50 py-1 px-2'></i>
+                            </a>
+                            <a id="show-delete-modal" data-student-id="{{$student->id}}">
+                                <i class='bx bx-trash text-red-500 text-xl rounded bg-red-50 cursor-pointer py-1 px-2' ></i>
                             </a>
                         </div>
                     </div>

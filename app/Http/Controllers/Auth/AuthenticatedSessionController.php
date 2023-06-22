@@ -44,10 +44,6 @@ class AuthenticatedSessionController extends Controller
             $url = '/lr/dashboard';
         } 
         
-        // else {
-        //     $url = '/';
-        // }
-    
         $request->session()->regenerate();
         $request->session()->put('url.intended', $url);
     
@@ -82,6 +78,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/')->with('removeActiveLinkId', true);
     }
 }

@@ -161,7 +161,7 @@
                     </div>
 
                     <!-- links -->
-                    <div id="links" class="h-full flex flex-col">
+                    <div id="links" class="h-full flex flex-col overflow-y-auto">
                         @if (Auth::user()->type === 'guidance')
                         <div class="space-y-1 py-2">                         
                             <a id="link2" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/students">
@@ -189,13 +189,9 @@
                                 <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Departments</p>
                             </a>
 
-                            {{-- <a id="link5" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/parents">
-                                <i class='bx bx-user text-2xl text-lightblack group-hover:text-red-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Parents</p>
-                            </a> --}}
                         </div>
 
-                        <div class="w-full border-t-2 border-gray-200 py-2 space-y-1">
+                        <div class="w-full border-t-2 border-gray-200 pt-2 space-y-1">
                             <a id="link6" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/updates/list">
                                 <i class='bx bx-news text-2xl text-lightblack group-hover:text-blue-600'></i>
                                 <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">News & Updates</p>
@@ -208,29 +204,59 @@
     
                         </div>
 
-                        <div class="w-full border-t-2 border-gray-200 py-2 space-y-1">
-                            <a id="link9" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/logs">
-                                <i class='bx bx-list-ul text-2xl text-lightblack group-hover:text-blue-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Logs</p>
+                        <div class="w-full border-b-2 border-gray-200 pb-2 space-y-1">
+                            <a id="settingsBtn" class="flex group items-center justify-between p-2 rounded hover:bg-blue-50 focus:bg-blue-50 cursor-pointer">
+                                <div class="flex items-center space-x-4">
+                                    <i class='bx bx-cog text-2xl text-lightblack group-hover:text-blue-600'></i>
+                                    <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Settings</p>
+                                </div>
+                                <i class='bx bx-chevron-down text-xl'></i>
                             </a>
+
+                            <div  id="settings" class="hidden w-full space-y-1 border-t border-gray-200">
+                                <a id="link9" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/logs">
+                                    <i class='bx bx-list-ul text-2xl text-lightblack group-hover:text-blue-600'></i>
+                                    <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Logs</p>
+                                </a>
+        
+                                <a id="link10" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/archive">
+                                    <i class='bx bx-archive text-2xl text-lightblack group-hover:text-blue-600'></i>
+                                    <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Archive</p>
+                                </a>
     
-                            <a id="link10" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/archive">
-                                <i class='bx bx-archive text-2xl text-lightblack group-hover:text-blue-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Archive</p>
-                            </a>
+                                <a id="link11" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/settings">
+                                    <i class='bx bx-calendar text-2xl text-lightblack group-hover:text-blue-600'></i>
+                                    <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">School Year</p>
+                                </a>
+    
+                                <a id="link12" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/profile">
+                                    <i class='bx bxs-user-detail text-2xl text-lightblack group-hover:text-blue-600'></i>
+                                    <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Profile</p>
+                                </a>
+                            </div>
                         </div>
 
-                        <div class="w-full self-end border-t-2 border-gray-200 py-2 space-y-1">
-                            <a id="link11" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/settings">
-                                <i class='bx bx-cog text-2xl text-lightblack group-hover:text-blue-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Settings</p>
-                            </a>
 
-                            <a id="link12" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/profile">
-                                <i class='bx bxs-user-detail text-2xl text-lightblack group-hover:text-blue-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Profile</p>
-                            </a>
-                        </div>
+                        <script>
+                             openProductLinks();
+
+                            function openProductLinks() {
+                                const settingsBtn = document.getElementById('settingsBtn');
+                                const settings = document.getElementById('settings');
+
+                                settingsBtn.addEventListener('click', () => {
+                                    if (settings.classList.contains('hidden')) {
+                                        settings.classList.remove('hidden');
+                                        settingsBtn.querySelector('.bx-chevron-down').classList.add('rotate-180');
+                                    } else {
+                                        settings.classList.add('hidden');
+                                        settingsBtn.querySelector('.bx-chevron-down').classList.remove('rotate-180');
+                                    }
+                                });
+                            }
+                        </script>
+
+                        
 
                         @elseif(Auth::user()->type === 'faculty') 
 
@@ -316,6 +342,7 @@
                 <p>{{session('message')}}</p>
             </div>
         @endif
+
     </section>
 
     <script src="//unpkg.com/alpinejs" defer></script>
@@ -338,61 +365,16 @@
                 });
 
                 if (window.location.href.includes(link.href)) {
-                link.classList.add('active');
+                    link.classList.add('active');
 
-                localStorage.setItem('activeLinkId', link.id);
+                    localStorage.setItem('activeLinkId', link.id);
                 }
 
                 if (link.id === activeLinkId) {
-                link.classList.add('active');
+                    link.classList.add('active');
                 }
             }
         });
-
-        // const links = document.querySelectorAll('#links a');
-        // const baseUrl = window.location.origin;
-        // const activeLinkId = localStorage.getItem('activeLinkId');
-
-        // links.forEach((link) => {
-        // if (link.href.startsWith(baseUrl)) {
-        //     link.addEventListener('click', function(event) {
-        //     localStorage.setItem('activeLinkId', link.id);
-
-        //     links.forEach((link) => {
-        //         link.classList.remove('active');
-        //     });
-
-        //     this.classList.add('active');
-        //     });
-
-        //     if (window.location.href.includes(link.href)) {
-        //     link.classList.add('active');
-        //     localStorage.setItem('activeLinkId', link.id);
-        //     }
-
-        //     if (link.id === activeLinkId) {
-        //     link.classList.add('active');
-        //     }
-        // }
-        // });
-
-        // const links = document.querySelectorAll('#links a');
-        // const baseUrl = window.location.origin;
-        // const activeLinkId = localStorage.getItem('activeLinkId');
-
-        // links.forEach((link) => {
-        // if (link.href.startsWith(baseUrl)) {
-        //     link.addEventListener('click', function(event) {
-        //     localStorage.setItem('activeLinkId', link.id);
-        //     });
-
-        //     if (link.id === activeLinkId) {
-        //         link.classList.add('active');
-        //     }
-        // }
-        // });
-
-
     </script>
 </body>
 

@@ -211,19 +211,15 @@ class StudentController extends Controller
                 'parent_id' => $guardian->id,
             ];
 
-            if ($request->hasFile('image') ) {
-                $studentArray['image'] = $request->file('image')->store('profile', 'public');
-            }
-
     
             $studentAccount = [
                 'name' => $request->first_name . " " . $request->last_name . " " . $request->middle_name,
                 'username' => $request->lrn,
                 'password' => Hash::make($request->lrn),
             ];
-        
 
             if ($request->hasFile('image') ) {
+                $studentArray['image'] = $request->file('image')->store('profile', 'public');
                 $studentAccount['image'] = $request->file('image')->store('profile', 'public');
             }
 
@@ -303,6 +299,21 @@ class StudentController extends Controller
             $student->update($studentArray);
     
             if ($student->wasChanged() || $guardian->wasChanged()) {
+
+                $studUserAccount = User::where('username', $student->lrn)->first();
+
+                $studentAccount = [
+                    'name' => $request->first_name . " " . $request->last_name . " " . $request->middle_name,
+                    'username' => $request->lrn,
+                    'password' => Hash::make($request->lrn),
+                ];
+
+                if ($request->hasFile('image') ) {
+                    $studentAccount['image'] = $request->file('image')->store('profile', 'public');
+                }
+
+                $studUserAccount->update($studentAccount);
+
                 Logs::addToLog('Student information has been altered | LRN [' . $student->lrn . ']');
                 return response()->json(['success' => true, 'message' => 'Student information has been updated']);
             } else {

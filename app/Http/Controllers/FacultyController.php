@@ -18,7 +18,7 @@ class FacultyController extends Controller
 {
     public function index() {
 
-        $faculties = Faculty::where('is_archived', false)->filter(Request(['search']))->get();
+        $faculties = Faculty::where('is_archived', false)->filter(Request(['search']))->latest()->get();
 
         $departments = Department::all();
 
@@ -99,8 +99,10 @@ class FacultyController extends Controller
 
         $existingEmail = Faculty::where('email', $request->email)->where('is_archived', false)->first();
 
-        if ($existingEmail) {
-            return response()->json(['success' => false, 'message' => 'The email is already assigned to another faculty member']);
+        $existingUserEmail = User::where('email', $request->email)->first();
+
+        if ($existingEmail ||  $existingUserEmail) {
+            return response()->json(['success' => false, 'message' => 'The email already exist.']);
         }
 
         $current_school_year = SchoolYear::where('is_current', true)->first();

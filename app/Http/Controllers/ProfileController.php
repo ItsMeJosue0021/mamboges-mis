@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Faculty;
+use App\Models\Student;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,6 +32,8 @@ class ProfileController extends Controller
         // dd($request->all());
         $id = Auth::user()->id;
 
+        $userType = Auth::user()->type;
+
         $user = User::where('id', $id)->first();
 
         $userInfo = [
@@ -44,6 +48,29 @@ class ProfileController extends Controller
         if ($request->hasFile('image') ) {
             $userInfo['image'] = $request->file('image')->store('profile', 'public');
         }
+
+        if ($userType == 'student') {
+
+            $student = Student::where('lrn', Auth::user()->username)->first();
+
+            if ($request->hasFile('image') ) {
+                $student->image = $request->file('image')->store('profile', 'public');
+            }
+
+            $student->save();
+        }
+
+        if ($userType == 'faculty') {
+
+            $faculty = Faculty::where('email', Auth::user()->username)->first();
+
+            if ($request->hasFile('image') ) {
+                $faculty->image = $request->file('image')->store('profile', 'public');
+            }
+
+            $faculty->save();
+        }
+
 
         $user->update($userInfo);
 
