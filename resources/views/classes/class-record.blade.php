@@ -1,4 +1,4 @@
-<x-guidance-layout>
+<x-faculty-layout>
     <section class="w-full flex items-start relative">
         <div class="w-full h-660px flex flex-col items-start p-2 overflow-auto">
             <div class="pb-2">
@@ -528,7 +528,7 @@
             </form>
         </div>
 
-        <div id="written-modal" class="hidden w-full h-full absolute top-0 left-0 flex pt-40 justify-center bg-black bg-opacity-5">
+        <div id="written-modal" class="hidden w-full h-full absolute top-0 left-0  pt-40 justify-center bg-black bg-opacity-5">
             <div class="w-96 h-fit rounded-md bg-white">
                 <form class="flex flex-col space-y-3 py-4 px-6" action="">
                     <div>
@@ -550,7 +550,7 @@
             </div>
         </div>
 
-        <div id="pt-modal" class="hidden w-full h-full absolute top-0 left-0 flex pt-40 justify-center bg-black bg-opacity-5">
+        <div id="pt-modal" class="hidden w-full h-full absolute top-0 left-0  pt-40 justify-center bg-black bg-opacity-5">
             <div class="w-96 h-fit rounded-md bg-white">
                 <form class="flex flex-col space-y-3 py-4 px-6" action="">
                     <div>
@@ -572,7 +572,7 @@
             </div>
         </div>
 
-        <div id="assessment-modal" class="hidden w-full h-full absolute top-0 left-0 flex pt-40 justify-center bg-black bg-opacity-5">
+        <div id="assessment-modal" class="hidden w-full h-full absolute top-0 left-0  pt-40 justify-center bg-black bg-opacity-5">
             <div class="w-96 h-fit rounded-md bg-white">
                 <form class="flex flex-col space-y-3 py-4 px-6" action="">
                     <div>
@@ -595,7 +595,7 @@
         </div>
 
     </section>
-</x-guidance-layout>
+</x-faculty-layout>
 
 <script>
     $(document).ready(function() {

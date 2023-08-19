@@ -238,9 +238,9 @@
 
 
                         <script>
-                             openProductLinks();
+                             openLinks();
 
-                            function openProductLinks() {
+                            function openLinks() {
                                 const settingsBtn = document.getElementById('settingsBtn');
                                 const settings = document.getElementById('settings');
 

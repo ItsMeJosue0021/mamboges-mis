@@ -20,10 +20,24 @@
                                 <h1 class="poppins text-base  text-gray-600 hover:text-white hover:bg-blue-500 rounded px-2 py-1" >{{$student->lrn}}</h1>
                             </div>
                             <div class="border-b border-gray-200 hover:border-blue-500">
-                                <h1 class="poppins text-base text-gray-600 hover:text-white hover:bg-blue-500 rounded px-2 py-1" >Section A</h1>
+                                <h1 class="poppins text-base text-gray-600 hover:text-white hover:bg-blue-500 rounded px-2 py-1" >Section:
+                                    @if ($section)
+                                    {{$section->name}}
+                                @else
+                                    <span class="poppins text-sm text-red-400">No section yet</span>
+                                @endif
+                                </h1>
                             </div>
                             <div class="border-b border-gray-200 hover:border-blue-500">
-                                <h1 class="poppins text-base text-gray-600 hover:text-white hover:bg-blue-500 rounded px-2 py-1" >Grade 1</h1>
+                                <h1 class="poppins text-base text-gray-600 hover:text-white hover:bg-blue-500 rounded px-2 py-1" >
+                                    @if ($student_section == null)
+                                    <span class="text-blue-400 text-sm">Waiting for section assignment</span>
+                                    @elseif ($student_section->grade_level == 'kinder')
+                                        Kinder
+                                    @else
+                                        Grade {{ $student_section->grade_level }}
+                                    @endif
+                                </h1>
                             </div>
                             <div class="border-b border-gray-200 hover:border-blue-500">
                                 <h1 class="poppins text-base text-gray-600 hover:text-white hover:bg-blue-500 rounded px-2 py-1" >Birthdate: {{date('F j, Y', strtotime($student->dob))}}</h1>

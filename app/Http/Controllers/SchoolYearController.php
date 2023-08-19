@@ -6,8 +6,6 @@ use App\Helpers\Logs;
 use App\Models\Student;
 use App\Models\SchoolYear;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
-use App\Http\Controllers\SchoolYearController;
 
 class SchoolYearController extends Controller
 {

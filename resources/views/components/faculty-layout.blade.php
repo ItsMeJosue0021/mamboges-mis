@@ -5,116 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Castoro&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="//unpkg.com/alpinejs" defer></script>
     <link rel="icon" href="{{asset('image/mambog.png')}}"/>
     <title>Mambog Elementary School</title>
 
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .poppins {
-                font-family: 'Poppins', sans-serif;
-            }
-            .castoro {
-                font-family: 'Castoro', serif;
-            }
-            label.error {
-                color: red;
-                font-family: 'Poppins', sans-serif;
-                font-size: 12px;
-            }
-            .active {
-                background-color: #FEF2F2;
-            }
-
-            .active p, .active i {
-                color: #DC2626; 
-            }
-
-            input::-webkit-outer-spin-button,
-            input::-webkit-inner-spin-button {
-                display: none;
-            }
-
-        }
-    </style>
-
-    <script>
-    tailwind.config = {
-        theme: {
-            extend: {
-                screens: {
-                    'phone': '350px',
-                    'tablet': '640px',
-                    'tablet+': '850px',
-                    'laptop': '1024px',
-                    'desktop': '1280px',
-                },
-                colors: {
-                    // red: '#d90429',
-                    // blue: '#004e89',
-                    lightgray: '#EFF0F3',
-                    yellow: '#FBE830',
-                    black: '#212529',
-                    lightblack: '#343a40',
-                    youtube: '#FF0000',
-                    lightestgray: '#6c757d',
-                    whitegray: '#e9ecef',
-                    white2: '#f8f9fa'
-                },
-                margin: {
-                    
-                },
-                width: {
-                    '60px': '60px',
-                    '250px': '400px',
-                    '200px': '200px',
-                },
-                height: {
-                    '60px': '60px',
-                    '560px': '560px',
-                    '570px': '570px',
-                    '585px': '585px',
-                    '600px': '600px',
-                    '700px': '670px',
-                    '660px': '650px',
-                    '400px': '400px',
-                },
-                minHeight: {
-                    '900px': '900px',
-                },
-                minWidth: {
-                    '250px': '250px',
-                    '900px': '900px',
-                },
-                fontSize: {
-                    
-                },
-                backgroundImage: {
-                    
-                },
-                boxShadow: {
-                    'EmailForm': '0px 0px 6px 0px rgba(0,0,0,0.2)',
-                }
-            }
-        }
-    }
-    </script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
     <section class="w-full min-w-900px">
         <div class="h-fit min-h-screen container mx-auto flex">
-            <!-- sidebar -->
-            <div class="min-h-full flex flex-grow">
-                <div class="h-full border-r border-gray-300 p-2 px-4 min-w-250px">
-                    <!-- logo -->
-                    <div class="flex items-center py-2 mb-4">
+            <!-- main -->
+            <div class="w-full h-full flex flex-col container mx-auto pb-4">
+                <!-- header -->
+                <div class="fixed w-full flex items-center justify-between py-3 px-8 border-b border-gray-300 bg-white shadow z-10">
+                    <div class="flex items-center">
                         <a href="/" class="flex items-center space-x-2">
                             <img class="w-60px h-60px" src="{{asset('image/mambog.png')}}" alt="">
                             <div class="flex flex-col">
@@ -123,34 +28,50 @@
                             </div>
                         </a>
                     </div>
-
-                    <!-- links -->
-                    <div id="links" class="flex flex-col space-y-1">
-                        {{-- <a id="link1" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="#">
-                            <i class='bx bx-comment-dots text-2xl text-lightblack group-hover:text-red-600'></i>
-                            <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Classes</p>
-                        </a> --}}
-
-                        <a id="link2" class="flex group items-center space-x-4 p-2 rounded hover:bg-red-50 focus:bg-red-50" href="/evaluation">
-                            <i class='bx bx-news text-2xl text-lightblack group-hover:text-red-600'></i>
-                            <p class="poppins text-lightblack font-medium text-sm group-hover:text-red-600">Evaluation</p>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- main -->
-            <div class="w-full h-full flex flex-col container mx-auto pb-4">
-                <!-- header -->
-                <div class="w-full flex items-center justify-end py-2 px-8 border-b border-gray-300 ">
-                    <div class="flex items-center space-x-4 py-4">
-                        <i class='bx bx-bell text-2xl text-lightestgray '></i>
-                        <img class="h-8 w-8 rounded-full" src="{{asset('image/profile.png')}}" alt="">
+                    
+                    <div class="flex items-center space-x-2 ">
+                        {{-- <i class='bx bx-cog text-2xl text-lightestgray '></i> --}}
+                        <div class="hidden sm:flex sm:items-center">
+                            <x-dropdown  width="48">
+                                <x-slot name="trigger">
+                                    <button class="inline-flex items-center border border-transparent text-sm font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                        {{-- <div>
+                                            <h1 class="poppins">{{ Auth::user()->name }}</h1>
+                                            
+                                        </div>
+            
+                                        <div class="ml-1">
+                                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                            </svg>
+                                        </div> --}}
+                                        <img class="h-10 w-10 rounded-full border bprder-gray-200"  src="{{Auth::user()->image ? asset('storage/' . Auth::user()->image) : asset('image/mamboges.jpg')}}" alt="">
+                                    </button>
+                                </x-slot>
+            
+                                <x-slot name="content" class=" ">
+                                    <x-dropdown-link :href="route('profile.edit')">
+                                        {{ __('Profile') }}
+                                    </x-dropdown-link>
+            
+                                    <!-- Authentication -->
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+            
+                                        <x-dropdown-link :href="route('logout')"
+                                                onclick="event.preventDefault();
+                                                            this.closest('form').submit();">
+                                            {{ __('Log Out') }}
+                                        </x-dropdown-link>
+                                    </form>
+                                </x-slot>
+                            </x-dropdown>
+                        </div>
                     </div>
                 </div>
 
                 <!-- main content -->
-                <div class="w-full h-full">
+                <div class="w-full pt-24 px-8">
                     <main>
                         {{$slot}}
                     </main>

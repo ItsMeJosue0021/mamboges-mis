@@ -1,5 +1,5 @@
 
-<section class="bg-lightgray bg-mambog bg-cover bg-center bg-opacity-50" id="hero">
+<section class="bg-lightgray bg-mambog bg-cover bg-center bg-opacity-20" id="hero">
     <header class="bg-white bg-opacity-80">
         <div class="container tablet:mx-auto tablet:px-24">
             <div class="flex items-center justify-between">
