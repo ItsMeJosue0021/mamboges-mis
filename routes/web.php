@@ -18,6 +18,7 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\SchoolYearController;
+use App\Http\Controllers\ClassRecordController;
 use App\Http\Controllers\SectionStudentsController;
 use App\Http\Controllers\SectionSubjectsController;
 use App\Http\Controllers\Portal\StudentPortalController;
@@ -254,7 +255,7 @@ Route::middleware(['auth', 'role:faculty'])->group(function() {
 
     Route::get('/classes', [ClassesController::class, 'index']);
 
-    Route::get('/classes/{class}/class-record', [ClassesController::class, 'classRecord']);
+    Route::get('/classes/{class}/class-record', [ClassRecordController::class, 'index'])->name('class.record');
 
 });
 

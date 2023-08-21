@@ -15,6 +15,8 @@ use App\Models\SectionSubjects;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Database\Seeders\ClassRecordSeeder;
+use Database\Seeders\EvaluationCriteriaSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -119,18 +121,21 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-        // evaluations
-        DB::table('evaluations')->insert([
-            'name' => 'Written Works'
-        ]);
+        // // evaluations
+        // DB::table('evaluations')->insert([
+        //     'name' => 'Written Works'
+        // ]);
 
-        DB::table('evaluations')->insert([
-            'name' => 'Performance Tasks'
-        ]);
+        // DB::table('evaluations')->insert([
+        //     'name' => 'Performance Tasks'
+        // ]);
 
-        DB::table('evaluations')->insert([
-            'name' => 'Quarterly Assessment'
-        ]);
+        // DB::table('evaluations')->insert([
+        //     'name' => 'Quarterly Assessment'
+        // ]);
+
+        // $this->call(ClassRecordSeeder::class);
+        $this->call(EvaluationCriteriaSeeder::class);
 
     }
 }

@@ -14,9 +14,9 @@
                         </div>
                         <div class="flex flex-col space-y-2 p-4">
                             <h2 class="poppins text-base text-blue-700 font-semibold">{{$class->name}}</h2>
-                            <div class="flex items-center group-hover:bg-blue-700 rounded px-2 w-fit border border-gray-400 group-hover:border-0">
-                                <a class="poppins text-sm text-black group-hover:text-white" href="/classes/{{$class->id}}/class-record">Class Record</a>
-                                <i class='bx bx-right-arrow-alt text-lg text-black group-hover:text-white'></i>
+                            <div class="flex items-center rounded px-2 w-fit border border-gray-400 group-hover:border-blue-700">
+                                <a class="poppins text-sm text-black group-hover:text-blue-700" href="/classes/{{$class->id}}/class-record">Class Record</a>
+                                <i class='bx bx-right-arrow-alt text-lg text-black group-hover:text-blue-700'></i>
                             </div>
                         </div>
                     </div>
