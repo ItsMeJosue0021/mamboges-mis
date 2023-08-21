@@ -12,6 +12,8 @@ class ClassRecord extends Model
 
     public function evaluationCriterias()
     {
-        return $this->hasMany(EvaluationCriteria::class);
+        return $this->belongsToMany(EvaluationCriteria::class, 'class_record_evaluation_criterias')
+                    ->withPivot('name')
+                    ->withPivot('percentage');
     }
 }

@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <!-- main content -->
-                <div class="w-full pt-24 px-8">
+                <div id="container" class="w-full pt-24 px-8">
                     <main>
                         {{$slot}}
                     </main>

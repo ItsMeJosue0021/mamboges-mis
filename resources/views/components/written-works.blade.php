@@ -3,7 +3,7 @@
     <form  method="post"> {{--action="{{ route('score.store') }}"--}}
         @csrf
        
-        <x-wr-config />
+        <x-wr-config :evaluations="$evaluations" />
 
         <div class="w-full border-l border-gray-400">
             {{-- row 2 --}}
@@ -69,4 +69,3 @@
         </div>
     </form>
 </div>
-

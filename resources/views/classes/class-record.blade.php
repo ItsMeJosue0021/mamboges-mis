@@ -13,7 +13,7 @@
                 <x-evaluations :evaluations="$evaluations" />
 
                 <div class="eval-container">
-                    <x-written-works :students="$students" />  {{--  :activities="$wr_activities" --}}
+                    <x-written-works :students="$students" :evaluations="$evaluations"  />  {{--  :activities="$wr_activities" --}}
                     {{-- <x-performance-task /> --}}
                     {{-- <x-quarterly-assessment /> --}}
                     {{-- <x-final-grade />    --}}

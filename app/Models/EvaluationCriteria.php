@@ -11,9 +11,11 @@ class EvaluationCriteria extends Model
 {
     use HasFactory;
 
-    public function classRecord()
+    public function classRecords()
     {
-        return $this->belongsTo(ClassRecord::class);
+        return $this->belongsToMany(ClassRecord::class, 'class_record_evaluation_criterias')
+                    ->withPivot('name')
+                    ->withPivot('percentage');
     }
 
     public function activities()

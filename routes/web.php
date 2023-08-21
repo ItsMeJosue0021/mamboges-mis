@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\ClassRecordEvaluationCriteriaController;
 use App\Models\SectionStudents;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LrController;
@@ -256,6 +257,9 @@ Route::middleware(['auth', 'role:faculty'])->group(function() {
     Route::get('/classes', [ClassesController::class, 'index']);
 
     Route::get('/classes/{class}/class-record', [ClassRecordController::class, 'index'])->name('class.record');
+
+    Route::put('/update-percentage/{classRecordEvaluationCriteria}', [ClassRecordEvaluationCriteriaController::class, 'changePercentage'])
+    ->name('class.percentage.update');
 
 });
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use App\Models\SchoolYear;
+use App\Models\ClassRecord;
 use Illuminate\Http\Request;
 use App\Models\SectionStudents;
 use App\Models\SectionSubjects;
@@ -14,8 +15,9 @@ class ClassRecordController extends Controller
     public function index(SectionSubjects $class) {
 
         $current_school_year = SchoolYear::where('is_current', true)->first();
-        
-        $evaluations = EvaluationCriteria::all();
+
+        $class_record = ClassRecord::where('section_subject_id', $class->id)->first();
+        $evaluation_criterias = $class_record->evaluationCriterias;
 
         $section_students = SectionStudents::where('section_id', $class->section_id)
         ->where('school_year_id',  $current_school_year->id)
@@ -32,7 +34,7 @@ class ClassRecordController extends Controller
     
         return view('classes.class-record', [
             'students' => $students,
-            'evaluations' => $evaluations,
+            'evaluations' => $evaluation_criterias,
         ]);
     }
 }

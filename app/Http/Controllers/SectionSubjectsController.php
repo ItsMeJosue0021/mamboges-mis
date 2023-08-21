@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Section;
 use App\Models\Subjects;
 use App\Models\SchoolYear;
+use App\Models\ClassRecord;
 use Illuminate\Http\Request;
 use App\Models\SectionSubjects;
+use App\Models\EvaluationCriteria;
 use Illuminate\Support\Facades\DB;
+use App\Models\ClassRecordEvaluationCriteria;
 
 class SectionSubjectsController extends Controller
 {
@@ -25,15 +28,33 @@ class SectionSubjectsController extends Controller
             'subject_id' => $request->subject,
             'faculty_id' => $request->teacher,
             'school_year_id' => $current_school_year->id
-        ];
-
-        $class_evaluation = [
-            
-        ];
+        ]; 
 
         $savedSectionSubjects = SectionSubjects::create($sectionSubject);
 
-        if (!is_null($savedSectionSubjects)) {
+        if ($savedSectionSubjects) {
+
+            $class_record = [
+                'name' => $section->name . " | " . $subject->subject_name,
+                'section_subject_id' => $savedSectionSubjects->id,
+                'faculty_id' => $savedSectionSubjects->faculty_id,
+                'school_year_id' => $current_school_year->id
+            ];
+
+            $savedClassRecord = ClassRecord::create($class_record);
+
+            if ($savedClassRecord) {
+                $evaluationCriterias = EvaluationCriteria::all();
+
+                foreach ($evaluationCriterias as $evaluationCriteria) {
+                    $classRecordEvaluationCriteria = [
+                        'name' => $evaluationCriteria->name,
+                        'class_record_id' => $savedClassRecord->id,
+                        'evaluation_criteria_id' => $evaluationCriteria->id,
+                    ];
+                    ClassRecordEvaluationCriteria::create($classRecordEvaluationCriteria);
+                }
+            }
             return response()->json(['success' => true, 'message' => 'The Subjects has been added!']);
         } else {
             return response()->json(['success' => false, 'message' => 'Adding unsuccessful!']);

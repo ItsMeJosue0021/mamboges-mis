@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('class_records', function (Blueprint $table) {
+        Schema::create('class_record_evaluation_criterias', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('section_subject_id')->constrained('section_subjects')->onDelete('cascade')->nullable(); 
-            $table->foreignId('faculty_id')->constrained('faculties')->onDelete('cascade')->nullable(); 
-            $table->foreignId('school_year_id')->constrained('school_years')->onDelete('cascade')->nullable(); 
+            $table->decimal('percentage', 5, 2)->default(0.00); 
+            $table->foreignId('class_record_id')->references('id')->on('class_records')->onDelete('cascade');
+            $table->foreignId('evaluation_criteria_id')->references('id')->on('evaluation_criterias')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('class_records');
+        Schema::dropIfExists('class_record_evaluation_criterias');
     }
 };
