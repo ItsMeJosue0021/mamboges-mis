@@ -20,4 +20,15 @@ class Activity extends Model
     {
         return $this->hasMany(Score::class);
     }
+
+    public function classRecord()
+    {
+        return $this->belongsTo(ClassRecord::class);
+    }
+
+    public function classRecordEvaluationCriteria()
+    {
+        return $this->belongsTo(ClassRecordEvaluationCriteria::class);
+    }
+
 }

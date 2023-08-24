@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('max_score');
-            $table->foreignId('evaluation_criteria_id')->constrained('evaluation_criterias')->onDelete('cascade');
-            $table->foreignId('class_record_id')->constrained('class_records')->onDelete('cascade')->nullable(); // reserved for future use
-            // $table->foreignId('subject_id')->constrained('subjects')->onDelete('cascade')->nullable(); // reserved for future use
+            $table->foreignId('evaluation_criteria_id')->constrained('class_record_evaluation_criterias')->onDelete('cascade');
+            // $table->foreignId('class_record_id')->constrained('class_records')->onDelete('cascade'); // reserved for future use
+            // $table->foreignId('section_subject_id')->constrained('section_subjects')->onDelete('cascade'); // reserved for future use
             $table->timestamps();
         });
     }

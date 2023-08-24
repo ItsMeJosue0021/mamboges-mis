@@ -1,10 +1,10 @@
 <?php
-use App\Http\Controllers\ClassRecordEvaluationCriteriaController;
 use App\Models\SectionStudents;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LrController;
 use App\Http\Controllers\LogsController;
 use App\Http\Controllers\GradeController;
+use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\ArchiveController;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\FacultyController;
@@ -13,6 +13,7 @@ use App\Http\Controllers\SectionController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UpdatesController;
 use App\Http\Controllers\WebsiteController;
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\GuardianController;
 use App\Http\Controllers\SettingsController;
@@ -24,6 +25,7 @@ use App\Http\Controllers\SectionStudentsController;
 use App\Http\Controllers\SectionSubjectsController;
 use App\Http\Controllers\Portal\StudentPortalController;
 use App\Http\Controllers\StudentAccess\PortalController;
+use App\Http\Controllers\ClassRecordEvaluationCriteriaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -252,7 +254,9 @@ Route::middleware(['auth', 'role:guidance'])->group(function() {
 
 
 Route::middleware(['auth', 'role:faculty'])->group(function() {
-    //                           EVALUATION
+    //     
+    
+    // CLASS RECORD
 
     Route::get('/classes', [ClassesController::class, 'index']);
 
@@ -260,6 +264,17 @@ Route::middleware(['auth', 'role:faculty'])->group(function() {
 
     Route::put('/update-percentage/{classRecordEvaluationCriteria}', [ClassRecordEvaluationCriteriaController::class, 'changePercentage'])
     ->name('class.percentage.update');
+
+    Route::get('/get-percentage/{classRecordEvaluationCriteria}', [ClassRecordEvaluationCriteriaController::class, 'getPercentage'])
+    ->name('class.percentage.get');
+
+
+    // ACTIVITIES
+    Route::post('/create-activity', [ActivityController::class, 'store'])->name('activity.store');
+
+    //SCORES
+    Route::post('/submit-scores', [ScoreController::class, 'store'])->name('score.store');
+    
 
 });
 

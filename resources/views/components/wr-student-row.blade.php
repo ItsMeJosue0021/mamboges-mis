@@ -12,9 +12,9 @@
     <div class="w-3/4 flex justify-between">
         <div class="flex overflow-hidden"> 
             {{-- loop the table activities for each students --}}     
-            {{-- @foreach ($activities as $activity)
+            @foreach ($activities as $activity)
                 <x-wr-student-grade :activity="$activity" :student="$student"/>
-            @endforeach --}}
+            @endforeach
             {{--  --}}
         </div>
 

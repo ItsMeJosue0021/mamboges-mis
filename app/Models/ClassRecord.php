@@ -16,4 +16,14 @@ class ClassRecord extends Model
                     ->withPivot('name')
                     ->withPivot('percentage');
     }
+
+    public function classRecordEvaluationCriterias()
+    {
+        return $this->hasMany(ClassRecordEvaluationCriteria::class);
+    }
+
+    public function activities()
+    {
+        return $this->hasMany(Activity::class);
+    }
 }

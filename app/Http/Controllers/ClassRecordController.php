@@ -17,14 +17,19 @@ class ClassRecordController extends Controller
         $current_school_year = SchoolYear::where('is_current', true)->first();
 
         $class_record = ClassRecord::where('section_subject_id', $class->id)->first();
-        $evaluation_criterias = $class_record->evaluationCriterias;
+
+        $class_record_evaluation_criterias = $class_record->evaluationCriterias;
+
+
+        $wr_activities = $class_record_evaluation_criterias->where('name', 'Written Works')->first()->activities;
+        // $wr_activities = $activities->activities;
+
 
         $section_students = SectionStudents::where('section_id', $class->section_id)
         ->where('school_year_id',  $current_school_year->id)
         ->get();
     
         $students = [];
-    
         foreach ($section_students as $student) {
             $student_record = Student::where('id', $student->student_id)->first();
             if ($student_record) {
@@ -34,7 +39,9 @@ class ClassRecordController extends Controller
     
         return view('classes.class-record', [
             'students' => $students,
-            'evaluations' => $evaluation_criterias,
+            'evaluations' => $class_record_evaluation_criterias,
+            'class_record' => $class_record,
+            'wr_activities' => $wr_activities
         ]);
     }
 }

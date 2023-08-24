@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('class_record_evaluation_criterias', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->decimal('percentage', 5, 2)->default(0.00); 
+            $table->integer('percentage')->default(0); 
             $table->foreignId('class_record_id')->references('id')->on('class_records')->onDelete('cascade');
             $table->foreignId('evaluation_criteria_id')->references('id')->on('evaluation_criterias')->onDelete('cascade');
             $table->timestamps();

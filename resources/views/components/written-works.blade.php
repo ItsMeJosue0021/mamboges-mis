@@ -1,9 +1,9 @@
 <div id="written" class="w-full ">
 
-    <form  method="post"> {{--action="{{ route('score.store') }}"--}}
+    <x-wr-config :evaluations="$evaluations" />
+
+    <form action="{{ route('score.store') }}" method="POST"> 
         @csrf
-       
-        <x-wr-config :evaluations="$evaluations" />
 
         <div class="w-full border-l border-gray-400">
             {{-- row 2 --}}
@@ -14,9 +14,9 @@
                 
                 <div class="w-3/4 flex justify-between border-gray-400">
                     <div class="flex">
-                        {{-- @foreach ($activities as $index => $activity)
+                        @foreach ($activities as $index => $activity)
                             <x-wr-activity-number :number="$index + 1"/>
-                        @endforeach --}}
+                        @endforeach
                     </div>
 
                     <div class="flex">
@@ -41,9 +41,9 @@
                 </div>
                 <div class="w-3/4 flex justify-between">
                     <div class="flex">
-                        {{-- @foreach ($activities as $activity)
+                        @foreach ($activities as $activity)
                             <x-wr-highest-possible-score :activity="$activity" />
-                        @endforeach --}}
+                        @endforeach
                     </div>
 
                     <div class="flex">
@@ -63,9 +63,13 @@
             {{-- row 4 --}}
             <div>                      
                 @foreach ($students as $student)          
-                    <x-wr-student-row :student="$student" /> {{--:activities="$activities"--}}
+                    <x-wr-student-row :student="$student" :activities="$activities"/> {{--:activities="$activities"--}}
                 @endforeach
             </div>
+
+        </div>
+        <div class="w-full justify-start flex items-center mt-4">
+            <button type="submit" class="poppins text-sm text-white bg-blue-800 hover:bg-[#004080] border border-[#004080] py-2 px-6 rounded">Save</button>
         </div>
     </form>
 </div>
