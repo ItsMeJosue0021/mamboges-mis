@@ -1,6 +1,6 @@
 @php
     $score = $student->scores->where('activity_id', $activity->id)->first();
-    $scoreValue = $score ? $score->score : null;
+    $scoreValue = $score ? $score->score : 0;
 @endphp
 
 <div class="w-[60px] flex justify-start border-r border-gray-400 focus:border-r-0  ">
