@@ -8,12 +8,17 @@
                 </a>
             </div>
 
+            <div class="flex items-center space-x-4">
+                <p class="poppins text-sm">{{$class_record->id}}</p>
+                <p class="poppins text-sm">{{$class_record->name}}</p>
+            </div>
+
             <div class="w-full">
                 {{-- Evaluations --}}
                 <x-evaluations :evaluations="$evaluations" />
 
                 <div class="eval-container">
-                    <x-written-works :students="$students" :evaluations="$evaluations"  :activities="$wr_activities" />  {{--  :activities="$wr_activities" --}}
+                    <x-written-works :students="$students" :evaluations="$evaluations" :activities="$wr_activities" />  {{--  :activities="$wr_activities" --}}
                     {{-- <x-performance-task /> --}}
                     {{-- <x-quarterly-assessment /> --}}
                     {{-- <x-final-grade />    --}}
@@ -22,7 +27,7 @@
 
         </div>
 
-        <x-wr-modal :evaluations="$evaluations"/>
+        <x-wr-modal :evaluations="$evaluations" :classrecord="$class_record"/>
         <x-pt-modal />
         <x-qa-modal />
 

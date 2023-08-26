@@ -14,6 +14,8 @@ class ScoreController extends Controller
 
             foreach ($scores as $studentId => $activityScores) {
                 foreach ($activityScores as $activityId => $score) {
+                    $score = ($score !== null) ? $score : 0;
+
                     $existingScore = Score::where('student_id', $studentId)
                     ->where('activity_id', $activityId)
                     ->first();

@@ -274,7 +274,6 @@ Route::middleware(['auth', 'role:faculty'])->group(function() {
 
     //SCORES
     Route::post('/submit-scores', [ScoreController::class, 'store'])->name('score.store');
-    
 
 });
 

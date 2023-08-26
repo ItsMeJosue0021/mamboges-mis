@@ -63,7 +63,7 @@
             {{-- row 4 --}}
             <div>                      
                 @foreach ($students as $student)          
-                    <x-wr-student-row :student="$student" :activities="$activities"/> {{--:activities="$activities"--}}
+                    <x-wr-student-row :student="$student" :activities="$activities" /> {{--:activities="$activities"--}}
                 @endforeach
             </div>
 
