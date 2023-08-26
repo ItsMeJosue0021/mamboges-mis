@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Score;
+use App\Models\ActivityStatistics;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -13,6 +14,21 @@ class Student extends Model
     public function scores()
     {
         return $this->hasMany(Score::class);
+    }
+
+    // public function classRecord()
+    // {
+    //     return $this->belongsTo(ClassRecord::class);
+    // }
+
+    // public function classRecordEvaluationCriteria()
+    // {
+    //     return $this->belongsTo(ClassRecordEvaluationCriteria::class);
+    // }
+
+    public function activityStatistics()
+    {
+        return $this->hasMany(ActivityStatistics::class);
     }
 
     public function scopeFilter($query, array $filters) {

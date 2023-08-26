@@ -4,6 +4,7 @@
 
     <form action="{{ route('score.store') }}" method="POST"> 
         @csrf
+        <input name="criteria_id" type="hidden" value="{{$evaluations->first()->id}}">
 
         <div class="w-full border-l border-gray-400">
             {{-- row 2 --}}
@@ -63,7 +64,7 @@
             {{-- row 4 --}}
             <div>                      
                 @foreach ($students as $student)          
-                    <x-wr-student-row :student="$student" :activities="$activities" /> {{--:activities="$activities"--}}
+                    <x-wr-student-row :student="$student" :activities="$activities" :evaluations="$evaluations"/> {{--:activities="$activities"--}}
                 @endforeach
             </div>
 

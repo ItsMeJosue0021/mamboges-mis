@@ -18,9 +18,14 @@
             {{--  --}}
         </div>
 
+        @php
+            $statistic = $student->activityStatistics->where('class_record_evaluation_criteria_id', $evaluations->first()->id)->first();
+            $total = $statistic ? $statistic->total : 0;
+        @endphp
+
         <div class="flex ">
             <div class="w-[60px] flex justify-center items-center border-r border-l border-gray-400">
-                <p class="poppins text-sm">0</p>
+                <p class="poppins text-sm">{{$total}}</p>
             </div>
             <div class="w-[60px] flex justify-center items-center border-r border-gray-400">
                 <p class="poppins text-sm">0</p>
