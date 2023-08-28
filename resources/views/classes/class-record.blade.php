@@ -1,16 +1,16 @@
 <x-faculty-layout>
     <section class="w-full flex items-start relative">
         <div class="w-full h-660px flex flex-col items-start p-2 overflow-auto">
-            <div class="pb-2">
-                <a id="back" class="flex w-fit justify-start items-center space-x-2 group rounded cursor-pointer" href="/classes">
-                    <i class='bx bx-left-arrow-alt text-gray-600 text-2xl group-hover:text-red-700'></i>
-                    <p class="poppins text-base text-gray-600 group-hover:text-red-700">back</p>
+            <div>
+                <a id="back" class="flex w-fit justify-start items-center space-x-2 py-1 px-4 group rounded bg-gray-200 hover:bg-gray-300 cursor-pointer group" href="/classes">
+                    <i class='bx bx-left-arrow-alt text-black text-lg '></i>
+                    <p class="poppins text-sm text-black">Back</p>
                 </a>
             </div>
 
-            <div class="flex items-center space-x-4">
-                <p class="poppins text-sm">{{$class_record->id}}</p>
-                <p class="poppins text-sm">{{$class_record->name}}</p>
+            <div class="flex items-center space-x-2 py-2">
+                <p class="poppins text-base text-blue-800 font-medium">Class Name:</p>
+                <p class="poppins text-base text-blue-800 font-medium">{{$class_record->name}}</p>
             </div>
 
             <div class="w-full">
@@ -18,7 +18,7 @@
                 <x-evaluations :evaluations="$evaluations" />
 
                 <div class="eval-container">
-                    <x-written-works :students="$students" :evaluations="$evaluations" :activities="$wr_activities" />  {{--  :activities="$wr_activities" --}}
+                    <x-written-works :students="$students" :evaluations="$evaluations" :activities="$wr_activities" :classrecord="$class_record"/>  {{--  :activities="$wr_activities" --}}
                     {{-- <x-performance-task /> --}}
                     {{-- <x-quarterly-assessment /> --}}
                     {{-- <x-final-grade />    --}}

@@ -86,7 +86,7 @@
                 url: '/get-percentage/' + criteria,
                 success: function(response) {
                     if (response.status === 'success') {
-                        $('#percentageValue').text(response.percentage + '%');
+                        $('.percentageValue').text(response.percentage + '%');
                     } else {
                         console.error(response.error);
                     }
