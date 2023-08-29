@@ -9,8 +9,8 @@
             </div>
 
             <div class="flex items-center space-x-2 py-2">
-                <p class="poppins text-base text-blue-800 font-medium">Class Name:</p>
-                <p class="poppins text-base text-blue-800 font-medium">{{$class_record->name}}</p>
+                <p class="poppins text-base font-medium">Class Name:</p>
+                <p class="poppins text-base font-medium">{{$class_record->name}}</p>
             </div>
 
             <div class="w-full">

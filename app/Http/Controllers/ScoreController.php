@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Score;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Models\ActivityStatistics;
+use App\Models\ClassRecordEvaluationCriteria;
 
 class ScoreController extends Controller
 {
@@ -38,15 +40,26 @@ class ScoreController extends Controller
                 }
                 $studentSums[$studentId] = $studentSum;
 
+                $evaluation_criteria = ClassRecordEvaluationCriteria::find($request->criteria_id);
+                $activities = $evaluation_criteria->activities;
+
+                $max_score = 0;
+                foreach($activities as $activity) {
+                    $max_score += $activity->max_score;
+                }
+
                 foreach ($studentSums as $studentId => $totalScore) {
-                    // Find or create a record in the 'statistics' table based on student and evaluation criteria
+                    $student = Student::find($studentId);
                     $statistic = ActivityStatistics::updateOrCreate(
                         ['student_id' => $studentId, 'class_record_evaluation_criteria_id' => $request->criteria_id],
                         ['total' => $totalScore]
                     );
-                
-                    // You can also update 'ps' and 'ws' columns if needed
-                    // $statistic->update(['ps' => $psScore, 'ws' => $wsScore]);
+
+                    $percentage = $evaluation_criteria->percentage;
+                    $ps = ($max_score != 0 && $totalScore != 0) ? ($totalScore / $max_score * 100) : 0;
+                    $ws = ($ps != 0 && $percentage != 0) ? ($percentage / 100 * $ps) : 0;
+
+                    $statistic->update(['ps' => $ps, 'ws' => $ws]);
                 }
                 
             }

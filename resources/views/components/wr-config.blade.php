@@ -1,4 +1,4 @@
-<div class="w-full flex items-center justify-between border border-gray-100 shadow-md rounded py-2 px-2 mb-3">
+<div class="w-full flex items-center justify-between border border-gray-200 shadow-md rounded py-2 px-2 mb-3">
     <div class="w-full flex items-center space-x-4 rounded">
         <div class="w-fit flex items-center space-x-4">
             <h1 class="poppins h-full rounded p-2 text-sm font-bold">WRITTEN WORKS</h1>
@@ -21,9 +21,6 @@
         </div>
     </div>
 
-    {{-- <div class="w-full justify-end flex items-center">
-        <button type="submit" class="poppins text-sm text-white bg-blue-800 hover:bg-[#004080] border border-[#004080] py-2 px-6 rounded">Save</button>
-    </div> --}}
 </div>
 
 <script type="module">

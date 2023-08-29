@@ -10,7 +10,7 @@
             {{-- row 2 --}}
             <div class="w-full flex border-t border-b  border-gray-400 bg-gray-100">
                 <div class="w-1/4 flex justify-start items-center px-2 py-2 border-r border-gray-400">
-                    <p class="poppins text-sm">ACTIVITY NO.</p>
+                    <p class="poppins text-sm">ACTIVITY NUMBER</p>
                 </div>
                 
                 <div class="w-3/4 flex justify-between border-gray-400">
@@ -21,24 +21,23 @@
                     </div>
 
                     <div class="flex">
-                        <div class="w-[60px] flex justify-center items-center border-r border-l border-gray-400">
+                        <div class="w-[65px] flex justify-center items-center border-r border-l border-gray-400">
                             <p class="poppins text-xs font-medium">TOTAL</p>
                         </div>
-                        <div class="w-[60px] flex justify-center items-center border-r border-gray-400">
+                        <div class="w-[65px] flex justify-center items-center border-r border-gray-400">
                             <p class="poppins text-xs font-medium">PS</p>
                         </div>
-                        <div class="w-[60px] flex justify-center items-center border-r border-gray-400">
+                        <div class="w-[65px] flex justify-center items-center border-r border-gray-400">
                             <p class="poppins text-xs font-medium">WS</p>
                         </div>
                     </div>  
                 </div>
-            
             </div>
 
             {{-- row 3 --}}
             <div class="w-full flex justify-start border-t border-b border-gray-300 bg-gray-200">
                 <div class="w-1/4 flex justify-start items-center px-2 py-2 border-r  border-gray-400">
-                    <p class="poppins text-sm">HIGHEST POSSIBLE SCORE</p>
+                    <p class="poppins text-sm font-semibold">HIGHEST POSSIBLE SCORE</p>
                 </div>
                 <div class="w-3/4 flex justify-between">
                     <div class="flex">
@@ -54,14 +53,14 @@
                     </div>
 
                     <div class="flex">
-                        <div class="w-[60px] flex justify-center items-center border-r border-l border-gray-400">
-                            <p class="poppins font-semibold text-xs">{{$total_score}}</p>
+                        <div class="w-[65px] flex justify-center items-center border-r border-l border-gray-400">
+                            <p class="poppins font-semibold text-sm">{{$total_score}}</p>
                         </div>
-                        <div class="w-[60px] flex justify-center items-center border-r border-gray-400">
-                            <p class="poppins font-semibold text-xs">100%</p>
+                        <div class="w-[65px] flex justify-center items-center border-r border-gray-400">
+                            <p class="poppins font-semibold text-sm">100%</p>
                         </div>
-                        <div class="w-[60px] flex justify-center items-center border-r border-gray-400">
-                            <p id="percentageValue" class="percentageValue poppins font-semibold text-xs">{{$evaluations->first()->percentage}}%</p>
+                        <div class="w-[65px] flex justify-center items-center border-r border-gray-400">
+                            <p id="percentageValue" class="percentageValue poppins font-semibold text-sm">{{$evaluations->first()->percentage}}%</p>
                         </div>
                     </div>
                 </div>
