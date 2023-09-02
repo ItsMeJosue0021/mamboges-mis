@@ -11,6 +11,8 @@ use App\Models\Updates;
 use App\Models\Feedback;
 use App\Models\Guardian;
 use Illuminate\Database\Seeder;
+use Database\Seeders\FacultySeeder;
+use Database\Seeders\QuarterSeeder;
 use Database\Seeders\SubjectSeeder;
 use Database\Seeders\DepartmentSeeder;
 use Database\Seeders\SchoolYearSeeder;
@@ -30,13 +32,13 @@ class DatabaseSeeder extends Seeder
 
         Updates::factory(20)->create();
 
-        Section::factory(25)->create();
+        Section::factory(5)->create();
 
-        Faculty::factory(30)->create();
+        // Faculty::factory(30)->create();
 
         Student::factory(30)->create();
 
-        Guardian::factory(200)->create();
+        // Guardian::factory(200)->create();
 
         $this->call(UserTableSeeder::class);
 
@@ -47,6 +49,10 @@ class DatabaseSeeder extends Seeder
         $this->call(SchoolYearSeeder::class);
 
         $this->call(EvaluationCriteriaSeeder::class);
+
+        $this->call(FacultySeeder::class);
+
+        $this->call(QuarterSeeder::class);
 
     }
 }

@@ -14,10 +14,10 @@
             </div>
         </div>
 
-        <div class="w-fit flex items-center space-x-4 rounded py-2 px-2 border border-gray-300">
-            <h2 class="poppins text-sm ">ACTIVITIES</h2>
+        <div class="w-fit flex items-center space-x-3 rounded py-2 px-2 border border-gray-300">
             <p class="poppins py-1 px-3 rounded border border-gray-300 text-xs">10</p>
-            <a id="new-written-act" class="poppins text-xs font-bold text-white bg-[#007A5E] px-2 py-1 rounded cursor-pointer">NEW</a>
+            <h2 class="poppins text-sm ">ACTIVITIES</h2>
+            <a id="new-written-act" class="poppins text-xs font-bold text-white bg-green-800 px-2 py-1 rounded cursor-pointer">NEW</a>
         </div>
     </div>
 

@@ -18,7 +18,7 @@ class ClassRecordController extends Controller
 
         $current_school_year = SchoolYear::where('is_current', true)->first();
 
-        $class_record = ClassRecord::where('section_subject_id', $class->id)->first();
+        $class_record = ClassRecord::where('section_subjects_id', $class->id)->filter(Request(['quarter']))->first();
 
         $class_record_evaluation_criterias = $class_record->classRecordEvaluationCriterias;
 

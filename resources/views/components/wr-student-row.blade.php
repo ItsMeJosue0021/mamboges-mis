@@ -22,8 +22,8 @@
             $evaluation_percentage = $evaluations->first()->percentage;
             $statistic = $student->activityStatistics->where('class_record_evaluation_criteria_id', $evaluations->first()->id)->first();
             $total = $statistic ? $statistic->total : 0;
-            $ps = $statistic->ps ? $statistic->ps : 0;
-            $ws =  $statistic->ws ? $statistic->ws : 0;
+            $ps = $statistic ? $statistic->ps : 0;
+            $ws = $statistic ? $statistic->ws : 0;
         @endphp
 
         <div class="flex ">

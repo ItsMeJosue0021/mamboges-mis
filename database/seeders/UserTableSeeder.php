@@ -14,76 +14,67 @@ class UserTableSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('users')->insert(
+        $users = [
             [
-                'name' => 'joshua salceda',
+                'name' => 'Joshua Salceda',
                 'email' => 'guidance1@email.com',
                 'username' => 'guidance1@email.com',
-                'password' => Hash::make('josh'),
+                'password' => 'josh',
                 'type' => 'guidance',
                 'status' => 'active',
-                'created_at' => now()
-            ]
-        );
-
-        DB::table('users')->insert(
+            ],
             [
                 'name' => 'Abigael Albaniel',
                 'email' => 'guidance2@email.com',
                 'username' => 'guidance2@email.com',
-                'password' => Hash::make('abi'),
+                'password' => 'abi',
                 'type' => 'guidance',
                 'status' => 'active',
-                'created_at' => now()
-            ]
-        );
-
-        DB::table('users')->insert(
+            ],
             [
-                'name' => 'jsoe rizal',
-                'email' => 'jose@email.com',
-                'username' => 'jose@email.com',
-                'password' => Hash::make('123'),
-                'type' => 'faculty',
-                'status' => 'active',
-                'created_at' => now()
-            ]
-        );
-
-        DB::table('users')->insert(
-            [
-                'name' => 'maria mercedes',
+                'name' => 'Maria Mercedes',
                 'email' => 'lr@email.com',
                 'username' => 'lr@email.com',
-                'password' => Hash::make('123'),
+                'password' => '123',
                 'type' => 'lr',
                 'status' => 'active',
-                'created_at' => now()
             ],
-
-            [
-                'name' => 'mark villar',
-                'email' => 'mark@email.com',
-                'username' => '249196700789',
-                'password' => Hash::make('123'),
-                'type' => 'student',
-                'status' => 'active',
-                'created_at' => now()
-            ],
-
-        );
-
-        DB::table('users')->insert(
             [
                 'name' => 'mark villar',
                 'email' => 'mark@email.com',
                 'username' => '249186700789',
-                'password' => Hash::make('123'),
+                'password' => '123',
                 'type' => 'student',
                 'status' => 'active',
-                'created_at' => now()
-            ]
+            ],
+            [
+                'name' => 'joshua C. Salceda',
+                'email' => 'joshuasalceda0021@gmail.com',
+                'username' => 'joshuasalceda0021@gmail.com',
+                'password' => 'Salceda',
+                'type' => 'faculty',
+                'status' => 'active',
+            ],
+            [
+                'name' => 'Rad Jeremy S. Simon',
+                'email' => 'rad@gmail.com',
+                'username' => 'rad@gmail.com',
+                'password' => 'Simon',
+                'type' => 'faculty',
+                'status' => 'active',
+            ],
+        ];
 
-        );
+        foreach ($users as $user) {
+            DB::table('users')->insert([
+                'name' => $user['name'],
+                'email' => $user['email'],
+                'username' => $user['username'],
+                'password' => Hash::make($user['password']),
+                'type' => $user['type'],
+                'status' => $user['status'],
+                'created_at' => now(),
+            ]);
+        }
     }
 }

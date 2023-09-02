@@ -1,11 +1,11 @@
 @php
     $score = $student->scores->where('activity_id', $activity->id)->first();
-    $scoreValue = $score ? $score->score : 0;
+    $scoreValue = $score ? $score->score : " ";
 @endphp
 
 <div class="w-[60px] flex justify-start border-r border-gray-400 focus:border-r-0  ">
     <input 
-    class="student-grade w-full h-full poppins appearance-none text-center text-sm border-0" 
+    class="student-grade w-full h-full poppins text-center text-sm" 
     type="number" 
     max="{{$activity->max_score}}"
     min="0"

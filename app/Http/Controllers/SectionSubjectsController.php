@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Quarter;
 use App\Models\Section;
 use App\Models\Subjects;
 use App\Models\SchoolYear;
@@ -34,27 +35,32 @@ class SectionSubjectsController extends Controller
 
         if ($savedSectionSubjects) {
 
-            $class_record = [
-                'name' => $section->name . " | " . $subject->subject_name,
-                'section_subject_id' => $savedSectionSubjects->id,
-                'faculty_id' => $savedSectionSubjects->faculty_id,
-                'school_year_id' => $current_school_year->id
-            ];
+            $quarters = Quarter::all();
+            foreach($quarters as $quarter) {
 
-            $savedClassRecord = ClassRecord::create($class_record);
+                $class_record = [
+                    'name' => $section->name . " | " . $subject->subject_name,
+                    'section_subjects_id' => $savedSectionSubjects->id,
+                    'faculty_id' => $savedSectionSubjects->faculty_id,
+                    'school_year_id' => $current_school_year->id,
+                    'quarter_id' => $quarter->id,
+                ];
+                $savedClassRecord = ClassRecord::create($class_record);
+    
+                if ($savedClassRecord) {
 
-            if ($savedClassRecord) {
-                $evaluationCriterias = EvaluationCriteria::all();
-
-                foreach ($evaluationCriterias as $evaluationCriteria) {
-                    $classRecordEvaluationCriteria = [
-                        'name' => $evaluationCriteria->name,
-                        'class_record_id' => $savedClassRecord->id,
-                        'evaluation_criteria_id' => $evaluationCriteria->id,
-                    ];
-                    ClassRecordEvaluationCriteria::create($classRecordEvaluationCriteria);
+                    $evaluationCriterias = EvaluationCriteria::all();
+                    foreach ($evaluationCriterias as $evaluationCriteria) {
+                        $classRecordEvaluationCriteria = [
+                            'name' => $evaluationCriteria->name,
+                            'class_record_id' => $savedClassRecord->id,
+                            'evaluation_criteria_id' => $evaluationCriteria->id,
+                        ];
+                        ClassRecordEvaluationCriteria::create($classRecordEvaluationCriteria);
+                    }
                 }
             }
+
             return response()->json(['success' => true, 'message' => 'The Subjects has been added!']);
         } else {
             return response()->json(['success' => false, 'message' => 'Adding unsuccessful!']);

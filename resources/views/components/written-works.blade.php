@@ -76,7 +76,8 @@
         </div>
         <div class="w-full space-x-4 flex items-center mt-4">
             <button type="submit" class="poppins text-sm text-white bg-blue-800 hover:bg-[#004080] border border-[#004080] py-2 px-6 rounded">Save</button>
-            <a href="{{ route('class.record', $classrecord->id) }}" class="poppins text-sm text-black bg-gray-200 hover:bg-gray-300 border border-gray-200 py-2 px-6 rounded">Refresh</a>
+            <button type="submit" class="poppins text-sm text-black bg-gray-200 hover:bg-gray-300 border border-gray-200 py-2 px-6 rounded">Refresh</button>
+            {{-- <a href="{{ route('class.record', $classrecord->id) }}" class="poppins text-sm text-black bg-gray-200 hover:bg-gray-300 border border-gray-200 py-2 px-6 rounded">Refresh</a> --}}
         </div>
     </form>
 </div>
