@@ -16,7 +16,7 @@
                 <div class="w-3/4 flex justify-between border-gray-400">
                     <div class="flex">
                         @foreach ($activities as $index => $activity)
-                            <x-pt-activity-number :number="$index + 1"/>
+                            <x-activity-number :number="$index + 1"/>
                         @endforeach
                     </div>
 
@@ -45,7 +45,7 @@
                             $total_score = 0;
                         @endphp
                         @foreach ($activities as $activity)
-                            <x-pt-highest-possible-score :activity="$activity" />
+                            <x-highest-possible-score :activity="$activity" />
                             @php
                                 $total_score +=  $activity->max_score;
                             @endphp

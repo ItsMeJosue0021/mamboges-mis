@@ -39,7 +39,7 @@
                 <div class="eval-container">
                     <x-written-works :students="$students" :evaluations="$evaluations" :activities="$wr_activities" :classrecord="$class_record"/>  {{--  :activities="$wr_activities" --}}
                     <x-performance-task :students="$students" :evaluations="$evaluations" :activities="$pt_activities" :classrecord="$class_record"/> 
-                    <x-quarterly-assessment />
+                    <x-quarterly-assessment :students="$students" :evaluations="$evaluations" :activities="$qa_activities" :classrecord="$class_record"/>
                     <x-final-grade />   
                 </div>
             </div>
@@ -47,7 +47,7 @@
 
         <x-wr-modal :evaluations="$evaluations" :classrecord="$class_record" />
         <x-pt-modal :evaluations="$evaluations" :classrecord="$class_record" />
-        <x-qa-modal />
+        <x-qa-modal :evaluations="$evaluations" :classrecord="$class_record" />
 
     </section>
 </x-faculty-layout>
