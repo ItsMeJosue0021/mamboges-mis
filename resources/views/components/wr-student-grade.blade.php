@@ -5,7 +5,7 @@
 
 <div class="w-[60px] flex justify-start border-r border-gray-400 focus:border-r-0  ">
     <input 
-    class="student-grade w-full h-full poppins text-center text-sm" 
+    class="student-grade w-full h-full border-0 focus:border-2 border-blue-600 poppins text-center text-sm" 
     type="number" 
     max="{{$activity->max_score}}"
     min="0"

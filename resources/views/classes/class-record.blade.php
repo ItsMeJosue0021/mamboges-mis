@@ -25,10 +25,10 @@
                 
                 <div class="flex space-x-2 items-center">
                     <span class="poppins text-sm bg-gray-600 text-white rounded px-4 py-2">Quarter</span>
-                    <a href="?quarter=1" class="poppins text-sm bg-gray-200 rounded px-4 py-2 hover:bg-blue-700 hover:text-white">1</a>
-                    <a href="?quarter=2" class="poppins text-sm bg-gray-200 rounded px-4 py-2 hover:bg-blue-700 hover:text-white">2</a>
-                    <a href="?quarter=3" class="poppins text-sm bg-gray-200 rounded px-4 py-2 hover:bg-blue-700 hover:text-white">3</a>
-                    <a href="?quarter=4" class="poppins text-sm bg-gray-200 rounded px-4 py-2 hover:bg-blue-700 hover:text-white">4</a>
+                    <a href="?quarter=1" class="quarter poppins text-sm bg-gray-200 rounded px-4 py-2 hover:bg-blue-700 hover:text-white">1</a>
+                    <a href="?quarter=2" class="quarter poppins text-sm bg-gray-200 rounded px-4 py-2 hover:bg-blue-700 hover:text-white">2</a>
+                    <a href="?quarter=3" class="quarter poppins text-sm bg-gray-200 rounded px-4 py-2 hover:bg-blue-700 hover:text-white">3</a>
+                    <a href="?quarter=4" class="quarter poppins text-sm bg-gray-200 rounded px-4 py-2 hover:bg-blue-700 hover:text-white">4</a>
                 </div>
             </div>
 
@@ -43,7 +43,6 @@
                     {{-- <x-final-grade />    --}}
                 </div>
             </div>
-
         </div>
 
         <x-wr-modal :evaluations="$evaluations" :classrecord="$class_record"/>
@@ -55,6 +54,28 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const currentQuarter = urlParams.get('quarter');
+        
+        const quarters = document.querySelectorAll('.quarter');
+        if (currentQuarter === null) {
+            quarters[0].classList.add('active-quarter'); 
+        } else {
+            quarters.forEach(quarter => {
+                const quarterValue = quarter.getAttribute('href').split('=')[1];
+                if (quarterValue === currentQuarter) {
+                    quarter.classList.add('active-quarter');
+                }
+            });
+        }
+        
+        quarters.forEach(quarter => {
+            quarter.addEventListener('click', () => {
+                quarters.forEach(q => q.classList.remove('active-quarter'));
+                quarter.classList.add('active-quarter');
+            });
+        });
         
         const evalnavItems = document.querySelectorAll('.evalnav');
     
