@@ -23,6 +23,8 @@ class ClassRecordController extends Controller
         $class_record_evaluation_criterias = $class_record->classRecordEvaluationCriterias;
 
         $wr_activities = $class_record_evaluation_criterias->where('name', 'Written Works')->first()->activities;
+        $pt_activities = $class_record_evaluation_criterias->where('name', 'Performance Tasks')->first()->activities;
+        $qa_activities = $class_record_evaluation_criterias->where('name', 'Quarterly Assessments')->first()->activities;
 
         $section_students = SectionStudents::where('section_id', $class->section_id)
         ->where('school_year_id',  $current_school_year->id)
@@ -40,7 +42,9 @@ class ClassRecordController extends Controller
             'students' => $students,
             'evaluations' => $class_record_evaluation_criterias,
             'class_record' => $class_record,
-            'wr_activities' => $wr_activities
+            'wr_activities' => $wr_activities,
+            'pt_activities' => $pt_activities,
+            'qa_activities' => $qa_activities
         ]);
     }
 }
