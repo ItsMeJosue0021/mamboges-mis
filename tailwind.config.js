@@ -9,6 +9,7 @@ module.exports = {
         './resources/**/*.js',
         './public/js/*.js',
         './resources/views/**/*.blade.php',
+        './resources/css/*.css',
 
     ],
 
@@ -19,10 +20,11 @@ module.exports = {
             },
 
             backgroundImage: {
-                'school': "url('/image/school-blur.png')",
-                'mambog-classes': "url('/image/mamboges2.png')",
-                'deped': "url('/image/deped.png')",
-                'mambog': "url('/image/mamboges.jpg')",
+                // 'school': "url('/image/school-blur.png')",
+                // 'mambog-classes': "url('/image/mamboges2.png')",
+                // 'deped': "url('/image/deped.png')",
+                // 'mambog': "url('/image/mamboges.jpg')",
+                'mambog-2': "url('image/bg-mambog.jpg')",
             },
 
             screens: {
@@ -88,9 +90,6 @@ module.exports = {
                 '900px': '900px',
             },
             fontSize: {
-                
-            },
-            backgroundImage: {
                 
             },
             boxShadow: {
