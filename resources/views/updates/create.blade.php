@@ -1,5 +1,12 @@
 <x-guidance-layout>
-    <div id="errormessage" class="h-700p w-full flex flex-col">
+
+</x-guidance-layout>
+
+
+
+
+
+    {{-- <div id="errormessage" class="h-700p w-full flex flex-col">
         <div class="py-2 pt-4 px-8">
             <a class="flex w-fit justify-start items-center space-x-2 group rounded" href="/updates/list">
                 <i class='bx bx-left-arrow-alt text-gray-600 text-2xl group-hover:text-red-700'></i>
@@ -15,11 +22,11 @@
                     </div>
                     <div class="relative py-4">
                         <label>
-                            <input name="image" type="file" id="photo-input" class="poppins text-sm mr-2
+                            <input multiple name="image" type="file" id="photo-input" class="poppins text-sm mr-2
                             file:mr-5 file:py-2 file:px-4
                             file:rounded-md file:border-0
                             file:text-sm file:font-medium
-                            file:bg-gray-100 file:text-gray-600 file:border file:border-gray-400
+                            file:bg-gray-100 file:text-gray-600 file:border-gray-400
                             hover:file:cursor-pointer hover:file:bg-red-100
                             hover:file:text-red-600" />
                         </label>
@@ -57,10 +64,9 @@
             </div>
         </form>
     </div>
-</x-guidance-layout>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
-<script src="{{ asset('js/update_create.js') }}"></script>
+<script src="{{ asset('js/update_create.js') }}"></script> --}}
 
   

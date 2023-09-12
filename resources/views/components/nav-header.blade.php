@@ -1,4 +1,4 @@
-<section class="shadow-md">
+<section class="shadow-md border-b border-gray-200 bg-white bg-opacity-90">
     <div class="max-w-[1300px] mx-auto px-4">
         <div class="w-full flex items-center justify-between">
             <div class="flex items-center py-2">

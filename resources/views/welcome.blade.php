@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Mambog Elementary School</title>
         {{-- icon --}}
         <link rel="icon" href="image/mambog.png"/>
 
@@ -19,6 +19,11 @@
     <body>
         <x-red-header/>
         <x-nav-header/>
+        <x-web-hero/>
+
+        <x-web-news-and-updates :firstupdate="$first_update" :updates="$updates" />
+
+        <x-footer/>
 
     </body>
 </html>

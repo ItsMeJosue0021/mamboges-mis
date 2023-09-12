@@ -10,7 +10,6 @@ module.exports = {
         './public/js/*.js',
         './resources/views/**/*.blade.php',
         './resources/css/*.css',
-
     ],
 
     theme: {
@@ -24,7 +23,7 @@ module.exports = {
                 // 'mambog-classes': "url('/image/mamboges2.png')",
                 // 'deped': "url('/image/deped.png')",
                 // 'mambog': "url('/image/mamboges.jpg')",
-                'mambog-2': "url('image/bg-mambog.jpg')",
+                'mambog-2': "url('/image/bg-mambog.jpg')",
             },
 
             screens: {

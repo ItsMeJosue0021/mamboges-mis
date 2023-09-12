@@ -42,7 +42,7 @@
 
                     <!-- links -->
                     <div id="links" class="h-full flex flex-col overflow-y-auto">
-                        @if (Auth::user()->type === 'guidance')
+                        {{-- @if (Auth::user()->type === 'guidance') --}}
                         <div class="space-y-1 py-2">                         
                             <a id="link2" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/students">
                                 <i class='bx bx-user-circle text-2xl text-lightblack group-hover:text-blue-600'></i>
@@ -136,33 +136,15 @@
                             }
                         </script>
 
-                        
-
-                        @elseif(Auth::user()->type === 'faculty') 
-
-                            <div class="w-full self-end py-2 space-y-1">
-                                <a id="link13" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/classes">
-                                    <i class='bx bx-spreadsheet text-2xl text-lightblack group-hover:text-blue-600'></i>
-                                    <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Classes</p>
-                                </a>
-
-                                <a id="link14" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/profile">
-                                    <i class='bx bxs-user-detail text-2xl text-lightblack group-hover:text-blue-600'></i>
-                                    <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Profile</p>
-                                </a>
-                            </div>
-
-
-                        @endif
-
                     </div>
+
                 </div>
             </div>
 
             <!-- main -->
             <div class="ml-250px relative w-full h-full flex flex-col container">
                 <!-- header -->
-                <div class="fixed custom-width flex items-center justify-between py-2 px-4 border-b border-gray-300 bg-white shadow z-10">
+                <div class="sticky top-0 w-full flex items-center justify-between py-2 px-4 border-b border-gray-300 bg-white shadow z-10">
                     <div class="">
                         <p>SCHOOL YEAR: <span class="text-blue-500">{{$schoolYear}}</span></p>
                     </div>
@@ -202,14 +184,12 @@
                                 </x-slot>
                             </x-dropdown>
                         </div>
-
-                        <img class="h-9 w-9 rounded-full border bprder-gray-200"  src="{{Auth::user()->image ? asset('storage/' . Auth::user()->image) : asset('image/mamboges.jpg')}}" alt="">
-
+                        <img class="h-9 w-9 rounded-full border bprder-gray-200"  
+                        src="{{Auth::user()->image ? asset('storage/' . Auth::user()->image) : asset('image/mamboges.jpg')}}" alt="">
                     </div>
                 </div>
 
-                <!-- main content -->
-                <div class="h-full relative mt-20">
+                <div class="h-full relative">
                     <main>
                         {{$slot}}
                     </main>

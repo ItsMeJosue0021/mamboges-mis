@@ -1,5 +1,5 @@
 <x-guidance-layout>
-    <section class="border-b rounded px-8 mb-5 ">
+    <section class="border-b rounded px-8 mb-5 sticky top-[85px] bg-white">
         <div class="flex items-center justify-between py-4">
             <div class="">
                 <a id="create" class="flex items-center poppins text-sm text-white bg-green-500 hover:bg-green-600 hover:text-white rounded py-2 px-4" href="/updates/create">
@@ -16,8 +16,8 @@
             </div>
         </div>
     </section>
-    <section class="h-560px text-gray-600 body-font overflow-y-auto scrollbar-thin">
-        <div class="container px-8 py-14 mx-auto">
+    <section class=" text-gray-600 body-font  scrollbar-thin">
+        <div class="px-8 py-14 mx-auto">
             <div class="-my-8 divide-y-2 divide-gray-100">
                 @if(count($updates) == 0)
                     <div class="w-full h-96 flex flex-col items-center justify-center mt-20">
