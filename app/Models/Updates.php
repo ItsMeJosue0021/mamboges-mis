@@ -9,6 +9,15 @@ class Updates extends Model
 {
     use HasFactory;
 
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+    public function updateImages() {
+        return $this->hasMany(UpdateImage::class);
+    }
+
+
     public function scopeFilter($query, array $filters) {
         if ($filters['tag'] ?? false) {
             $query->where('tag', 'like', '%' . request('tag') . '%' );

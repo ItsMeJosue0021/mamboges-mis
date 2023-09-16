@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Logs;
+use App\Models\Tag;
 use App\Models\Updates;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,10 @@ class UpdatesController extends Controller
     }
 
     public function create() {
-        return view('updates.create');
+        
+        return view('updates.create', [
+            'tags' => Tag::all()
+        ]);
     }
 
     public function store(Request $request) {

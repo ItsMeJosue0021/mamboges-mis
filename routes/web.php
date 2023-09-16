@@ -104,7 +104,7 @@ Route::middleware(['auth', 'role:guidance'])->group(function() {
     Route::get('/updates/{update}', [UpdatesController::class, 'show']);
 
     //save update to database
-    Route::post('/updates/save', [UpdatesController::class, 'store']); //only guidance can access this route
+    Route::post('/updates/save', [UpdatesController::class, 'store'])->name('update.store'); //only guidance can access this route
 
     //show edit updates form
     Route::get('/updates/{update}/edit', [UpdatesController::class, 'edit']); //only guidance can access this route

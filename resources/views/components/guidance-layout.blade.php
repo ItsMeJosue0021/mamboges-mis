@@ -21,6 +21,8 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    <x-head.tinymce-config/>
+
 </head>
 
 <body>
@@ -46,27 +48,27 @@
                         <div class="space-y-1 py-2">                         
                             <a id="link2" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/students">
                                 <i class='bx bx-user-circle text-2xl text-lightblack group-hover:text-blue-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Learners</p>
+                                <p class="poppins text-sm group-hover:text-blue-600">Learners</p>
                             </a>
     
                             <a id="link3" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/faculties">
                                 <i class='bx bx-user-pin text-2xl text-lightblack group-hover:text-blue-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Faculty</p>
+                                <p class="poppins text-sm group-hover:text-blue-600">Faculty</p>
                             </a>
 
                             <a id="link1" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/sections">
                                 <i class='bx bx-folder text-2xl text-lightblack group-hover:text-blue-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Sections</p>
+                                <p class="poppins text-sm group-hover:text-blue-600">Sections</p>
                             </a>
                             
                             <a id="link8" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/subjects">
                                 <i class='bx bx-book-alt text-2xl text-lightblack group-hover:text-blue-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Subjects</p>
+                                <p class="poppins text-sm group-hover:text-blue-600">Subjects</p>
                             </a>
 
                             <a id="link4" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/departments">
                                 <i class='bx bx-category text-2xl text-lightblack group-hover:text-blue-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Departments</p>
+                                <p class="poppins text-sm group-hover:text-blue-600">Departments</p>
                             </a>
 
                         </div>
@@ -74,12 +76,12 @@
                         <div class="w-full border-t-2 border-gray-200 pt-2 space-y-1">
                             <a id="link6" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/updates/list">
                                 <i class='bx bx-news text-2xl text-lightblack group-hover:text-blue-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">News & Updates</p>
+                                <p class="poppins text-sm group-hover:text-blue-600">News & Updates</p>
                             </a>
     
                             <a id="link7" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/feedback">
                                 <i class='bx bx-comment-dots text-2xl text-lightblack group-hover:text-blue-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Feedback</p>
+                                <p class="poppins text-sm group-hover:text-blue-600">Feedback</p>
                             </a>
     
                         </div>
@@ -88,7 +90,7 @@
                             <a id="settingsBtn" class="flex group items-center justify-between p-2 rounded hover:bg-blue-50 focus:bg-blue-50 cursor-pointer">
                                 <div class="flex items-center space-x-4">
                                     <i class='bx bx-cog text-2xl text-lightblack group-hover:text-blue-600'></i>
-                                    <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Settings</p>
+                                    <p class="poppins text-sm group-hover:text-blue-600">Settings</p>
                                 </div>
                                 <i class='bx bx-chevron-down text-xl'></i>
                             </a>
@@ -96,22 +98,22 @@
                             <div  id="settings" class="hidden w-full space-y-1 border-t border-gray-200">
                                 <a id="link9" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/logs">
                                     <i class='bx bx-list-ul text-2xl text-lightblack group-hover:text-blue-600'></i>
-                                    <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Logs</p>
+                                    <p class="poppins text-sm group-hover:text-blue-600">Logs</p>
                                 </a>
         
                                 <a id="link10" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/archive">
                                     <i class='bx bx-archive text-2xl text-lightblack group-hover:text-blue-600'></i>
-                                    <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Archive</p>
+                                    <p class="poppins text-sm group-hover:text-blue-600">Archive</p>
                                 </a>
     
                                 <a id="link11" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/settings">
                                     <i class='bx bx-calendar text-2xl text-lightblack group-hover:text-blue-600'></i>
-                                    <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">School Year</p>
+                                    <p class="poppins text-sm group-hover:text-blue-600">School Year</p>
                                 </a>
     
                                 <a id="link12" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/profile">
                                     <i class='bx bxs-user-detail text-2xl text-lightblack group-hover:text-blue-600'></i>
-                                    <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Profile</p>
+                                    <p class="poppins text-sm group-hover:text-blue-600">Profile</p>
                                 </a>
                             </div>
                         </div>

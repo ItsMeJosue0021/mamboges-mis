@@ -10,6 +10,7 @@ use App\Models\Student;
 use App\Models\Updates;
 use App\Models\Feedback;
 use App\Models\Guardian;
+use Database\Seeders\TagSeeder;
 use Illuminate\Database\Seeder;
 use Database\Seeders\FacultySeeder;
 use Database\Seeders\QuarterSeeder;
@@ -30,7 +31,7 @@ class DatabaseSeeder extends Seeder
 
         Feedback::factory(15)->create();
 
-        Updates::factory(20)->create();
+        // Updates::factory(20)->create();
 
         Section::factory(5)->create();
 
@@ -53,6 +54,8 @@ class DatabaseSeeder extends Seeder
         $this->call(FacultySeeder::class);
 
         $this->call(QuarterSeeder::class);
+
+        $this->call(TagSeeder::class);
 
     }
 }

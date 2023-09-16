@@ -1,4 +1,46 @@
 <x-guidance-layout>
+    <section>
+        <div class="p-4 flex flex-col space-y-2">
+            <div class="flex flex-col space-y-2">
+                <a id="back" class="flex w-fit justify-start items-center space-x-2 py-1 px-4 group rounded bg-gray-200 hover:bg-gray-300 cursor-pointer group" href="/classes">
+                    <i class='bx bx-left-arrow-alt text-black text-lg '></i>
+                    <p class="poppins text-sm text-black">Back</p>
+                </a>
+                <p class="text-sm text-blue-600 poppins">You're about to create an update.</p>
+            </div>
+            <form action="">
+                <div class="flex items-start space-x-4 ">
+                    <div class="w-3/4 h-96 flex flex-col space-y-2">
+                        <div class="w-full flex items-center justify-between space-x-4">
+                            <div class="flex flex-col space-y-1 w-full">
+                                <label for="title" class="poppins text-sm font-semibold">TITLE</label>
+                                <input name="title" id="title" type="text" placeholder="Title here.."
+                                class="text-sm rounded border-2 border-gray-200">
+                            </div>
+                            <div class="flex flex-col space-y-1">
+                                <label for="tag" class="poppins text-sm font-semibold">TAG</label>
+                                <select name="tag" id="tag" class="text-sm rounded border-2 border-gray-200">
+                                    @foreach ($tags as $tag)
+                                        <option value="{{$tag->id}}">{{$tag->tag}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="flex flex-col space-y-1">
+                            <label class="poppins text-sm font-semibold">DESCRIPTION</label>
+                            <x-forms.tinymce-editor/>
+                        </div>
+                        <div class="pt-4">
+                            <button type="submit" class="poppins text-sm text-white px-6 py-2 rounded bg-blue-700">POST</button>
+                        </div>
+                    </div>
+                    <div class="w-1/4 h-96 border border-gray-300">
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
 
 </x-guidance-layout>
 
