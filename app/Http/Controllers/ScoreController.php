@@ -11,7 +11,7 @@ use App\Models\ClassRecordEvaluationCriteria;
 class ScoreController extends Controller
 {
     public function store(Request $request) {
-        dd($request->all());
+        // dd($request->all());
         try {
             $scores = $request->input('scores');
             $studentSums = []; 

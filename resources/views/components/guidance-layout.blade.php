@@ -74,7 +74,7 @@
                         </div>
 
                         <div class="w-full border-t-2 border-gray-200 pt-2 space-y-1">
-                            <a id="link6" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/updates/list">
+                            <a id="link6" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="{{ route('update.list') }}">
                                 <i class='bx bx-news text-2xl text-lightblack group-hover:text-blue-600'></i>
                                 <p class="poppins text-sm group-hover:text-blue-600">News & Updates</p>
                             </a>
@@ -199,11 +199,8 @@
             </div>
 
         </div>
-        @if (session()->has('success') || session()->has('error')) 
-            <div x-data="{show: true}" x-init="setTimeout(() => show = false, 2000)" x-show="show" class="fixed top-0 left-1/2 transform -translate-x-1/2 text-white px-10 py-3 z-50">
-                <p>{{session('message')}}</p>
-            </div>
-        @endif
+        
+        <x-flash-messages/>
 
     </section>
 

@@ -11,6 +11,10 @@
         <span class="poppins mt-1 text-gray-500 text-sm">{{$update->created_at}}</span>
         <a class="text-xs text-red-600 py-1 px-2 border border-red-600 rounded" href="/updates?tag={{$update->tag}}">{{$update->tag}}</a>
     </div>
-    <p class="poppins text-base leading-relaxed">{{substr($update->description, 0, 45)}}{{strlen($update->description) > 45 ? "..." : ""}}</p>
+    <div>
+        {{-- {{substr($update->description, 0, 45)}}{{strlen($update->description) > 45 ? "..." : ""}} --}}
+        {{-- {!! $update->description !!} --}}
+        {!! substr($update->description, 0, 45) !!}{{ strlen($update->description) > 45 ? "..." : "" }}
+    </div>
     <a class="poppins text-indigo-500 inline-flex items-center mt-3 p-2 px-4 rounded bg-lightgray" href="/updates/{{$update->id}}">See More</a>
 </div>

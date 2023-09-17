@@ -60,14 +60,14 @@ Route::get('/faculty/dashboard', [FacultyController::class, 'dashboard']);
 Route::get('/student/dashboard', [StudentController::class, 'index']);
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 //                       WEBSITE
 //home page
 Route::get('/', [WebsiteController::class, 'index'])->name('home');
 
 
-Route::middleware(['auth', 'role:guidance'])->group(function() {
+Route::middleware(['auth', 'role:guidance'])->group(function () {
 
     //                        FEEDBACK
 
@@ -84,30 +84,44 @@ Route::middleware(['auth', 'role:guidance'])->group(function() {
     Route::put('/feedback/{feedback}/read', [FeedbackController::class, 'read']);
 
 
-    //                        UPDATES
-    //show create update form
-    Route::get('/updates/create', [UpdatesController::class, 'create']); //only guidance can access this route
+    //--UPDATES
+    Route::prefix('updates')->group(function () {
+        Route::controller(UpdatesController::class)->group(function () {
+            Route::get('/', 'index')->name('update.index');
+            Route::get('/create', 'create')->name('update.create');
+            Route::get('/list', 'list')->name('update.list');
+            Route::post('/save', 'store')->name('update.store');
+            Route::get('/{update}', 'show')->name('update.show');
+            Route::get('/{update}/edit', 'edit')->name('update.edit');
+            Route::put('/{update}/update', 'update')->name('update.update');
+            Route::delete('/{update}/delete', 'delete')->name('update.delete');
+        });
+    });
 
-    //show all updates
-    Route::get('/updates', [UpdatesController::class, 'index']);
 
-    //list of updates
-    Route::get('updates/list', [UpdatesController::class, 'list']); //only guidance can access this route
+    // //show create update form
+    // Route::get('/updates/create', [UpdatesController::class, 'create'])->name('update.create'); 
 
-     //update feedback
-     Route::delete('/updates/{update}/delete', [UpdatesController::class, 'delete']); //only guidance can access this route
+    // //show all updates
+    // Route::get('/updates', [UpdatesController::class, 'index'])->name('update.index');
 
-    //edit update 
-    Route::put('/updates/{update}/update', [UpdatesController::class, 'update']); //only guidance can access this route
+    // //list of updates
+    // Route::get('updates/list', [UpdatesController::class, 'list'])->name('update.list'); 
 
-    //show single update
-    Route::get('/updates/{update}', [UpdatesController::class, 'show']);
+    //  //update feedback
+    //  Route::delete('/updates/{update}/delete', [UpdatesController::class, 'delete'])->name('update.delete'); 
 
-    //save update to database
-    Route::post('/updates/save', [UpdatesController::class, 'store'])->name('update.store'); //only guidance can access this route
+    // //edit update 
+    // Route::put('/updates/{update}/update', [UpdatesController::class, 'update'])->name('update.update'); 
 
-    //show edit updates form
-    Route::get('/updates/{update}/edit', [UpdatesController::class, 'edit']); //only guidance can access this route
+    // //show single update
+    // Route::get('/updates/{update}', [UpdatesController::class, 'show'])->name('update.show');
+
+    // //save update to database
+    // Route::post('/updates/save', [UpdatesController::class, 'store'])->name('update.store'); 
+
+    // //show edit updates form
+    // Route::get('/updates/{update}/edit', [UpdatesController::class, 'edit'])->name('update.edit'); 
 
 
 
@@ -253,9 +267,9 @@ Route::middleware(['auth', 'role:guidance'])->group(function() {
 
 
 
-Route::middleware(['auth', 'role:faculty'])->group(function() {
+Route::middleware(['auth', 'role:faculty'])->group(function () {
     //     
-    
+
     // CLASS RECORD
 
     Route::get('/classes', [ClassesController::class, 'index']);
@@ -263,10 +277,10 @@ Route::middleware(['auth', 'role:faculty'])->group(function() {
     Route::get('/classes/{class}/class-record', [ClassRecordController::class, 'index'])->name('class.record');
 
     Route::put('/update-percentage/{classRecordEvaluationCriteria}', [ClassRecordEvaluationCriteriaController::class, 'changePercentage'])
-    ->name('class.percentage.update');
+        ->name('class.percentage.update');
 
     Route::get('/get-percentage/{classRecordEvaluationCriteria}', [ClassRecordEvaluationCriteriaController::class, 'getPercentage'])
-    ->name('class.percentage.get');
+        ->name('class.percentage.get');
 
 
     // ACTIVITIES
@@ -278,12 +292,13 @@ Route::middleware(['auth', 'role:faculty'])->group(function() {
 });
 
 
-Route::middleware(['auth', 'role:student'])->group(function() {
+Route::middleware(['auth', 'role:student'])->group(function () {
 
-     // student portal
-     Route::get('/portal/classes', [PortalController::class, 'portal']);
+    // student portal
+    Route::get('/portal/classes', [PortalController::class, 'portal']);
 
-     Route::get('/account/settings', [PortalController::class, 'account'])->name('student.profile');;
+    Route::get('/account/settings', [PortalController::class, 'account'])->name('student.profile');
+    ;
 
 });
 
@@ -292,22 +307,3 @@ Route::middleware(['auth', 'role:student'])->group(function() {
 // feedback send
 //storing feedback
 Route::post('/feedback/save', [FeedbackController::class, 'store']);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

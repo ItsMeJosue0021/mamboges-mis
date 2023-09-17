@@ -10,7 +10,8 @@ class UpdateImage extends Model
 {
     use HasFactory;
 
-    public function update() {
+    public function updates()
+    {
         return $this->belongsTo(Updates::class);
     }
 }
