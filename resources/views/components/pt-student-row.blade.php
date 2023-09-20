@@ -1,4 +1,4 @@
-<div class="flex justify-start border-t border-b border-gray-400">            
+<div class="flex justify-start border-t border-gray-400">            
     {{-- name --}}
     <div class="w-1/4 flex justify-start items-center py-2 border-r border-gray-400">
         <div class="flex space-x-2 px-2">
@@ -33,7 +33,7 @@
             <div class="w-[65px] flex justify-center items-center border-r border-gray-400">
                  <p class="poppins text-sm">{{ $ps != 100 ? number_format($ps, 2) : 100 }} </p> {{--{{ $ps != 100 ? number_format($ps, 2) : 100 }} --}}
             </div>
-            <div class="w-[65px] flex justify-center items-center border-r border-gray-400">
+            <div class="w-[65px] flex justify-center items-center border-gray-400">
                 <p class="poppins text-sm">{{ $ws != $evaluation_percentage ? (fmod($ws, 1) == 0 ? $ws : number_format($ws, 2)) : $evaluation_percentage }}
                 </p> {{--  {{ $ws !=  $evaluation_percentage ? number_format($ws, 2) :  $evaluation_percentage }} --}}
             </div>

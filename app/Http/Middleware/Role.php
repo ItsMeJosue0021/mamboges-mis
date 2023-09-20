@@ -17,7 +17,7 @@ class Role
     public function handle(Request $request, Closure $next, $type): Response
     {
         if ($request->user()->type !== $type) {
-            return Redirect::back()->with('error', 'You do not have permission to access this page.');
+            return Redirect::back()->with('warning', 'You do not have permission to access this page');
         }
         return $next($request);
     }

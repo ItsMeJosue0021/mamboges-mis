@@ -38,23 +38,6 @@ use App\Http\Controllers\ClassRecordEvaluationCriteriaController;
 |
 */
 
-// Route::get('/welcome', function () {
-//     return view('welcome');
-// });
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-
-Route::get('/lr/dashboard', [LrController::class, 'index']);
-
 Route::get('/faculty/dashboard', [FacultyController::class, 'dashboard']);
 
 Route::get('/student/dashboard', [StudentController::class, 'index']);
@@ -63,14 +46,24 @@ Route::get('/student/dashboard', [StudentController::class, 'index']);
 require __DIR__ . '/auth.php';
 
 //                       WEBSITE
-//home page
 Route::get('/', [WebsiteController::class, 'index'])->name('home');
 
+// send feedback
+Route::post('/feedback/save', [FeedbackController::class, 'store'])->name('feedback.store');
+
+
+
+Route::middleware('auth')->group(function () {
+    Route::controller(ProfileController::class)->group(function () {
+        Route::get('/profile', 'edit')->name('profile.edit');
+        Route::put('/profile', 'update')->name('profile.update');
+        Route::delete('/profile', 'destroy')->name('profile.destroy');
+    });
+});
 
 Route::middleware(['auth', 'role:guidance'])->group(function () {
 
-    //                        FEEDBACK
-
+    // FEEDBACK
     //show all feedback
     Route::get('/feedback', [FeedbackController::class, 'index']); //only guidance can access this route
 
@@ -142,7 +135,7 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
     //                        STUDENT
 
     //show all students
-    Route::get('/students', [StudentController::class, 'index']);
+    Route::get('/students', [StudentController::class, 'index'])->name('student.index');
 
     Route::get('/students/search', [StudentController::class, 'getStudents']);
 
@@ -260,19 +253,10 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
 
 
 
-
-
-
-
-
-
-
-Route::middleware(['auth', 'role:faculty'])->group(function () {
-    //     
+Route::middleware(['auth', 'role:faculty'])->group(function () {    
 
     // CLASS RECORD
-
-    Route::get('/classes', [ClassesController::class, 'index']);
+    Route::get('/classes', [ClassesController::class, 'index'])->name('faculty.classes');
 
     Route::get('/classes/{class}/class-record', [ClassRecordController::class, 'index'])->name('class.record');
 
@@ -293,17 +277,19 @@ Route::middleware(['auth', 'role:faculty'])->group(function () {
 
 
 Route::middleware(['auth', 'role:student'])->group(function () {
-
-    // student portal
-    Route::get('/portal/classes', [PortalController::class, 'portal']);
-
-    Route::get('/account/settings', [PortalController::class, 'account'])->name('student.profile');
-    ;
-
+    Route::controller(PortalController::class)->group(function () {
+        Route::get('/portal/classes', 'portal')->name('student.portal');
+        Route::get('/account/settings', 'account')->name('student.profile');
+    });
 });
 
 
+Route::middleware(['auth', 'role:lr'])->group(function () { 
+    Route::prefix('lr')->group(function () {
+        Route::controller(LrController::class)->group(function () {
+            Route::get('/video-lesson', 'videoLesson')->name('lr.video');
+            Route::get('/modules', 'module')->name('lr.module');
+        });
+    });
+});
 
-// feedback send
-//storing feedback
-Route::post('/feedback/save', [FeedbackController::class, 'store']);

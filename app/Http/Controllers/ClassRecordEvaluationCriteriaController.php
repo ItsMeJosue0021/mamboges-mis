@@ -7,33 +7,42 @@ use App\Models\ClassRecordEvaluationCriteria;
 
 class ClassRecordEvaluationCriteriaController extends Controller
 {
-    public function changePercentage(Request $request, $criteria) {
-        
+    public function changePercentage(Request $request, $criteria)
+    {
+
         $class_record_evaluation_criteria = ClassRecordEvaluationCriteria::find($criteria);
 
         if (!$class_record_evaluation_criteria) {
             return response()->json([
-                'error' => 'Evaluation criteria not found!',
+                'message' => 'Evaluation criteria not found!',
                 'status' => 'error'
             ], 404);
         }
 
+        if ($request->percentage == null) {
+            return response()->json([
+                'message' => 'Percentage cannot be null!',
+                'status' => 'error'
+            ]);
+        }
+
         $class_record_evaluation_criteria->percentage = $request->percentage;
         $class_record_evaluation_criteria->save();
-        
+
         return response()->json([
             'message' => 'The percentage has been updated!',
             'status' => 'success'
         ]);
     }
 
-    public function getPercentage($criteria) {
-        
+    public function getPercentage($criteria)
+    {
+
         $class_record_evaluation_criteria = ClassRecordEvaluationCriteria::find($criteria);
-            
+
         if (!$class_record_evaluation_criteria) {
             return response()->json([
-                'error' => 'Evaluation criteria not found!',
+                'message' => 'Evaluation criteria not found!',
                 'status' => 'error'
             ], 404);
         }

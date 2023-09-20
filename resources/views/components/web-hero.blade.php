@@ -36,7 +36,7 @@
                             Learn More
                             </a>
 
-                            <a href="#" class="poppins w-[120px] text-center py-2 border border-red-600 text-red-600 hover:border-red-700 hover:text-red-700 hover:scale-125" 
+                            <a href="{{ route('student.login') }}" class="poppins w-[120px] text-center py-2 border border-red-600 text-red-600 hover:border-red-700 hover:text-red-700 hover:scale-125" 
                             data-aos="fade-right" 
                             data-aos-delay="500">
                             Log In
@@ -47,31 +47,36 @@
             </div>
 
             <div class="w-1/2 ">
-                <div class="relative w-full h-[500px]">  {{--src="{{asset('image/bg-mambog.jpg')}}" --}}
-                    <img  alt="" srcset="" src="{{asset('image/chairs.jpg')}}"
-                    data-aos="fade-up"
-                    data-aos-delay="300"
-                    class="h-[300px] w-[200px] shadow-lg rounded bg-white absolute bottom-0 left-0 hover:z-10 hover:h-[310px] hover:w-[210px] cursor-pointer">
+                <div class="relative w-full h-[500px]"> 
+                    <div class="rounded absolute bottom-0 left-0 hover:transform hover:scale-105 transition duration-300 ease-in-out hover:z-10 cursor-pointer ">
+                        <img  alt="" srcset="" src="{{asset('image/chairs.jpg')}}"
+                        data-aos="fade-up"
+                        data-aos-delay="300"
+                        class="h-[300px] w-[200px] shadow-lg rounded bg-white ">
+                    </div>
 
-                    <img  alt="" srcset="" src="{{asset('image/child.jpg')}}"
-                    data-aos="fade-down"
-                    data-aos-delay="400"
-                    class="h-[300px] w-[200px] shadow-lg rounded bg-white absolute bottom-[70px] left-[145px] hover:z-10 hover:h-[310px] hover:w-[210px] cursor-pointer">
+                    <div class="rounded absolute bottom-[70px] left-[145px] hover:transform hover:scale-105 transition duration-300 ease-in-out hover:z-10 cursor-pointer">
+                        <img  alt="" srcset="" src="{{asset('image/child.jpg')}}"
+                        data-aos="fade-down"
+                        data-aos-delay="400"
+                        class="h-[300px] w-[200px] shadow-lg rounded bg-white ">
+                    </div>
 
-                    <img  alt="" srcset="" src="{{asset('image/globe.jpg')}}"
-                    data-aos="fade-up"
-                    data-aos-delay="500"
-                    class="h-[300px] w-[200px] shadow-lg rounded bg-white absolute bottom-[130px] left-[290px] hover:z-10 hover:h-[310px] hover:w-[210px] cursor-pointer">
+                    <div class="rounded absolute bottom-[130px] left-[290px] hover:transform hover:scale-105 transition duration-300 ease-in-out hover:z-10 cursor-pointer">
+                        <img  alt="" srcset="" src="{{asset('image/globe.jpg')}}"
+                        data-aos="fade-up"
+                        data-aos-delay="500"
+                        class="h-[300px] w-[200px] shadow-lg rounded bg-white ">
+                    </div>
 
-                    <img  alt="" srcset="" src="{{asset('image/chalk.jpg')}}"
-                    data-aos="fade-down"
-                    data-aos-delay="600"
-                    class="h-[300px] w-[200px] shadow-lg rounded bg-white absolute top-0 right-0 hover:h-[310px] hover:w-[210px] cursor-pointer">
+                    <div class="rounded absolute top-0 right-0 hover:h-[310px] hover:transform hover:scale-105 transition duration-300 ease-in-out hover:z-10 cursor-pointer">
+                        <img  alt="" srcset="" src="{{asset('image/chalk.jpg')}}"
+                        data-aos="fade-down"
+                        data-aos-delay="600"
+                        class="h-[300px] w-[200px] shadow-lg rounded bg-white ">
+                    </div>
                 </div>
             </div>
-
         </div>
-        
     </div>
-   
 </section>

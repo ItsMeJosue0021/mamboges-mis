@@ -6,9 +6,9 @@
         @csrf
         <input name="criteria_id" type="hidden" value="{{$evaluations->skip(2)->first()->id}}">
 
-        <div class="w-full border-l border-gray-400">
+        <div class="w-full border-l border-b border-gray-400 rounded-md">
             {{-- row 2 --}}
-            <div class="w-full flex border-t border-b  border-gray-400 bg-gray-100">
+            <div class="w-full flex border-t border-b border-r  border-gray-400 bg-gray-100 rounded-t-md">
                 <div class="w-1/4 flex justify-start items-center px-2 py-2 border-r border-gray-400">
                     <p class="poppins text-sm">ACTIVITY NUMBER</p>
                 </div>
@@ -27,7 +27,7 @@
                         <div class="w-[65px] flex justify-center items-center border-r border-gray-400">
                             <p class="poppins text-xs font-medium">PS</p>
                         </div>
-                        <div class="w-[65px] flex justify-center items-center border-r border-gray-400">
+                        <div class="w-[65px] flex justify-center items-center rounded-tr-md border-gray-400">
                             <p class="poppins text-xs font-medium">WS</p>
                         </div>
                     </div>  
@@ -59,7 +59,7 @@
                         <div class="w-[65px] flex justify-center items-center border-r border-gray-400">
                             <p class="poppins font-semibold text-sm">100%</p>
                         </div>
-                        <div class="w-[65px] flex justify-center items-center border-r border-gray-400">
+                        <div class="w-[65px] flex justify-center items-center border-gray-400">
                             <p id="percentageValue" class="percentageValue poppins font-semibold text-sm">{{$evaluations->skip(2)->first()->percentage}}%</p>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
             </div>
 
             {{-- row 4 --}}
-            <div>                      
+            <div class="border-r border-gray-400 rounded-br-md">                      
                 @foreach ($students as $student)          
                     <x-qa-student-row :student="$student" :activities="$activities" :evaluations="$evaluations" :totalscore="$total_score"/> {{--:activities="$activities"--}}
                 @endforeach
@@ -75,7 +75,7 @@
 
         </div>
         <div class="w-full space-x-4 flex items-center mt-4">
-            <button type="submit" class="poppins text-sm text-white bg-blue-800 hover:bg-[#004080] border border-[#004080] py-2 px-6 rounded">Save</button>
+            <button type="submit" class="poppins text-sm text-white bg-sky-700 hover:bg-sky-800 border border-sky-800 py-2 px-6 rounded">Save</button>
             <button type="submit" class="poppins text-sm text-black bg-gray-200 hover:bg-gray-300 border border-gray-200 py-2 px-6 rounded">Refresh</button>
             {{-- <a href="{{ route('class.record', $classrecord->id) }}" class="poppins text-sm text-black bg-gray-200 hover:bg-gray-300 border border-gray-200 py-2 px-6 rounded">Refresh</a> --}}
         </div>

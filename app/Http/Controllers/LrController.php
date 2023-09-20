@@ -6,7 +6,12 @@ use Illuminate\Http\Request;
 
 class LrController extends Controller
 {
-    public function index() {
-        return view('lr.dashboard');
+    public function videoLesson() {
+        return view('lr.video');
     }
+
+    public function module() {
+        return view('lr.module');
+    }
+
 }

@@ -10,13 +10,13 @@
 
             <div class="w-full flex justify-between items-center py-2">
                 <div class="flex space-x-4 items-center">
-                    <div class="flex items-center rounded border border-gray-500">
-                        <p class="poppins text-sm bg-gray-500 text-white rounded-l px-4 py-2">Class Name</p>
-                        <p class="poppins text-sm font-medium px-4 py-2">{{$class_record->name}}</p>
+                    <div class="flex items-center rounded border border-sky-600">
+                        <p class="poppins text-sm bg-sky-600 text-white px-4 py-2">Class Name</p>
+                        <p class="poppins text-sm font-medium px-4 py-2 text-sky-600">{{$class_record->name}}</p>
                     </div>
-                    <div class="flex items-center rounded border border-gray-500">
-                        <p class="poppins text-sm bg-gray-500 text-white rounded-l px-4 py-2">Teacher</p>
-                        <p class="poppins text-sm font-medium px-4 py-2 flex space-x-2 items-center">
+                    <div class="flex items-center rounded border border-sky-600">
+                        <p class="poppins text-sm bg-sky-600 text-white px-4 py-2">Teacher</p>
+                        <p class="poppins text-sm font-medium px-4 py-2 flex space-x-2 items-center text-sky-600">
                             <span>{{$class_record->faculty->first_name}}</span>
                             <span>{{$class_record->faculty->last_name}}</span>
                         </p>
@@ -24,11 +24,11 @@
                 </div>
                 
                 <div class="flex space-x-2 items-center">
-                    <span class="poppins text-sm bg-gray-600 text-white rounded px-4 py-2">Quarter</span>
-                    <a href="?quarter=1" class="quarter poppins text-sm bg-gray-200 rounded px-4 py-2 hover:bg-blue-700 hover:text-white">1</a>
-                    <a href="?quarter=2" class="quarter poppins text-sm bg-gray-200 rounded px-4 py-2 hover:bg-blue-700 hover:text-white">2</a>
-                    <a href="?quarter=3" class="quarter poppins text-sm bg-gray-200 rounded px-4 py-2 hover:bg-blue-700 hover:text-white">3</a>
-                    <a href="?quarter=4" class="quarter poppins text-sm bg-gray-200 rounded px-4 py-2 hover:bg-blue-700 hover:text-white">4</a>
+                    <span class="poppins text-sm bg-sky-500 text-white rounded px-4 py-2">Quarter</span>
+                    <a href="?quarter=1" class="quarter poppins text-sm bg-gray-200 rounded px-4 py-2 hover:bg-sky-800 hover:text-white">1</a>
+                    <a href="?quarter=2" class="quarter poppins text-sm bg-gray-200 rounded px-4 py-2 hover:bg-sky-800 hover:text-white">2</a>
+                    <a href="?quarter=3" class="quarter poppins text-sm bg-gray-200 rounded px-4 py-2 hover:bg-sky-800 hover:text-white">3</a>
+                    <a href="?quarter=4" class="quarter poppins text-sm bg-gray-200 rounded px-4 py-2 hover:bg-sky-800 hover:text-white">4</a>
                 </div>
             </div>
 
