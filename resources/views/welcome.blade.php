@@ -20,10 +20,7 @@
         <x-red-header/>
         <x-nav-header/>
         <x-web-hero/>
-
         <x-web-news-and-updates :firstupdate="$first_update" :updates="$updates" />
-
         <x-footer/>
-
     </body>
 </html>
