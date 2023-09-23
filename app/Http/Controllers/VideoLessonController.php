@@ -21,29 +21,31 @@ class VideoLessonController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
+
         $this->validate($request, [
             'title' => 'required{string|max:255}',
             'description'=> 'nullable|string',
             'topic' => 'required',
             'grade' => 'required',
-            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            // 'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'video' => 'required|mimetypes:video/*|max:5369709120',
         ]);
 
         try {
             $videoPath = $request->file('video')->store('videos', 'public');
 
-            $thumbnailPath = null;
-            if ($request->hasFile('thumbnail')) {
-                $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
-            }
+            // $thumbnailPath = null;
+            // if ($request->hasFile('thumbnail')) {
+            //     $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
+            // }
 
             $video = VideoLesson::create([
                 'title' => $request->title,
                 'description' => $request->description,
                 'topic' => $request->topic,
                 'grade' => $request->grade,
-                'thumbnail' => $thumbnailPath,
+                // 'thumbnail' => $thumbnailPath,
                 'video' => $videoPath,
             ]);
 

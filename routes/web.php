@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\VideoLessonController;
 use App\Models\SectionStudents;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LrController;
@@ -291,5 +292,15 @@ Route::middleware(['auth', 'role:lr'])->group(function () {
             Route::get('/modules', 'module')->name('lr.module');
         });
     });
+
+    Route::controller(VideoLessonController::class)->group(function () {
+        Route::get('/video-lessons', 'index')->name('video-lessons.index');
+        Route::post('/video-lessons/save', 'store')->name('video-lessons.store');
+        Route::get('/video-lessons/{videoLesson}', 'show')->name('video-lessons.show');
+        Route::get('/video-lessons/{videoLesson}/edit', 'edit')->name('video-lessons.edit');
+        Route::put('/video-lessons/{videoLesson}/update', 'update')->name('video-lessons.update');
+        Route::delete('/video-lessons/{videoLesson}/delete', 'delete')->name('video-lessons.delete');
+    });
+    
 });
 

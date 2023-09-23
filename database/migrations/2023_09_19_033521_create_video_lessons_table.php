@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('topic');
             $table->string('grade');
-            $table->string('thumbnail');
+            // $table->string('thumbnail');
             $table->string('video');
             $table->timestamps();
         });
