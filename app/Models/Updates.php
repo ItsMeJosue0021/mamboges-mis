@@ -30,14 +30,15 @@ class Updates extends Model
 
     public function scopeFilter($query, array $filters)
     {
-        if ($filters['tag'] ?? false) {
-            $query->where('tag', 'like', '%' . request('tag') . '%');
-        }
+        $query->when($filters['tag'] ?? false, function ($query, $tag) {
+            $query->whereHas('tag', function ($query) use ($tag) {
+                $query->where('tag', $tag);
+            });
+        });
 
         if ($filters['search'] ?? false) {
             $query->where('title', 'like', '%' . request('search') . '%')
-                ->orWhere('description', 'like', '%' . request('search') . '%')
-                ->orWhere('tag', 'like', '%' . request('search') . '%');
+                ->orWhere('description', 'like', '%' . request('search') . '%');
         }
     }
 }

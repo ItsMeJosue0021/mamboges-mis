@@ -17,19 +17,25 @@
                         <a href="" class="poppins font-medium text-base">Home</a>
                     </li>
                     <li class="p-2 px-4 hover:border-b hover:bg-gray-200 rounded cursor-pointer">
-                        <a href="" class="poppins font-medium text-base">History</a>
+                        <a href="" class="poppins font-medium text-base">News & Announcements</a>
                     </li>
                     <div class="flex dropdown dropdown-end">
-                        <label tabindex="0" class="p-2 px-4 flex items-center justify-between hover:bg-gray-200 rounded cursor-pointer">
-                            <p class="poppins">Downloadables</p>
+                        <label tabindex="0" class="p-2 px-4 flex items-center space-x-3 hover:bg-gray-200 rounded cursor-pointer">
+                            <p class="poppins">More</p>
                             <i class='bx bx-chevron-down text-lg'></i>
                         </label>
-                        <ul tabindex="0" class="dropdown-content z-[1] p-2 shadow bg-base-100 rounded-md w-52">
+                        <ul tabindex="0" class="dropdown-content z-[1] p-2 shadow-md bg-base-100 rounded-md w-56">
                             <li class="p-2 rounded  hover:bg-gray-200 cursor-pointer">
-                                <a class="poppins ">Forms</a>
+                                <a class="poppins text-sm">Organizational Structure</a>
                             </li>
                             <li class="p-2 rounded  hover:bg-gray-200 cursor-pointer">
-                                <a class="poppins ">Others</a>
+                                <a class="poppins text-sm">Calendar of Activities</a>
+                            </li>
+                            <li class="p-2 rounded  hover:bg-gray-200 cursor-pointer">
+                                <a class="poppins text-sm">Transparency Board</a>
+                            </li>
+                            <li class="p-2 rounded  hover:bg-gray-200 cursor-pointer">
+                                <a class="poppins text-sm">Awards and Achievements</a>
                             </li>
                         </ul>
                     </div>

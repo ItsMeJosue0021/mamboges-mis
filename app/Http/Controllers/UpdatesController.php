@@ -19,8 +19,11 @@ class UpdatesController extends Controller
     public function list()
     {
         return view('updates.list', [
-            'updates' => Updates::latest()->filter(Request(['tag', 'search']))->get()
+            'updates' => Updates::filter(Request(['tag', 'search']))
+                ->orderBy('updates.created_at', 'desc') 
+                ->simplePaginate(9)
         ]);
+        
     }
 
     public function show()
@@ -67,59 +70,53 @@ class UpdatesController extends Controller
             return redirect()->back()->with('error', 'Sending unsuccessful!');
         }
 
-        // $data = array (
-        //     'title' => $request->title,
-        //     'tag_id' => $request->tag,
-        //     'description' => $request->description,
-        // );
-
-        // $update = Updates::create($data);
-
-        // if ($request->hasFile('image') ) {
-        //     $updateArray['image'] = $request->file('image')->store('images', 'public');
-        // }
-
-        // if (!is_null($update)) {
-        //     Logs::addToLog('A News/Announcement has been posted | NEWS/ANNOUNCEMENT [' . $update->title . ']');
-
-        //     return response()->json([
-        //         'success' => true, 
-        //         'message' => 'The update has been posted!!'
-        //     ]);
-
-        // } else {
-        //     return response()->json([
-        //         'success' => false, 
-        //         'message' => 'Sending unsuccessful!'
-        //     ]);
-        // }
-
     }
 
     public function edit(Updates $update)
     {
-        return view('updates.edit', ['updates' => $update]);
+        return view('updates.edit', [
+            'update' => $update,
+            'tags' => Tag::all()
+        ]);
     }
 
     public function update(Request $request, Updates $update)
     {
-        $updateArray = array(
-            'title' => $request->title,
-            'tag' => $request->tag,
-            'description' => $request->description,
-        );
+        // dd($request->all());
 
-        if ($request->hasFile('image')) {
-            $updateArray['image'] = $request->file('image')->store('images', 'public');
+        $this->validate($request, [
+            'title' => 'required',
+            'tag' => 'required',
+            'description' => 'required',
+        ]);
+
+        $update->update([
+            'title' => $request->title,
+            'tag_id' => $request->tag,
+            'description' => $request->description,
+        ]);
+
+        if ($request->hasFile('cover_photo')) {
+            $update->update([
+                'cover_photo' => $request->file('cover_photo')->store('images', 'public'),
+            ]);
+        } else {
+            $update->update([
+                'cover_photo' => $update->cover_photo,
+            ]);
         }
 
-        $editUpdate = $update->update($updateArray);
-
-        if (!is_null($editUpdate)) {
-            Logs::addToLog('An News/Announcement has been updated | NEWS/ANNOUNCEMENT [' . $update->title . ']');
-            return response()->json(['success' => true, 'message' => 'Editing successful!']);
+        if ($update) {
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $image) {
+                    $update->updateImages()->create([
+                        'url' => $image->store('images', 'public')
+                    ]);
+                }
+            }
+            return redirect()->back()->with('success', 'Updated Successfully');
         } else {
-            return response()->json(['success' => false, 'message' => 'Editing unsuccessful!']);
+            return redirect()->back()->with('error', 'Sending unsuccessful');
         }
     }
 
@@ -134,4 +131,22 @@ class UpdatesController extends Controller
             return redirect()->back()->with('eror', 'Something went wrong');
         }
     }
+
+    public function deleteImage(Updates $update, $id)
+    {
+        $image = $update->updateImages()->where('id', $id)->first();
+
+        if (!$image) {
+            return response()->json(['message' => 'Image not found'], 404);
+        }
+
+        $imageDeleted = $image->delete();
+
+        if ($imageDeleted) {
+            return response()->json(['message' => 'Image deleted successfully']);
+        } else {
+            return response()->json(['message' => 'Something went wrong'], 500);
+        }
+    }
+
 }

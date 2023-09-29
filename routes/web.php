@@ -1,10 +1,8 @@
 <?php
 use App\Http\Controllers\VideoLessonController;
-use App\Models\SectionStudents;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LrController;
 use App\Http\Controllers\LogsController;
-use App\Http\Controllers\GradeController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\ArchiveController;
 use App\Http\Controllers\ClassesController;
@@ -24,7 +22,6 @@ use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\ClassRecordController;
 use App\Http\Controllers\SectionStudentsController;
 use App\Http\Controllers\SectionSubjectsController;
-use App\Http\Controllers\Portal\StudentPortalController;
 use App\Http\Controllers\StudentAccess\PortalController;
 use App\Http\Controllers\ClassRecordEvaluationCriteriaController;
 
@@ -46,12 +43,11 @@ Route::get('/student/dashboard', [StudentController::class, 'index']);
 
 require __DIR__ . '/auth.php';
 
-//                       WEBSITE
+// HOME
 Route::get('/', [WebsiteController::class, 'index'])->name('home');
 
-// send feedback
+// SEND FEEDBACK FROM WEBSITE
 Route::post('/feedback/save', [FeedbackController::class, 'store'])->name('feedback.store');
-
 
 
 Route::middleware('auth')->group(function () {
@@ -65,18 +61,12 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'role:guidance'])->group(function () {
 
     // FEEDBACK
-    //show all feedback
-    Route::get('/feedback', [FeedbackController::class, 'index']); //only guidance can access this route
-
-    //reply feedback
-    Route::post('/feedback/{feedback}/replyfeedback', [FeedbackController::class, 'reply']);
-
-    //show single feedback
-    Route::get('/feedback/{feedback}', [FeedbackController::class, 'show']); //only guidance can access this route
-
-    //change read status of feedback
-    Route::put('/feedback/{feedback}/read', [FeedbackController::class, 'read']);
-
+    Route::controller(FeedbackController::class)->group(function () {
+        Route::get('/feedback', 'index')->name('feedback.index');
+        Route::get('/feedback/{feedback}', 'show')->name('feedback.show');
+        Route::post('/feedback/{feedback}/replyfeedback', 'reply')->name('feedback.reply');
+        Route::put('/feedback/{feedback}/read', 'read')->name('feedback.read');
+    });
 
     //--UPDATES
     Route::prefix('updates')->group(function () {
@@ -89,166 +79,99 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
             Route::get('/{update}/edit', 'edit')->name('update.edit');
             Route::put('/{update}/update', 'update')->name('update.update');
             Route::delete('/{update}/delete', 'delete')->name('update.delete');
+
+            Route::delete('/{update}/delete-image', 'deleteImage')->name('update.deleteImage');
         });
     });
 
+    // FACULTY
+    Route::controller(FacultyController::class)->group(function() {
+        Route::get('/faculties', 'index')->name('faculties.index');
+        Route::post('/faculties/save', 'store')->name('faculties.store');
+        Route::get('/faculties/{faculty}', 'show')->name('faculties.show');
+        Route::put('/faculties/{faculty}/update', 'update')->name('faculties.update');
+        Route::delete('/faculties/{faculty}/delete', 'delete')->name('faculties.delete');
+    });
+    
+    // STUDENT
+    Route::controller(StudentController::class)->group(function() {
+        Route::get('/students', 'index')->name('student.index');
+        Route::get('/students/search', 'getStudents')->name('student.getStudents');
+        Route::get('/students/{student}', 'show')->name('student.show');
+        Route::put('/students/{student}/edit', 'update')->name('student.update');
+        Route::delete('/students/{student}/delete', 'delete')->name('student.delete');
+        Route::post('/students/register', 'store')->name('student.store');
+    });
 
-    // //show create update form
-    // Route::get('/updates/create', [UpdatesController::class, 'create'])->name('update.create'); 
+    // SECTIONS
+    Route::controller(SectionController::class)->group(function () {
+        Route::get('/sections', 'index')->name('sections.index');
+        Route::get('/sections/search', 'searchStudent')->name('sections.searchStudent');
+        Route::post('/sections/save', 'store')->name('sections.store');
+        Route::post('/sections/import', 'import')->name('sections.import');
+        Route::get('/sections/{section}', 'show')->name('sections.show');
+        Route::get('/sections/edit/{section}', 'getSection')->name('sections.getSection');
+        Route::get('/sections/{section}/edit', 'edit')->name('sections.edit');
+        Route::put('/sections/{section}/update', 'update')->name('sections.update');
+        Route::delete('/sections/{section}/delete', 'delete')->name('sections.delete');
+        Route::post('/sections/{section}/importstudent', 'importStudent')->name('sections.importStudent');
+        Route::post('/sections/{section}/student/save', 'addStudent')->name('sections.addStudent');
+    });
+    
+    // SECTION STUDENTS
+    Route::controller(SectionStudentsController::class)->group(function () {
+        Route::get('/sections/students/all', 'getStudents')->name('section.students.getStudents');
+        Route::post('/sections/students/save', 'store')->name('section.students.store');
+        Route::delete('/sections/students/remove', 'remove')->name('section.students.remove');
+    });
 
-    // //show all updates
-    // Route::get('/updates', [UpdatesController::class, 'index'])->name('update.index');
-
-    // //list of updates
-    // Route::get('updates/list', [UpdatesController::class, 'list'])->name('update.list'); 
-
-    //  //update feedback
-    //  Route::delete('/updates/{update}/delete', [UpdatesController::class, 'delete'])->name('update.delete'); 
-
-    // //edit update 
-    // Route::put('/updates/{update}/update', [UpdatesController::class, 'update'])->name('update.update'); 
-
-    // //show single update
-    // Route::get('/updates/{update}', [UpdatesController::class, 'show'])->name('update.show');
-
-    // //save update to database
-    // Route::post('/updates/save', [UpdatesController::class, 'store'])->name('update.store'); 
-
-    // //show edit updates form
-    // Route::get('/updates/{update}/edit', [UpdatesController::class, 'edit'])->name('update.edit'); 
-
-
-
-
-    //                        FACULTY
-    //faculty home page
-    Route::get('/faculties', [FacultyController::class, 'index']);
-
-    Route::post('/faculties/save', [FacultyController::class, 'store']);
-
-    Route::get('/faculties/{faculty}', [FacultyController::class, 'show']);
-
-    Route::put('/faculties/{faculty}/update', [FacultyController::class, 'update']);
-
-    Route::delete('/faculties/{faculty}/delete', [FacultyController::class, 'delete']);
-
-
-    //                        STUDENT
-
-    //show all students
-    Route::get('/students', [StudentController::class, 'index'])->name('student.index');
-
-    Route::get('/students/search', [StudentController::class, 'getStudents']);
-
-    Route::get('/students/{student}', [StudentController::class, 'show']);
-
-    Route::put('/students/{student}/edit', [StudentController::class, 'update']);
-
-    Route::delete('/students/{student}/delete', [StudentController::class, 'delete']);
-
-    //register students
-    Route::post('/students/register', [StudentController::class, 'store']);
-
-
-
-    //                          SECTIONS
-
-    Route::get('/sections', [SectionController::class, 'index']);
-
-    Route::get('/sections/search', [SectionController::class, 'searchStudent']);
-
-    Route::post('/sections/save', [SectionController::class, 'store']);
-
-    Route::post('/sections/import', [SectionController::class, 'import']);
-
-    Route::get('/sections/{section}', [SectionController::class, 'show']);
-
-    Route::get('/sections/edit/{section}', [SectionController::class, 'getSection']);
-
-    Route::get('/sections/{section}/edit', [SectionController::class, 'edit']);
-
-    Route::put('/sections/{section}/update', [SectionController::class, 'update']);
-
-    Route::delete('/sections/{section}/delete', [SectionController::class, 'delete']);
-
-    Route::post('/sections/{section}/importstudent', [SectionController::class, 'importStudent']);
-
-    Route::post('/sections/{section}/student/save', [SectionController::class, 'addStudent']);
-
-
-    //              SECTION STUDENTS
-
-    Route::get('/sections/students/all', [SectionStudentsController::class, 'getStudents']);
-
-    Route::post('/sections/students/save', [SectionStudentsController::class, 'store']);
-
-    Route::delete('/sections/students/remove', [SectionStudentsController::class, 'remove']);
-
-
-    //             SECTION SUBJECTS
-
-    Route::post('/sections/{section}', [SectionSubjectsController::class, 'store']);
-
-    Route::get('/sections/subjects/all', [SectionSubjectsController::class, 'getSubjects']);
-
-    Route::delete('/sections/subjects/remove', [SectionSubjectsController::class, 'remove']);
-
-
-    //                        PARENTS
+    // SECTION SUBJECTS
+    Route::controller(SectionSubjectsController::class)->group(function () {
+        Route::post('/sections/{section}', 'store')->name('section.subjects.store');
+        Route::get('/sections/subjects/all', 'getSubjects')->name('section.subjects.getSubjects');
+        Route::delete('/sections/subjects/remove', 'remove')->name('section.subjects.remove');
+    });
+    
+    // PARENTS
     Route::get('/parents', [GuardianController::class, 'index']);
 
+    // DEPARTMENTS
+    Route::controller(DepartmentController::class)->group(function() {
+        Route::get('/departments', 'index')->name('departments.index');
+        Route::post('/departments/save', 'store')->name('departments.store');
+        Route::get('/departments/edit/{department}', 'getDepartment')->name('departments.getDepartment');
+        Route::delete('/departments/{department}/delete', 'delete')->name('departments.delete');
+        Route::put('/departments/{department}/update', 'update')->name('departments.update');
+    });
 
-    //                         DEPARTMENTS
-    Route::get('/departments', [DepartmentController::class, 'index']);
+    // SUBJECTS
+    Route::controller(SubjectsController::class)->group(function() {
+        Route::get('/subjects', 'index')->name('subjects.index');
+        Route::post('/subjects/save', 'store')->name('subjects.store');
+        Route::get('/subjects/edit/{subject}', 'getSubject')->name('subjects.getSubject');
+        Route::put('/subjects/{subject}/update', 'update')->name('subjects.update');
+        Route::delete('/subjects/{subject}/delete', 'delete')->name('subjects.delete');
+    });
 
-    Route::post('/departments/save', [DepartmentController::class, 'store']);
-
-    Route::get('/departments/edit/{department}', [DepartmentController::class, 'getDepartment']);
-
-    Route::delete('/departments/{department}/delete', [DepartmentController::class, 'delete']);
-
-    Route::put('/departments/{department}/update', [DepartmentController::class, 'update']);
-
-
-    //                         SUBJECTS
-
-    Route::get('/subjects', [SubjectsController::class, 'index']);
-
-    Route::post('/subjects/save', [SubjectsController::class, 'store']);
-
-    Route::get('/subjects/edit/{subject}', [SubjectsController::class, 'getSubject']);
-
-    Route::put('/subjects/{subject}/update', [SubjectsController::class, 'update']);
-
-    Route::delete('/subjects/{subject}/delete', [SubjectsController::class, 'delete']);
-
-
-    //                       SETTINGS
-
+    // SETTINGS
     Route::get('/settings', [SettingsController::class, 'index']);
 
-
-
-    //               SCHOOL YEAR
-
-    Route::get('/schoolyears', [SchoolYearController::class, 'getSchoolYears']);
-
-    Route::post('/schoolyears/new', [SchoolYearController::class, 'store']);
-
-    Route::put('/schoolyears/change', [SchoolYearController::class, 'changeSchoolYear']);
-
-
-
-    //               LOGS
+    // SCHOOL YEAR
+    Route::controller(SchoolYearController::class)->group(function () {
+        Route::get('/schoolyears', 'getSchoolYears')->name('schoolyear');
+        Route::post('/schoolyears/new', 'store')->name('schoolyear.store');
+        Route::put('/schoolyears/change','changeSchoolYear')->name('schoolyear.change');
+    });
+   
+    // LOGS
     Route::get('/logs', [LogsController::class, 'index']);
 
-    //                 ARCHIVE
-    Route::get('/archive', [ArchiveController::class, 'index']);
-
-    Route::get('/archive/student/{id}', [ArchiveController::class, 'showArchivedStudent']);
-
-    Route::get('/archive/faculty/{id}', [ArchiveController::class, 'showArchivedFaculty']);
-
+    // ARCHIVE
+    Route::controller(ArchiveController::class)->group(function () {
+        Route::get('/archive', 'index')->name('archive.index');
+        Route::get('/archive/student/{id}', 'showArchivedStudent')->name('archive.student.show');
+        Route::get('/archive/faculty/{id}', 'showArchivedFaculty')->name('archive.faculty.show');
+    });
 
 });
 
@@ -278,14 +201,16 @@ Route::middleware(['auth', 'role:faculty'])->group(function () {
 
 
 Route::middleware(['auth', 'role:student'])->group(function () {
+
     Route::controller(PortalController::class)->group(function () {
         Route::get('/portal/classes', 'portal')->name('student.portal');
         Route::get('/account/settings', 'account')->name('student.profile');
     });
+
 });
 
-
 Route::middleware(['auth', 'role:lr'])->group(function () { 
+
     Route::prefix('lr')->group(function () {
         Route::controller(LrController::class)->group(function () {
             Route::get('/video-lesson', 'videoLesson')->name('lr.video');

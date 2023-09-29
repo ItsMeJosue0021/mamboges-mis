@@ -2,7 +2,7 @@
     <section>
         <div class="p-4 flex flex-col space-y-2">
             <div class="flex flex-col space-y-2">
-                <a id="back" class="flex w-fit justify-start items-center space-x-2 py-1 px-4 group rounded bg-gray-200 hover:bg-gray-300 cursor-pointer group" href="/classes">
+                <a href="{{ route('update.list') }}" id="back" class="flex w-fit justify-start items-center space-x-2 py-1 px-4 group rounded bg-gray-200 hover:bg-gray-300 cursor-pointer group">
                     <i class='bx bx-left-arrow-alt text-black text-lg '></i>
                     <p class="poppins text-sm text-black">Back</p>
                 </a>
@@ -18,7 +18,7 @@
                                         <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                     @enderror
                                 </label>
-                                <input name="title" id="title" type="text" placeholder="Title here.."
+                                <input name="title" id="title" type="text" placeholder="Title here.."  value="{{ old('title') }}"
                                 class="text-sm rounded border-2 border-gray-200">
                             </div>
                             <div class="flex flex-col space-y-1">
@@ -36,7 +36,9 @@
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                 @enderror
                             </label>
-                            <x-forms.tinymce-editor/>
+                            <textarea name="description" id="myeditorinstance" placeholder="Write something..">
+                                {{ old('description') }}
+                            </textarea>
                         </div>
                         <div class="pt-4">
                             <button type="submit" class="poppins text-sm text-white px-6 py-2 rounded bg-blue-700">POST</button>

@@ -15,8 +15,10 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\FacultySeeder;
 use Database\Seeders\QuarterSeeder;
 use Database\Seeders\SubjectSeeder;
+use Database\Seeders\UpdatesSeeder;
 use Database\Seeders\DepartmentSeeder;
 use Database\Seeders\SchoolYearSeeder;
+use Database\Seeders\UpdateImageSeeder;
 use Database\Seeders\EvaluationCriteriaSeeder;
 
 class DatabaseSeeder extends Seeder
@@ -56,6 +58,10 @@ class DatabaseSeeder extends Seeder
         $this->call(QuarterSeeder::class);
 
         $this->call(TagSeeder::class);
+
+        $this->call(UpdatesSeeder::class);
+
+        $this->call(UpdateImageSeeder::class);
 
     }
 }

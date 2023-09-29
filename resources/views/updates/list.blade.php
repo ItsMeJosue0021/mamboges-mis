@@ -1,9 +1,9 @@
 <x-guidance-layout>
-    <section class="border-b rounded px-8 mb-5 sticky top-[85px] bg-white">
+    <section class="border-b rounded px-8 sticky top-[85px] bg-white">
         <div class="flex items-center justify-between py-4">
             <div class="">
-                <a id="create" class="flex items-center poppins text-sm text-white bg-green-500 hover:bg-green-600 hover:text-white rounded py-2 px-4" href="/updates/create">
-                    <i class='bx bx-plus text-base font-bold mr-2'></i>
+                <a id="create" class="flex items-center text-sm poppins text-white bg-blue-600 hover:bg-blue-700 rounded py-2 px-4" href="/updates/create">
+                    <i class='bx bx-plus text-sm font-bold mr-2'></i>
                     Create new
                 </a>
             </div>
@@ -11,7 +11,7 @@
                 <form action="/updates/list" class="flex w-full justify-between space-x-4">
                     <input name="search" type="text" placeholder="Search for news and announcements" 
                     class="w-full poppins text-sm focus:outline-none focus:bg-gray-100 border-gray-300 py-2 px-4 rounded">
-                    <button type="submit" class="poppins text-sm text-white bg-blue-500 hover:bg-blue-600 hover:text-white rounded py-2 px-6">Search</button>
+                    <button type="submit" class="poppins text-sm text-white bg-blue-600 hover:bg-blue-700 hover:text-white rounded py-2 px-6">Search</button>
                 </form>
             </div>
         </div>

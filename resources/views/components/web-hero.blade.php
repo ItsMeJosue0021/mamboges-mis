@@ -22,10 +22,10 @@
                         ELEMENTARY SCHOOL
                         </p>
                     </div>
-                    <p class="poppins text-base font-light text-left text-gray-500 " 
+                    <p class="poppins text-base font-light text-left text-gray-600 " 
                     data-aos="fade-right" 
                     data-aos-delay="450">
-                    Mambog Elementary School is located in Baranggay Mambog III, Bacoor City. Lorem ipsum dolor sit amet adipisicing elit.
+                    Mambog Elementary School is located in Baranggay Mambog III, Bacoor, Cavite, Region IV CALABARZON. 
                     </p>
                     
                     <div class="pt-3 flex justify-left">

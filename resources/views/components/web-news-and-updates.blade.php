@@ -1,4 +1,4 @@
-<section class="bg-gray-100">
+<section class="bg-gray-50">
     <div class="max-w-[1300px] mx-auto px-4">
         <div class="flex items-start space-x-4 justify-between py-24">
 
@@ -11,10 +11,10 @@
                             {{$firstupdate->tag->tag}}
                         </a>
                         <h1 class="poppins font-semibold text-lg text-gray-800">
-                            {{substr($firstupdate->title, 0, 60)}}{{strlen($firstupdate->title) > 60 ? "..." : ""}}
+                            {{substr($firstupdate->title, 0, 70)}}{{strlen($firstupdate->title) > 70 ? "..." : ""}}
                         </h1>
                         <p class="poppins text-sm text-gray-600 ">
-                            {!! substr($firstupdate->description, 0, 45) !!}{{ strlen($firstupdate->description) > 45 ? "..." : "" }}
+                            {!! substr($firstupdate->description, 0, 90) !!}{{ strlen($firstupdate->description) > 90 ? "..." : "" }}
                         </p>
                         <div class="flex items-center justify-start py-2">
                             <a href="" class="poppins px-2 py-1 text-xs text-blue-600 border border-blue-600 hover:bg-blue-600 hover:text-white ">Read More</a>
@@ -33,7 +33,7 @@
                                 {{$update->tag->tag}}
                             </a>
                             <h1 class="poppins font-semibold text-lg text-gray-800">
-                                {{substr($update->title, 0, 30)}}{{strlen($update->title) > 30 ? "..." : ""}}
+                                {{substr($update->title, 0, 25)}}{{strlen($update->title) > 25 ? "..." : ""}}
                             </h1>
                             <div class="poppins text-sm text-gray-600 ">
                                 {!! substr($update->description, 0, 45) !!}{{ strlen($update->description) > 45 ? "..." : "" }}
