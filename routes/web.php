@@ -1,5 +1,4 @@
 <?php
-use App\Http\Controllers\VideoLessonController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LrController;
 use App\Http\Controllers\LogsController;
@@ -20,6 +19,8 @@ use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\ClassRecordController;
+use App\Http\Controllers\UpdateImageController;
+use App\Http\Controllers\VideoLessonController;
 use App\Http\Controllers\SectionStudentsController;
 use App\Http\Controllers\SectionSubjectsController;
 use App\Http\Controllers\StudentAccess\PortalController;
@@ -80,7 +81,10 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
             Route::put('/{update}/update', 'update')->name('update.update');
             Route::delete('/{update}/delete', 'delete')->name('update.delete');
 
-            Route::delete('/{update}/delete-image', 'deleteImage')->name('update.deleteImage');
+        });
+
+        Route::controller(UpdateImageController::class)->group(function() {
+            Route::delete('/{update}/delete-image/{image}', 'destroy')->name('update.deleteImage');
         });
     });
 

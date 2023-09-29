@@ -113,11 +113,69 @@
                                 <div class="p-1 rounded-md flex items-center justify-between  border border-gray-300">
                                     <img class="w-10 h-10 rounded" src="{{asset('storage/' . $updateImage->url)}}" alt="">
                                     <p class="text-xs text-gray-500">{{ substr($updateImage->url, 0, 28) }}{{ strlen($updateImage->url) > 28 ? "..." : "" }}</p>
-                                    <button class="rounded px-2 py-1 bg-gray-50 hover:bg-red-100">
+                                    <a data-image-id="{{ $updateImage->id}}" data-update-id="{{ $update->id }}" class="delete-button rounded px-2 py-1 bg-gray-50 hover:bg-red-100">
                                         <i class='bx bx-x text-lg text-red-300 hover:text-red-600'></i>
-                                    </button>
+                                    </a>
                                 </div>
                             @endforeach
+
+                            <script type="module">
+                                // $(document).ready(function () {
+                                    // Attach a click event handler to the delete button
+                                    $(".delete-button").click(function () {
+                                        // Extract the data attributes from the button
+                                        var imageId = $(this).data("image-id");
+                                        var updateId = $(this).data("update-id"); // Assuming you have a data-update-id attribute on the button
+
+                                        // Send the DELETE request via AJAX
+                                        var csrfToken = $('meta[name="csrf-token"]').attr("content");
+
+                                        $.ajax({
+                                            type: "DELETE",
+                                            url: "/updates/" + updateId + "/delete-image/" + imageId,
+                                            
+                                            headers: {
+                                                "X-CSRF-TOKEN": csrfToken, // Include the CSRF token in the headers
+                                            },
+                                            success: function (response) {
+                                                var message;
+                                                if (response.status === 'success') {
+                                                    message =  $('<div class="fixed top-5 left-1/2 bg-green-700 transform -translate-x-1/2 z-50 rounded-md">' +
+                                                                    '<div class="flex space-x-4 items-center border-2 border-green-400 bg-green-100 px-4 py-2 rounded-md">' +
+                                                                        '<i class="bx bx-check text-green-600 text-4xl"></i>' +
+                                                                        '<p class="poppins text-sm text-green-700">' + response.message + '</p>' +
+                                                                    '</div>' +
+                                                                '</div>');
+                                                    setTimeout(function(){
+                                                        message.fadeOut('slow', function() {
+                                                            location.reload();
+                                                        });
+                                                    }, 1000);
+                                                } else {
+                                                    message = $('<div class="fixed top-5 left-1/2 bg-red-700 transform -translate-x-1/2 z-50 rounded-md">' +
+                                                                    '<div class="flex space-x-4 items-center border-2 border-red-400 bg-red-100 px-4 py-2 rounded-md">' +
+                                                                        '<i class="bx bx-block text-red-500 text-4xl"></i>' +
+                                                                        '<p class="poppins text-sm text-red-700">' + response.message + '</p>' +
+                                                                    '</div>' +
+                                                                '</div>');  
+                                                }
+
+                                                $('#container').append(message);
+                                                
+                                                setTimeout(function(){
+                                                    message.fadeOut('slow', function() {
+                                                        message.remove();
+                                                    });
+                                                }, 3000);
+                                            },
+                                            error: function (xhr, status, error) {
+                                                // Handle the error response here
+                                                console.error(error);
+                                            }
+                                        });
+                                    });
+                                // });
+                            </script>
                         </div>
 
                         <script>

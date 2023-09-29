@@ -26,7 +26,7 @@
 </head>
 
 <body>
-    <section class="w-full min-w-900px">
+    <section id="container" class="w-full min-w-900px">
         <div class="h-fit container mx-auto flex">
             <!-- sidebar -->
             <div class="h-screen overflow-y-auto flex flex-grow border-r border-gray-300 bg-white shadow fixed z-30">
