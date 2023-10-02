@@ -1,8 +1,7 @@
 <?php
 
-use App\Models\SchoolYear;
-use App\Models\Section;
-use App\Models\Student;
+use App\Models\User;
+use App\Models\Department;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -14,11 +13,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('section_students', function (Blueprint $table) {
+        Schema::create('faculties', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Student::class)->constrained();
-            $table->foreignIdFor(Section::class)->constrained();
-            $table->foreignIdFor(SchoolYear::class)->constrained();
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Department::class)->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('section_students');
+        Schema::dropIfExists('faculties');
     }
 };

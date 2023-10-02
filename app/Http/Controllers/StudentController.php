@@ -15,11 +15,12 @@ use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {
-    public function index() {
+    public function index()
+    {
 
-        $students = Student::orderBy('grade_level')->filter(Request(['search']))->where('is_archived', false)->get();
+        $students = Student::latest()->filter(Request(['search']))->get();
 
-        $sections = Section::where('is_archived', false)->get();
+        $sections = Section::all();
 
         $current_school_year = SchoolYear::where('is_current', true)->first();
 
@@ -30,26 +31,26 @@ class StudentController extends Controller
         ]);
     }
 
-    public function getStudents(Request $request) {
+    public function getStudents(Request $request)
+    {
 
         $current_school_year = SchoolYear::where('is_current', true)->first();
 
-        if($request->ajax())
-        {
+        if ($request->ajax()) {
             $output = '';
             $query = $request->get('query');
             $gradeLevel = $request->get('grade_level');
 
-            if($query != '') {
+            if ($query != '') {
                 $data = Student::where('is_archived', false)
-                    ->where('first_name', 'like', '%'.$query.'%')
-                    ->orWhere('last_name', 'like', '%'.$query.'%')
-                    ->orWhere('middle_name', 'like', '%'.$query.'%')
-                    ->orWhere('suffix', 'like', '%'.$query.'%')
-                    ->orWhere('lrn', 'like', '%'.$query.'%')
+                    ->where('first_name', 'like', '%' . $query . '%')
+                    ->orWhere('last_name', 'like', '%' . $query . '%')
+                    ->orWhere('middle_name', 'like', '%' . $query . '%')
+                    ->orWhere('suffix', 'like', '%' . $query . '%')
+                    ->orWhere('lrn', 'like', '%' . $query . '%')
                     ->orderBy('id', 'desc')
                     ->paginate(10);
-                    
+
             } elseif (!empty($gradeLevel)) {
 
                 $sectionStudents = SectionStudents::where('grade_level', $gradeLevel)
@@ -76,15 +77,14 @@ class StudentController extends Controller
                 // ->paginate(10);
 
                 $data = Student::where('is_archived', false)
-                ->orderBy('id', 'desc')
-                ->paginate(10);
+                    ->orderBy('id', 'desc')
+                    ->paginate(10);
             }
-             
+
             $total_row = $data->total();
 
             if ($total_row > 0) {
-                foreach($data as $row)
-                {
+                foreach ($data as $row) {
                     $sections = Section::where('is_archived', false)->get();
 
                     $imageURL = '';
@@ -99,14 +99,14 @@ class StudentController extends Controller
                     }
 
                     $output .= '
-                        <a class="p-2 lg:w-1/3 md:w-1/2 w-full" href="/students/'.$row->id.'">
+                        <a class="p-2 lg:w-1/3 md:w-1/2 w-full" href="/students/' . $row->id . '">
                             <div class="h-full flex items-center space-x-2 border-gray-200 hover:border-gray-400 hover:shadow border p-4 rounded-lg">
                                 <div class="w-12 h-12 bg-gray-100 rounded-full mr-4 border border-gray-400">
                                     <img class="w-full h-full rounded-full" src="' . $imageURL . '">
                                 </div>
                                 <div class="flex-grow">
-                                    <h2 class="no-underline poppins text-base text-gray-900 title-font font-medium">'.$row->first_name.' '.$row->middle_name.' '.$row->last_name.'</h2>
-                                    <p class="no-underline poppins text-sm text-gray-500">LRN: '.$row->lrn.'</p>
+                                    <h2 class="no-underline poppins text-base text-gray-900 title-font font-medium">' . $row->first_name . ' ' . $row->middle_name . ' ' . $row->last_name . '</h2>
+                                    <p class="no-underline poppins text-sm text-gray-500">LRN: ' . $row->lrn . '</p>
                                 </div>
                             </div>
                         </a>    
@@ -130,7 +130,7 @@ class StudentController extends Controller
             $allStudentCount = $allStudents->count();
 
             $data = array(
-                'student_data'  => $output,
+                'student_data' => $output,
                 'enrolled' => $total_row,
                 'pagination' => $pagination,
                 'total' => $allStudentCount
@@ -141,7 +141,8 @@ class StudentController extends Controller
     }
 
 
-    public function show(Student $student) {
+    public function show(Student $student)
+    {
 
         $current_school_year = SchoolYear::where('is_current', true)->first();
 
@@ -154,7 +155,7 @@ class StudentController extends Controller
         }
 
         $parent = Guardian::where('id', $student->parent_id)->first();
-        
+
         return view('student.show', [
             'student' => $student,
             'section' => $section,
@@ -162,9 +163,10 @@ class StudentController extends Controller
             'student_section' => $studentSection
         ]);
     }
-   
 
-    public function store(Request $request) {
+
+    public function store(Request $request)
+    {
 
         $existingStudent = Student::where('lrn', $request->lrn)->where('is_archived', false)->first();
 
@@ -194,7 +196,7 @@ class StudentController extends Controller
         $current_school_year = SchoolYear::where('is_current', true)->first();
 
         if (!is_null($guardian)) {
-            
+
             $studentArray = [
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
@@ -208,20 +210,20 @@ class StudentController extends Controller
                 'parent_id' => $guardian->id,
             ];
 
-    
+
             $studentAccount = [
                 'name' => $request->first_name . " " . $request->last_name . " " . $request->middle_name,
                 'username' => $request->lrn,
                 'password' => Hash::make($request->lrn),
             ];
 
-            if ($request->hasFile('image') ) {
+            if ($request->hasFile('image')) {
                 $studentArray['image'] = $request->file('image')->store('profile', 'public');
                 $studentAccount['image'] = $request->file('image')->store('profile', 'public');
             }
 
             $student = Student::create($studentArray);
-            
+
             $account = User::create($studentAccount);
 
             if (!is_null($student) && !is_null($account)) {
@@ -234,33 +236,34 @@ class StudentController extends Controller
         } else {
             Logs::addToLog('Failed to add the guradian and new student');
             return response()->json(['success' => false, 'message' => 'Saving unsuccessful, please check the details of Guirdian.']);
-        }  
+        }
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         $student = Student::find($id);
         $guardian = Guardian::find($student->parent_id);
-    
-        if(!$student) {
+
+        if (!$student) {
             return response()->json(['success' => false, 'message' => 'Student not found']);
         }
-    
+
         $lrn = $request->lrn;
         $existingStudent = Student::where('lrn', $lrn)->where('id', '!=', $id)->where('is_archived', false)->first();
-    
+
         if ($existingStudent) {
             return response()->json(['success' => false, 'message' => 'LRN is already assigned to another student']);
         }
-    
+
         $email = $request->email;
         $existingEmail = Guardian::where('email', $email)
-        ->where('id', '!=', $student->parent_id )
-        ->first();
-    
+            ->where('id', '!=', $student->parent_id)
+            ->first();
+
         if ($existingEmail) {
             return response()->json(['success' => false, 'message' => 'The same email is already registered']);
         }
-    
+
         $studentGuardian = [
             'first_name' => $request->parent_first_name,
             'last_name' => $request->parent_last_name,
@@ -271,11 +274,11 @@ class StudentController extends Controller
             'contact_no' => $request->parent_contact_no,
             'address' => $request->address,
         ];
-    
+
         $guardian->update($studentGuardian);
-    
+
         $current_school_year = SchoolYear::where('is_current', true)->first();
-    
+
         if (!is_null($guardian)) {
             $studentArray = [
                 'first_name' => $request->first_name,
@@ -289,12 +292,12 @@ class StudentController extends Controller
                 'parent_id' => $guardian->id,
             ];
 
-            if ($request->hasFile('image') ) {
+            if ($request->hasFile('image')) {
                 $studentArray['image'] = $request->file('image')->store('profile', 'public');
             }
-    
+
             $student->update($studentArray);
-    
+
             if ($student->wasChanged() || $guardian->wasChanged()) {
 
                 $studUserAccount = User::where('username', $student->lrn)->first();
@@ -305,7 +308,7 @@ class StudentController extends Controller
                     'password' => Hash::make($request->lrn),
                 ];
 
-                if ($request->hasFile('image') ) {
+                if ($request->hasFile('image')) {
                     $studentAccount['image'] = $request->file('image')->store('profile', 'public');
                 }
 
@@ -323,8 +326,9 @@ class StudentController extends Controller
         }
     }
 
-    public function delete(Request $request, $id) {
-        
+    public function delete(Request $request, $id)
+    {
+
         $student = Student::where('id', $id)->first();
 
         $lastClassAttended = SectionStudents::where('student_id', $student->id)->latest()->first();
@@ -334,7 +338,7 @@ class StudentController extends Controller
 
         if (!is_null($lastClassAttended)) {
             $grade_level = $lastClassAttended->grade_level;
-            $section = $lastClassAttended->section_id; 
+            $section = $lastClassAttended->section_id;
         }
 
         if ($student) {
@@ -372,7 +376,7 @@ class StudentController extends Controller
                 if ($studentDeleted && $lastClassAttendedDeleted) {
 
                     Logs::addToLog('Student has been moved to archive | LRN [' . $student->lrn . ']');
-                    
+
                     return response()->json(['success' => true, 'message' => 'Student deleted successfully']);
 
                 } else {
@@ -386,5 +390,5 @@ class StudentController extends Controller
         }
 
     }
-    
+
 }

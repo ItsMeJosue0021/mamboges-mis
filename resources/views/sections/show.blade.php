@@ -73,8 +73,8 @@
 
         {{-- ADD STUDENT MODAL --}}
         <div id="add-student-modal" class="hidden absolute top-0 left-0 w-full h-full">
-            <div class="flex flex-col w-full h-full items-center space-y-6  bg-black bg-opacity-5 pt-8"> 
-                <div class="flex flex-col w-fit bg-white p-6 rounded-md shadow-2xl">
+            <div class="flex flex-col w-full h-full items-center space-y-6  bg-black bg-opacity-5"> 
+                <div class="flex flex-col h-full w-full bg-white p-6 rounded-md shadow-2xl">
                     <div class="w-fit flex flex-col">
                         <div class=" flex space-x-4 mb-6">
                             <div class="">
@@ -87,13 +87,20 @@
                             </div>
 
                         </div>
+
+                        <x-scripts.modal-search-student />
     
                         <div class="flex space-x-4">
-                            <div class="w-700px h-400px overflow-auto">
-                                <div id="students-container">
+                            <div class="w-[500px] h-[500px] overflow-y-auto border-r border-gray-300">
+                                <div id="students-list-container">
                                     
                                 </div>
                             </div>
+
+                            <script type="module">
+
+                            </script>
+
                             <div id="students-list2" class="w-400px h-400px overflow-auto">
                                 
                             </div>
@@ -116,10 +123,10 @@
         </div>
 
          {{-- ADD SUBJECT MODAL --}}
-         <div id="add-subject-modal" class="hidden absolute top-0 left-0 w-full h-full">
+         {{-- <div id="add-subject-modal" class="hidden absolute top-0 left-0 w-full h-full">
             <div class="flex flex-col w-full h-full items-center justify-start space-y-6 bg-black bg-opacity-5 pt-40">
                 <div class="flex flex-col w-fit items-center justify-center space-y-6 bg-white p-6 rounded-md shadow-lg">
-                    {{-- action="javascript:void(0)" /sections/{{$section->id}}--}}
+                    
                     <form id="add-subject-form" method="POST" action="javascript:void(0)" class="w-700px flex flex-col space-y-3">
                         @csrf
                         <div class="w-full flex">
@@ -170,11 +177,42 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </x-guidance-layout>
 
-<script type="module"  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-<script type="module"  src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-<script type="module" src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
-<script type="module" src="{{ asset('js/section_fetch_student.js') }}"></script>
+
+
+<script type="module">
+    const add_student_btn = $('#add-student');
+    const add_student_modal = $('#add-student-modal');
+
+    add_student_btn.click(function() {
+        add_student_modal.removeClass('hidden');
+    });
+
+    const add_cancel = $('#add-cancel');
+    const done = $('#done');
+
+    add_cancel.click(function() {
+        add_student_modal.addClass('hidden');
+    });
+
+    done.click(function() {
+        add_student_modal.addClass('hidden');
+    });
+    
+
+    const add_subject_btn = $('#add-subject');
+    const add_subject_modal = $('#add-subject-modal');
+
+    add_subject_btn.click(function() {
+        add_subject_modal.removeClass('hidden');
+    });
+
+    const add_subject_cancel = $('#add-subject-cancel');
+
+    add_subject_cancel.click(function() {
+        add_subject_modal.addClass('hidden');
+    });
+</script>

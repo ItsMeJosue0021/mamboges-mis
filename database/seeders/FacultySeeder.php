@@ -15,23 +15,12 @@ class FacultySeeder extends Seeder
     {
         $faculties = [
             [
-                'first_name' => 'Joshua',
-                'last_name' => 'Salceda',
-                'middle_name' => 'C',
-                'sex' => 'male',
-                'email' => 'joshuasalceda0021@gmail.com',
-                'contact_no' => '09123456789',
-                'school_year_id' => 1,
-                'department_id' => 1,
+                'user_id' => 6,
+                'department_id' => 2,
+                
             ],
             [
-                'first_name' => 'Rad Jeremy',
-                'last_name' => 'Simon',
-                'middle_name' => 'C',
-                'sex' => 'male',
-                'email' => 'rad@gmail.com',
-                'contact_no' => '09123456789',
-                'school_year_id' => 1,
+                'user_id' => 7,
                 'department_id' => 1,
             ],
 

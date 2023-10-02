@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Department;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,9 +14,8 @@ return new class extends Migration
     {
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
-            $table->string('subject_name');
-            $table->string('grade_level')->nullable();
-            $table->boolean('is_archived')->default(false);
+            $table->string('name');
+            $table->foreignIdFor(Department::class)->constrained();
             $table->timestamps();
         });
     }

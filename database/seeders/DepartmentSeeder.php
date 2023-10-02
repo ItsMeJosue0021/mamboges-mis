@@ -13,34 +13,33 @@ class DepartmentSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('departments')->insert([
-            'department_name' => 'English',
-            'department_head' => 6,
-        ]);
+        $departments = [
+            [
+                'name' => 'English'
+            ],
+            [
+                'name' => 'Math'
+            ],
+            [
+                'name' => 'Filipino'
+            ],
+            [
+                'name' => 'Science'
+            ],
+            [
+                'name' => 'TLE'
+            ],
+            [
+                'name' => 'MAPEH'
+            ],  
+        ];
 
-        DB::table('departments')->insert([
-            'department_name' => 'Math',
-            'department_head' => 5,
-        ]);
-
-        DB::table('departments')->insert([
-            'department_name' => 'Filipino',
-            'department_head' => 4,
-        ]);
-
-        DB::table('departments')->insert([
-            'department_name' => 'Science',
-            'department_head' => 3,
-        ]);
-
-        DB::table('departments')->insert([
-            'department_name' => 'TLE',
-            'department_head' => 2,
-        ]);
-
-        DB::table('departments')->insert([
-            'department_name' => 'MAPEH',
-            'department_head' => 1,
-        ]);
+        foreach ($departments as $department) {
+            DB::table('departments')->insert([
+                'name' => $department['name'],
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
     }
 }

@@ -19,30 +19,17 @@ use Illuminate\Support\Facades\Hash;
 
 class SectionController extends Controller
 {
-    // Show All Sections -------------------------------------------------------------------------------------------------------------------------
+   
     public function index() {
 
-        $sections_all = Section::all();
 
-        $sections = Section::where('is_archived', false)
-        ->orderBy('grade_level')->filter(Request(['search']))
-        ->get();
 
-        $advisers = Faculty::whereNotNull('id')
-        ->whereIn('id', $sections_all->pluck('adviser_faculty_id')->unique())
-        ->get()
-        ->keyBy('id');
-
-        $teachers = Faculty::whereNotIn('id', $advisers->keys())
-        ->orderBy('last_name')
-        ->get();
-
-        $all_teachers = Faculty::whereNotNull('id')->get();
-        
-        return view('sections.index', compact('sections', 'advisers', 'teachers', 'all_teachers'));
+        return view('sections.index', [
+            'sections' => Section::all()
+        ]);
     }
 
-    // Search Students -------------------------------------------------------------------------------------------------------------------------
+    
     public function searchStudents(Request $request, $section_id)
     {
         $search = $request->input('search');
@@ -55,38 +42,16 @@ class SectionController extends Controller
         ])->render();
     }
 
-    // Show Section Details -------------------------------------------------------------------------------------------------------------------------
     public function show(Section $section) {
         
-        $sections_all = Section::where('is_archived', false)->get();
-
-        $students = Student::where('section_id', $section->id)->where('is_archived', false)->get();
-
-        $all_students = Student::where('is_archived', false)->filter(Request(['search', 'grade_level']))->get();
-
-        $studentsCount = $students->count();
-
-        $faculties = Faculty::where('is_archived', false)->get();
-
-        $subjects = Subjects::where('is_archived', false)->get();
-
-        $advisers = Faculty::whereNotNull('id')
-        ->where('is_archived', false)
-        ->whereIn('id', $sections_all->pluck('adviser_faculty_id')->unique())
-        ->get()
-        ->keyBy('id');
+       
 
         $schoolYear = SchoolYear::where('is_current', true)->first();
 
         return view('sections.show', [
             'section' => $section,
-            'adviser' => $advisers,
-            'students' => $students,
-            'studentCount' => $studentsCount,
             'school_year' => $schoolYear,
-            'all_students' => $all_students,
-            'faculties' => $faculties,
-            'subjects' => $subjects
+           
         ]);
     }
 
@@ -266,59 +231,93 @@ class SectionController extends Controller
 
     }
 
-    // Search Students -------------------------------------------------------------------------------------------------------------------------
     public function searchStudent(Request $request)
     {
-        if($request->ajax())
-        {
-            $output = '';
-            $query = $request->get('query');
-            if($query != '') {
-                $data = Student::where('first_name', 'like', '%'.$query.'%')
-                    ->orWhere('last_name', 'like', '%'.$query.'%')
-                    ->orWhere('middle_name', 'like', '%'.$query.'%')
-                    ->orWhere('suffix', 'like', '%'.$query.'%')
-                    ->orWhere('lrn', 'like', '%'.$query.'%')
-                    ->where('is_archived', false)
+        if ($request->ajax()) {
+            $searchQuery = $request->get('query');
+    
+            if ($searchQuery != '') {
+                $students = Student::where('lrn', 'like', '%' . $searchQuery . '%')
+                    ->orWhereHas('user.profile', function ($query) use ($searchQuery) {
+                        $query->where('lastName', 'like', '%' . $searchQuery . '%')
+                            ->orWhere('firstName', 'like', '%' . $searchQuery . '%')
+                            ->orWhere('middleName', 'like', '%' . $searchQuery . '%');
+                    })
+                    ->where('isEnrolled', false)
                     ->orderBy('id', 'desc')
                     ->get();
-                    
+    
             } else {
-                $data = Student::where('is_archived', false)
-                    ->orderBy('id', 'desc')
-                    ->get();
+                $students = Student::latest()->where('isEnrolled', false)->get();
             }
-             
-            $total_row = $data->count();
-            if($total_row > 0){
-                foreach($data as $row)
-                {
-                    $output .= '
-                    <div class="flex justify-between space-x-6 px-2 py-2 border-t border-gray-300" >
-                        <div class="flex space-x-2">
-                            <p class="poppins text-base text-gray-700">'.$row->first_name.'</p>
-                            <p class="poppins text-base text-gray-700">'.$row->last_name.'</p>
-                            <p class="poppins text-base text-gray-700">'.$row->middle_name.'</p>
-                        </div>
-                        <div id="button-container">
-                            <button id="'.$row->id.'" class="addstudentbtn poppins text-xs text-blue-500 py-1 px-2 rounded border border-blue-500 hover:bg-blue-500 hover:text-white">enroll</button>
-                        </div>
-                    </div>
-                    ';
-                }
-            } else {
-                $output = '
-                <div>
-                    <p class="poppins text-red-500 text-sm text-center">No Data Found</p>
-                </div>
-                ';
+    
+            $data = [];
+    
+            foreach ($students as $student) {
+                $data[] = [
+                    'id' => $student->id,
+                    'lrn' => $student->lrn, 
+                    'firstName' => $student->user->profile->firstName, 
+                    'middleName' => $student->user->profile->middleName, 
+                    'lastName' => $student->user->profile->lastName, 
+                ];
             }
-            $data = array(
-                'student_data'  => $output
-            );
-            echo json_encode($data);
+    
+            return response()->json($data);
         }
     }
+
+
+
+    // {
+    //     if($request->ajax())
+    //     {
+    //         $output = '';
+    //         $searhQuery = $request->get('query');
+    //         if($searhQuery != '') {
+    //             $data = Student::Where('lrn', 'like', '%' . $searhQuery . '%')
+    //                 ->orwhereHas('user.profile', function ($query) use ($searhQuery) {
+    //                 $query->where('lastNname', 'like', '%' . $searhQuery . '%')
+    //                         ->orWhere('firstName', 'like', '%' . $searhQuery . '%')
+    //                         ->orWhere('middleName', 'like', '%' . $searhQuery . '%');
+    //             })
+    //             ->orderBy('id', 'desc')
+    //             ->get();                
+                    
+    //         } else {
+    //             $data = Student::orderBy('id', 'desc')->get();
+    //         }
+             
+    //         $total_row = $data->count();
+    //         if($total_row > 0){
+    //             foreach($data as $row)
+    //             {
+    //                 $output .= '
+    //                 <div class="flex justify-between space-x-6 px-2 py-2 border-t border-gray-300" >
+    //                     <div class="flex space-x-2">
+    //                         <p class="poppins text-base text-gray-700">'.$row->user->profile->firstName.'</p>
+    //                         <p class="poppins text-base text-gray-700">'.$row->user->profile->middleName.'</p>
+    //                         <p class="poppins text-base text-gray-700">'.$row->user->profile->lastName.'</p>
+    //                     </div>
+    //                     <div id="button-container">
+    //                         <button id="'.$row->id.'" class="addstudentbtn poppins text-xs text-blue-500 py-1 px-2 rounded border border-blue-500 hover:bg-blue-500 hover:text-white">enroll</button>
+    //                     </div>
+    //                 </div>
+    //                 ';
+    //             }
+    //         } else {
+    //             $output = '
+    //             <div>
+    //                 <p class="poppins text-red-500 text-sm text-center">No Data Found</p>
+    //             </div>
+    //             ';
+    //         }
+    //         $data = array(
+    //             'student_data'  => $output
+    //         );
+    //         echo json_encode($data);
+    //     }
+    // }
 
 }
 

@@ -16,64 +16,117 @@ class UserTableSeeder extends Seeder
     {
         $users = [
             [
-                'name' => 'Joshua Salceda',
                 'email' => 'guidance1@email.com',
                 'username' => 'guidance1@email.com',
-                'password' => 'josh',
+                'password' => '123',
                 'type' => 'guidance',
-                'status' => 'active',
             ],
             [
-                'name' => 'Abigael Albaniel',
                 'email' => 'guidance2@email.com',
                 'username' => 'guidance2@email.com',
-                'password' => 'abi',
+                'password' => '123',
                 'type' => 'guidance',
-                'status' => 'active',
             ],
             [
-                'name' => 'Maria Mercedes',
                 'email' => 'lr@email.com',
                 'username' => 'lr@email.com',
                 'password' => '123',
                 'type' => 'lr',
-                'status' => 'active',
             ],
             [
-                'name' => 'mark villar',
-                'email' => 'mark@email.com',
+                'email' => 'stud1@email.com',
+                'username' => '247186700789',
+                'password' => '123',
+                'type' => 'student',
+            ],
+            [
+                'email' => 'stud2@email.com',
                 'username' => '249186700789',
                 'password' => '123',
                 'type' => 'student',
-                'status' => 'active',
             ],
             [
-                'name' => 'joshua C. Salceda',
                 'email' => 'joshuasalceda0021@gmail.com',
                 'username' => 'joshuasalceda0021@gmail.com',
                 'password' => 'Salceda',
                 'type' => 'faculty',
-                'status' => 'active',
             ],
             [
-                'name' => 'Rad Jeremy S. Simon',
                 'email' => 'rad@gmail.com',
                 'username' => 'rad@gmail.com',
                 'password' => 'Simon',
                 'type' => 'faculty',
-                'status' => 'active',
             ],
+            [
+                'email' => 'emma.clark@example.com',
+                'username' => '100000000001',
+                'password' => 'Password1',
+                'type' => 'student',
+            ],
+            [
+                'email' => 'william.moore@example.com',
+                'username' => '100000000002',
+                'password' => 'Password2',
+                'type' => 'student',
+            ],
+            [
+                'email' => 'olivia.wilson@example.com',
+                'username' => '100000000003',
+                'password' => 'Password3',
+                'type' => 'student',
+            ],
+            [
+                'email' => 'liam.taylor@example.com',
+                'username' => '100000000004',
+                'password' => 'Password4',
+                'type' => 'student',
+            ],
+            [
+                'email' => 'ava.johnson@example.com',
+                'username' => '100000000005',
+                'password' => 'Password5',
+                'type' => 'student',
+            ],
+            [
+                'email' => 'ethan.davis@example.com',
+                'username' => '100000000006',
+                'password' => 'Password6',
+                'type' => 'student',
+            ],
+            [
+                'email' => 'sophia.brown@example.com',
+                'username' => '100000000007',
+                'password' => 'Password7',
+                'type' => 'student',
+            ],
+            [
+                'email' => 'mason.smith@example.com',
+                'username' => '100000000008',
+                'password' => 'Password8',
+                'type' => 'student',
+            ],
+            [
+                'email' => 'isabella.wilson@example.com',
+                'username' => '100000000009',
+                'password' => 'Password9',
+                'type' => 'student',
+            ],
+            [
+                'email' => 'noah.turner@example.com',
+                'username' => '100000000010',
+                'password' => 'Password10',
+                'type' => 'student',
+            ]
         ];
 
         foreach ($users as $user) {
             DB::table('users')->insert([
-                'name' => $user['name'],
                 'email' => $user['email'],
                 'username' => $user['username'],
                 'password' => Hash::make($user['password']),
                 'type' => $user['type'],
-                'status' => $user['status'],
                 'created_at' => now(),
+                'updated_at' => now(),
             ]);
         }
     }

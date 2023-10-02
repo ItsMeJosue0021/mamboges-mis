@@ -18,11 +18,9 @@ $(document).ready(function() {
                 $('#students-container').html(data.student_data);
 
                 $('.addstudentbtn').on('click', function() {
-                    const addBtn = $(this);
-                    addBtn.text('enrolling..');
+                    $(this).text('enrolling..');
                     var student_id = $(this).attr('id');
                     var section_id =  $('.get-id').attr('id');
-                    sec = section_id;
                     
                     $.ajax({
                         url: "/sections/students/save",
@@ -46,7 +44,7 @@ $(document).ready(function() {
                                 }, 3000);
                                 
                                 addBtn.text('enrolled');
-                                fetch_section_students(sec);
+                                fetch_section_students(section_id);
                                 
                             } else {
                                 message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-red-100 px-20 py-3 z-20"><p class="poppins text-lg text-red-800 ">' + response.message + '</p></div>');   
