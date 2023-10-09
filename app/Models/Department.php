@@ -15,8 +15,7 @@ class Department extends Model
         'faculty_id',
     ];
 
-    public function faculty()
-    {
+    public function faculty() {
         return $this->belongsTo(Faculty::class);
     }
 }

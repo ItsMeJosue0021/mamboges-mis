@@ -10,25 +10,25 @@
 
             <div class="w-full flex justify-between items-center py-2">
                 <div class="flex space-x-4 items-center">
-                    <div class="flex items-center rounded border border-sky-600">
-                        <p class="poppins text-sm bg-sky-600 text-white px-4 py-2">Class Name</p>
-                        <p class="poppins text-sm font-medium px-4 py-2 text-sky-600">{{$class_record->name}}</p>
+                    <div class="flex items-center rounded border border-blue-600" id="classRecordId" data-class-record-id="{{ $class_record->id}}">
+                        <p class="poppins text-sm bg-blue-600 text-white px-4 py-2">Class Name</p>
+                        <p class="poppins text-sm font-medium px-4 py-2 text-blue-600">{{$class_record->name}}</p>
                     </div>
-                    <div class="flex items-center rounded border border-sky-600">
-                        <p class="poppins text-sm bg-sky-600 text-white px-4 py-2">Teacher</p>
-                        <p class="poppins text-sm font-medium px-4 py-2 flex space-x-2 items-center text-sky-600">
-                            <span>{{$class_record->faculty->first_name}}</span>
-                            <span>{{$class_record->faculty->last_name}}</span>
+                    <div class="flex items-center rounded border border-blue-600">
+                        <p class="poppins text-sm bg-blue-600 text-white px-4 py-2">Teacher</p>
+                        <p class="poppins text-sm font-medium px-4 py-2 flex space-x-2 items-center text-blue-600">
+                            <span>{{$class_record->faculty->user->profile->firstName}}</span>
+                            <span>{{$class_record->faculty->user->profile->lastName}}</span>
                         </p>
                     </div>
                 </div>
                 
                 <div class="flex space-x-2 items-center">
-                    <span class="poppins text-sm bg-sky-500 text-white rounded px-4 py-2">Quarter</span>
-                    <a href="?quarter=1" class="quarter poppins text-sm bg-gray-200 rounded px-4 py-2 hover:bg-sky-800 hover:text-white">1</a>
-                    <a href="?quarter=2" class="quarter poppins text-sm bg-gray-200 rounded px-4 py-2 hover:bg-sky-800 hover:text-white">2</a>
-                    <a href="?quarter=3" class="quarter poppins text-sm bg-gray-200 rounded px-4 py-2 hover:bg-sky-800 hover:text-white">3</a>
-                    <a href="?quarter=4" class="quarter poppins text-sm bg-gray-200 rounded px-4 py-2 hover:bg-sky-800 hover:text-white">4</a>
+                    <span class="poppins text-sm bg-blue-600 text-white rounded px-4 py-2">Quarter</span>
+                    <a href="?quarter=1" class="quarter poppins text-sm bg-gray-200 rounded px-4 py-2 hover:bg-blue-800 hover:text-white">1</a>
+                    <a href="?quarter=2" class="quarter poppins text-sm bg-gray-200 rounded px-4 py-2 hover:bg-blue-800 hover:text-white">2</a>
+                    <a href="?quarter=3" class="quarter poppins text-sm bg-gray-200 rounded px-4 py-2 hover:bg-blue-800 hover:text-white">3</a>
+                    <a href="?quarter=4" class="quarter poppins text-sm bg-gray-200 rounded px-4 py-2 hover:bg-blue-800 hover:text-white">4</a>
                 </div>
             </div>
 
@@ -40,7 +40,7 @@
                     <x-written-works :students="$students" :evaluations="$evaluations" :activities="$wr_activities" :classrecord="$class_record"/>  {{--  :activities="$wr_activities" --}}
                     <x-performance-task :students="$students" :evaluations="$evaluations" :activities="$pt_activities" :classrecord="$class_record"/> 
                     <x-quarterly-assessment :students="$students" :evaluations="$evaluations" :activities="$qa_activities" :classrecord="$class_record"/>
-                    <x-final-grade />   
+                    <x-final-grade :students="$students" :classrecord="$class_record" />   
                 </div>
             </div>
         </div>

@@ -45,6 +45,7 @@ class Student extends Model
     {
         return $this->hasMany(SectionStudents::class);
     }
+    
 
     public function scopeFilter($query, array $filters) {
 

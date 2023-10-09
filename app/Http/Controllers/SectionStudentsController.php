@@ -52,29 +52,64 @@ class SectionStudentsController extends Controller
         }
     }
 
+    // public function getStudents(Request $request)
+    // {
+
+    //     $current_school_year = SchoolYear::where('is_current', true)->first();
+
+    //     $section = Section::find($request->section_id);
+    //     $scetionStudents = $section->sectionStudents->where('school_year_id', $current_school_year->id);
+
+    //     $data = [];
+        
+    //     foreach ($scetionStudents as $scetionStudent) {
+    //         $data[] = [
+    //             'id' => $scetionStudent->id,
+    //             'lrn' => $scetionStudent->student->lrn,
+    //             'firstName' => $scetionStudent->student->user->profile->firstName,
+    //             'middleName' => $scetionStudent->student->user->profile->middleName,
+    //             'lastName' => $scetionStudent->student->user->profile->lastName,
+    //         ];
+    //     }
+
+    //     return response()->json($data);
+
+    // }
+
     public function getStudents(Request $request)
     {
-
         $current_school_year = SchoolYear::where('is_current', true)->first();
 
         $section = Section::find($request->section_id);
-        $scetionStudents = $section->sectionStudents->where('school_year_id', $current_school_year->id);
+        $sectionStudents = $section->sectionStudents->where('school_year_id', $current_school_year->id);
 
         $data = [];
         
-        foreach ($scetionStudents as $scetionStudent) {
+        // Initialize the student count
+        $studentCount = 0;
+
+        foreach ($sectionStudents as $sectionStudent) {
             $data[] = [
-                'id' => $scetionStudent->id,
-                'lrn' => $scetionStudent->student->lrn,
-                'firstName' => $scetionStudent->student->user->profile->firstName,
-                'middleName' => $scetionStudent->student->user->profile->middleName,
-                'lastName' => $scetionStudent->student->user->profile->lastName,
+                'id' => $sectionStudent->id,
+                'lrn' => $sectionStudent->student->lrn,
+                'firstName' => $sectionStudent->student->user->profile->firstName,
+                'middleName' => $sectionStudent->student->user->profile->middleName,
+                'lastName' => $sectionStudent->student->user->profile->lastName,
             ];
+            
+            // Increment the student count
+            $studentCount++;
         }
 
-        return response()->json($data);
+        // Add the student count to the response
+        $response = [
+            'studentCount' => $studentCount,
+            'students' => $data,
+        ];
 
+        return response()->json($response);
     }
+
 
     public function remove(Request $request)
     {

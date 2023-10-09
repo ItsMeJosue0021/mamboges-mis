@@ -47,21 +47,21 @@ class UpdatesController extends Controller
             'title' => 'required',
             'tag' => 'required',
             'description' => 'required',
-            'cover_photo' => 'required|image',
+            'cover_photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
         $update = Updates::create([
             'title' => $request->title,
             'tag_id' => $request->tag,
             'description' => $request->description,
-            'cover_photo' => $request->file('cover_photo')->store('images', 'public'),
+            'cover_photo' => $request->file('cover_photo')->store('updates', 'public'),
         ]);
 
         if ($update) {
             if ($request->hasFile('images')) {
                 foreach ($request->file('images') as $image) {
                     $update->updateImages()->create([
-                        'url' => $image->store('images', 'public')
+                        'url' => $image->store('updates', 'public')
                     ]);
                 }
             }
@@ -78,6 +78,22 @@ class UpdatesController extends Controller
             'update' => $update,
             'tags' => Tag::all()
         ]);
+    }
+
+    public function getImages(Request $request) {
+
+        $update = Updates::find($request->updateId);
+        $updateImages = $update->updateImages;
+
+        $images = [];
+
+        foreach($updateImages as $updateImage) {
+            $images[] = [
+                'id' => $updateImage->id,
+                'fileName' => $updateImage->url,
+            ];
+        }
+        return response()->json($images);
     }
 
     public function update(Request $request, Updates $update)
@@ -126,9 +142,14 @@ class UpdatesController extends Controller
         $updateDeleted = $update->delete();
 
         if ($updateDeleted) {
+
+            foreach($update->updateImages as $image) {
+                $image->delete();
+            }
+
             return redirect()->back()->with('success', 'Deleted Successfully');
         } else {
-            return redirect()->back()->with('eror', 'Something went wrong');
+            return redirect()->back()->with('error', 'Something went wrong');
         }
     }
 

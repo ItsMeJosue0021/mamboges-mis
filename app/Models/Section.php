@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Faculty;
 use App\Models\SectionStudents;
+use App\Models\SectionSubjects;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -25,6 +26,11 @@ class Section extends Model
     public function sectionStudents()
     {
         return $this->hasMany(SectionStudents::class);
+    }
+
+    public function sectionSubjects()
+    {
+        return $this->hasMany(SectionSubjects::class);
     }
 
 

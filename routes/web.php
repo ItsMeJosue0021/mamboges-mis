@@ -1,4 +1,5 @@
 <?php
+use App\Models\AchievementImage;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LrController;
 use App\Http\Controllers\LogsController;
@@ -18,11 +19,13 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\SchoolYearController;
+use App\Http\Controllers\AchievementController;
 use App\Http\Controllers\ClassRecordController;
 use App\Http\Controllers\UpdateImageController;
 use App\Http\Controllers\VideoLessonController;
 use App\Http\Controllers\SectionStudentsController;
 use App\Http\Controllers\SectionSubjectsController;
+use App\Http\Controllers\AchievementImageController;
 use App\Http\Controllers\StudentAccess\PortalController;
 use App\Http\Controllers\ClassRecordEvaluationCriteriaController;
 
@@ -88,6 +91,8 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
         });
     });
 
+    Route::get('get-update-images', [UpdatesController::class, 'getImages'])->name('update.images');
+
     // FACULTY
     Route::controller(FacultyController::class)->group(function() {
         Route::get('/faculties', 'index')->name('faculties.index');
@@ -131,7 +136,7 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
 
     // SECTION SUBJECTS
     Route::controller(SectionSubjectsController::class)->group(function () {
-        Route::post('/sections/{section}', 'store')->name('section.subjects.store');
+        Route::post('/sections/{section}/subjects', 'store')->name('section.subjects.store');
         Route::get('/sections/subjects/all', 'getSubjects')->name('section.subjects.getSubjects');
         Route::delete('/sections/subjects/remove', 'remove')->name('section.subjects.remove');
     });
@@ -177,6 +182,21 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
         Route::get('/archive/faculty/{id}', 'showArchivedFaculty')->name('archive.faculty.show');
     });
 
+    Route::controller(AchievementController::class)->group(function () {
+        Route::get('/achievements/create', 'create')->name('achievements.create');
+        Route::post('/achievements/save', 'store')->name('achievements.store');
+        Route::get('/achievements', 'index')->name('achievements.index');
+        Route::get('/achievements/{achievement}', 'show')->name('achievements.show');
+        Route::get('/achievements/{achievement}/edit', 'edit')->name('achievements.edit');
+        Route::get('/achievments/list', 'list')->name('achievements.list');
+        Route::get('/get-images', 'getImages')->name('achievements.images');
+        Route::put('/achievements/{achievement}/update', 'update')->name('achievements.update');
+        Route::delete('/achievements/{achievement}/delete', 'delete')->name('achievements.delete');
+    });
+
+    Route::delete('/achievements/{achievement}/delete-image/{achievementImage}', [AchievementImageController::class, 'destroy'])
+    ->name('achievementImage.delete');
+
 });
 
 
@@ -188,7 +208,7 @@ Route::middleware(['auth', 'role:faculty'])->group(function () {
 
     Route::get('/classes/{class}/class-record', [ClassRecordController::class, 'index'])->name('class.record');
 
-    Route::put('/update-percentage/{classRecordEvaluationCriteria}', [ClassRecordEvaluationCriteriaController::class, 'changePercentage'])
+    Route::put('/update-percentage/{classRecordEvaluationCriteria}/record/{classRecordId}', [ClassRecordEvaluationCriteriaController::class, 'changePercentage'])
         ->name('class.percentage.update');
 
     Route::get('/get-percentage/{classRecordEvaluationCriteria}', [ClassRecordEvaluationCriteriaController::class, 'getPercentage'])

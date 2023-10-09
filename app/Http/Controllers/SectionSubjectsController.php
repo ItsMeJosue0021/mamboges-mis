@@ -18,35 +18,43 @@ class SectionSubjectsController extends Controller
     public function store(Request $request, $id)
     {
         $current_school_year = SchoolYear::where('is_current', true)->first();
+        $subject = Subjects::find($request->subjectId);
+        $section = Section::find($id);
 
-        $subject = Subjects::where('id', $request->subject)->first();
+        $sectionSubjectExists = SectionSubjects::where('section_id', $id)
+            ->where('subjects_id', $request->subjectId)
+            ->where('school_year_id', $current_school_year->id)
+            ->first();
 
-        $section = Section::where('id', $id)->first();
+        if ($sectionSubjectExists) {
+            return response()->json(['success' => false, 'message' => 'Subject already exists!']);
+        }
 
         $sectionSubject = [
-            'name' => $section->name . " | " . $subject->subject_name,
+            'name' => $section->name . " - " . $subject->name,
             'section_id' => $id,
-            'subject_id' => $request->subject,
-            'faculty_id' => $request->teacher,
+            'subjects_id' => $request->subjectId,
+            'faculty_id' => $request->facultyId,
             'school_year_id' => $current_school_year->id
-        ]; 
+        ];
 
         $savedSectionSubjects = SectionSubjects::create($sectionSubject);
 
         if ($savedSectionSubjects) {
 
             $quarters = Quarter::all();
-            foreach($quarters as $quarter) {
 
+            foreach ($quarters as $quarter) {
                 $class_record = [
-                    'name' => $section->name . " | " . $subject->subject_name,
+                    'name' => $section->name . " | " . $subject->name,
                     'section_subjects_id' => $savedSectionSubjects->id,
                     'faculty_id' => $savedSectionSubjects->faculty_id,
                     'school_year_id' => $current_school_year->id,
                     'quarter_id' => $quarter->id,
                 ];
+
                 $savedClassRecord = ClassRecord::create($class_record);
-    
+
                 if ($savedClassRecord) {
 
                     $evaluationCriterias = EvaluationCriteria::all();
@@ -56,6 +64,7 @@ class SectionSubjectsController extends Controller
                             'class_record_id' => $savedClassRecord->id,
                             'evaluation_criteria_id' => $evaluationCriteria->id,
                         ];
+
                         ClassRecordEvaluationCriteria::create($classRecordEvaluationCriteria);
                     }
                 }
@@ -65,92 +74,47 @@ class SectionSubjectsController extends Controller
         } else {
             return response()->json(['success' => false, 'message' => 'Adding unsuccessful!']);
         }
-        
+
     }
 
-    public function getSubjects(Request $request) {
-
+    public function getSubjects(Request $request)
+    {
         $current_school_year = SchoolYear::where('is_current', true)->first();
 
-        if($request->ajax()) {
+        $section = Section::find($request->section_id);
+        $sectionSubjects = $section->sectionSubjects->where('school_year_id', $current_school_year->id);
 
-            $output = '';
+        $data = [];
 
-            $subjects = DB::table('section_subjects')
-                    ->orderBy('id', 'desc')
-                    ->where('section_id', $request->section_id)
-                    ->where('school_year_id', $current_school_year->id)
-                    ->get();
-                
-
-            $total_subjects = $subjects->count();
-
-            if($total_subjects > 0){
-                foreach($subjects as $subject)
-                {
-                    $subj = DB::table('subjects')
-                    ->where('id', $subject->subject_id)
-                    ->first();
-
-                    if ($subj) {
-
-                        $faculty = DB::table('faculties')
-                        ->where('id', $subject->faculty_id)
-                        ->first();
-
-                        $output .= '
-                            <div class="flex justify-between space-x-6 px-2 py-2 border-b border-gray-300" >
-                                <div class="flex space-x-2">
-                                    <p class="poppins text-base text-blue-500 ">'.$subj->subject_name.' <span class="poppins text-base text-gray-700">|</span> </p>
-                                    <div class="flex space-x-2">';
-                                if ($faculty) {
-                                    $output .= '
-                                            <p class="poppins text-base text-gray-700">' . $faculty->first_name . '</p>
-                                            <p class="poppins text-base text-gray-700">' . $faculty->middle_name . '</p>
-                                            <p class="poppins text-base text-gray-700">' . $faculty->last_name . '</p>
-                                        ';
-                                }
-                                $output .='</div>
-                                </div>
-                                <div id="button-container">
-                                    <button id="'.$subj->id.'" class="removesubjectbtn poppins text-xs text-red-400 py-1 px-2 rounded border border-red-400 hover:border-red-500 hover:bg-red-500 hover:text-white">remove</button>
-                                </div>
-                            </div>
-                        ';
-                    }
-
-                }
-
-            } else {
-                $output = '
-                <div class="h-64 flex items-center justify-center">
-                    <p class="poppins text-red-500 text-sm text-center">No Subjects Found</p>
-                </div>
-                ';
-            }
-            $subjects = array(
-                'subject_data'  => $output,
-            );
-            echo json_encode($subjects);       
+        foreach ($sectionSubjects as $sectionSubject) {
+            $data[] = [
+                'id' => $sectionSubject->id,
+                'name' => $sectionSubject->name,
+                'faculty' => $sectionSubject->faculty->user->profile->firstName . " " . $sectionSubject->faculty->user->profile->middleName . " " . $sectionSubject->faculty->user->profile->lastName,
+            ];
         }
-    }   
 
-    public function remove(Request $request) {
+        return response()->json($data);
+    }
 
-        $sectionSubject = SectionSubjects::where('subject_id', $request->subject_id)
-                        ->where('section_id', $request->section_id)->first();
+    public function remove(Request $request)
+    {
+        $sectionSubject = SectionSubjects::find($request->subject_id);
 
-        if ($sectionSubject) {
-            if ($sectionSubject->delete()) {
-                return response()->json(['success' => true]);
-            } else {
-                return response()->json(['success' => false, 'message' => 'Unable to delete student.']);
-            }
-
-        } else {
+        if (!$sectionSubject) {
             return response()->json(['success' => false, 'message' => 'Subject not found.']);
         }
+
+        $classRecords = $sectionSubject->classRecords;
         
+        foreach ($classRecords as $classRecord ) {
+            $classRecord->delete();
+        }
+        
+        $sectionSubject->delete();
+
+        return response()->json(['success' => true, 'message' => 'Subject has been removed.']);
+
     }
 
 }

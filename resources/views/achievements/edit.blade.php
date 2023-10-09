@@ -2,12 +2,12 @@
     <section>
         <div class="p-4 flex flex-col space-y-2">
             <div class="flex flex-col space-y-2">
-                <a href="{{ route('update.list') }}" id="back" class="flex w-fit justify-start items-center space-x-2 py-1 px-4 group rounded bg-gray-200 hover:bg-gray-300 cursor-pointer group">
+                <a href="{{ route('achievements.list') }}" id="back" class="flex w-fit justify-start items-center space-x-2 py-1 px-4 group rounded bg-gray-200 hover:bg-gray-300 cursor-pointer group">
                     <i class='bx bx-left-arrow-alt text-black text-lg '></i>
                     <p class="poppins text-sm text-black">Back</p>
                 </a>
             </div>
-            <form action="{{ route('update.update', $update->id) }}" method="POST" enctype="multipart/form-data" data-update-id="{{ $update->id }}" id="form">
+            <form action="{{ route('achievements.update', $achievement->id) }}" method="POST" enctype="multipart/form-data" data-achievement-id="{{ $achievement->id }}" id="form">
                 @csrf
                 @method('PUT')
                 <div class="flex items-start space-x-4 ">
@@ -19,16 +19,8 @@
                                         <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                     @enderror
                                 </label>
-                                <input name="title" id="title" type="text" placeholder="Title here.."  value="{{ old('title') ? old('title') : $update->title }}"
+                                <input name="title" id="title" type="text" placeholder="Title here.."  value="{{ old('title') ? old('title') : $achievement->title }}"
                                 class="text-sm rounded border-2 border-gray-200">
-                            </div>
-                            <div class="flex flex-col space-y-1">
-                                <label for="tag" class="poppins text-sm font-semibold">TAG</label>
-                                <select name="tag" id="tag" class="text-sm rounded border-2 border-gray-200">
-                                    @foreach ($tags as $tag)
-                                        <option value="{{$tag->id}}" {{ $update->tag_id == $tag->id ? 'selected' : '' }} >{{$tag->tag}}</option>
-                                    @endforeach
-                                </select>
                             </div>
                         </div>
                         <div class="flex flex-col space-y-1">
@@ -38,7 +30,7 @@
                                 @enderror
                             </label>
                             <textarea name="description" id="myeditorinstance" placeholder="Write something..">
-                                {{ old('description') ? old('description') : $update->description }}
+                                {{ old('description') ? old('description') : $achievement->description }}
                             </textarea>
                         </div>
                         <div class="pt-4">
@@ -62,8 +54,8 @@
                                     <p class="text-xs text-gray-500 dark:text-gray-400">PNG, JPG or GIF</p>
                                 </div>
                                 <img id="image-preview" src="#" alt="Preview" class="hidden w-full h-full rounded-md" />
-                                <img id="db-cover-photo" src="{{ asset('storage/' . $update->cover_photo) }}" alt="Database Cover Photo" class="w-full h-full rounded-md" />
-                                <input id="dropzone-file" type="file" name="cover_photo" class="hidden" accept="image/png, image/jpeg, image/gif" onchange="previewCoverPhoto(this)" />
+                                <img id="db-cover-photo" src="{{ asset('storage/' . $achievement->coverPhoto) }}" alt="Database Cover Photo" class="w-full h-full rounded-md" />
+                                <input id="dropzone-file" type="file" name="coverPhoto" class="hidden" accept="image/png, image/jpeg, image/gif" onchange="previewCoverPhoto(this)" />
                             </label>
                             
                             <script> 
@@ -109,11 +101,11 @@
                         <div id="image-previews" class="flex flex-col space-y-2"></div>
 
                         <div class="flex flex-col space-y-2 pb-4" id="images-container">
-                            {{-- @foreach ($update->updateImages as $updateImage)
+                            {{-- @foreach ($achievement->achievementImages as $achievementImage)
                                 <div class="p-1 rounded-md flex items-center justify-between  border border-gray-300">
-                                    <img class="w-10 h-10 rounded" src="{{asset('storage/' . $updateImage->url)}}" alt="">
-                                    <p class="text-xs text-gray-500">{{ substr($updateImage->url, 0, 28) }}{{ strlen($updateImage->url) > 28 ? "..." : "" }}</p>
-                                    <a data-image-id="{{ $updateImage->id}}" data-update-id="{{ $update->id }}" class="delete-button rounded px-2 py-1 bg-gray-50 hover:bg-red-100">
+                                    <img class="w-10 h-10 rounded" src="{{asset('storage/' . $achievementImage->fileName)}}" alt="">
+                                    <p class="text-xs text-gray-500">{{ substr($achievementImage->fileName, 0, 28) }}{{ strlen($achievementImage->fileName) > 28 ? "..." : "" }}</p>
+                                    <a data-image-id="{{ $achievementImage->id}}" data-achievement-id="{{ $achievement->id }}" class="delete-button rounded px-2 py-1 bg-gray-50 hover:bg-red-100">
                                         <i class='bx bx-x text-lg text-red-300 hover:text-red-600'></i>
                                     </a>
                                 </div>
@@ -121,20 +113,19 @@
 
                             <script type="module">
                                 $(document).ready(function () {
-                                    var updateId = $('#form').data("update-id");
+                                    var achievementId = $('#form').data("achievement-id");
 
-                                    getImages(updateId);
+                                    getImages(achievementId);
 
-                                    function getImages(updateId) {
+                                    function getImages(achievementId) {
                                         $.ajax({
-                                            url: "/get-update-images",
+                                            url: "/get-images",
                                             method: "GET",
                                             data: {
-                                                updateId: updateId,
+                                                achievementId: achievementId,
                                             },
                                             dataType:'json',
                                             success: function(data) {
-                                                console.log(data);
                                                 
                                                 $('#images-container').empty();  
 
@@ -147,35 +138,29 @@
                                                         var ImageComponent = '<div class="p-1 rounded-md flex items-center justify-between  border border-gray-300">' +
                                                             '<img class="w-10 h-10 rounded" src="/storage/' + fileName + '" alt="">' +
                                                             '<p class="text-xs text-gray-500">' + truncatedFileName + '</p>' +
-                                                            '<a data-image-id="' + image.id + '" data-update-id="' + updateId + '" class="delete-button rounded px-2 py-1 bg-gray-50 hover:bg-red-100 cursor-pointer">' +
+                                                            '<a data-image-id="' + image.id + '" data-achievement-id="' + achievementId + '" class="delete-button rounded px-2 py-1 bg-gray-50 hover:bg-red-100 cursor-pointer">' +
                                                             '<i class="bx bx-x text-lg text-red-300 hover:text-red-600"></i>' +
                                                             '</a>' +
                                                             '</div>';
                                                             $('#images-container').append(ImageComponent);
                                                     });
                                                     deleteImage();
-                                                } else {
-                                                    console.log('No images');
-                                                }
-                                            },
-                                            error: function(xhr, status, error) {
-                                                console.error(error);
+                                                } 
                                             }
-
                                         });
                                     }
 
                                     function deleteImage() {
-                                        $(".delete-button").click(function () {
                                         
+                                        $(".delete-button").click(function () {
+                                            
                                             var imageId = $(this).data("image-id");
-                                            var updateId = $(this).data("update-id"); 
-
+                                            var achievementId = $(this).data("achievement-id"); 
                                             var csrfToken = $('meta[name="csrf-token"]').attr("content");
 
                                             $.ajax({
                                                 type: "DELETE",
-                                                url: "/updates/" + updateId + "/delete-image/" + imageId,
+                                                url: "/achievements/" + achievementId + "/delete-image/" + imageId,
                                                 
                                                 headers: {
                                                     "X-CSRF-TOKEN": csrfToken, 
@@ -189,12 +174,13 @@
                                                                             '<p class="poppins text-sm text-green-700">' + response.message + '</p>' +
                                                                         '</div>' +
                                                                     '</div>');
-                                                        getImages(updateId);
+                                                        getImages(achievementId);
                                                         setTimeout(function(){
                                                             message.fadeOut('slow', function() {
-                                                                location.reload();
+                                                                message.remove();
                                                             });
-                                                        }, 1000);
+                                                        }, 3000);
+                                                        
                                                     } else {
                                                         message = $('<div class="fixed top-5 left-1/2 bg-red-700 transform -translate-x-1/2 z-50 rounded-md">' +
                                                                         '<div class="flex space-x-4 items-center border-2 border-red-400 bg-red-100 px-4 py-2 rounded-md">' +
@@ -219,7 +205,9 @@
                                             });
                                         });
                                     }
+
                                 });
+
                             </script>
                         </div>
 
@@ -244,6 +232,10 @@
                                         var fileName = document.createElement('p');
                                         fileName.className = 'text-xs text-gray-500';
                                         fileName.textContent = file.name;
+
+                                        if (file.name.length > 20) { // Change 20 to your desired character limit
+                                            fileName.textContent = file.name.substring(0, 20) + '...';
+                                        }
 
                                         var removeButton = document.createElement('i');
                                         removeButton.className = 'bx bx-x text-lg px-2 py-1 text-red-300 hover:text-red-600 bg-gray-50 hover:bg-red-100 cursor-pointer hover:text-red-600';

@@ -4,7 +4,7 @@
             <a href="{{ route('lr.video') }}" class="poppins text-sm px-4 py-2 rounded text-white bg-blue-700 hover:bg-blue-800">Video Lessons</a>
             <a href="{{ route('lr.module') }}" class="poppins text-sm px-4 py-2 rounded bg-gray-200 hover:bg-gray-300">Modules</a>
         </div>
-        {{--  <form > action="{{ route('video-lessons.store') }}" method="POST" enctype="multipart/form-data" --}}
+         <form action="{{ route('video-lessons.store') }}" method="POST" enctype="multipart/form-data" >
             @csrf
             <div class="w-full flex items-start space-x-4">
                 <div class="w-3/5">
@@ -82,7 +82,6 @@
                                 </select>
                             </div>
                         </div>
-
                         <div class="w-full">
                             <label class="poppins text-sm font-semibold">DESCRIPTION 
                                 @error('description')
@@ -91,7 +90,6 @@
                             </label>
                             <x-forms.tinymce-editor/>
                         </div>
-
                         <div class="progress-bar">
                             <div class="progress-bar-fill" style="width: 0;"></div>
                         </div>
@@ -102,12 +100,12 @@
                 
             </div>
 
-        {{-- </form> --}}
+        </form>
         
     </div>
 </x-lr-layout>
 
-<script>
+{{-- <script>
     // Function to handle video preview
     function handleVideoPreview() {
         const fileInput = event.target;
@@ -183,4 +181,4 @@
     document.getElementById('upload-button').addEventListener('click', handleVideoUpload);
     document.getElementById('dropzone-file').addEventListener('change', handleVideoPreview);
 
-</script>
+</script> --}}

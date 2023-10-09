@@ -2,7 +2,7 @@
 <div class="py-8 flex flex-wrap md:flex-nowrap items-center space-x-4">
     <div class="md:w-48 h-40 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
        <img class="rounded h-full" 
-       src="{{$update->image ? asset('storage/' . $update->cover_photo) : asset('image/mamboges.jpg')}}"
+       src="{{$update->cover_photo ? asset('storage/' . $update->cover_photo) : asset('image/mamboges.jpg')}}"
        alt="image">
     </div>
     

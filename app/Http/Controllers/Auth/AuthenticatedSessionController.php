@@ -34,21 +34,21 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
         $userType = $request->user()->type;
-    
+
         if ($userType === 'guidance') {
-            $url = route('student.index');
+            $url = route('update.list');
         } elseif ($userType === 'faculty') {
             $url = route('faculty.classes');
         } elseif ($userType === 'lr') {
             $url = route('lr.video');
-        } 
-        
+        }
+
         $request->session()->regenerate();
         $request->session()->put('url.intended', $url);
         Logs::addToLog(Auth::user()->username . ' has logged in.');
         return redirect()->intended($url);
     }
-    
+
 
     public function loginStudent(StudentLoginRequest $request): RedirectResponse
     {

@@ -9,15 +9,15 @@
                     @method('PUT')
                     <h2 class="poppins text-sm mr-3">PERCENTAGE</h2>
                     <input id="percentageInput" name="percentage" class="w-10 py-1 mr-2 text-center px-1 poppins text-xs rounded-[3px] border border-gray-300 focus:outline-none" type="number" placeholder="0" max="100" min="0">
-                    <button id="WR_changePercentageButton" data-evaluation-id="{{ $evaluations->first()->id }}"  class="poppins text-xs text-white bg-sky-600 hover:bg-sky-700 px-2 py-1 font-bold rounded-[3px]">CHANGE</button>
+                    <button id="WR_changePercentageButton" data-evaluation-id="{{ $evaluations->first()->id }}"  class="poppins text-xs text-white bg-blue-600 hover:bg-blue-700 px-2 py-1 font-bold rounded-[3px]">CHANGE</button>
                 </form>
             </div>
         </div>
 
         <div class="w-fit flex items-center space-x-3 rounded py-2 px-2 border border-gray-300">
-            <p class="poppins py-1 px-3 rounded-[3px] border border-gray-300 text-xs">10</p>
-            <h2 class="poppins text-sm ">ACTIVITIES</h2>
-            <a id="new-written-act" class="poppins text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 px-2 py-1 rounded-[3px] cursor-pointer">NEW</a>
+            {{-- <p class="poppins py-1 px-3 rounded-[3px] border border-gray-300 text-xs">10</p>
+            <h2 class="poppins text-sm ">ACTIVITIES</h2> --}}
+            <a id="new-written-act" class="poppins text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 px-2 py-1 rounded-[3px] cursor-pointer">NEW ACTIVITY</a>
         </div>
     </div>
 
@@ -46,12 +46,13 @@
             var form = $('#WR_PercentageForm'); 
             var evaluationId = $(this).data("evaluation-id");
             var csrfToken = $('meta[name="csrf-token"]').attr('content');
+            var classRecordId = $('#classRecordId').data('class-record-id');
 
             $.ajaxSetup({ headers: {'X-CSRF-TOKEN': csrfToken} });
     
             $.ajax({
                 type: "POST",
-                url: '/update-percentage/' + evaluationId,
+                url: '/update-percentage/' + evaluationId + '/record/' + classRecordId,
                 data: form.serialize(), 
                 success: function(response) {
                     var message;
@@ -94,7 +95,7 @@
                 success: function(response) {
                     if (response.status === 'success') {
                         $('#percentageValue_0').text(response.percentage + '%');
-                        $('.percentageValue').text(response.percentage + '%');
+                        $('.percentageValue_0').text(response.percentage + '%');
                     } else {
                         console.error(response.error);
                     }

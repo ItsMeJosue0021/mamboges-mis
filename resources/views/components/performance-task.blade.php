@@ -60,7 +60,7 @@
                             <p class="poppins font-semibold text-sm">100%</p>
                         </div>
                         <div class="w-[65px] flex justify-center items-center border-gray-400">
-                            <p id="percentageValue" class="percentageValue poppins font-semibold text-sm">{{$evaluations->skip(1)->first()->percentage}}%</p>
+                            <p class="percentageValue_1 poppins font-semibold text-sm">{{$evaluations->skip(1)->first()->percentage}}%</p>
                         </div>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
 
         </div>
         <div class="w-full space-x-4 flex items-center mt-4">
-            <button type="submit" class="poppins text-sm text-white bg-sky-700 hover:bg-sky-800 border border-sky-800 py-2 px-6 rounded">Save</button>
+            <button type="submit" class="poppins text-sm text-white bg-blue-700 hover:bg-blue-800 border border-blue-800 py-2 px-6 rounded">Save</button>
             <button type="submit" class="poppins text-sm text-black bg-gray-200 hover:bg-gray-300 border border-gray-200 py-2 px-6 rounded">Refresh</button>
             {{-- <a href="{{ route('class.record', $classrecord->id) }}" class="poppins text-sm text-black bg-gray-200 hover:bg-gray-300 border border-gray-200 py-2 px-6 rounded">Refresh</a> --}}
         </div>

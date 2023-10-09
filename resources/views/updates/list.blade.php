@@ -4,7 +4,7 @@
             <div class="">
                 <a id="create" class="flex items-center text-sm poppins text-white bg-blue-600 hover:bg-blue-700 rounded py-2 px-4" href="/updates/create">
                     <i class='bx bx-plus text-sm font-bold mr-2'></i>
-                    Create new
+                    New
                 </a>
             </div>
             <div class="w-1/2 flex justify-end">

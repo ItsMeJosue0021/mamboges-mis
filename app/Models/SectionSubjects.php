@@ -39,4 +39,9 @@ class SectionSubjects extends Model
     {
         return $this->belongsTo(SchoolYear::class);
     }
+
+    public function classRecords()
+    {
+        return $this->hasMany(ClassRecord::class);
+    }
 }

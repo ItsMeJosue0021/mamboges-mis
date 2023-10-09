@@ -31,9 +31,10 @@
                         });
                         addStudent();
                     } else {
-                        $('#students-list-container').html('<p class="poppins text-red-500 text-sm text-center">No Data Found</p>');
+                        $('#students-list-container').html('<p class="pt-16 poppins text-red-500 text-sm text-center">No Data Found</p>');
                     }
                 },
+
                 error: function (xhr, status, error) {
                     console.error(error);
                 }
@@ -65,7 +66,7 @@
                         var message;
 
                         if (response.success) {
-                            message =$('<div class="fixed top-5 left-1/2 bg-green-700 transform -translate-x-1/2 z-50 rounded-md">' +
+                            message = $('<div class="fixed top-5 left-1/2 bg-green-700 transform -translate-x-1/2 z-50 rounded-md">' +
                                         '<div class="flex space-x-4 items-center border-2 border-green-400 bg-green-100 px-4 py-2 rounded-md">' +
                                             '<i class="bx bx-check text-green-600 text-4xl"></i>' +
                                             '<p class="poppins text-sm text-green-700">' + response.message + '</p>' +
@@ -115,8 +116,8 @@
                     $('#students-list1').empty(); 
                     $('#students-list2').empty(); 
 
-                    if (data.length > 0) {
-                        $.each(data, function (index, student) {
+                    if (data.studentCount > 0) {
+                        $.each(data.students, function (index, student) {
                             
                             var studentComponent = '<div class="flex justify-between space-x-6 px-2 py-2 border-t border-gray-300">' +
                                 '<div class="flex space-x-2">' +
@@ -130,13 +131,13 @@
                                 $('#students-list2').append(studentComponent);
                         });
 
-                        $('#student-count').text(data.student_count);
+                        $('#student-count').text(data.studentCount);
 
                         removeStudent();
 
                     } else {
-                        $('#students-list1').html('<p class="poppins text-red-500 text-sm text-center">No Data Found</p>');
-                        $('#students-list2').html('<p class="poppins text-red-500 text-sm text-center">No Data Found</p>');
+                        $('#students-list1').html('<p class="pt-16 poppins text-red-500 text-sm text-center">No Data Found</p>');
+                        $('#students-list2').html('<p class="pt-16 poppins text-red-500 text-sm text-center">No Data Found</p>');
                     }
                 }
             });

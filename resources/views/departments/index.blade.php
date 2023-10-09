@@ -29,27 +29,22 @@
                 </div>
             @endif
             @foreach ($departments as $department)
-                {{-- href="/sections/{{$section->id}}" --}}
                 <a class="w-full flex"> 
                     <div class="flex justify-between py-1 px-4 border-b border-gray-300 items-center">
                         <p class="w-full poppins text-base font-normal">
-                            {{$department->department_name}}
+                            {{$department->name}}
                         </p>
 
-                        <p class="w-full poppins text-base font-normal">
-                            @foreach ($faculties as $faculty)
-                                @if ($faculty->id == $department->department_head)
-                                    {{$faculty->suffix}} {{$faculty->first_name}} {{$faculty->last_name}}                                    
-                                @endif
-                            @endforeach
-                        </p>
+                        {{-- <p class="w-full poppins text-base font-normal">
+                            {{$department->faculty->user->profile->suffix ?? ''}} 
+                            {{$department->faculty->user->profile->firstName}} 
+                            {{$department->faculty->user->profile->lastName}}                                    
+                        </p> --}}
 
                         <div class="flex items-center space-x-2 h-fit">
-                            {{-- data-section-id="{{$section->id}}" --}}
                             <a class="show-delete-modal py-1 px-2 rounded hover:bg-red-50" data-department-id="{{$department->id}}">
                                 <i class='bx bx-trash text-red-500 text-xl  cursor-pointer ' ></i>
                             </a>
-                            {{-- href="/sections/{{$section->id}}/edit" --}}
                             <a class="edit-btn py-1 px-2 rounded hover:bg-blue-50" data-department-id="{{$department->id}}">
                                 <i class='bx bx-edit text-blue-500 text-xl cursor-pointer '></i>
                             </a>
@@ -61,7 +56,6 @@
         
         <div id="add-department-modal" class="hidden absolute top-0 left-0 w-full h-full overflow-auto">
             <div class="w-full h-full flex flex-col items-center justify-center space-y-6 px-32 py-8 bg-black bg-opacity-10">
-                {{-- action="/departments/save" action="javascript:void(0)"--}}
                 <form id="department-form" method="POST" action="/departments/save" class="w-full flex flex-col space-y-6 bg-white p-8 pt-0 rounded-lg shadow-md">
                     @csrf
                     <div class="w-full flex py-4">
@@ -88,7 +82,7 @@
                         class="poppins py-2 px-4 text-base border border-gray-300 rounded focus:outline-none focus:border-blue-500">
                             <option disabled selected value="">Select Department Head</option>
                             @foreach($faculties as $faculty) 
-                                <option value="{{$faculty->id}}">{{$faculty->suffix}} {{$faculty->first_name}} {{$faculty->last_name}} {{$faculty->middle_name}}</option>
+                                <option value="{{$faculty->id}}">{{$faculty->user->profile->suffix ?? ''}} {{$faculty->user->profile->firstName}} {{$faculty->user->profile->lastName}} {{$faculty->user->profile->middleName}}</option>
                             @endforeach
                         </select>
                     </div>

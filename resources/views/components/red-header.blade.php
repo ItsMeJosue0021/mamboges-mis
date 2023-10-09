@@ -15,7 +15,7 @@
             <div class="flex justify-between items-center">
                 <div>
                     @if (Route::has('student.login'))
-                        <div class="flex py-1 px-3 items-center space-x-2 border-2 border-yellow rounded cursor-pointer hover:border-white group">
+                        <div class="flex py-1 px-3 items-center space-x-2 border-2 border-yellow cursor-pointer hover:border-white group">
                             <a href="{{ route('student.login') }}" class="text-yellow poppins text-sm group-hover:text-white">Login</a>
                         </div>
                     @endif

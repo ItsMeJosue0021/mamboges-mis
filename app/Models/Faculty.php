@@ -23,25 +23,29 @@ class Faculty extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function department() {
+    public function department()
+    {
         return $this->belongsTo(Department::class);
     }
 
-    public function section() {
+    public function section()
+    {
         return $this->hasOne(Section::class);
     }
 
-    public function sectionSubjects() {
+    public function sectionSubjects()
+    {
         return $this->hasMany(SectionSubjects::class);
     }
 
 
-    public function scopeFilter($query, array $filters) {
+    public function scopeFilter($query, array $filters)
+    {
 
         if ($filters['search'] ?? false) {
-            $query->where('first_name', 'like', '%' . request('search') . '%' )
-            ->orWhere('last_name', 'like', '%' . request('search') . '%' )
-            ->orWhere('middle_name', 'like', '%' . request('search') . '%' );
+            $query->where('first_name', 'like', '%' . request('search') . '%')
+                ->orWhere('last_name', 'like', '%' . request('search') . '%')
+                ->orWhere('middle_name', 'like', '%' . request('search') . '%');
         }
     }
 }

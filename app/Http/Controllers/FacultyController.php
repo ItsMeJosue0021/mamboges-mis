@@ -18,45 +18,13 @@ class FacultyController extends Controller
 {
     public function index() {
 
-        $faculties = Faculty::where('is_archived', false)->filter(Request(['search']))->latest()->get();
-
-        $departments = Department::all();
-
+        $faculties = Faculty::all();
 
         return view('faculty.index', [
             'faculties' => $faculties,
-            'departments' => $departments,
+            'departments' => Department::all()
         ]);
     }
-
-    // public function show(Faculty $faculty) {
-
-    //     $departments = Department::all();
-
-    //     $current_school_year = SchoolYear::where('is_current', true)->first();
-        
-    //     $classes = SectionSubjects::where('faculty_id', $faculty->id)->where('school_year_id',  $current_school_year->id)->get();
-
-    //     foreach($classes as $class) {
-    //         $section_students = SectionStudents::where('section_id', $class->section_id)->get();
-    
-    //         $students = [];
-        
-    //         foreach ($section_students as $student) {
-    //             $student_record = Student::where('id', $student->student_id)->first();
-    //             if ($student_record) {
-    //                 $students[] = $student_record;
-    //             }
-    //         }
-    //     }
-    
-    //     return view('faculty.show', [
-    //         'faculty' => $faculty,
-    //         'departments' => $departments,
-    //         'classes' => $classes,
-    //         'students' => $students
-    //     ]);
-    // }
 
     public function show(Faculty $faculty)
     {
