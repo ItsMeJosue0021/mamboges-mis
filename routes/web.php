@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\DownloadableFileController;
 use App\Models\AchievementImage;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LrController;
@@ -72,7 +73,7 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
         Route::put('/feedback/{feedback}/read', 'read')->name('feedback.read');
     });
 
-    //--UPDATES
+    // UPDATES
     Route::prefix('updates')->group(function () {
         Route::controller(UpdatesController::class)->group(function () {
             Route::get('/', 'index')->name('update.index');
@@ -196,6 +197,15 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
 
     Route::delete('/achievements/{achievement}/delete-image/{achievementImage}', [AchievementImageController::class, 'destroy'])
     ->name('achievementImage.delete');
+
+    Route::controller(DownloadableFileController::class)->group(function() {
+        Route::get('/downloadables', 'index')->name('downloadables.index');
+        Route::get('/downloadables/list', 'list')->name('downloadables.list');
+        Route::post('/downloadables/save', 'store')->name('downloadables.store');
+        Route::get('/downloadables/{downloadableFile}', 'show')->name('downloadables.show');
+        Route::get('/downloadables/{downloadableFile}/edit', 'edit')->name('downloadables.edit');
+        Route::put('/downloadables/{downloadableFile}/update', 'update')->name('downloadables.update');
+    });
 
 });
 

@@ -61,7 +61,7 @@
                                 <p class="poppins text-sm group-hover:text-blue-600">Achievement</p>
                             </a>
 
-                            <a id="link15" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" >
+                            <a id="link15" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="{{ route('downloadables.list') }}">
                                 <i class='bx bx-file text-xl text-lightblack group-hover:text-blue-600'></i>
                                 <p class="poppins text-sm group-hover:text-blue-600">Downloadables</p>
                             </a>
