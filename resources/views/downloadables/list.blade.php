@@ -1,35 +1,40 @@
 <x-guidance-layout>
     <div class="w-full h-full flex justify-center items-start p-4">
-        <div class="w-full">
-            <form action="{{ route('downloadables.store') }}" method="POST">
+        <div class="w-full" id="uploadFormWrapper">
+            <form action="{{ route('downloadables.store') }}" method="POST" enctype="multipart/form-data" class="w-1/2 flex flex-col space-y-4">
                 @csrf
-                <div class="w-1/2 flex flex-col space-y-4">
-                    <div>
-                        <h1 class="poppins text-lg font-medium">UPLOAD DOWNLOADABLE FILES</h1>
-                        <div class="rounded shadow-md p-4 border border-gray-100">
-                            <div class="flex flex-col space-y-1">
-                                <label class="poppins text-sm font-semibold">Group Name</label>
-                                <input name="groupName" type="text" placeholder="Please provide a group name.."
-                                    class="poppins text-sm px-4 py-2 rounded border-2 border-gray-200">
-                                <div class="pt-2 flex justify-between">
-                                    <!-- Add Files Button -->
-                                    <a id="addFilesBtn" class="px-4 py-2 text-sm bg-blue-600 text-white rounded cursor-pointer">
-                                        Add Files
-                                    </a>
-                                    <button type="submit" id="submitBtn"
-                                    class="px-4 py-2 text-sm font-bold text-blue-600 bg-white border-2 border-blue-600 rounded cursor-pointer hover:bg-blue-600 hover:text-white">
-                                        Upload
-                                    </button>
-                                </div>
+                <div>
+                    <h1 class="poppins text-lg font-medium">UPLOAD DOWNLOADABLE FILES</h1>
+                    <div class="rounded shadow-md p-4 border border-gray-100">
+                        <div class="flex flex-col space-y-1">
+                            <label class="poppins text-sm font-semibold">
+                                Group Name
+                                <span id="error" class="text-red-600 text-xs font-normal"></span>
+                            </label>
+                            <input name="groupName"  id="groupName" type="text" placeholder="Please provide a group name.."
+                                class="poppins text-sm px-4 py-2 rounded border-2 border-gray-200">
+                            <div class="pt-2 flex justify-between">
+                                <!-- Add Files Button -->
+                                <a id="addFilesBtn" class="px-4 py-2 text-sm bg-blue-600 text-white rounded cursor-pointer">
+                                    Add Files
+                                </a>
+                                <button type="submit" id="submitBtn"
+                                class="px-4 py-2 text-sm font-bold text-blue-600 bg-white border-2 border-blue-600 rounded cursor-pointer hover:bg-blue-600 hover:text-white">
+                                    Upload
+                                </button>
                             </div>
                         </div>
                     </div>
-    
-                    <div id="fileContainers" class="flex flex-col space-y-2">
-                        <!-- Initially, no file containers here --> 
-                    </div>
+                </div>
+
+                <div id="fileContainers" class="flex flex-col space-y-2">
+                    <!-- Initially, no file containers here --> 
                 </div>
             </form>
+            
+            <div>
+
+            </div>
         </div>
     </div>
 </x-guidance-layout>
@@ -40,8 +45,23 @@
         const addFilesBtn = document.getElementById('addFilesBtn');
         const fileContainers = document.getElementById('fileContainers');
         const submitBtn = document.getElementById('submitBtn');
+        const groupNameInput = document.getElementById('groupName');
+        const uploadFormWrapper = document.getElementById('uploadFormWrapper');
+        const errorMessage = document.getElementById('error');
 
-        // Function to create a new file container
+        uploadFormWrapper.addEventListener('submit', function (e) {
+            if (groupNameInput.value.trim() === '') {
+                e.preventDefault();
+                errorMessage.innerText = 'Please provide a group name before uploading files.';
+            } else {
+                errorMessage.innerText = '';
+            }
+        });
+
+        groupNameInput.addEventListener('keyup', function () {
+            errorMessage.innerText = '';
+        });
+
         function createFileContainer() {
             const fileContainer = document.createElement('div');
             fileContainer.className = 'rounded border border-gray-200 p-3 shadow-md relative';
@@ -62,6 +82,7 @@
                             dark:file:text-neutral-100 dark:focus:border-primary"
                             type="file"
                             name="files[]"
+                            accept=".pdf"
                             id="formFile">
                     </div>
                     <button class="absolute top-1 right-1 px-2 py-1 rounded deleteFileBtn">
@@ -72,29 +93,27 @@
         }
 
         function hasFileContainers() {
-        return fileContainers.children.length > 0;
+            return fileContainers.children.length > 0;
         }
 
         function toggleSubmitButtonVisibility() {
             submitBtn.style.display = hasFileContainers() ? 'block' : 'none';
         }
 
-        // Add Files Button Click Event
         addFilesBtn.addEventListener('click', function () {
             const fileContainer = createFileContainer();
             fileContainers.appendChild(fileContainer);
 
-            // Add Delete Button Click Event
             const deleteFileBtns = fileContainers.querySelectorAll('.deleteFileBtn');
             deleteFileBtns.forEach(function (btn) {
                 btn.addEventListener('click', function () {
-                    // Remove the corresponding file container when Delete is clicked
                     fileContainers.removeChild(btn.parentElement.parentElement);
                     toggleSubmitButtonVisibility();
                 });
             });
             toggleSubmitButtonVisibility();
         });
+
         toggleSubmitButtonVisibility();
     });
 </script>
