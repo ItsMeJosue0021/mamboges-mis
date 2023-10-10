@@ -1,10 +1,10 @@
 <x-guest-layout>
     <div class="w-full h-full flex justify-center items-center">
-        <div class="flex flex-col space-y-4 items-center px-2 py-6 border border-gray-300 rounded-md">
+        <div class="flex flex-col space-y-4 items-center px-2 py-6 border border-gray-200 rounded-md shadow-md">
 
             <div class="flex items-center justify-center">
                 <div class="flex justify-center tablet:justify-start items-center space-x-2">
-                    <img class="w-24 h-24" src="{{asset('image/mambog.png')}}" alt="">
+                    <img class="w-20 h-20" src="{{asset('image/mambog.png')}}" alt="">
                     <div class="flex flex-col">
                         <p class="castoro text-gray-700 text-xl font-bold">MAMBOG</p>
                         <p class="castoro text-gray-600 text-sm font-medium">ELEMENTARY SCHOOL</p>

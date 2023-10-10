@@ -14,76 +14,120 @@ class UserTableSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('users')->insert(
+        $users = [
             [
-                'name' => 'joshua salceda',
                 'email' => 'guidance1@email.com',
                 'username' => 'guidance1@email.com',
-                'password' => Hash::make('josh'),
+                'password' => '123',
                 'type' => 'guidance',
-                'status' => 'active',
-                'created_at' => now()
-            ]
-        );
-
-        DB::table('users')->insert(
+            ],
             [
-                'name' => 'Abigael Albaniel',
                 'email' => 'guidance2@email.com',
                 'username' => 'guidance2@email.com',
-                'password' => Hash::make('abi'),
+                'password' => '123',
                 'type' => 'guidance',
-                'status' => 'active',
-                'created_at' => now()
-            ]
-        );
-
-        DB::table('users')->insert(
+            ],
             [
-                'name' => 'jsoe rizal',
-                'email' => 'jose@email.com',
-                'username' => 'jose@email.com',
-                'password' => Hash::make('123'),
-                'type' => 'faculty',
-                'status' => 'active',
-                'created_at' => now()
-            ]
-        );
-
-        DB::table('users')->insert(
-            [
-                'name' => 'maria mercedes',
                 'email' => 'lr@email.com',
                 'username' => 'lr@email.com',
-                'password' => Hash::make('123'),
+                'password' => '123',
                 'type' => 'lr',
-                'status' => 'active',
-                'created_at' => now()
             ],
-
             [
-                'name' => 'mark villar',
-                'email' => 'mark@email.com',
-                'username' => '249196700789',
-                'password' => Hash::make('123'),
+                'email' => 'stud1@email.com',
+                'username' => '247186700789',
+                'password' => '123',
                 'type' => 'student',
-                'status' => 'active',
-                'created_at' => now()
             ],
-
-        );
-
-        DB::table('users')->insert(
             [
-                'name' => 'mark villar',
-                'email' => 'mark@email.com',
+                'email' => 'stud2@email.com',
                 'username' => '249186700789',
-                'password' => Hash::make('123'),
+                'password' => '123',
                 'type' => 'student',
-                'status' => 'active',
-                'created_at' => now()
+            ],
+            [
+                'email' => 'joshuasalceda0021@gmail.com',
+                'username' => 'joshuasalceda0021@gmail.com',
+                'password' => 'Salceda',
+                'type' => 'faculty',
+            ],
+            [
+                'email' => 'rad@gmail.com',
+                'username' => 'rad@gmail.com',
+                'password' => 'Simon',
+                'type' => 'faculty',
+            ],
+            [
+                'email' => 'emma.clark@example.com',
+                'username' => '100000000001',
+                'password' => 'Password1',
+                'type' => 'student',
+            ],
+            [
+                'email' => 'william.moore@example.com',
+                'username' => '100000000002',
+                'password' => 'Password2',
+                'type' => 'student',
+            ],
+            [
+                'email' => 'olivia.wilson@example.com',
+                'username' => '100000000003',
+                'password' => 'Password3',
+                'type' => 'student',
+            ],
+            [
+                'email' => 'liam.taylor@example.com',
+                'username' => '100000000004',
+                'password' => 'Password4',
+                'type' => 'student',
+            ],
+            [
+                'email' => 'ava.johnson@example.com',
+                'username' => '100000000005',
+                'password' => 'Password5',
+                'type' => 'student',
+            ],
+            [
+                'email' => 'ethan.davis@example.com',
+                'username' => '100000000006',
+                'password' => 'Password6',
+                'type' => 'student',
+            ],
+            [
+                'email' => 'sophia.brown@example.com',
+                'username' => '100000000007',
+                'password' => 'Password7',
+                'type' => 'student',
+            ],
+            [
+                'email' => 'mason.smith@example.com',
+                'username' => '100000000008',
+                'password' => 'Password8',
+                'type' => 'student',
+            ],
+            [
+                'email' => 'isabella.wilson@example.com',
+                'username' => '100000000009',
+                'password' => 'Password9',
+                'type' => 'student',
+            ],
+            [
+                'email' => 'noah.turner@example.com',
+                'username' => '100000000010',
+                'password' => 'Password10',
+                'type' => 'student',
             ]
+        ];
 
-        );
+        foreach ($users as $user) {
+            DB::table('users')->insert([
+                'email' => $user['email'],
+                'username' => $user['username'],
+                'password' => Hash::make($user['password']),
+                'type' => $user['type'],
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
     }
 }

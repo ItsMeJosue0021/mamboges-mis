@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Castoro&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    {{-- <link rel="preconnect" href="https://fonts.googleapis.com"> --}}
+    {{-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> --}}
+    {{-- <link href="https://fonts.googleapis.com/css2?family=Castoro&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> --}}
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="//unpkg.com/alpinejs" defer></script>
+    {{-- <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" /> --}}
+    {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
+    {{-- <script src="//unpkg.com/alpinejs" defer></script> --}}
     <link rel="icon" href="image/mambog.png"/>
     <title>Mambog Elementary School</title>
 
@@ -34,7 +34,7 @@
         }
     </style>
 
-    <script>
+    {{-- <script>
         tailwind.config = {
             theme: {
                 extend: {
@@ -84,7 +84,7 @@
                     minHeight: {
                         '610px': '610px',
                     },
-                    maxHeight: {
+                    maxHeight: {  
                         '600px': '600px',
                     },
                     fontSize: {
@@ -94,11 +94,12 @@
                         'school': "url('image/school-blur.png')",
                         'deped': "url('images/deped.png')",
                         'mambog': "url('image/mamboges.jpg')",
+                        'mambog-2': "url('image/bg-mambog.jpg')",
                     }
                 }
             }
         }
-    </script>
+    </script> --}}
 
 </head>
 <body>
@@ -137,7 +138,7 @@
                                 <i class='bx bxl-facebook-circle text-yellow text-xl'></i>
                             </a>
                             <a href="#">
-                                <i class='bx bxl-youtube text-yellow text-lg text-xl'></i>
+                                <i class='bx bxl-youtube text-yellow text-xl'></i>
                             </a>
                         </div>
                     </div>
@@ -145,80 +146,6 @@
             </div>
         </div>
     </section>
-
-    {{-- <header>
-        <div class="container tablet:mx-auto py-2 tablet:px-24">
-            <div class="flex items-center justify-between">
-                <!-- logo -->
-                <div class="flex items-center py-2">
-                    <a href="/" class="flex items-center space-x-2">
-                        <img class="w-70px h-70px" src="{{asset('image/mambog.png')}}" alt="">
-                        <div class="flex flex-col">
-                            <p class="castoro text-base font-bold">MAMBOG</p>
-                            <p class="castoro text-sm font-medium">ELEMENTARY SCHOOL</p>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- navigation -->
-                <nav class="">
-                    <div class="hidden tablet+:flex justify-between space-x-6">
-                        <div class="flex items-center space-x-1">
-                            <a href="/" class="poppins font-medium text-base">Home</a>
-                        </div>
-                        <div class="flex items-center space-x-1">
-                            <a href="#" class="poppins font-medium text-base">About Us</a>
-                        </div>
-                        <div class="flex flex-col relative group">
-                            <div class="flex items-center space-x-1">
-                                <a href="#" class="poppins font-medium text-base">Activities</a>
-                                <i class='bx bx-chevron-down text-lg'></i>
-                            </div>
-                            <div class="hidden group-hover:block hover:block absolute mt-7 bg-white rounded p-2 w-250px shadow-md">
-                                <div class="p-2 hover:bg-lightgray rounded">
-                                    <a class="poppins" href="#">Enrollment</a>
-                                </div>
-                                <div class="p-2 hover:bg-lightgray rounded">
-                                    <a class="poppins" href="#">Calendar of Activities</a>
-                                </div>
-                                <div class="p-2 hover:bg-lightgray rounded">
-                                    <a class="poppins" href="#">News and Announcements</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex flex-col relative group">
-                            <div class="flex items-center space-x-1">
-                                <a href="#" class="poppins font-medium text-base">Management</a>
-                                <i class='bx bx-chevron-down text-lg'></i>
-                            </div>
-                            <div class="hidden group-hover:block hover:block absolute mt-7 bg-white rounded p-2 w-250px shadow-md">
-                                <div class="p-2 hover:bg-lightgray rounded">
-                                    <a class="poppins" href="#">Organizational Structure</a>
-                                </div>
-                                <div class="p-2 hover:bg-lightgray rounded">
-                                    <a class="poppins" href="#">Transparency Board</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex flex-col relative group">
-                            <div class="flex items-center space-x-1">
-                                <a href="#" class="poppins font-medium text-base">Downloadables</a>
-                                <i class='bx bx-chevron-down text-lg'></i>
-                            </div>
-                            <div class="hidden group-hover:block hover:block absolute mt-7 bg-white rounded p-2 w-200px shadow-md">
-                                <div class="p-2 hover:bg-lightgray rounded">
-                                    <a class="poppins" href="#">Enrollment Forms</a>
-                                </div>
-                                <div class="p-2 hover:bg-lightgray rounded">
-                                    <a class="poppins" href="#">Other forms</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </header> --}}
 
     <main>
         {{$slot}}

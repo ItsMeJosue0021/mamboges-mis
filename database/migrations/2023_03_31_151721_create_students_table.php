@@ -1,8 +1,10 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\User;
+use App\Models\Guardian;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -14,19 +16,10 @@ return new class extends Migration
         
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('middle_name')->nullable();
-            $table->string('suffix')->nullable();
-            $table->string('sex');
-            $table->string('lrn')->nullable();
-            $table->date('dob');
-            $table->string('address');
-            $table->string('grade_level')->default('unenrolled');
-            $table->foreignId('section_id')->nullable();
-            $table->foreignId('parent_id');
-            $table->boolean('is_archived')->default(false);
-            $table->string('image')->nullable();
+            $table->string('lrn');
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Guardian::class)->nullable();
+            $table->boolean('isEnrolled')->default(false);
             $table->timestamps();
         });
     }

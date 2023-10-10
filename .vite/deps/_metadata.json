@@ -1,0 +1,41 @@
+{
+  "hash": "d69c6257",
+  "browserHash": "a58eb1b2",
+  "optimized": {
+    "alpinejs": {
+      "src": "../../node_modules/alpinejs/dist/module.esm.js",
+      "file": "alpinejs.js",
+      "fileHash": "c732e477",
+      "needsInterop": false
+    },
+    "aos": {
+      "src": "../../node_modules/aos/dist/aos.js",
+      "file": "aos.js",
+      "fileHash": "1a6fb0ef",
+      "needsInterop": true
+    },
+    "boxicons": {
+      "src": "../../node_modules/boxicons/dist/boxicons.js",
+      "file": "boxicons.js",
+      "fileHash": "f0bf4cc7",
+      "needsInterop": true
+    },
+    "jquery": {
+      "src": "../../node_modules/jquery/dist/jquery.js",
+      "file": "jquery.js",
+      "fileHash": "6f6f757d",
+      "needsInterop": true
+    },
+    "axios": {
+      "src": "../../node_modules/axios/index.js",
+      "file": "axios.js",
+      "fileHash": "1a381d31",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-76J2PTFD": {
+      "file": "chunk-76J2PTFD.js"
+    }
+  }
+}

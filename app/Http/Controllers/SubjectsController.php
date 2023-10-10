@@ -13,7 +13,7 @@ class SubjectsController extends Controller
      */
     public function index()
     {
-        $subjects = Subjects::where('is_archived', false)->get();
+        $subjects = Subjects::all();
 
         return view('subjects.index', [
             'subjects' => $subjects
@@ -23,8 +23,10 @@ class SubjectsController extends Controller
 
 
     public function getSubject($id) {
+
         $subject = Subjects::findOrFail($id);
         return response()->json($subject);
+        
     }
 
 

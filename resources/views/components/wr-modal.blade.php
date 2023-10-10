@@ -4,7 +4,7 @@
             <form class="flex flex-col space-y-3 py-4 px-6"  method="post" action="{{route('activity.store')}}"> {{--action="{{route('activity.store')}}"--}}
                 @csrf
                 <div>
-                    <h1 class="poppins font-semibold">CREATE NEW ACTIVITY</h1>
+                    <h1 class="poppins font-semibold">NEW WRITTEN ACTIVITY</h1>
                 </div>
                 <div class="flex flex-col space-y-1">
                     <label class="poppins text-sm" for="">Name</label>

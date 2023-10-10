@@ -11,11 +11,6 @@ class Activity extends Model
 {
     use HasFactory;
 
-    public function evaluationCriteria()
-    {
-        return $this->belongsTo(EvaluationCriteria::class);
-    }
-
     public function scores()
     {
         return $this->hasMany(Score::class);

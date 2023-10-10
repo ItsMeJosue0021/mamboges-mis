@@ -21,138 +21,20 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    {{-- <style type="text/tailwindcss">
-        @layer utilities {
-            .poppins {
-                font-family: 'Poppins', sans-serif;
-            }
-            .castoro {
-                font-family: 'Castoro', serif;
-            }
-            label.error {
-                color: red;
-                font-family: 'Poppins', sans-serif;
-                font-size: 12px;
-            }
-            .active {
-                background-color: #FEF2F2;
-            }
+    <x-head.tinymce-config/>
 
-            .active p, .active i {
-                color: #DC2626; 
-            }
-
-            .active-archive {
-                background-color: #60a5fa;
-                color: white;
-            }
-
-            .active-archive label, .active-archive i  {
-                color: white;
-            }
-
-            input::-webkit-outer-spin-button,
-            input::-webkit-inner-spin-button {
-                display: none;
-            }
-
-            .active-eval {
-                background-color: #60a5fa;
-                color: white;
-            }
-
-        }
-    </style> --}}
-
-    {{-- <script>
-    tailwind.config = {
-        theme: {
-            extend: {
-                screens: {
-                    'phone': '350px',
-                    'tablet': '640px',
-                    'tablet+': '850px',
-                    'laptop': '1024px',
-                    'desktop': '1280px',
-                },
-                colors: {
-                    red: '#d90429',
-                    blue: '#004e89',
-                    lightgray: '#EFF0F3',
-                    yellow: '#FBE830',
-                    black: '#212529',
-                    lightblack: '#343a40',
-                    youtube: '#FF0000',
-                    lightestgray: '#6c757d',
-                    whitegray: '#e9ecef',
-                    white2: '#f8f9fa'
-                },
-                margin: {
-                    '250px': '250px',
-                    
-                },
-                width: {
-                    '60px': '60px',
-                    '250px': '400px',
-                    '500px': '500px',
-                    '200px': '200px',
-                    '300px': '300px',
-                    '400px': '400px',
-                    '700px': '700px',
-                    '300px': '300px',
-                    '250px': '250px',
-                },
-                height: {
-                    '60px': '60px',
-                    '560px': '560px',
-                    '565px': '565px',
-                    '570px': '570px',
-                    '580px': '580px',
-                    '585px': '585px',
-                    '595px': '595px',
-                    '600px': '600px',
-                    '700px': '670px',
-                    '400px': '400px',
-                    '390px': '390px',
-                    '500px': '500px',
-                    '200px': '200px',
-                    '250px': '250px',
-                    '300px': '300px',
-                },
-                minHeight: {
-                    '600px': '600px',
-                    '900px': '900px',
-                    '250px': '250px',
-                },
-                minWidth: {
-                    '250px': '250px',
-                    '900px': '900px',
-                },
-                fontSize: {
-                    
-                },
-                backgroundImage: {
-                    
-                },
-                boxShadow: {
-                    'EmailForm': '0px 0px 6px 0px rgba(0,0,0,0.2)',
-                }
-            }
-        }
-    }
-    </script> --}}
 </head>
 
 <body>
-    <section class="w-full min-w-900px">
-        <div class="h-fit min-h-screen container mx-auto flex">
+    <section id="container" class="w-full min-w-900px">
+        <div class="h-fit container mx-auto flex">
             <!-- sidebar -->
-            <div class="min-h-full flex flex-grow border-r border-gray-300 bg-white shadow fixed z-30">
-                <div class="h-full p-2 px-4 min-w-250px">
+            <div class="h-screen overflow-y-auto flex flex-grow border-r border-gray-300 bg-white shadow fixed z-30">
+                <div class="h-fit p-2 px-4 min-w-250px">
                     <!-- logo -->
-                    <div class="flex items-center py-2 mb-4">
+                    <div class="flex items-center py-2 mb-2">
                         <a href="/" class="flex items-center space-x-2">
-                            <img class="w-60px h-60px" src="{{asset('image/mambog.png')}}" alt="">
+                            <img class="w-[55px] h-[55px]" src="{{asset('image/mambog.png')}}" alt="">
                             <div class="flex flex-col">
                                 <p class="castoro text-sm font-bold">MAMBOG</p>
                                 <p class="castoro text-xs font-medium">ELEMENTARY SCHOOL</p>
@@ -161,77 +43,98 @@
                     </div>
 
                     <!-- links -->
-                    <div id="links" class="h-full flex flex-col overflow-y-auto">
-                        @if (Auth::user()->type === 'guidance')
-                        <div class="space-y-1 py-2">                         
+                    <div id="links" class="h-full flex flex-col">
+                        {{-- @if (Auth::user()->type === 'guidance') --}}
+                        <div class="w-full pt-2">
+                            <a id="link6" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="{{ route('update.list') }}">
+                                <i class='bx bx-news text-xl text-lightblack group-hover:text-blue-600'></i>
+                                <p class="poppins text-sm group-hover:text-blue-600">News & Updates</p>
+                            </a>
+    
+                            <a id="link13" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/feedback">
+                                <i class='bx bx-comment-dots text-xl text-lightblack group-hover:text-blue-600'></i>
+                                <p class="poppins text-sm group-hover:text-blue-600">Feedback</p>
+                            </a>
+
+                            <a id="link14" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="{{ route('achievements.list') }}">
+                                <i class='bx bx-award text-xl text-lightblack group-hover:text-blue-600'></i>
+                                <p class="poppins text-sm group-hover:text-blue-600">Achievement</p>
+                            </a>
+
+                            <a id="link15" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="{{ route('downloadables.list') }}">
+                                <i class='bx bx-file text-xl text-lightblack group-hover:text-blue-600'></i>
+                                <p class="poppins text-sm group-hover:text-blue-600">Downloadables</p>
+                            </a>
+
+                            <a id="link16" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" >
+                                <i class='bx bx-calendar text-xl text-lightblack group-hover:text-blue-600'></i>
+                                <p class="poppins text-sm group-hover:text-blue-600">Calendar</p>
+                            </a>
+
+                            <a id="link17" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" >
+                                <i class='bx bx-network-chart text-xl text-lightblack group-hover:text-blue-600'></i>
+                                <p class="poppins text-sm group-hover:text-blue-600">Organization</p>
+                            </a>
+    
+                        </div>
+
+                        <div class="py-2 border-t-2 border-gray-200">                         
                             <a id="link2" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/students">
-                                <i class='bx bx-user-circle text-2xl text-lightblack group-hover:text-blue-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Learners</p>
+                                <i class='bx bx-user-circle text-xl text-lightblack group-hover:text-blue-600'></i>
+                                <p class="poppins text-sm group-hover:text-blue-600">Learners</p>
                             </a>
     
                             <a id="link3" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/faculties">
-                                <i class='bx bx-user-pin text-2xl text-lightblack group-hover:text-blue-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Faculty</p>
+                                <i class='bx bx-user-pin text-xl text-lightblack group-hover:text-blue-600'></i>
+                                <p class="poppins text-sm group-hover:text-blue-600">Faculties</p>
                             </a>
 
                             <a id="link1" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/sections">
-                                <i class='bx bx-folder text-2xl text-lightblack group-hover:text-blue-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Sections</p>
+                                <i class='bx bx-folder text-xl text-lightblack group-hover:text-blue-600'></i>
+                                <p class="poppins text-sm group-hover:text-blue-600">Sections</p>
                             </a>
                             
                             <a id="link8" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/subjects">
-                                <i class='bx bx-book-alt text-2xl text-lightblack group-hover:text-blue-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Subjects</p>
+                                <i class='bx bx-book-alt text-xl text-lightblack group-hover:text-blue-600'></i>
+                                <p class="poppins text-sm group-hover:text-blue-600">Subjects</p>
                             </a>
 
                             <a id="link4" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/departments">
-                                <i class='bx bx-category text-2xl text-lightblack group-hover:text-blue-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Departments</p>
+                                <i class='bx bx-category text-xl text-lightblack group-hover:text-blue-600'></i>
+                                <p class="poppins text-sm group-hover:text-blue-600">Departments</p>
                             </a>
 
                         </div>
+
 
                         <div class="w-full border-t-2 border-gray-200 pt-2 space-y-1">
-                            <a id="link6" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/updates/list">
-                                <i class='bx bx-news text-2xl text-lightblack group-hover:text-blue-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">News & Updates</p>
-                            </a>
-    
-                            <a id="link7" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/feedback">
-                                <i class='bx bx-comment-dots text-2xl text-lightblack group-hover:text-blue-600'></i>
-                                <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Feedback</p>
-                            </a>
-    
-                        </div>
-
-                        <div class="w-full border-b-2 border-gray-200 pb-2 space-y-1">
                             <a id="settingsBtn" class="flex group items-center justify-between p-2 rounded hover:bg-blue-50 focus:bg-blue-50 cursor-pointer">
                                 <div class="flex items-center space-x-4">
-                                    <i class='bx bx-cog text-2xl text-lightblack group-hover:text-blue-600'></i>
-                                    <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Settings</p>
+                                    <i class='bx bx-cog text-xl text-lightblack group-hover:text-blue-600'></i>
+                                    <p class="poppins text-sm group-hover:text-blue-600">Settings</p>
                                 </div>
                                 <i class='bx bx-chevron-down text-xl'></i>
                             </a>
 
-                            <div  id="settings" class="hidden w-full space-y-1 border-t border-gray-200">
+                            <div  id="settings" class="hidden w-full border-t border-gray-200">
                                 <a id="link9" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/logs">
-                                    <i class='bx bx-list-ul text-2xl text-lightblack group-hover:text-blue-600'></i>
-                                    <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Logs</p>
+                                    <i class='bx bx-list-ul text-xl text-lightblack group-hover:text-blue-600'></i>
+                                    <p class="poppins text-sm group-hover:text-blue-600">Logs</p>
                                 </a>
         
                                 <a id="link10" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/archive">
-                                    <i class='bx bx-archive text-2xl text-lightblack group-hover:text-blue-600'></i>
-                                    <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Archive</p>
+                                    <i class='bx bx-archive text-xl text-lightblack group-hover:text-blue-600'></i>
+                                    <p class="poppins text-sm group-hover:text-blue-600">Archive</p>
                                 </a>
     
                                 <a id="link11" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/settings">
-                                    <i class='bx bx-calendar text-2xl text-lightblack group-hover:text-blue-600'></i>
-                                    <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">School Year</p>
+                                    <i class='bx bx-calendar text-xl text-lightblack group-hover:text-blue-600'></i>
+                                    <p class="poppins text-sm group-hover:text-blue-600">School Year</p>
                                 </a>
     
                                 <a id="link12" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/profile">
-                                    <i class='bx bxs-user-detail text-2xl text-lightblack group-hover:text-blue-600'></i>
-                                    <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Profile</p>
+                                    <i class='bx bxs-user-detail text-xl text-lightblack group-hover:text-blue-600'></i>
+                                    <p class="poppins text-sm group-hover:text-blue-600">Profile</p>
                                 </a>
                             </div>
                         </div>
@@ -256,33 +159,15 @@
                             }
                         </script>
 
-                        
-
-                        @elseif(Auth::user()->type === 'faculty') 
-
-                            <div class="w-full self-end py-2 space-y-1">
-                                <a id="link13" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/classes">
-                                    <i class='bx bx-spreadsheet text-2xl text-lightblack group-hover:text-blue-600'></i>
-                                    <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Classes</p>
-                                </a>
-
-                                <a id="link14" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/profile">
-                                    <i class='bx bxs-user-detail text-2xl text-lightblack group-hover:text-blue-600'></i>
-                                    <p class="poppins text-lightblack font-medium text-sm group-hover:text-blue-600">Profile</p>
-                                </a>
-                            </div>
-
-
-                        @endif
-
                     </div>
+
                 </div>
             </div>
 
             <!-- main -->
             <div class="ml-250px relative w-full h-full flex flex-col container">
                 <!-- header -->
-                <div class="fixed custom-width flex items-center justify-between py-2 px-4 border-b border-gray-300 bg-white shadow z-10">
+                <div class="sticky top-0 w-full flex items-center justify-between py-2 px-4 border-b border-gray-300 bg-white shadow z-10">
                     <div class="">
                         <p>SCHOOL YEAR: <span class="text-blue-500">{{$schoolYear}}</span></p>
                     </div>
@@ -293,7 +178,7 @@
                                 <x-slot name="trigger">
                                     <button class="inline-flex items-center py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                                         <div>
-                                            <h1 class="poppins">{{ Auth::user()->name }}</h1>
+                                            <h1 class="poppins">{{ Auth::user()->profile->firstName }} {{ Auth::user()->profile->lastName }}</h1>
                                         </div>
             
                                         <div class="ml-1">
@@ -322,14 +207,12 @@
                                 </x-slot>
                             </x-dropdown>
                         </div>
-
-                        <img class="h-9 w-9 rounded-full border bprder-gray-200"  src="{{Auth::user()->image ? asset('storage/' . Auth::user()->image) : asset('image/mamboges.jpg')}}" alt="">
-
+                        <img class="h-9 w-9 rounded-full border bprder-gray-200"  
+                        src="{{Auth::user()->image ? asset('storage/' . Auth::user()->image) : asset('image/mamboges.jpg')}}" alt="">
                     </div>
                 </div>
 
-                <!-- main content -->
-                <div class="h-full relative mt-20">
+                <div class="h-full relative">
                     <main>
                         {{$slot}}
                     </main>
@@ -337,11 +220,8 @@
             </div>
 
         </div>
-        @if (session()->has('success') || session()->has('error')) 
-            <div x-data="{show: true}" x-init="setTimeout(() => show = false, 2000)" x-show="show" class="fixed top-0 left-1/2 transform -translate-x-1/2 text-white px-10 py-3 z-50">
-                <p>{{session('message')}}</p>
-            </div>
-        @endif
+        
+        <x-flash-messages/>
 
     </section>
 

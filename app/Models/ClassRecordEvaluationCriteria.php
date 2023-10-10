@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Activity;
+use App\Models\ClassRecord;
+use App\Models\ActivityStatistics;
+use App\Models\EvaluationCriteria;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ClassRecordEvaluationCriteria extends Model
 {
@@ -22,6 +26,11 @@ class ClassRecordEvaluationCriteria extends Model
     public function activities()
     {
         return $this->hasMany(Activity::class);
+    }
+
+    public function activityStatistics()
+    {
+        return $this->hasMany(ActivityStatistics::class);
     }
 
 }

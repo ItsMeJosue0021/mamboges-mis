@@ -15,12 +15,9 @@ class ClassesController extends Controller
     public function index() {
         
         $user = auth()->user();
-
-        $faculty = Faculty::where('email', $user->username)->first();
-
+        $faculty = Faculty::where('user_id',$user->id)->first();
         $current_school_year = SchoolYear::where('is_current', true)->first();
-
-        $classes = SectionSubjects::where('faculty_id', $faculty->id)->where('school_year_id',  $current_school_year->id)->get();
+        $classes = $faculty->sectionSubjects->where('school_year_id', $current_school_year->id);
 
         return view('classes.index', [
             'classes' => $classes
@@ -31,21 +28,12 @@ class ClassesController extends Controller
         
         $current_school_year = SchoolYear::where('is_current', true)->first();
 
-        $section_students = SectionStudents::where('section_id', $class->section_id)
-        ->where('school_year_id',  $current_school_year->id)
-        ->get();
-    
-        $students = [];
-    
-        foreach ($section_students as $student) {
-            $student_record = Student::where('id', $student->student_id)->first();
-            if ($student_record) {
-                $students[] = $student_record;
-            }
-        }
+        $section = Section::find($class->section_id);
+
+        $sectionStudents = $section->sectionStudents->where('school_year_id', $current_school_year->id);
     
         return view('classes.class-record', [
-            'students' => $students
+            'students' => $sectionStudents
         ]);
     } 
 }

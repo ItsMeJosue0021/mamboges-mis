@@ -33,25 +33,22 @@ class AuthenticatedSessionController extends Controller
     public function loginStaff(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-    
         $userType = $request->user()->type;
-    
+
         if ($userType === 'guidance') {
-            $url = '/students';
+            $url = route('update.list');
         } elseif ($userType === 'faculty') {
-            $url = '/classes';
+            $url = route('faculty.classes');
         } elseif ($userType === 'lr') {
-            $url = '/lr/dashboard';
-        } 
-        
+            $url = route('lr.video');
+        }
+
         $request->session()->regenerate();
         $request->session()->put('url.intended', $url);
-    
         Logs::addToLog(Auth::user()->username . ' has logged in.');
-    
         return redirect()->intended($url);
     }
-    
+
 
     public function loginStudent(StudentLoginRequest $request): RedirectResponse
     {

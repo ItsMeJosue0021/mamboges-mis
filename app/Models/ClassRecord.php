@@ -10,6 +10,12 @@ class ClassRecord extends Model
 {
     use HasFactory;
 
+    public function scopeFilter($query, array $filters) {
+        if ($filters['quarter']  ?? false) {
+            $query->where('quarter_id', request('quarter'));
+        }
+    }
+
     public function evaluationCriterias()
     {
         return $this->belongsToMany(EvaluationCriteria::class, 'class_record_evaluation_criterias')
@@ -25,5 +31,20 @@ class ClassRecord extends Model
     public function activities()
     {
         return $this->hasMany(Activity::class);
+    }
+
+    public function quarter()
+    {
+        return $this->belongsTo(Quarter::class);
+    }
+
+    public function sectionSubject()
+    {
+        return $this->belongsTo(SectionSubjects::class);
+    }
+
+    public function faculty()
+    {
+        return $this->belongsTo(Faculty::class);
     }
 }
