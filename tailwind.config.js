@@ -1,4 +1,5 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
+import defaultTheme from 'tailwindcss/defaultTheme';
+import forms from '@tailwindcss/forms';
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -8,6 +9,7 @@ module.exports = {
         './resources/**/*.js',
         './public/js/*.js',
         './resources/views/**/*.blade.php',
+        './resources/css/*.css',
     ],
 
     theme: {
@@ -15,11 +17,15 @@ module.exports = {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+
             backgroundImage: {
-                'school': "url('image/school-blur.png')",
-                'deped': "url('images/deped.png')",
-                'mambog': "url('image/mamboges.jpg')",
+                // 'school': "url('/image/school-blur.png')",
+                // 'mambog-classes': "url('/image/mamboges2.png')",
+                // 'deped': "url('/image/deped.png')",
+                // 'mambog': "url('/image/mamboges.jpg')",
+                'mambog-2': "url('/image/bg-mambog.jpg')",
             },
+
             screens: {
                 'phone': '350px',
                 'tablet': '640px',
@@ -85,9 +91,6 @@ module.exports = {
             fontSize: {
                 
             },
-            backgroundImage: {
-                
-            },
             boxShadow: {
                 'EmailForm': '0px 0px 6px 0px rgba(0,0,0,0.2)',
             }
@@ -96,7 +99,8 @@ module.exports = {
 
     plugins: [
         require('@tailwindcss/forms'),
-        require('daisyui')
+        require('daisyui'),
+        forms
     ],
 
 };

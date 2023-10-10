@@ -1,10 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Michroma&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,500&family=Roboto:wght@300;400&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
-@import "~aos/dist/aos.css";
-@import url('https://fonts.googleapis.com/css2?family=Michroma&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,500&family=Roboto:wght@300;400&display=swap');
 
 .poppins {
     font-family: 'Poppins', sans-serif;
@@ -31,7 +30,7 @@ label.error {
     color: white;
 }
 
-.active-eval {
+.active-eval, .active-quarter {
     background-color: rgb(30 64 175);
     color: white;
 }
@@ -52,4 +51,15 @@ input::-webkit-inner-spin-button {
 .rotate-180 {
     transform: rotate(180deg);
 }
+
+.hero-pattern  {
+    --dot-bg: white;
+    --dot-color: black;
+    --dot-size: 1px;
+    --dot-space: 22px;
+      background:
+          linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+          linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+          var(--dot-color);
+  }
     

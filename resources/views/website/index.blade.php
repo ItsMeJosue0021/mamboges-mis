@@ -2,7 +2,7 @@
 
     @include('website.partials._hero')
 
-    <section class="">
+    <section class="pt-96">
         <div class="container mx-auto tablet:px-24">
             <div class="py-16">
                 <div class="flex flex-col items-center justify-center space-y-6 pb-12">

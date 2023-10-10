@@ -1,8 +1,12 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\Faculty;
+use App\Models\Quarter;
+use App\Models\SchoolYear;
+use App\Models\SectionSubjects;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -14,9 +18,10 @@ return new class extends Migration
         Schema::create('class_records', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('section_subject_id')->constrained('section_subjects')->onDelete('cascade')->nullable(); 
-            $table->foreignId('faculty_id')->constrained('faculties')->onDelete('cascade')->nullable(); 
-            $table->foreignId('school_year_id')->constrained('school_years')->onDelete('cascade')->nullable(); 
+            $table->foreignIdFor(SectionSubjects::class)->constrained()->onDelete('cascade')->nullable(); 
+            $table->foreignIdFor(Faculty::class)->constrained()->onDelete('cascade')->nullable(); 
+            $table->foreignIdFor(SchoolYear::class)->constrained()->onDelete('cascade')->nullable(); 
+            $table->foreignIdFor(Quarter::class)->constrained()->onDelete('cascade')->nullable();
             $table->timestamps();
         });
     }

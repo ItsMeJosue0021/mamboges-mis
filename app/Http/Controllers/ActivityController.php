@@ -18,7 +18,7 @@ class ActivityController extends Controller
         $activity = Activity::create([
             'name' => $data['name'],
             'max_score' => $data['max_score'],
-            'evaluation_criteria_id' => $data['evaluation_criteria_id'],
+            'class_record_evaluation_criteria_id' => $data['evaluation_criteria_id'],
         ]);
 
         return redirect()->back()->with('success', 'Activity created successfully!');

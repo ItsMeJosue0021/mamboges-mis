@@ -35,7 +35,7 @@
 
                 <div class="w-full flex justify-between py-1 px-4 border-b border-gray-300 items-center">
                     <p class="w-full poppins text-base font-normal ">
-                        {{$subject->subject_name}}
+                        {{$subject->name}}
                     </p>
 
                     {{-- <p class="w-full poppins text-center text-base "> 

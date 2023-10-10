@@ -30,19 +30,17 @@
                     </div>
                 @endif
                 @foreach ($faculties as $faculty)
-                    {{-- href="/sections/{{$section->id}}" --}}
                     <a class="w-full flex" href="/faculties/{{$faculty->id}}"> 
                         <div class="w-full flex justify-between py-2 px-4 border-b border-gray-300 items-center group hover:bg-blue-50">
                             <p class="w-full poppins text-base group-hover:text-blue-500">
-                                {{$faculty->suffix}} {{$faculty->first_name}} {{$faculty->middle_name}} {{$faculty->last_name}}
+                                {{$faculty->user->profile->suffix ? $faculty->user->profile->suffix : '' }}
+                                {{$faculty->user->profile->firstName}} 
+                                {{$faculty->user->profile->middleName}} 
+                                {{$faculty->user->profile->lastName}}
                             </p>
 
                             <p class="w-full poppins text-base group-hover:text-blue-500">
-                                @foreach ($departments as $department)
-                                    @if ($department->id == $faculty->department_id) 
-                                        {{$department->department_name}}
-                                    @endif
-                                @endforeach
+                                {{ $faculty->department->name }}
                             </p>
                         </div>
                     </a>

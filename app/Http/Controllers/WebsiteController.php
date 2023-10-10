@@ -8,8 +8,9 @@ use Illuminate\Http\Request;
 class WebsiteController extends Controller
 {
     public function index() {
-        return view('website.index', [
-            'updates' =>  Updates::latest()->paginate(6)
+        return view('welcome', [
+            'updates' =>  Updates::latest()->take(3)->get(),
+            'first_update' => Updates::latest()->first(),
         ]);
     }
 }

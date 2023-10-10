@@ -18,8 +18,4 @@ class EvaluationCriteria extends Model
                     ->withPivot('percentage');
     }
 
-    public function activities()
-    {
-        return $this->hasMany(Activity::class);
-    }
 }

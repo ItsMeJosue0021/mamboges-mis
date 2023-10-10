@@ -12,9 +12,8 @@ class DepartmentController extends Controller
 
     public function index()
     {
-        $departments = Department::where('is_archived', false)->get();
-
-        $facuties = Faculty::where('is_archived', false)->get();
+        $departments = Department::all();
+        $facuties = Faculty::all();
 
         return view('departments.index', [
             'departments' => $departments,
