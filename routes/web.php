@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\DownloadableFileController;
+use App\Http\Controllers\DownloadableFilesGroupController;
 use App\Models\AchievementImage;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LrController;
@@ -87,7 +88,7 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
 
         });
 
-        Route::controller(UpdateImageController::class)->group(function() {
+        Route::controller(UpdateImageController::class)->group(function () {
             Route::delete('/{update}/delete-image/{image}', 'destroy')->name('update.deleteImage');
         });
     });
@@ -95,16 +96,16 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
     Route::get('get-update-images', [UpdatesController::class, 'getImages'])->name('update.images');
 
     // FACULTY
-    Route::controller(FacultyController::class)->group(function() {
+    Route::controller(FacultyController::class)->group(function () {
         Route::get('/faculties', 'index')->name('faculties.index');
         Route::post('/faculties/save', 'store')->name('faculties.store');
         Route::get('/faculties/{faculty}', 'show')->name('faculties.show');
         Route::put('/faculties/{faculty}/update', 'update')->name('faculties.update');
         Route::delete('/faculties/{faculty}/delete', 'delete')->name('faculties.delete');
     });
-    
+
     // STUDENT
-    Route::controller(StudentController::class)->group(function() {
+    Route::controller(StudentController::class)->group(function () {
         Route::get('/students', 'index')->name('student.index');
         Route::get('/students/search', 'getStudents')->name('student.getStudents');
         Route::get('/students/{student}', 'show')->name('student.show');
@@ -127,7 +128,7 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
         Route::post('/sections/{section}/importstudent', 'importStudent')->name('sections.importStudent');
         Route::post('/sections/{section}/student/save', 'addStudent')->name('sections.addStudent');
     });
-    
+
     // SECTION STUDENTS
     Route::controller(SectionStudentsController::class)->group(function () {
         Route::get('/sections/students/all', 'getStudents')->name('section.students.getStudents');
@@ -141,12 +142,12 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
         Route::get('/sections/subjects/all', 'getSubjects')->name('section.subjects.getSubjects');
         Route::delete('/sections/subjects/remove', 'remove')->name('section.subjects.remove');
     });
-    
+
     // PARENTS
     Route::get('/parents', [GuardianController::class, 'index']);
 
     // DEPARTMENTS
-    Route::controller(DepartmentController::class)->group(function() {
+    Route::controller(DepartmentController::class)->group(function () {
         Route::get('/departments', 'index')->name('departments.index');
         Route::post('/departments/save', 'store')->name('departments.store');
         Route::get('/departments/edit/{department}', 'getDepartment')->name('departments.getDepartment');
@@ -155,7 +156,7 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
     });
 
     // SUBJECTS
-    Route::controller(SubjectsController::class)->group(function() {
+    Route::controller(SubjectsController::class)->group(function () {
         Route::get('/subjects', 'index')->name('subjects.index');
         Route::post('/subjects/save', 'store')->name('subjects.store');
         Route::get('/subjects/edit/{subject}', 'getSubject')->name('subjects.getSubject');
@@ -170,9 +171,9 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
     Route::controller(SchoolYearController::class)->group(function () {
         Route::get('/schoolyears', 'getSchoolYears')->name('schoolyear');
         Route::post('/schoolyears/new', 'store')->name('schoolyear.store');
-        Route::put('/schoolyears/change','changeSchoolYear')->name('schoolyear.change');
+        Route::put('/schoolyears/change', 'changeSchoolYear')->name('schoolyear.change');
     });
-   
+
     // LOGS
     Route::get('/logs', [LogsController::class, 'index']);
 
@@ -196,22 +197,29 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
     });
 
     Route::delete('/achievements/{achievement}/delete-image/{achievementImage}', [AchievementImageController::class, 'destroy'])
-    ->name('achievementImage.delete');
+        ->name('achievementImage.delete');
 
-    Route::controller(DownloadableFileController::class)->group(function() {
+    Route::get('/viewer/{fileId}', [DownloadableFileController::class, 'viewPDF'])->name('downloadables.view');
+
+    Route::controller(DownloadableFileController::class)->group(function () {
         Route::get('/downloadables', 'index')->name('downloadables.index');
         Route::get('/downloadables/list', 'list')->name('downloadables.list');
         Route::post('/downloadables/save', 'store')->name('downloadables.store');
         Route::get('/downloadables/{downloadableFile}', 'show')->name('downloadables.show');
         Route::get('/downloadables/{downloadableFile}/edit', 'edit')->name('downloadables.edit');
         Route::put('/downloadables/{downloadableFile}/update', 'update')->name('downloadables.update');
+        Route::delete('/downloadables/{downloadableFile}/delete', 'destroy')->name('downloadables.delete');
+    });
+
+    Route::controller(DownloadableFilesGroupController::class)->group(function() {
+        Route::delete('/downloadables/group/{downloadablesGroup}/delete', 'destroy')->name('downloadables.group.delete');
     });
 
 });
 
 
 
-Route::middleware(['auth', 'role:faculty'])->group(function () {    
+Route::middleware(['auth', 'role:faculty'])->group(function () {
 
     // CLASS RECORD
     Route::get('/classes', [ClassesController::class, 'index'])->name('faculty.classes');
@@ -243,7 +251,7 @@ Route::middleware(['auth', 'role:student'])->group(function () {
 
 });
 
-Route::middleware(['auth', 'role:lr'])->group(function () { 
+Route::middleware(['auth', 'role:lr'])->group(function () {
 
     Route::prefix('lr')->group(function () {
         Route::controller(LrController::class)->group(function () {
@@ -260,6 +268,5 @@ Route::middleware(['auth', 'role:lr'])->group(function () {
         Route::put('/video-lessons/{videoLesson}/update', 'update')->name('video-lessons.update');
         Route::delete('/video-lessons/{videoLesson}/delete', 'delete')->name('video-lessons.delete');
     });
-    
-});
 
+});

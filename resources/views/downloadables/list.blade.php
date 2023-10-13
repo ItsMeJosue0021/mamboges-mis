@@ -1,39 +1,80 @@
 <x-guidance-layout>
     <div class="w-full h-full flex justify-center items-start p-4">
-        <div class="w-full" id="uploadFormWrapper">
-            <form action="{{ route('downloadables.store') }}" method="POST" enctype="multipart/form-data" class="w-1/2 flex flex-col space-y-4">
-                @csrf
-                <div>
-                    <h1 class="poppins text-lg font-medium">UPLOAD DOWNLOADABLE FILES</h1>
-                    <div class="rounded shadow-md p-4 border border-gray-100">
-                        <div class="flex flex-col space-y-1">
-                            <label class="poppins text-sm font-semibold">
-                                Group Name
-                                <span id="error" class="text-red-600 text-xs font-normal"></span>
-                            </label>
-                            <input name="groupName"  id="groupName" type="text" placeholder="Please provide a group name.."
-                                class="poppins text-sm px-4 py-2 rounded border-2 border-gray-200">
-                            <div class="pt-2 flex justify-between">
-                                <!-- Add Files Button -->
-                                <a id="addFilesBtn" class="px-4 py-2 text-sm bg-blue-600 text-white rounded cursor-pointer">
-                                    Add Files
-                                </a>
-                                <button type="submit" id="submitBtn"
-                                class="px-4 py-2 text-sm font-bold text-blue-600 bg-white border-2 border-blue-600 rounded cursor-pointer hover:bg-blue-600 hover:text-white">
-                                    Upload
-                                </button>
+        <div class="w-full flex space-x-4" >
+            <div class="w-1/2 " id="uploadFormWrapper">
+                <form action="{{ route('downloadables.store') }}" method="POST" enctype="multipart/form-data" class="flex flex-col space-y-4">
+                    @csrf
+                    <div class="flex flex-col space-y-2">
+                        <h1 class="poppins text-lg font-medium">UPLOAD DOWNLOADABLE FILES</h1>
+                        <div class="rounded shadow-md p-4 border border-gray-100">
+                            <div class="flex flex-col space-y-1">
+                                <label class="poppins text-sm font-semibold">
+                                    Group Name
+                                    <span id="error" class="text-red-600 text-xs font-normal"></span>
+                                </label>
+                                <input name="groupName"  id="groupName" type="text" placeholder="Please provide a group name.."
+                                    class="poppins text-sm px-4 py-2 rounded border-2 border-gray-200">
+                                <div class="pt-2 flex justify-between">
+                                    <!-- Add Files Button -->
+                                    <a id="addFilesBtn" class="px-4 py-2 text-sm bg-blue-600 text-white rounded cursor-pointer">
+                                        Add Files
+                                    </a>
+                                    <button type="submit" id="submitBtn"
+                                    class="px-4 py-2 text-sm font-bold text-blue-600 bg-white border-2 border-blue-600 rounded cursor-pointer hover:bg-blue-600 hover:text-white">
+                                        Upload
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div id="fileContainers" class="flex flex-col space-y-2">
-                    <!-- Initially, no file containers here --> 
-                </div>
-            </form>
+    
+                    <div id="fileContainers" class="flex flex-col space-y-2">
+                        <!-- Initially, no file containers here --> 
+                    </div>
+                </form>
+            </div>
             
-            <div>
-
+            <div class="w-1/2 flex flex-col p-4 h-[630px] overflow-y-auto">
+                <div class="flex flex-col space-y-2">
+                    <h1 class="poppins text-lg font-medium">CURRENT DOWNLOADABLE FILES</h1>
+                    <div class="flex flex-col space-y-2">
+                        @foreach ($groups as $group)
+                            <div class="border border-gray-100 bg-base-100 rounded-md shadow ">
+                                <div class="p-4 flex justify-between items-start bg-gray-200 rounded-t-md">
+                                    <p class="poppins font-medium">{{$group->name}}</p>
+                                    <div class="flex items-center space-x-2">
+                                        <a href="{{ route('downloadables.edit', $group->id) }}">
+                                            <i class='bx bx-edit text-sm text-blue-600'></i>
+                                        </a>
+                                        <form action="{{ route('downloadables.group.delete', $group->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button>
+                                                <i class='bx bx-trash text-sm text-red-600'></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                    
+                                </div>
+                                @foreach ($group->downloadableFiles as $file)
+                                    <div class="flex justify-between items-center p-2 px-4 border-t border-gray-200">
+                                        <a href="{{ route('downloadables.view', $file->id) }}" target="_blank" 
+                                            class="poppins text-sm hover:text-blue-600 hover:underline">
+                                            {{ $file->title }}
+                                        </a>
+                                        <form action="{{ route('downloadables.delete', $file->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button>
+                                                <i class='bx bx-x text-sm text-gray-500 hover:text-red-600'></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
             </div>
         </div>
     </div>
