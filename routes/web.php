@@ -1,7 +1,4 @@
 <?php
-use App\Http\Controllers\CalendarOfActivitiesController;
-use App\Http\Controllers\DownloadableFileController;
-use App\Http\Controllers\DownloadableFilesGroupController;
 use App\Models\AchievementImage;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LrController;
@@ -24,12 +21,17 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\AchievementController;
 use App\Http\Controllers\ClassRecordController;
+use App\Http\Controllers\OrgChartRowController;
 use App\Http\Controllers\UpdateImageController;
 use App\Http\Controllers\VideoLessonController;
+use App\Http\Controllers\OrgChartRowItemController;
 use App\Http\Controllers\SectionStudentsController;
 use App\Http\Controllers\SectionSubjectsController;
 use App\Http\Controllers\AchievementImageController;
+use App\Http\Controllers\DownloadableFileController;
+use App\Http\Controllers\CalendarOfActivitiesController;
 use App\Http\Controllers\StudentAccess\PortalController;
+use App\Http\Controllers\DownloadableFilesGroupController;
 use App\Http\Controllers\ClassRecordEvaluationCriteriaController;
 
 /*
@@ -224,6 +226,25 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
             Route::get('/{calendarOfActivities}/edit', 'edit')->name('calendar.edit');
             Route::put('/{calendarOfActivities}/update', 'update')->name('calendar.update');
             Route::delete('/{calendarOfActivities}/delete', 'destroy')->name('calendar.delete');
+        });
+    });
+
+    Route::prefix('org')->group(function () {
+        Route::controller(OrgChartRowController::class)->group(function () {
+            Route::get('/chart', 'index')->name('org.chart.index');
+            Route::get('/chart/create', 'create')->name('org.chart.create');
+            Route::prefix('row')->group(function () {
+                Route::post('/save', 'store')->name('org.chart.store');
+                Route::put('/{orgChartRow}/update', 'update')->name('org.chart.update');
+                Route::delete('/{orgChartRow}/delete', 'destroy')->name('org.chart.delete');
+            });
+        });
+        Route::prefix('row')->group(function () {
+            Route::controller(OrgChartRowItemController::class)->group(function () {
+                Route::post('/item/save', 'store')->name('org.chart.item.store');
+                Route::put('/item/{orgChartRowItem}/update', 'update')->name('org.chart.item.update');
+                Route::delete('/item/{orgChartRowItem}/delete', 'destroy')->name('org.chart.item.delete');
+            });
         });
     });
 

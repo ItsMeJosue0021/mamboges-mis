@@ -71,7 +71,7 @@
                                 <p class="poppins text-sm group-hover:text-blue-600">Calendar</p>
                             </a>
 
-                            <a id="link17" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" >
+                            <a id="link17" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="{{ route('org.chart.create') }}">
                                 <i class='bx bx-network-chart text-xl text-lightblack group-hover:text-blue-600'></i>
                                 <p class="poppins text-sm group-hover:text-blue-600">Organization</p>
                             </a>

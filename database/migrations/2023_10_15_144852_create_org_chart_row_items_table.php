@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('position');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->foreignIdFor(OrgChartRow::class);
             $table->timestamps();
         });

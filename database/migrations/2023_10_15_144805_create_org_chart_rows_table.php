@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('org_chart_rows', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->timestamps();
         });
     }
