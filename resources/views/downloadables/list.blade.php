@@ -6,7 +6,7 @@
                     @csrf
                     <div class="flex flex-col space-y-2">
                         <h1 class="poppins text-lg font-medium">UPLOAD DOWNLOADABLE FILES</h1>
-                        <div class="rounded shadow-md p-4 border border-gray-100">
+                        <div class="rounded shadow p-4 border border-gray-100">
                             <div class="flex flex-col space-y-1">
                                 <label class="poppins text-sm font-semibold">
                                     Group Name

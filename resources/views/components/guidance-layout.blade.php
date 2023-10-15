@@ -66,7 +66,7 @@
                                 <p class="poppins text-sm group-hover:text-blue-600">Downloadables</p>
                             </a>
 
-                            <a id="link16" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" >
+                            <a id="link16" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="{{ route('calendar.index') }}">
                                 <i class='bx bx-calendar text-xl text-lightblack group-hover:text-blue-600'></i>
                                 <p class="poppins text-sm group-hover:text-blue-600">Calendar</p>
                             </a>

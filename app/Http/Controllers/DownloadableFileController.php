@@ -59,7 +59,7 @@ class DownloadableFileController extends Controller
             }
         }
 
-        return back()->with('success', 'No files were uploaded.');
+        return back()->with('message', 'No files were uploaded.');
     }
 
     public function edit($id)
@@ -106,7 +106,7 @@ class DownloadableFileController extends Controller
             }
         }
 
-        return back()->with('success', 'No files were uploaded.');
+        return back()->with('message', 'No files were uploaded.');
     }
 
 

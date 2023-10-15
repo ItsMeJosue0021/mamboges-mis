@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\CalendarOfActivitiesController;
 use App\Http\Controllers\DownloadableFileController;
 use App\Http\Controllers\DownloadableFilesGroupController;
 use App\Models\AchievementImage;
@@ -211,9 +212,21 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
         Route::delete('/downloadables/{downloadableFile}/delete', 'destroy')->name('downloadables.delete');
     });
 
-    Route::controller(DownloadableFilesGroupController::class)->group(function() {
+    Route::controller(DownloadableFilesGroupController::class)->group(function () {
         Route::delete('/downloadables/group/{downloadablesGroup}/delete', 'destroy')->name('downloadables.group.delete');
     });
+
+    Route::prefix('calendar')->group(function () {
+        Route::controller(CalendarOfActivitiesController::class)->group(function () {
+            Route::get('', 'index')->name('calendar.index');
+            Route::post('/save', 'store')->name('calendar.store');
+            Route::get('/viewer/{calendarOfActivities}', 'view')->name('calendar.view');
+            Route::get('/{calendarOfActivities}/edit', 'edit')->name('calendar.edit');
+            Route::put('/{calendarOfActivities}/update', 'update')->name('calendar.update');
+            Route::delete('/{calendarOfActivities}/delete', 'destroy')->name('calendar.delete');
+        });
+    });
+
 
 });
 
