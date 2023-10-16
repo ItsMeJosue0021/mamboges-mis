@@ -16,12 +16,12 @@
 </head>
 
 <body>
-    <section class="w-full min-w-900px">
-        <div class="h-fit min-h-screen container mx-auto flex">
+    <section class="w-full">
+        <div class="h-fit min-h-screen max-w-[1500px] mx-auto flex">
             <!-- main -->
-            <div class="w-full h-full flex flex-col container mx-auto pb-4">
+            <div class="w-full h-full flex flex-col pb-4">
                 <!-- header -->
-                <div class="fixed w-full flex items-center justify-between py-3 px-8 border-b border-gray-300 bg-white shadow z-10">
+                <div class=" w-full flex items-center justify-between py-3 px-8 border-b border-gray-300 bg-white shadow z-10">
                     <div class="flex items-center">
                         <a href="/" class="flex items-center space-x-2">
                             <img class="w-60px h-60px" src="{{asset('image/mambog.png')}}" alt="">

@@ -27,7 +27,7 @@
 
 <body>
     <section id="container" class="w-full min-w-900px">
-        <div class="h-fit container mx-auto flex">
+        <div class="h-fit max-w-[1500px] mx-auto flex">
             <!-- sidebar -->
             <div class="h-screen overflow-y-auto flex flex-grow border-r border-gray-300 bg-white shadow fixed z-30">
                 <div class="h-fit p-2 px-4 min-w-250px">
@@ -50,7 +50,7 @@
                                 <i class='bx bx-news text-xl text-lightblack group-hover:text-blue-600'></i>
                                 <p class="poppins text-sm group-hover:text-blue-600">News & Updates</p>
                             </a>
-    
+
                             <a id="link13" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/feedback">
                                 <i class='bx bx-comment-dots text-xl text-lightblack group-hover:text-blue-600'></i>
                                 <p class="poppins text-sm group-hover:text-blue-600">Feedback</p>
@@ -75,15 +75,15 @@
                                 <i class='bx bx-network-chart text-xl text-lightblack group-hover:text-blue-600'></i>
                                 <p class="poppins text-sm group-hover:text-blue-600">Organization</p>
                             </a>
-    
+
                         </div>
 
-                        <div class="py-2 border-t-2 border-gray-200">                         
+                        <div class="py-2 border-t-2 border-gray-200">
                             <a id="link2" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/students">
                                 <i class='bx bx-user-circle text-xl text-lightblack group-hover:text-blue-600'></i>
                                 <p class="poppins text-sm group-hover:text-blue-600">Learners</p>
                             </a>
-    
+
                             <a id="link3" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/faculties">
                                 <i class='bx bx-user-pin text-xl text-lightblack group-hover:text-blue-600'></i>
                                 <p class="poppins text-sm group-hover:text-blue-600">Faculties</p>
@@ -93,7 +93,7 @@
                                 <i class='bx bx-folder text-xl text-lightblack group-hover:text-blue-600'></i>
                                 <p class="poppins text-sm group-hover:text-blue-600">Sections</p>
                             </a>
-                            
+
                             <a id="link8" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/subjects">
                                 <i class='bx bx-book-alt text-xl text-lightblack group-hover:text-blue-600'></i>
                                 <p class="poppins text-sm group-hover:text-blue-600">Subjects</p>
@@ -121,17 +121,17 @@
                                     <i class='bx bx-list-ul text-xl text-lightblack group-hover:text-blue-600'></i>
                                     <p class="poppins text-sm group-hover:text-blue-600">Logs</p>
                                 </a>
-        
+
                                 <a id="link10" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/archive">
                                     <i class='bx bx-archive text-xl text-lightblack group-hover:text-blue-600'></i>
                                     <p class="poppins text-sm group-hover:text-blue-600">Archive</p>
                                 </a>
-    
+
                                 <a id="link11" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/settings">
                                     <i class='bx bx-calendar text-xl text-lightblack group-hover:text-blue-600'></i>
                                     <p class="poppins text-sm group-hover:text-blue-600">School Year</p>
                                 </a>
-    
+
                                 <a id="link12" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/profile">
                                     <i class='bx bxs-user-detail text-xl text-lightblack group-hover:text-blue-600'></i>
                                     <p class="poppins text-sm group-hover:text-blue-600">Profile</p>
@@ -180,7 +180,7 @@
                                         <div>
                                             <h1 class="poppins">{{ Auth::user()->profile->firstName }} {{ Auth::user()->profile->lastName }}</h1>
                                         </div>
-            
+
                                         <div class="ml-1">
                                             <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -188,16 +188,16 @@
                                         </div>
                                     </button>
                                 </x-slot>
-            
+
                                 <x-slot name="content" class=" ">
                                     <x-dropdown-link :href="route('profile.edit')">
                                         {{ __('Profile') }}
                                     </x-dropdown-link>
-            
+
                                     <!-- Authentication -->
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
-            
+
                                         <x-dropdown-link :href="route('logout')"
                                                 onclick="event.preventDefault();
                                                             this.closest('form').submit();">
@@ -207,7 +207,7 @@
                                 </x-slot>
                             </x-dropdown>
                         </div>
-                        <img class="h-9 w-9 rounded-full border bprder-gray-200"  
+                        <img class="h-9 w-9 rounded-full border bprder-gray-200"
                         src="{{Auth::user()->image ? asset('storage/' . Auth::user()->image) : asset('image/mamboges.jpg')}}" alt="">
                     </div>
                 </div>
@@ -220,7 +220,7 @@
             </div>
 
         </div>
-        
+
         <x-flash-messages/>
 
     </section>
@@ -230,7 +230,7 @@
 
     <script>
         const links = document.querySelectorAll('#links a');
-        const baseUrl = window.location.origin; 
+        const baseUrl = window.location.origin;
         const activeLinkId = localStorage.getItem('activeLinkId');
         links.forEach((link) => {
             if (link.href.startsWith(baseUrl)) {
