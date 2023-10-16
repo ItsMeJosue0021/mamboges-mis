@@ -20,7 +20,6 @@
             <a id="new-written-act" class="poppins text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 px-2 py-1 rounded-[3px] cursor-pointer">NEW ACTIVITY</a>
         </div>
     </div>
-
 </div>
 
 <script type="module">
@@ -41,19 +40,19 @@
         });
 
         $("#WR_changePercentageButton").click(function(e) {
-            e.preventDefault(); 
-    
-            var form = $('#WR_PercentageForm'); 
+            e.preventDefault();
+
+            var form = $('#WR_PercentageForm');
             var evaluationId = $(this).data("evaluation-id");
             var csrfToken = $('meta[name="csrf-token"]').attr('content');
             var classRecordId = $('#classRecordId').data('class-record-id');
 
             $.ajaxSetup({ headers: {'X-CSRF-TOKEN': csrfToken} });
-    
+
             $.ajax({
                 type: "POST",
                 url: '/update-percentage/' + evaluationId + '/record/' + classRecordId,
-                data: form.serialize(), 
+                data: form.serialize(),
                 success: function(response) {
                     var message;
                     if (response.status === 'success') {
@@ -71,7 +70,7 @@
                                             '<i class="bx bx-block text-red-500 text-4xl"></i>' +
                                             '<p class="poppins text-sm text-red-700">' + response.message + '</p>' +
                                         '</div>' +
-                                    '</div>');  
+                                    '</div>');
                     }
 
                     $('#container').append(message);
@@ -107,10 +106,3 @@
         }
     });
 </script>
-
-{{-- <div class="fixed top-5 left-1/2 bg-green-700 transform -translate-x-1/2 z-50 rounded-md">
-    <div class="flex space-x-4 items-center border-2 border-orange-400 bg-orange-100 px-4 py-2 rounded-md">
-        <i class='bx bx-error text-orange-500 text-4xl'></i>
-        <p class="poppins text-sm text-orange-700"></p>
-    </div>
-</div> --}}
