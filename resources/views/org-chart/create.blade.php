@@ -10,7 +10,7 @@
                     </div>
                 @else
                     @foreach ($orgChartRows as $row)
-                        <div class="w-full h-fit min-h-[100px] p-1 border border-gray-300 relative">
+                        <div class="w-full h-fit min-h-[150px] p-1 border border-gray-300 relative">
                             <p>{{ $row->name ?? '' }}</p>
 
                             @if ($row->orgChartRowItems)
@@ -32,14 +32,18 @@
                             @endif
                             <div>
                                 {{-- add row item button --}}
-                                <div class="absolute top-1/2 left-3 transform -translate-y-1/2 z-10 flex flex-col space-y-2 cursor-pointer">
+                                <div class="absolute top-1/2 left-3 transform -translate-y-1/2 flex flex-col space-y-2 cursor-pointer">
                                     <button data-row-id="{{ $row->id }}" 
                                         class="addItemBtn flex justify-center items-center py-1 px-2 rounded-full border bprder-gray-300">
-                                        <i class='bx bx-trash text-gray-600 hover:text-red-500 text-lg' ></i>
+                                        <i class='bx bx-trash text-gray-600 hover:text-red-500 text-sm' ></i>
                                     </button>
                                     <button data-row-id="{{ $row->id }}" 
                                         class="addItemBtn flex justify-center items-center py-1 px-2 rounded-full border bprder-gray-300">
-                                        <i class='bx bx-plus text-xl text-gray-600 hover:text-blue-600'></i>
+                                        <i class='bx bx-edit text-gray-600 hover:text-blue-500 text-sm cursor-pointer'></i>
+                                    </button>
+                                    <button data-row-id="{{ $row->id }}" 
+                                        class="addItemBtn flex justify-center items-center py-1 px-2 rounded-full border bprder-gray-300">
+                                        <i class='bx bx-plus text-sm text-gray-600 hover:text-green-600'></i>
                                     </button>
                                 </div>
                                 
@@ -59,7 +63,7 @@
             
 
             {{-- add item modal --}}
-            <div id="addItemModal" class="hidden absolute top-0 left-0 w-full h-screen bg-black bg-opacity-5 flex justify-center items-start p-8">
+            <div id="addItemModal" class="hidden absolute top-0 left-0 w-full h-full min-h-screen bg-black bg-opacity-10 flex justify-center items-end p-8">
                 <form action="{{ route('org.chart.item.store') }}" method="POST" enctype="multipart/form-data"
                 class="rounded p-6 bg-white w-2/5">
                     @csrf
@@ -134,21 +138,16 @@
                 </form>
             </div>
             <script>
-                // Get all buttons with the class "addItemBtn"
                 const addItemButtons = document.querySelectorAll('.addItemBtn');
                 const closeBtn = document.querySelector('.closeBtn');
             
-                // Get the modal and the hidden input field
                 const addItemModal = document.getElementById('addItemModal');
                 const rowIdInput = addItemModal.querySelector('input[name="rowId"]');
             
-                // Add a click event listener to each button
                 addItemButtons.forEach(button => {
                     button.addEventListener('click', function () {
-                        // Remove the "hidden" class from the modal
                         addItemModal.classList.remove('hidden');
             
-                        // Set the value of the hidden input field to the data-row-id value of the clicked button
                         rowIdInput.value = button.getAttribute('data-row-id');
                         console.log(rowIdInput.value);
                     });
@@ -157,8 +156,6 @@
                 closeBtn.addEventListener('click', function () {
                     addItemModal.classList.add('hidden');
                 });
-
-
             </script>
         </div>
     </section>
