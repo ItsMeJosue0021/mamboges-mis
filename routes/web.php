@@ -235,14 +235,14 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
             Route::get('/chart/create', 'create')->name('org.chart.create');
             Route::prefix('row')->group(function () {
                 Route::post('/save', 'store')->name('org.chart.store');
-                Route::put('/{orgChartRow}/update', 'update')->name('org.chart.update');
+                Route::put('/update', 'update')->name('org.chart.update');
                 Route::delete('/{orgChartRow}/delete', 'destroy')->name('org.chart.delete');
             });
         });
         Route::prefix('row')->group(function () {
             Route::controller(OrgChartRowItemController::class)->group(function () {
                 Route::post('/item/save', 'store')->name('org.chart.item.store');
-                Route::put('/item/{orgChartRowItem}/update', 'update')->name('org.chart.item.update');
+                Route::put('/item/update', 'update')->name('org.chart.item.update');
                 Route::delete('/item/{orgChartRowItem}/delete', 'destroy')->name('org.chart.item.delete');
             });
         });

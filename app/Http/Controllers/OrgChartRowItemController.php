@@ -22,7 +22,7 @@ class OrgChartRowItemController extends Controller
 
         if ($request->hasFile('image')) {
             $orgChartRowItem['image'] = $request->file('image')->store('chart', 'public');
-        } 
+        }
 
         $saved = OrgChartRowItem::create($orgChartRowItem);
 
@@ -31,27 +31,24 @@ class OrgChartRowItemController extends Controller
         } else {
             return redirect()->back()->with('error', 'Something went wrong.');
         }
-            
+
     }
 
-    public function update(Request $request, $orgChartRowItemId)
+    public function update(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required',
-            'position' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
-        ]);
-
-        $orgChartRowItem = OrgChartRowItem::findOrFail($orgChartRowItemId);
-
-        $orgChartRowItem->name = $validatedData['name'];
-        $orgChartRowItem->position = $validatedData['position'];
+        $orgChartRowItem = OrgChartRowItem::findOrFail($request->itemId);
 
         if ($request->hasFile('image')) {
-            $orgChartRowItem->image = $request->file('image')->store('chart', 'public');
+            $path = $request->file('image')->store('chart', 'public');
         }
 
-        if ($orgChartRowItem->save()) {
+        $orgChartRowItem->update([
+            'name' => $request->name,
+            'position' => $request->position,
+            'image' => $path
+        ]);
+
+        if ($orgChartRowItem) {
             return redirect()->back()->with('success', 'Item updated successfully.');
         } else {
             return redirect()->back()->with('error', 'Something went wrong.');

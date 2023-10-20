@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('position');
             $table->string('image')->nullable();
-            $table->foreignIdFor(OrgChartRow::class);
+            $table->foreignIdFor(OrgChartRow::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

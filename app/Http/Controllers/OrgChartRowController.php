@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\OrgChartRow;
 use Illuminate\Http\Request;
 
@@ -10,17 +11,18 @@ class OrgChartRowController extends Controller
     public function create()
     {
         return view('org-chart.create', [
-            'orgChartRows' => OrgChartRow::all(),
+            'orgChartRows' => OrgChartRow::orderBy('order')->get(),
+            'totalRows' => OrgChartRow::count()
         ]);
     }
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'title' => 'nullable',
-        ]);
+        $totalRows = OrgChartRow::count();
 
-        $orgChartRow = OrgChartRow::create($validatedData);
+        $orgChartRow = OrgChartRow::create([
+            'order' => $totalRows + 1,
+        ]);
 
         if ($orgChartRow) {
             return redirect()->back()->with('success', 'Created successfully.');
@@ -29,16 +31,21 @@ class OrgChartRowController extends Controller
         }
     }
 
-    public function update(Request $request, OrgChartRow $orgChartRow)
+    public function update(Request $request)
     {
-        $validatedData = $request->validate([
-            'title' => 'nullable',
+        $orgChartRow = OrgChartRow::find($request->rowId);
+
+        if (!$orgChartRow) {
+            return redirect()->back()->with('success', 'Row not found.');
+        }
+
+        $orgChartRow->update([
+            'title' => $request->title,
+            'order' => $request->order
         ]);
 
-        $orgChartRow->update($validatedData);
-
         if ($orgChartRow) {
-            return redirect()->route('org-chart-row.index')->with('success', 'Updated successfully.');
+            return redirect()->back()->with('success', 'Updated successfully.');
         } else {
             return redirect()->back()->with('error', 'Something went wrong.');
         }
@@ -46,8 +53,12 @@ class OrgChartRowController extends Controller
 
     public function destroy(OrgChartRow $orgChartRow)
     {
+        foreach ($orgChartRow->orgChartRowItems as $orgChartRowItem) {
+            $orgChartRowItem->delete();
+        }
+
         if ($orgChartRow->delete()) {
-            return redirect()->route('org-chart-row.index')->with('success', 'Deleted successfully.');
+            return redirect()->route('org.chart.create')->with('success', 'Deleted successfully.');
         } else {
             return redirect()->back()->with('error', 'Something went wrong while deleting row.');
         }
