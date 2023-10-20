@@ -56,6 +56,8 @@
                                 <p class="poppins text-sm group-hover:text-blue-600">News & Updates</p>
                             </a>
 
+                            <a id="link13" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/feedback">
+
                             <a id="link13"
                                 class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50"
                                 href="/feedback">
@@ -91,8 +93,11 @@
                                 <p class="poppins text-sm group-hover:text-blue-600">Organization</p>
                             </a>
 
+
                         </div>
 
+                        <div class="py-2 border-t-2 border-gray-200">
+                            <a id="link2" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/students">
                         <div class="py-2 border-t-2 border-gray-200">
                             <a id="link2"
                                 class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50"
@@ -100,6 +105,8 @@
                                 <i class='bx bx-user-circle text-xl text-lightblack group-hover:text-blue-600'></i>
                                 <p class="poppins text-sm group-hover:text-blue-600">Learners</p>
                             </a>
+
+                            <a id="link3" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/faculties">
 
                             <a id="link3"
                                 class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50"
@@ -114,6 +121,8 @@
                                 <i class='bx bx-folder text-xl text-lightblack group-hover:text-blue-600'></i>
                                 <p class="poppins text-sm group-hover:text-blue-600">Sections</p>
                             </a>
+
+                            <a id="link8" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/subjects">
 
                             <a id="link8"
                                 class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50"
@@ -150,6 +159,8 @@
                                     <p class="poppins text-sm group-hover:text-blue-600">Logs</p>
                                 </a>
 
+                                <a id="link10" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/archive">
+
                                 <a id="link10"
                                     class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50"
                                     href="/archive">
@@ -157,12 +168,17 @@
                                     <p class="poppins text-sm group-hover:text-blue-600">Archive</p>
                                 </a>
 
+                                <a id="link11" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/settings">
+
                                 <a id="link11"
                                     class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50"
                                     href="/settings">
                                     <i class='bx bx-calendar text-xl text-lightblack group-hover:text-blue-600'></i>
                                     <p class="poppins text-sm group-hover:text-blue-600">School Year</p>
                                 </a>
+
+                                <a id="link12" class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50" href="/profile">
+                                    <i class='bx bxs-user-detail text-xl text-lightblack group-hover:text-blue-600'></i>
 
                                 <a id="link12"
                                     class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50"
@@ -219,6 +235,7 @@
                                                 {{ Auth::user()->profile->lastName }}</h1>
                                         </div>
 
+
                                         <div class="ml-1">
                                             <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
                                                 viewBox="0 0 20 20">
@@ -230,14 +247,17 @@
                                     </button>
                                 </x-slot>
 
+
                                 <x-slot name="content" class=" ">
                                     <x-dropdown-link :href="route('profile.edit')">
                                         {{ __('Profile') }}
                                     </x-dropdown-link>
 
+
                                     <!-- Authentication -->
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
+
 
                                         <x-dropdown-link :href="route('logout')"
                                             onclick="event.preventDefault();
@@ -248,6 +268,8 @@
                                 </x-slot>
                             </x-dropdown>
                         </div>
+                        <img class="h-9 w-9 rounded-full border bprder-gray-200"
+                        src="{{Auth::user()->image ? asset('storage/' . Auth::user()->image) : asset('image/mamboges.jpg')}}" alt="">
                         <img class="h-9 w-9 rounded-full border bprder-gray-200"
                             src="{{ Auth::user()->image ? asset('storage/' . Auth::user()->image) : asset('image/mamboges.jpg') }}"
                             alt="">
@@ -263,6 +285,8 @@
 
         </div>
 
+        <x-flash-messages/>
+
         <x-flash-messages />
 
     </section>
@@ -272,6 +296,7 @@
 
     <script>
         const links = document.querySelectorAll('#links a');
+        const baseUrl = window.location.origin;
         const baseUrl = window.location.origin;
         const activeLinkId = localStorage.getItem('activeLinkId');
         links.forEach((link) => {

@@ -16,12 +16,13 @@
 </head>
 
 <body>
-    <section class="w-full min-w-900px">
-        <div class="h-fit min-h-screen container mx-auto flex">
+    <section class="w-full">
+        <div class="h-fit min-h-screen flex">
             <!-- main -->
-            <div class="w-full h-full flex flex-col container mx-auto pb-4">
+            <div class="w-full h-full flex flex-col pb-4">
                 <!-- header -->
                 <div class="fixed w-full flex items-center justify-between py-3 px-8 border-b border-gray-300 bg-white shadow z-10">
+
                     <div class="flex items-center">
                         <a href="/" class="flex items-center space-x-2">
                             <img class="w-60px h-60px" src="{{asset('image/mambog.png')}}" alt="">
@@ -32,7 +33,6 @@
                         </a>
                     </div>
                     <div class="flex items-center space-x-2 ">
-                        {{-- <i class='bx bx-cog text-2xl text-lightestgray '></i> --}}
                         <div class="hidden sm:flex sm:items-center">
                             <x-dropdown  width="48">
                                 <x-slot name="trigger">
