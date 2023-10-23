@@ -40,11 +40,13 @@ class OrgChartRowItemController extends Controller
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('chart', 'public');
+        } else {
+            $path = $orgChartRowItem->image;
         }
 
         $orgChartRowItem->update([
-            'name' => $request->name,
-            'position' => $request->position,
+            'name' => $request->name ?? $orgChartRowItem->name,
+            'position' => $request->position ?? $orgChartRowItem->position,
             'image' => $path
         ]);
 

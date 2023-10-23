@@ -40,8 +40,8 @@ class OrgChartRowController extends Controller
         }
 
         $orgChartRow->update([
-            'title' => $request->title,
-            'order' => $request->order
+            'title' => $request->title ?? $orgChartRow->title,
+            'order' => $request->order ?? $orgChartRow->order,
         ]);
 
         if ($orgChartRow) {

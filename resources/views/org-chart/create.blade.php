@@ -130,29 +130,6 @@
                                 <input id="dropzone-file" type="file" name="image" class="hidden"
                                     accept="image/png, image/jpeg, image/gif" onchange="previewCoverPhoto(this)" />
                             </label>
-
-                            <script>
-                                function previewCoverPhoto(input) {
-                                    var imagePreview = document.getElementById('image-preview');
-                                    var description = document.getElementById('description');
-
-                                    if (input.files && input.files[0]) {
-                                        var reader = new FileReader();
-
-                                        reader.onload = function(e) {
-                                            imagePreview.src = e.target.result;
-                                            imagePreview.classList.remove('hidden');
-                                            description.classList.add('hidden');
-                                        };
-
-                                        reader.readAsDataURL(input.files[0]);
-                                    } else {
-                                        imagePreview.src = '';
-                                        imagePreview.classList.add('hidden');
-                                        description.classList.remove('hidden');
-                                    }
-                                }
-                            </script>
                         </div>
                         <div class="w-full">
                             <button type="submit"
@@ -188,7 +165,7 @@
                         </div>
                         <div class="flex flex-col space-y-1 items-start justify-start w-full">
                             <label class="poppins text-sm font-semibold">Image</label>
-                            <label for="dropzone-file"
+                            <label for="update-dropzone-file"
                                 class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                                 <div id="updateItem-description" class="flex flex-col items-center justify-center pt-5 pb-6">
                                     <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -202,32 +179,9 @@
                                     <p class="text-xs text-gray-500 dark:text-gray-400">PNG, JPG or GIF</p>
                                 </div>
                                 <img id="updateItem-image-preview" src="#" alt="Preview" class="hidden w-full h-full rounded-md" />
-                                <input id="dropzone-file" type="file" name="image" class="hidden"
-                                    accept="image/png, image/jpeg, image/gif" onchange="previewCoverPhoto(this)" />
+                                <input id="update-dropzone-file" type="file" name="image" class="hidden"
+                                    accept="image/png, image/jpeg, image/gif" onchange="previewUpdateCoverPhoto(this)" />
                             </label>
-
-                            <script>
-                                function previewCoverPhoto(input) {
-                                    var imagePreview = document.getElementById('updateItem-image-preview');
-                                    var description = document.getElementById('updateItem-description');
-
-                                    if (input.files && input.files[0]) {
-                                        var reader = new FileReader();
-
-                                        reader.onload = function(e) {
-                                            imagePreview.src = e.target.result;
-                                            imagePreview.classList.remove('hidden');
-                                            description.classList.add('hidden');
-                                        };
-
-                                        reader.readAsDataURL(input.files[0]);
-                                    } else {
-                                        imagePreview.src = '';
-                                        imagePreview.classList.add('hidden');
-                                        description.classList.remove('hidden');
-                                    }
-                                }
-                            </script>
                         </div>
                         <div class="w-full">
                             <button type="submit"
@@ -278,65 +232,6 @@
                     </div>
                 </form>
             </div>
-            {{-- <script>
-                addItems();
-                updateRow();
-                updateRowItem();
-
-                function addItems() {
-                    const addItemButtons = document.querySelectorAll('.addItemBtn');
-                    const closeBtn = document.querySelector('.closeBtn');
-                    const addItemModal = document.getElementById('addItemModal');
-                    const rowIdInput = addItemModal.querySelector('input[name="rowId"]');
-
-                    addItemButtons.forEach(button => {
-                        button.addEventListener('click', function() {
-                            addItemModal.classList.remove('hidden');
-                            rowIdInput.value = button.getAttribute('data-row-id');
-                        });
-                    });
-
-                    closeBtn.addEventListener('click', function() {
-                        addItemModal.classList.add('hidden');
-                    });
-                }
-
-                function updateRow() {
-                    const updateRowButtons = document.querySelectorAll('.updateRowBtn');
-                    const closeBtn = document.querySelector('.updateRowCloseBtn');
-                    const updateRowModal = document.getElementById('updateRowModal');
-                    const rowIdInput = updateRowModal.querySelector('input[name="rowId"]');
-
-                    updateRowButtons.forEach(button => {
-                        button.addEventListener('click', function() {
-                            updateRowModal.classList.remove('hidden');
-                            rowIdInput.value = button.getAttribute('data-row-id');
-                        });
-                    });
-
-                    closeBtn.addEventListener('click', function() {
-                        updateRowModal.classList.add('hidden');
-                    });
-                }
-
-                function updateRowItem() {
-                    const updateItemButtons = document.querySelectorAll('.updateItemBtn');
-                    const updateItemModal = document.getElementById('updateItemModal');
-                    const itemId = updateItemModal.querySelector('input[name="itemId"]');
-                    const updateItemCloseBtn = document.querySelector('.updateItemCloseBtn');
-
-                    updateItemButtons.forEach(button => {
-                        button.addEventListener('click', function() {
-                            updateItemModal.classList.remove('hidden');
-                            itemId.value = button.getAttribute('data-item-id');
-                        });
-                    });
-
-                    updateItemCloseBtn.addEventListener('click', function() {
-                        updateItemModal.classList.add('hidden');
-                    });
-                }
-            </script> --}}
             <script>
                 setupModal('.addItemBtn', 'addItemModal', 'input[name="rowId"]', 'data-row-id', '.closeBtn');
                 setupModal('.updateRowBtn', 'updateRowModal', 'input[name="rowId"]', 'data-row-id', '.updateRowCloseBtn');
@@ -358,6 +253,48 @@
                     closeBtn.addEventListener('click', function() {
                         modal.classList.add('hidden');
                     });
+                }
+
+                function previewCoverPhoto(input) {
+                    var imagePreview = document.getElementById('image-preview');
+                    var description = document.getElementById('description');
+
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+
+                        reader.onload = function(e) {
+                            imagePreview.src = e.target.result;
+                            imagePreview.classList.remove('hidden');
+                            description.classList.add('hidden');
+                        };
+
+                        reader.readAsDataURL(input.files[0]);
+                    } else {
+                        imagePreview.src = '';
+                        imagePreview.classList.add('hidden');
+                        description.classList.remove('hidden');
+                    }
+                }
+
+                function previewUpdateCoverPhoto(input) {
+                    var updateImagePreview = document.getElementById('updateItem-image-preview');
+                    var updateDescription = document.getElementById('updateItem-description');
+
+                    if (input.files && input.files[0]) {
+                        var imgReader = new FileReader();
+
+                        imgReader.onload = function(e) {
+                            updateImagePreview.src = e.target.result;
+                            updateImagePreview.classList.remove('hidden');
+                            updateDescription.classList.add('hidden');
+                        };
+
+                        imgReader.readAsDataURL(input.files[0]);
+                    } else {
+                        updateImagePreview.src = '';
+                        updateImagePreview.classList.add('hidden');
+                        updateDescription.classList.remove('hidden');
+                    }
                 }
             </script>
 

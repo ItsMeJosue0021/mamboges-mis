@@ -2,6 +2,7 @@
 use App\Models\AchievementImage;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LrController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\LogsController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\ArchiveController;
@@ -247,6 +248,15 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
             });
         });
     });
+
+    Route::prefix('tags')->group(function() {
+        Route::controller(TagController::class)->group(function() {
+            Route::get('', 'list')->name('tags.list');
+            Route::post('/save', 'store')->name('tags.store');
+            Route::delete('/{tag}/delete', 'destroy')->name('tags.delete');
+        });
+    });
+
 
 
 });

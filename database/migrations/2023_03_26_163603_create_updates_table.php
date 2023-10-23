@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('title');
             $table->longText('description')->nullable();
             $table->string('cover_photo')->nullable();
-            $table->foreignIdFor(Tag::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Tag::class)->nullable();
             $table->timestamps();
         });
     }
