@@ -109,13 +109,15 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
     });
 
     // STUDENT
-    Route::controller(StudentController::class)->group(function () {
-        Route::get('/students', 'index')->name('student.index');
-        Route::get('/students/search', 'getStudents')->name('student.getStudents');
-        Route::get('/students/{student}', 'show')->name('student.show');
-        Route::put('/students/{student}/edit', 'update')->name('student.update');
-        Route::delete('/students/{student}/delete', 'delete')->name('student.delete');
-        Route::post('/students/register', 'store')->name('student.store');
+    Route::prefix('students')->group(function() {
+        Route::controller(StudentController::class)->group(function () {
+            Route::get('', 'index')->name('student.index');
+            Route::get('/search', 'getStudents')->name('student.getStudents');
+            Route::get('/{student}', 'show')->name('student.show');
+            Route::put('/{student}/edit', 'update')->name('student.update');
+            Route::delete('/{student}/delete', 'delete')->name('student.delete');
+            Route::post('/register', 'store')->name('student.store');
+        });
     });
 
     // SECTIONS

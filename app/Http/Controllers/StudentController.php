@@ -12,22 +12,44 @@ use Illuminate\Http\Request;
 use App\Models\SectionStudents;
 use App\Models\ArchivedStudents;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class StudentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-
-        $students = Student::latest()->filter(Request(['search']))->get();
-
-        $sections = Section::all();
-
         $current_school_year = SchoolYear::where('is_current', true)->first();
+
+        if ($request->grade_level) {
+            $enrolledStudents = Student::where('isEnrolled', true)->get();
+
+            $collection = collect([]);
+
+            foreach ($enrolledStudents as $student) {
+                $rightGradeLevel = $student->sectionStudents->where('school_year_id', $current_school_year->id)->first()
+                ->section->gradeLevel == $request->grade_level;
+
+                if ($rightGradeLevel) {
+                    $collection->push($student);
+                }
+            }
+
+            $perPage = 2;
+            $page = request('page', 1);
+            $students = new LengthAwarePaginator(
+                $collection->forPage($page, $perPage),
+                $collection->count(),
+                $perPage,
+                $page,
+                ['path' => route('student.index', ['grade_level' => $request->grade_level])]
+            );
+
+        } else {
+            $students = Student::latest()->paginate(2);
+        }
 
         return view('student.index', [
             'students' => $students,
-            'sections' => $sections,
-            'school_year' => $current_school_year->name,
         ]);
     }
 
@@ -66,16 +88,6 @@ class StudentController extends Controller
 
             } else {
 
-                // $sectionStudents = SectionStudents::where('school_year_id', $current_school_year->id)
-                // ->get();
-
-                // $studentIds = $sectionStudents->pluck('student_id')->toArray();
-
-                // $data = Student::where('is_archived', false)
-                // ->whereIn('id', $studentIds)
-                // ->orderBy('id', 'desc')
-                // ->paginate(10);
-
                 $data = Student::where('is_archived', false)
                     ->orderBy('id', 'desc')
                     ->paginate(10);
@@ -109,7 +121,7 @@ class StudentController extends Controller
                                     <p class="no-underline poppins text-sm text-gray-500">LRN: ' . $row->lrn . '</p>
                                 </div>
                             </div>
-                        </a>    
+                        </a>
                     ';
                 }
 
