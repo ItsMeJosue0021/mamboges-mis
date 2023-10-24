@@ -34,7 +34,35 @@ class StudentController extends Controller
                 }
             }
 
-            $perPage = 2;
+            $perPage = 20;
+            $page = request('page', 1);
+            $students = new LengthAwarePaginator(
+                $collection->forPage($page, $perPage),
+                $collection->count(),
+                $perPage,
+                $page,
+                ['path' => route('student.index', ['grade_level' => $request->grade_level])]
+            );
+
+        } elseif ($request->search) {
+
+            $collection = collect([]);
+
+            foreach (Student::all() as $student) {
+                if (
+                        $student->lrn == $request->search ||
+                        $student->user->profile->lastName == $request->search ||
+                        $student->user->profile->firstName == $request->search ||
+                        $student->user->profile->middleName == $request->search ||
+                        $student->user->profile->address->barangay == $request->search ||
+                        $student->user->profile->address->city == $request->search
+                    )
+                {
+                    $collection->push($student);
+                }
+            }
+
+            $perPage = 20;
             $page = request('page', 1);
             $students = new LengthAwarePaginator(
                 $collection->forPage($page, $perPage),
@@ -45,11 +73,13 @@ class StudentController extends Controller
             );
 
         } else {
-            $students = Student::latest()->paginate(2);
+            $students = Student::latest()->paginate(20);
         }
 
         return view('student.index', [
             'students' => $students,
+            'totalLearners' => Student::count(),
+            'resultCount' => $students->count(),
         ]);
     }
 

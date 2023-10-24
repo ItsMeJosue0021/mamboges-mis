@@ -6,10 +6,11 @@
                 <h1 class="poppins text-2xl font-medium">LEARNERS</h1>
             </div>
             <div class="w-2/3 flex">
-                <form action="/students" class="flex w-full justify-end space-x-4">
-                    <input name="search" id="search-student" type="text"
+                <form action="{{ route('student.index') }}" class="flex w-full justify-end space-x-4">
+                    <input name="search" type="text"
                         placeholder="Search by First name, Last name or LRN.."
                         class="w-500px poppins text-sm focus:outline-none focus:bg-blue-100 border border-gray-400 rounded focus:border-blue-400 py-2 px-4">
+                    <button class="poppins py-2 px-4 bg-blue-600 text-sm text-white font-medium rounded cursor-pointer">Search</button>
                     <a id="add-student"
                         class="poppins py-2 px-4 bg-blue-600 text-sm text-white font-medium rounded cursor-pointer">New
                         Student</a>
@@ -20,42 +21,42 @@
         <div class="w-full px-4 overflow-auto">
             <div class="w-full py-4 px-2">
                 <div class="w-fit flex space-x-2">
-                    <a href="{{ route('student.index') }}"
-                        class="active-level level all flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                    <a data-grade-level="0" href="{{ route('student.index') }}"
+                        class="level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <p class="poppins text-base cursor-pointer no-underline">All</p>
                     </a>
 
-                    <a href="{{ route('student.index', ['grade_level' => 'Kinder']) }}"
+                    <a data-grade-level="1" href="{{ route('student.index', ['grade_level' => 'Kinder']) }}"
                         class="level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <label class="poppins text-base cursor-pointer">Kinder</label>
                     </a>
 
-                    <a href="{{ route('student.index', ['grade_level' => '1']) }}"
+                    <a data-grade-level="2" href="{{ route('student.index', ['grade_level' => '1']) }}"
                         class="level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <label class="poppins text-base cursor-pointer">Grade 1</label>
                     </a>
 
-                    <a href="{{ route('student.index', ['grade_level' => '2']) }}"
+                    <a data-grade-level="3" href="{{ route('student.index', ['grade_level' => '2']) }}"
                         class="level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <label class="poppins text-base cursor-pointer">Grade 2</label>
                     </a>
 
-                    <a data-grade-level="3" href="{{ route('student.index', ['grade_level' => '3']) }}"
+                    <a data-grade-level="4" href="{{ route('student.index', ['grade_level' => '3']) }}"
                         class="level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <label class="poppins text-base cursor-pointer">Grade 3</label>
                     </a>
 
-                    <a data-grade-level="4" href="{{ route('student.index', ['grade_level' => '4']) }}"
+                    <a data-grade-level="5" href="{{ route('student.index', ['grade_level' => '4']) }}"
                         class="level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <label class="poppins text-base cursor-pointer">Grade 4</label>
                     </a>
 
-                    <a data-grade-level="5" href="{{ route('student.index', ['grade_level' => '5']) }}"
+                    <a data-grade-level="6" href="{{ route('student.index', ['grade_level' => '5']) }}"
                         class="level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <label class="poppins text-base cursor-pointer">Grade 5</label>
                     </a>
 
-                    <a data-grade-level="6" href="{{ route('student.index', ['grade_level' => '6']) }}"
+                    <a data-grade-level="7" href="{{ route('student.index', ['grade_level' => '6']) }}"
                         class="level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <label class="poppins text-base cursor-pointer">Grade 6</label>
                     </a>
@@ -65,13 +66,15 @@
                     <div class="pt-4 py-2 flex space-x-3 items-center">
                         <h1>TOTAL LEARNERS:</h1>
                         <h1 id="total-student"
-                            class="text-base text-blue-400 font-medium px-2 border border-blue-400 rounded"></h1>
+                            class="text-base text-blue-400 font-medium px-2 border border-blue-400 rounded">
+                            {{ $totalLearners }}</h1>
                     </div>
 
                     <div class="pt-4 py-2 flex space-x-3 items-center">
                         <h1>RESULT COUNT:</h1>
                         <h1 id="enrolled-student"
-                            class="text-base text-blue-400 font-medium px-2 border border-blue-400 rounded"></h1>
+                            class="text-base text-blue-400 font-medium px-2 border border-blue-400 rounded">
+                            {{ $resultCount }}</h1>
                     </div>
                 </div>
             </div>
@@ -117,14 +120,58 @@
 <script type="module" src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 {{-- <script type="module" src="{{ asset('js/student_index.js') }}"></script> --}}
 
-<script type="module">
+{{-- <script type="module">
     const levels = document.querySelectorAll('.level');
+    const activeLevelId = localStorage.getItem('activeLevelId');
+
+    if (activeLevelId) {
+        const activeLevel = document.querySelector(`[data-grade-level="${activeLevelId}"]`);
+        if (activeLevel) {
+            activeLevel.classList.add('active-level');
+        }
+    }
 
     levels.forEach(level => {
-        level.addEventListener('click', () => {
-            const current = document.querySelector('.active-level');
-            current.classList.remove('active-level');
+        level.addEventListener('click', (event) => {
+            // event.preventDefault(); // Prevent the default behavior (page reload)
+            const levelId = level.getAttribute('data-grade-level');
+
+            levels.forEach(otherLevel => {
+                otherLevel.classList.remove('active-level');
+            });
+
             level.classList.add('active-level');
+            localStorage.setItem('activeLevelId', levelId);
+        });
+    });
+</script> --}}
+
+<script type="module">
+    const levels = document.querySelectorAll('.level');
+    const activeLevelId = localStorage.getItem('activeLevelId');
+
+    if (activeLevelId) {
+        const activeLevel = document.querySelector(`[data-grade-level="${activeLevelId}"]`);
+        if (activeLevel) {
+            activeLevel.classList.add('active-level');
+        }
+    } else {
+        // Set the initial active level to the first level
+        levels[0].classList.add('active-level');
+        localStorage.setItem('activeLevelId', levels[0].getAttribute('data-grade-level'));
+    }
+
+    levels.forEach(level => {
+        level.addEventListener('click', (event) => {
+            // event.preventDefault(); // Prevent the default behavior (page reload)
+            const levelId = level.getAttribute('data-grade-level');
+
+            levels.forEach(otherLevel => {
+                otherLevel.classList.remove('active-level');
+            });
+
+            level.classList.add('active-level');
+            localStorage.setItem('activeLevelId', levelId);
         });
     });
 </script>
