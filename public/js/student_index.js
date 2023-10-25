@@ -3,11 +3,11 @@ $(document).ready(function() {
     const photoInput = $('#photo-input');
     const photoPreview = $('#photo-preview');
     const photoPlaceholder = photoPreview.find('p');
-    
+
     photoInput.on('change', function() {
         const file = this.files[0];
         const reader = new FileReader();
-    
+
         reader.addEventListener('load', function() {
             photoPreview.css('background-image', `url(${reader.result})`);
 
@@ -15,7 +15,7 @@ $(document).ready(function() {
                 photoPlaceholder.hide();
             }
         });
-    
+
         if (file) {
             reader.readAsDataURL(file);
         }
@@ -28,12 +28,12 @@ $(document).ready(function() {
         var maxDate = new Date();
         maxDate.setFullYear(maxDate.getFullYear() - 5);
         var maxDateString = maxDate.toISOString().slice(0, 10);
-        
+
         // Set the min date to 100 years ago from today
         var minDate = new Date();
         minDate.setFullYear(minDate.getFullYear() - 100);
         var minDateString = minDate.toISOString().slice(0, 10);
-        
+
         // Set the min and max attributes
         $('#dob').attr('max', maxDateString);
         $('#dob').attr('min', minDateString);
@@ -45,7 +45,7 @@ $(document).ready(function() {
     add_student_btn.click(function() {
         add_student_modal.removeClass('hidden');
     });
-    
+
     const cancel_add_student = $('#cancel');
 
     cancel_add_student.click(function() {
@@ -130,9 +130,9 @@ $(document).ready(function() {
                             $('#photo-preview').css('background-image', '');
                             photoPlaceholder.show();
                             fetch_students_data();
-                            
+
                         } else {
-                            message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-red-100 px-20 py-3 z-20"><p class="poppins text-lg text-red-800 ">' + response.message + '</p></div>');   
+                            message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-red-100 px-20 py-3 z-20"><p class="poppins text-lg text-red-800 ">' + response.message + '</p></div>');
                         }
 
                         $('#container').append(message);
@@ -156,53 +156,53 @@ $(document).ready(function() {
 
     // var url = $(this).attr('href');
     // var page = url.substring(url.lastIndexOf('=') + 1);
-    var page = 1;
-    fetch_students_data(page);
+    // var page = 1;
+    // fetch_students_data(page);
 
-    $(document).on('click', '.pagination a', function(event) {
-        event.preventDefault();
-        var url = $(this).attr('href');
-        var page = 1;
-        if (url !== undefined) {
-            page = url.substring(url.lastIndexOf('=') + 1);
-        }
-        fetch_students_data(page);
-    });
+    // $(document).on('click', '.pagination a', function(event) {
+    //     event.preventDefault();
+    //     var url = $(this).attr('href');
+    //     var page = 1;
+    //     if (url !== undefined) {
+    //         page = url.substring(url.lastIndexOf('=') + 1);
+    //     }
+    //     fetch_students_data(page);
+    // });
 
-    function fetch_students_data(page, query = '', gradeLevel = '') {
-        $.ajax({
-            url:"/students/search?page=" + page + "&query=" + query + "&gradeLevel" + gradeLevel,
-            method:'GET',
-            data:{query: query, grade_level: gradeLevel },
-            dataType:'json',
-            success:function(data)
-            {
-                $('#students-container').html(data.student_data);
-                $('.pagination').html(data.pagination);
-                $('#total-student').text(data.total);
-                $('#enrolled-student').text(data.enrolled);
-            }
-        });
-    }
+    // function fetch_students_data(page, query = '', gradeLevel = '') {
+    //     $.ajax({
+    //         url:"/students/search?page=" + page + "&query=" + query + "&gradeLevel" + gradeLevel,
+    //         method:'GET',
+    //         data:{query: query, grade_level: gradeLevel },
+    //         dataType:'json',
+    //         success:function(data)
+    //         {
+    //             $('#students-container').html(data.student_data);
+    //             $('.pagination').html(data.pagination);
+    //             $('#total-student').text(data.total);
+    //             $('#enrolled-student').text(data.enrolled);
+    //         }
+    //     });
+    // }
 
-    $('#search-student').on('keyup', function(){
-        var query = $(this).val();
-        fetch_students_data(1, query, '');
-    }); 
+    // $('#search-student').on('keyup', function(){
+    //     var query = $(this).val();
+    //     fetch_students_data(1, query, '');
+    // });
 
-    $(document).on('click', '.level', function(event) {
-        event.preventDefault();
-        var gradeLevel = $(this).data('grade-level');
-        console.log(gradeLevel);
-        fetch_students_data(1, '', gradeLevel);
-    });
+    // $(document).on('click', '.level', function(event) {
+    //     event.preventDefault();
+    //     var gradeLevel = $(this).data('grade-level');
+    //     console.log(gradeLevel);
+    //     fetch_students_data(1, '', gradeLevel);
+    // });
 
-    $(document).on('click', '.all', function(event) {
-        event.preventDefault();
-        fetch_students_data(page);
-    });
+    // $(document).on('click', '.all', function(event) {
+    //     event.preventDefault();
+    //     fetch_students_data(page);
+    // });
 
 
-    
+
 });
 

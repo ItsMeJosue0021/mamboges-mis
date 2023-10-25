@@ -112,6 +112,7 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
     Route::prefix('students')->group(function() {
         Route::controller(StudentController::class)->group(function () {
             Route::get('', 'index')->name('student.index');
+            Route::get('/create', 'create')->name('student.create');
             Route::get('/search', 'getStudents')->name('student.getStudents');
             Route::get('/{student}', 'show')->name('student.show');
             Route::put('/{student}/edit', 'update')->name('student.update');

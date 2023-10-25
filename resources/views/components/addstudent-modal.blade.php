@@ -1,10 +1,8 @@
-<div id="add-student-modal" class="hidden absolute top-0 left-0 w-full h-full bg-white overflow-auto">
-    <div class="w-fitt flex flex-col w-full items-center justify-center space-y-6 px-32 py-8">
-        <form id="student-form" method="POST" action="/students/register" class="w-full flex flex-col space-y-4" enctype="multipart/form-data>
+<div id="add-student-modal" class="hidden absolute top-0 left-0 w-full h-full z-50 p-12 bg-black bg-opacity-20 overflow-auto">
+    <div class="w-full p-6 bg-white rounded">
+        <form id="student-form" method="POST" action="/students/register"
+        class="w-full flex flex-col space-y-4" enctype="multipart/form-data">
             @csrf
-
-            {{-- STUDENT'S INFORMATION --}}
-
             <div class="w-full flex py-4">
                 <h1 class="poppins text-xl text-gray-800 font-medium">STUDENT'S INFORMATION</h1>
             </div>
@@ -186,7 +184,7 @@
             </div>
 
             <div class="flex items-center justify-start space-x-4 pt-4 ">
-                <button type="submit" 
+                <button type="submit"
                     class="poppins text-base font-medium text-white bg-blue-500 hover:bg-blue-600  border border-blue-500 hover:border-blue-600 py-2 px-8 rounded">
                     Save
                 </button>

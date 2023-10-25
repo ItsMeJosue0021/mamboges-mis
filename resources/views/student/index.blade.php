@@ -1,5 +1,5 @@
 <x-guidance-layout>
-    <div id="container" class="w-full relative">
+    <div id="container" class="w-full">
         {{-- <div class="fixed z-30 top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-14 py-3"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div> --}}
         <div class="flex justify-between items-center px-4 py-4 border-b border-gray-300">
             <div class="flex space-x-4 items-center border-l-4 border-blue-400 py-1 px-2">
@@ -11,7 +11,7 @@
                         placeholder="Search by First name, Last name or LRN.."
                         class="w-500px poppins text-sm focus:outline-none focus:bg-blue-100 border border-gray-400 rounded focus:border-blue-400 py-2 px-4">
                     <button class="poppins py-2 px-4 bg-blue-600 text-sm text-white font-medium rounded cursor-pointer">Search</button>
-                    <a id="add-student"
+                    <a href="{{ route('student.create') }}"
                         class="poppins py-2 px-4 bg-blue-600 text-sm text-white font-medium rounded cursor-pointer">New
                         Student</a>
                 </form>
@@ -118,33 +118,7 @@
 <script type="module" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="module" src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script type="module" src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
-{{-- <script type="module" src="{{ asset('js/student_index.js') }}"></script> --}}
-
-{{-- <script type="module">
-    const levels = document.querySelectorAll('.level');
-    const activeLevelId = localStorage.getItem('activeLevelId');
-
-    if (activeLevelId) {
-        const activeLevel = document.querySelector(`[data-grade-level="${activeLevelId}"]`);
-        if (activeLevel) {
-            activeLevel.classList.add('active-level');
-        }
-    }
-
-    levels.forEach(level => {
-        level.addEventListener('click', (event) => {
-            // event.preventDefault(); // Prevent the default behavior (page reload)
-            const levelId = level.getAttribute('data-grade-level');
-
-            levels.forEach(otherLevel => {
-                otherLevel.classList.remove('active-level');
-            });
-
-            level.classList.add('active-level');
-            localStorage.setItem('activeLevelId', levelId);
-        });
-    });
-</script> --}}
+<script type="module" src="{{ asset('js/student_index.js') }}"></script>
 
 <script type="module">
     const levels = document.querySelectorAll('.level');
