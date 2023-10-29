@@ -80,26 +80,32 @@
             </div>
 
             <div class="w-full flex flex-col space-y-2 px-2">
-                @foreach ($students as $student)
-                    <div class="w-full flex items-center justify-between rounded p-2 border border-gray-200">
-                        <div class="flex items-center space-x-4">
-                            <img src="{{ $student->user->profile->image ? asset('storage/' . $student->user->profile->image) : asset('image/mamboges.jpg') }}"
-                                alt="" srcset="" class="w-10 h-10 rounded">
-                            <div class="flex flex-col">
-                                <span class="font-semibold text-base poppins">
-                                    {{ $student->user->profile->firstName }}
-                                    {{ $student->user->profile->middleName }}
-                                    {{ $student->user->profile->lastName }}
-                                </span>
-                                <span class="text-sm text-gray-600 poppins">{{ $student->lrn }}</span>
+                @if (count($students) == 0)
+                    <div class="w-full flex justify-center items-center rounded p-2 border border-gray-300">
+                        <span class="font-semibold text-base poppins">No results found.</span>
+                    </div>
+                @else
+                    @foreach ($students as $student)
+                        <div class="w-full flex items-center justify-between rounded p-2 border border-gray-200">
+                            <div class="flex items-center space-x-4">
+                                <img src="{{ $student->user->profile->image ? asset('storage/' . $student->user->profile->image) : asset('image/mamboges.jpg') }}"
+                                    alt="" srcset="" class="w-10 h-10 rounded">
+                                <div class="flex flex-col">
+                                    <span class="font-semibold text-base poppins">
+                                        {{ $student->user->profile->firstName }}
+                                        {{ $student->user->profile->middleName }}
+                                        {{ $student->user->profile->lastName }}
+                                    </span>
+                                    <span class="text-sm text-gray-600 poppins">{{ $student->lrn }}</span>
+                                </div>
+                            </div>
+                            <div>
+                                <a href="{{ route('student.show', $student->id) }}"
+                                    class="poppins py-2 px-4 bg-blue-600 text-xs text-white font-medium rounded cursor-pointer">View</a>
                             </div>
                         </div>
-                        <div>
-                            <a href="{{ route('student.show', $student->id) }}"
-                                class="poppins py-2 px-4 bg-blue-600 text-xs text-white font-medium rounded cursor-pointer">View</a>
-                        </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                @endif
             </div>
 
             <div class="w-full poppins px-2 py-4">

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('sex');
             $table->string('contactNumber')->nullable();
             $table->string('image')->nullable();
-            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(User::class)->nullable()->cascadeOnDelete();
             $table->timestamps();
         });
     }

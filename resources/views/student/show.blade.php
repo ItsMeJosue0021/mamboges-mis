@@ -14,7 +14,7 @@
                     {{-- <img src="{{$student->image ? asset('storage/' . $student->image) : asset('image/male.png')}}" 
                     alt="" class="w-full h-full shadow-lg rounded"> --}}
 
-                    <img src="{{$student->image ? asset('storage/' . $student->image) : ($student->sex == 'Female' ? asset('image/female.png') : asset('image/male.png'))}}" 
+                    <img src="{{ $student->user->profile->image ? asset('storage/' . $student->user->profile->image) : asset('image/mamboges.jpg') }}"
                     alt="" class="w-full h-full rounded">
 
                 </div>
@@ -22,38 +22,32 @@
                 <div class="w-full h-fit flex justify-between p-4 rounded shadow space-x-4 border border-gray-200">
                     <div class="w-full flex flex-col">
                         <div class="flex items-center space-x-2 border border-gray-300 py-1 px-2 bg-blue-100">
-                            <h1 class="poppins text-2xl font-medium">{{$student->first_name}}</h1>
-                            <h1 class="poppins text-2xl font-medium">{{$student->middle_name}}</h1>
-                            <h1 class="poppins text-2xl font-medium">{{$student->last_name}}</h1>
+                            <h1 class="poppins text-2xl font-medium">{{ $student->user->profile->firstName }}</h1>
+                            <h1 class="poppins text-2xl font-medium">{{ $student->user->profile->middleName }}</h1>
+                            <h1 class="poppins text-2xl font-medium">{{ $student->user->profile->lastName}}</h1>
                         </div>
                         <div class="flex justify-between border border-gray-300 border-t-0 py-1 px-2">
                             <h1 class="poppins text-base">BIRTHDATE: </h1>
-                            <h1 class="poppins text-base">{{date('F j, Y', strtotime($student->dob))}}</h1>
+                            <h1 class="poppins text-base">{{date('F j, Y', strtotime($student->user->profile->dob))}}</h1>
                         </div>
                         <div class="flex justify-between border border-gray-300 border-t-0 py-1 px-2">
                             <h1 class="poppins text-base">SEX: </h1>
-                            <h1 class="poppins text-base">{{$student->sex}}</h1>
+                            <h1 class="poppins text-base">{{ $student->user->profile->sex }}</h1>
                         </div>
                         <div class="flex justify-between border border-gray-300 border-t-0 py-1 px-2">
                             <h1 class="poppins text-base">GRADE LEVEL: </h1>
                             <h1 class="poppins text-base">
-                                @if ($student_section == null)
-                                <span class="text-blue-400 text-sm">Waiting for section assignment</span>
-                                @elseif ($student_section->grade_level == 'kinder')
-                                    Kinder
-                                @else
-                                    Grade {{ $student_section->grade_level }}
-                                @endif
+                                
                             </h1>
                         </div>
                         <div class="flex justify-between items-center border border-gray-300 border-t-0 py-1 px-2">
                             {{-- && $section->has($student->section_id) --}}
-                            <h1 class="poppins text-base">SECTION: </h1>
+                            {{-- <h1 class="poppins text-base">SECTION: </h1>
                             @if ($section)
-                                <h1 class="poppins text-base">{{$section->name}}</h1>
+                                <h1 class="poppins text-base"></h1>
                             @else
                                 <h1 class="poppins text-sm text-red-400">No section yet</h1>
-                            @endif
+                            @endif --}}
                         </div>
                         <div class="flex justify-between border border-gray-300 border-t-0 py-1 px-2">
                             <h1 class="poppins text-base">LRN: </h1>
@@ -94,7 +88,7 @@
 
 
         {{-- ADD STUDENT MODAL --}}
-        <x-updatestudent-modal :student="$student" :parent="$parent"/>
+        {{-- <x-updatestudent-modal :student="$student" :parent="$parent"/> --}}
 
         {{-- DELETE STUDENT MODAL --}}
         <div id="delete-modal" class="hidden absolute top-0 left-0 w-full h-full">

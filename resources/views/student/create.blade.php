@@ -1,12 +1,24 @@
 <x-guidance-layout>
     <div class="w-full p-4">
+        <div class="flex flex-col space-y-2 pb-3">
+            <a href="{{ route('student.index') }}" id="back"
+                class="flex w-fit justify-start items-center space-x-2 py-1 px-4 group rounded bg-gray-200 hover:bg-gray-300 cursor-pointer group">
+                <i class='bx bx-left-arrow-alt text-black text-lg '></i>
+                <p class="poppins text-sm text-black">Back</p>
+            </a>
+        </div>
 
-        <form action="{{ route('student.store') }}" method="post" class="">
+        <form action="{{ route('student.store') }}" method="POST" class="" enctype="multipart/form-data">
             @csrf
             <div class="pb-6">
-                <h2 class="text-xl font-semibold text-gray-700 dark:text-gray-200 pb-3">
-                    Student's Personal Information
-                </h2>
+                <div class="pb-3">
+                    <h2 class="text-xl font-semibold text-gray-700 dark:text-gray-200 ">
+                        Student's Personal Information
+                    </h2>
+                    <p class="poppins text-xs italic text-red-400">'<span class="text-red-500 text-base">*</span>'
+                        indicates required fields.</p>
+                </div>
+
                 <div class="flex items-start space-x-4 ">
                     <div class="flex flex-col space-y-1 items-start justify-start w-1/3">
                         <label for="tag" class="poppins text-sm font-medium text-gray-700">Image
@@ -60,35 +72,35 @@
 
                     <div class="w-2/3 flex-col space-y-4">
                         <div class="flex items-center space-x-4">
-                            <div class="w-full flex flex-col space-y-1">
+                            <div class="w-full flex flex-col ">
                                 <div class="flex items-baseline space-x-2">
-                                    <label for="firstName" class="poppins text-sm font-medium text-gray-700">First
-                                        Name</label>
+                                    <label for="firstName" class="poppins text-sm font-medium text-gray-700">First Name
+                                        <span class="text-red-500">*</span></label>
                                     @error('firstName')
                                         <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <input type="text" name="firstName" id="firstName"
-                                    class="poppins py-2 px-4 text-sm border-2 border-gray-200 rounded focus:outline-none focus:border-blue-500 w-full"
+                                <input type="text" name="firstName" id="firstName" value="{{ old('firstName') }}"
+                                    class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                     placeholder="First Name">
                             </div>
 
-                            <div class="w-full flex flex-col space-y-1">
+                            <div class="w-full flex flex-col ">
                                 <div class="flex items-baseline space-x-2">
-                                    <label for="lastName" class="poppins text-sm font-medium text-gray-700">First
-                                        Name</label>
+                                    <label for="lastName" class="poppins text-sm font-medium text-gray-700">Last Name
+                                        <span class="text-red-500">*</span></label>
                                     @error('lastName')
                                         <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <input type="text" name="lastName" id="lastName"
-                                    class="poppins py-2 px-4 text-sm border-2 border-gray-200 rounded focus:outline-none focus:border-blue-500 w-full"
+                                <input type="text" name="lastName" id="lastName" value="{{ old('lastName') }}"
+                                    class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                     placeholder="Last Name">
                             </div>
                         </div>
 
                         <div class="flex items-center space-x-4">
-                            <div class="w-full flex flex-col space-y-1">
+                            <div class="w-full flex flex-col ">
                                 <div class="flex items-baseline space-x-2">
                                     <label for="middleName" class="poppins text-sm font-medium text-gray-700">Middle
                                         Name</label>
@@ -96,13 +108,13 @@
                                         <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <input type="text" name="middleName" id="middleName"
-                                    class="poppins py-2 px-4 text-sm border-2 border-gray-200 rounded focus:outline-none focus:border-blue-500 w-full"
+                                <input type="text" name="middleName" id="middleName" value="{{ old('middleName') }}"
+                                    class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                     placeholder="Middle Name">
                             </div>
 
                             <div class="w-full flex items-center space-x-4">
-                                <div class="w-full flex flex-col space-y-1">
+                                <div class="w-full flex flex-col ">
                                     <div class="flex items-baseline space-x-2">
                                         <label for="suffix"
                                             class="poppins text-sm font-medium text-gray-700">Suffix</label>
@@ -110,12 +122,12 @@
                                             <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    <input type="text" name="suffix" id="suffix"
-                                        class="poppins py-2 px-4 text-sm border-2 border-gray-200 rounded focus:outline-none focus:border-blue-500 w-full"
+                                    <input type="text" name="suffix" id="suffix" value="{{ old('suffix') }}"
+                                        class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                         placeholder="Suffix">
                                 </div>
 
-                                <div class="w-full flex flex-col space-y-1">
+                                <div class="w-full flex flex-col ">
                                     <div class="flex items-baseline space-x-2">
                                         <label for="sex"
                                             class="poppins text-sm font-medium text-gray-700">Sex</label>
@@ -125,39 +137,40 @@
                                     </div>
                                     <select name="sex" id="sex"
                                         class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full">
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
+                                        <option value="Male" {{ old('sex') == 'Male' ? 'selected' : '' }}>Male
+                                        </option>
+                                        <option value="Female" {{ old('sex') == 'Female' ? 'selected' : '' }}>Female
+                                        </option>
                                     </select>
                                 </div>
                             </div>
                         </div>
 
                         <div class="flex items-center space-x-4">
-                            <div class="w-full flex flex-col space-y-1">
+                            <div class="w-full flex flex-col ">
                                 <div class="flex items-baseline space-x-2">
-                                    <label for="contactNumber" class="poppins text-sm font-medium text-gray-700">Contact
-                                        Number
-                                    </label>
+                                    <label for="contactNumber"
+                                        class="poppins text-sm font-medium text-gray-700">Contact Number</label>
                                     @error('contactNumber')
                                         <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <input type="text" name="contactNumber" id="contactNumber"
-                                    class="poppins py-2 px-4 text-sm border-2 border-gray-200 rounded focus:outline-none focus:border-blue-500 w-full"
-                                    placeholder="Mobile Number">
+                                    value="{{ old('contactNumber') }}"
+                                    class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
+                                    placeholder="Contact Number">
                             </div>
 
-                            <div class="w-full flex flex-col space-y-1">
+                            <div class="w-full flex flex-col ">
                                 <div class="flex items-baseline space-x-2">
                                     <label for="dob" class="poppins text-sm font-medium text-gray-700">Date Of
-                                        Birth
-                                    </label>
+                                        Birth <span class="text-red-500">*</span></label>
                                     @error('dob')
                                         <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <input type="date" name="dob" id="dob"
-                                    class="poppins py-2 px-4 text-sm border-2 border-gray-200 rounded focus:outline-none focus:border-blue-500 w-full"
+                                <input type="date" name="dob" id="dob" value="{{ old('dob') }}"
+                                    class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                     placeholder="Date Of Birth">
 
                                 <script type="module">
@@ -178,65 +191,79 @@
                                 </script>
                             </div>
                         </div>
+                        <div class="w-full flex flex-col">
+                            <div class="flex items-baseline space-x-2">
+                                <label for="lrn" class="poppins text-sm font-medium text-gray-700">Learner's
+                                    Reference Number (LRN) <span class="text-red-500">*</span></label>
+                                @error('lrn')
+                                    <span class="text-xs font-light text-red-600">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <input type="text" name="lrn" id="lrn" value="{{ old('lrn') }}"
+                                class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
+                                placeholder="Learner's Reference Number">
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="pb-4">
-                <h2 class="text-xl font-semibold text-gray-700 dark:text-gray-200 pb-3">
-                    Student's Address
-                </h2>
+                <div class="pb-3">
+                    <h2 class="text-xl font-semibold text-gray-700 dark:text-gray-200 ">
+                        Student's Address
+                    </h2>
+                    <p class="poppins text-xs italic text-red-400">'<span class="text-red-500 text-base">*</span>'
+                        indicates required fields.</p>
+                </div>
                 <div class="flex flex-col space-y-4">
                     <div class="flex items-center space-x-4">
                         <div class="w-full flex flex-col space-y-1">
                             <div class="flex items-baseline space-x-2">
-                                <label for="lot" class="poppins text-sm font-medium text-gray-700">
-                                    Lot</label>
+                                <label for="lot" class="poppins text-sm font-medium text-gray-700">Lot</label>
                                 @error('lot')
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <input type="text" name="lot" id="lot"
-                                class="poppins py-2 px-4 text-sm border-2 border-gray-200 rounded focus:outline-none focus:border-blue-500 w-full"
+                            <input type="text" name="lot" id="lot" value="{{ old('lot') }}"
+                                class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Lot">
                         </div>
 
                         <div class="w-full flex flex-col space-y-1">
                             <div class="flex items-baseline space-x-2">
-                                <label for="block" class="poppins text-sm font-medium text-gray-700">
-                                    Block</label>
+                                <label for="block" class="poppins text-sm font-medium text-gray-700">Block</label>
                                 @error('block')
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <input type="text" name="block" id="block"
-                                class="poppins py-2 px-4 text-sm border-2 border-gray-200 rounded focus:outline-none focus:border-blue-500 w-full"
+                            <input type="text" name="block" id="block" value="{{ old('block') }}"
+                                class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Block">
                         </div>
 
                         <div class="w-full flex flex-col space-y-1">
                             <div class="flex items-baseline space-x-2">
-                                <label for="street" class="poppins text-sm font-medium text-gray-700">
-                                    Street</label>
+                                <label for="street" class="poppins text-sm font-medium text-gray-700">Street</label>
                                 @error('street')
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <input type="text" name="street" id="street"
-                                class="poppins py-2 px-4 text-sm border-2 border-gray-200 rounded focus:outline-none focus:border-blue-500 w-full"
+                            <input type="text" name="street" id="street" value="{{ old('street') }}"
+                                class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Street">
                         </div>
 
                         <div class="w-full flex flex-col space-y-1">
                             <div class="flex items-baseline space-x-2">
-                                <label for="subdivision" class="poppins text-sm font-medium text-gray-700">
-                                    Subdivision</label>
+                                <label for="subdivision"
+                                    class="poppins text-sm font-medium text-gray-700">Subdivision</label>
                                 @error('subdivision')
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
                             <input type="text" name="subdivision" id="subdivision"
-                                class="poppins py-2 px-4 text-sm border-2 border-gray-200 rounded focus:outline-none focus:border-blue-500 w-full"
+                                value="{{ old('subdivision') }}"
+                                class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Subdivision">
                         </div>
                     </div>
@@ -244,53 +271,54 @@
                     <div class="flex items-center space-x-4">
                         <div class="w-full flex flex-col space-y-1">
                             <div class="flex items-baseline space-x-2">
-                                <label for="barangay" class="poppins text-sm font-medium text-gray-700">
-                                    Barangay</label>
+                                <label for="barangay" class="poppins text-sm font-medium text-gray-700">Barangay <span
+                                        class="text-red-500">*</span></label>
                                 @error('barangay')
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <input type="text" name="barangay" id="barangay"
-                                class="poppins py-2 px-4 text-sm border-2 border-gray-200 rounded focus:outline-none focus:border-blue-500 w-full"
+                            <input type="text" name="barangay" id="barangay" value="{{ old('barangay') }}"
+                                class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Barangay">
                         </div>
 
                         <div class="w-full flex flex-col space-y-1">
                             <div class="flex items-baseline space-x-2">
-                                <label for="city" class="poppins text-sm font-medium text-gray-700">
-                                    City/Municipality</label>
+                                <label for="city"
+                                    class="poppins text-sm font-medium text-gray-700">City/Municipality <span
+                                        class="text-red-500">*</span></label>
                                 @error('city')
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <input type="text" name="city" id="city"
-                                class="poppins py-2 px-4 text-sm border-2 border-gray-200 rounded focus:outline-none focus:border-blue-500 w-full"
+                            <input type="text" name="city" id="city" value="{{ old('city') }}"
+                                class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="City/Municipality">
                         </div>
 
                         <div class="w-full flex flex-col space-y-1">
                             <div class="flex items-baseline space-x-2">
-                                <label for="province" class="poppins text-sm font-medium text-gray-700">
-                                    Province</label>
+                                <label for="province" class="poppins text-sm font-medium text-gray-700">Province <span
+                                        class="text-red-500">*</span></label>
                                 @error('province')
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <input type="text" name="province" id="province"
-                                class="poppins py-2 px-4 text-sm border-2 border-gray-200 rounded focus:outline-none focus:border-blue-500 w-full"
+                            <input type="text" name="province" id="province" value="{{ old('province') }}"
+                                class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Province">
                         </div>
 
                         <div class="w-full flex flex-col space-y-1">
                             <div class="flex items-baseline space-x-2">
-                                <label for="zipCode" class="poppins text-sm font-medium text-gray-700">
-                                    Zip Code</label>
+                                <label for="zipCode" class="poppins text-sm font-medium text-gray-700">Zip
+                                    Code</label>
                                 @error('zipCode')
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <input type="number" name="zipCode" id="zipCode"
-                                class="poppins py-2 px-4 text-sm border-2 border-gray-200 rounded focus:outline-none focus:border-blue-500 w-full"
+                            <input type="number" name="zipCode" id="zipCode" value="{{ old('zipCode') }}"
+                                class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Zip Code">
                         </div>
                     </div>
@@ -298,34 +326,40 @@
             </div>
 
             <div class="pb-4">
-                <h2 class="text-xl font-semibold text-gray-700 dark:text-gray-200 pb-3">
-                    Parent's Information
-                </h2>
+                <div class="pb-3">
+                    <h2 class="text-xl font-semibold text-gray-700 dark:text-gray-200 ">
+                        Parent's Information
+                    </h2>
+                    <p class="poppins text-xs italic text-red-400">'<span class="text-red-500 text-base">*</span>'
+                        indicates required fields.</p>
+                </div>
                 <div class="flex-col space-y-4">
                     <div class="flex items-center space-x-4">
                         <div class="w-full flex flex-col space-y-1">
                             <div class="flex items-baseline space-x-2">
-                                <label for="firstName" class="poppins text-sm font-medium text-gray-700">First
-                                    Name</label>
-                                @error('firstName')
+                                <label for="parentsFirstName" class="poppins text-sm font-medium text-gray-700">First
+                                    Name <span class="text-red-500">*</span></label>
+                                @error('parentsFirstName')
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <input type="text" name="firstName" id="firstName"
-                                class="poppins py-2 px-4 text-sm border-2 border-gray-200 rounded focus:outline-none focus:border-blue-500 w-full"
+                            <input type="text" name="parentsFirstName" id="parentsFirstName"
+                                value="{{ old('parentsFirstName') }}"
+                                class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="First Name">
                         </div>
 
                         <div class="w-full flex flex-col space-y-1">
                             <div class="flex items-baseline space-x-2">
-                                <label for="lastName" class="poppins text-sm font-medium text-gray-700">First
-                                    Name</label>
-                                @error('lastName')
+                                <label for="parentsLastName" class="poppins text-sm font-medium text-gray-700">Last
+                                    Name <span class="text-red-500">*</span></label>
+                                @error('parentsLastName')
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <input type="text" name="lastName" id="lastName"
-                                class="poppins py-2 px-4 text-sm border-2 border-gray-200 rounded focus:outline-none focus:border-blue-500 w-full"
+                            <input type="text" name="parentsLastName" id="parentsLastName"
+                                value="{{ old('parentsLastName') }}"
+                                class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Last Name">
                         </div>
                     </div>
@@ -333,43 +367,48 @@
                     <div class="flex items-center space-x-4">
                         <div class="w-full flex flex-col space-y-1">
                             <div class="flex items-baseline space-x-2">
-                                <label for="middleName" class="poppins text-sm font-medium text-gray-700">Middle
+                                <label for="parentsMiddleName"
+                                    class="poppins text-sm font-medium text-gray-700">Middle
                                     Name</label>
-                                @error('middleName')
+                                @error('parentsMiddleName')
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <input type="text" name="middleName" id="middleName"
-                                class="poppins py-2 px-4 text-sm border-2 border-gray-200 rounded focus:outline-none focus:border-blue-500 w-full"
+                            <input type="text" name="parentsMiddleName" id="parentsMiddleName"
+                                value="{{ old('parentsMiddleName') }}"
+                                class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Middle Name">
                         </div>
 
                         <div class="w-full flex items-center space-x-4">
                             <div class="w-full flex flex-col space-y-1">
                                 <div class="flex items-baseline space-x-2">
-                                    <label for="suffix"
+                                    <label for="parentsSuffix"
                                         class="poppins text-sm font-medium text-gray-700">Suffix</label>
-                                    @error('suffix')
+                                    @error('parentsSuffix')
                                         <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <input type="text" name="suffix" id="suffix"
-                                    class="poppins py-2 px-4 text-sm border-2 border-gray-200 rounded focus:outline-none focus:border-blue-500 w-full"
+                                <input type="text" name="parentsSuffix" id="parentsSuffix"
+                                    value="{{ old('parentsSuffix') }}"
+                                    class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                     placeholder="Suffix">
                             </div>
 
                             <div class="w-full flex flex-col space-y-1">
                                 <div class="flex items-baseline space-x-2">
-                                    <label for="sex"
+                                    <label for="parentsSex"
                                         class="poppins text-sm font-medium text-gray-700">Sex</label>
-                                    @error('sex')
+                                    @error('parentsSex')
                                         <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <select name="sex" id="sex"
+                                <select name="parentsSex" id="parentsSex"
                                     class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full">
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
+                                    <option value="Male" {{ old('parentsSex') == 'Male' ? 'selected' : '' }}>Male
+                                    </option>
+                                    <option value="Female" {{ old('parentsSex') == 'Female' ? 'selected' : '' }}>
+                                        Female</option>
                                 </select>
                             </div>
                         </div>
@@ -378,28 +417,28 @@
                     <div class="flex items-center space-x-4">
                         <div class="w-full flex flex-col space-y-1">
                             <div class="flex items-baseline space-x-2">
-                                <label for="contactNumber" class="poppins text-sm font-medium text-gray-700">Contact
-                                    Number
-                                </label>
-                                @error('contactNumber')
+                                <label for="parentsContactNumber"
+                                    class="poppins text-sm font-medium text-gray-700">Contact Number </label>
+                                @error('parentsContactNumber')
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <input type="text" name="contactNumber" id="contactNumber"
-                                class="poppins py-2 px-4 text-sm border-2 border-gray-200 rounded focus:outline-none focus:border-blue-500 w-full"
+                            <input type="text" name="parentsContactNumber" id="parentsContactNumber"
+                                value="{{ old('parentsContactNumber') }}"
+                                class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Mobile Number">
                         </div>
 
                         <div class="w-full flex flex-col space-y-1">
                             <div class="flex items-baseline space-x-2">
-                                <label for="dob" class="poppins text-sm font-medium text-gray-700">Date Of Birth
-                                </label>
-                                @error('dob')
+                                <label for="parentsDob" class="poppins text-sm font-medium text-gray-700">Date Of
+                                    Birth <span class="text-red-500">*</span></label>
+                                @error('parentsDob')
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <input type="date" name="dob" id="dob"
-                                class="poppins py-2 px-4 text-sm border-2 border-gray-200 rounded focus:outline-none focus:border-blue-500 w-full"
+                            <input type="date" name="parentsDob" id="parentsDob" value="{{ old('parentsDob') }}"
+                                class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Date Of Birth">
 
                             <script type="module">
@@ -423,6 +462,10 @@
                 </div>
             </div>
 
+            <div class="flex items-center justify-start">
+                <button type="submit"
+                    class="px-4 py-2 rounded text-white bg-blue-600 hover:bg-blue-700 poppins">Submit</button>
+            </div>
         </form>
     </div>
 </x-guidance-layout>

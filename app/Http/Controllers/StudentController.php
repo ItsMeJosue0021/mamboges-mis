@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Helpers\Logs;
+use App\Models\Address;
+use App\Models\Profile;
 use App\Models\Section;
 use App\Models\Student;
 use App\Models\Guardian;
@@ -12,6 +14,7 @@ use Illuminate\Http\Request;
 use App\Models\SectionStudents;
 use App\Models\ArchivedStudents;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\StoreStudentRequest;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class StudentController extends Controller
@@ -27,22 +30,14 @@ class StudentController extends Controller
 
             foreach ($enrolledStudents as $student) {
                 $rightGradeLevel = $student->sectionStudents->where('school_year_id', $current_school_year->id)->first()
-                ->section->gradeLevel == $request->grade_level;
+                    ->section->gradeLevel == $request->grade_level;
 
                 if ($rightGradeLevel) {
                     $collection->push($student);
                 }
             }
 
-            $perPage = 20;
-            $page = request('page', 1);
-            $students = new LengthAwarePaginator(
-                $collection->forPage($page, $perPage),
-                $collection->count(),
-                $perPage,
-                $page,
-                ['path' => route('student.index', ['grade_level' => $request->grade_level])]
-            );
+            $students = $this->paginator($collection, $request);
 
         } elseif ($request->search) {
 
@@ -50,27 +45,18 @@ class StudentController extends Controller
 
             foreach (Student::all() as $student) {
                 if (
-                        $student->lrn == $request->search ||
-                        $student->user->profile->lastName == $request->search ||
-                        $student->user->profile->firstName == $request->search ||
-                        $student->user->profile->middleName == $request->search ||
-                        $student->user->profile->address->barangay == $request->search ||
-                        $student->user->profile->address->city == $request->search
-                    )
-                {
+                    $student->lrn == $request->search ||
+                    $student->user->profile->lastName == $request->search ||
+                    $student->user->profile->firstName == $request->search ||
+                    $student->user->profile->middleName == $request->search ||
+                    $student->user->profile->address->barangay == $request->search ||
+                    $student->user->profile->address->city == $request->search
+                ) {
                     $collection->push($student);
                 }
             }
 
-            $perPage = 20;
-            $page = request('page', 1);
-            $students = new LengthAwarePaginator(
-                $collection->forPage($page, $perPage),
-                $collection->count(),
-                $perPage,
-                $page,
-                ['path' => route('student.index', ['grade_level' => $request->grade_level])]
-            );
+            $students = $this->paginator($collection, $request);
 
         } else {
             $students = Student::latest()->paginate(20);
@@ -83,205 +69,112 @@ class StudentController extends Controller
         ]);
     }
 
-    public function create() {
-        return view('student.create');
+    public function paginator($collection, $request)
+    {
+        $perPage = 20;
+        $page = request('page', 1);
+        $students = new LengthAwarePaginator(
+            $collection->forPage($page, $perPage),
+            $collection->count(),
+            $perPage,
+            $page,
+            ['path' => route('student.index', ['grade_level' => $request->grade_level])]
+        );
+
+        return $students;
     }
 
-    public function getStudents(Request $request)
+    public function create()
     {
-
-        $current_school_year = SchoolYear::where('is_current', true)->first();
-
-        if ($request->ajax()) {
-            $output = '';
-            $query = $request->get('query');
-            $gradeLevel = $request->get('grade_level');
-
-            if ($query != '') {
-                $data = Student::where('is_archived', false)
-                    ->where('first_name', 'like', '%' . $query . '%')
-                    ->orWhere('last_name', 'like', '%' . $query . '%')
-                    ->orWhere('middle_name', 'like', '%' . $query . '%')
-                    ->orWhere('suffix', 'like', '%' . $query . '%')
-                    ->orWhere('lrn', 'like', '%' . $query . '%')
-                    ->orderBy('id', 'desc')
-                    ->paginate(10);
-
-            } elseif (!empty($gradeLevel)) {
-
-                $sectionStudents = SectionStudents::where('grade_level', $gradeLevel)
-                    ->where('school_year_id', $current_school_year->id)
-                    ->get();
-
-                $studentIds = $sectionStudents->pluck('student_id')->toArray();
-
-                $data = Student::where('is_archived', false)
-                    ->whereIn('id', $studentIds)
-                    ->orderBy('id', 'desc')
-                    ->paginate(10);
-
-            } else {
-
-                $data = Student::where('is_archived', false)
-                    ->orderBy('id', 'desc')
-                    ->paginate(10);
-            }
-
-            $total_row = $data->total();
-
-            if ($total_row > 0) {
-                foreach ($data as $row) {
-                    $sections = Section::where('is_archived', false)->get();
-
-                    $imageURL = '';
-                    if (!is_null($row->image)) {
-                        $imageURL = 'storage/' . $row->image;
-                    } else {
-                        if ($row->sex == 'Male') {
-                            $imageURL = 'image/male.png';
-                        } else {
-                            $imageURL = 'image/female.png';
-                        }
-                    }
-
-                    $output .= '
-                        <a class="p-2 lg:w-1/3 md:w-1/2 w-full" href="/students/' . $row->id . '">
-                            <div class="h-full flex items-center space-x-2 border-gray-200 hover:border-gray-400 hover:shadow border p-4 rounded-lg">
-                                <div class="w-12 h-12 bg-gray-100 rounded-full mr-4 border border-gray-400">
-                                    <img class="w-full h-full rounded-full" src="' . $imageURL . '">
-                                </div>
-                                <div class="flex-grow">
-                                    <h2 class="no-underline poppins text-base text-gray-900 title-font font-medium">' . $row->first_name . ' ' . $row->middle_name . ' ' . $row->last_name . '</h2>
-                                    <p class="no-underline poppins text-sm text-gray-500">LRN: ' . $row->lrn . '</p>
-                                </div>
-                            </div>
-                        </a>
-                    ';
-                }
-
-                $pagination = '<div class="my-5">' . $data->links() . '</div>';
-
-            } else {
-
-                $output .= '
-                    <div class="p-2 w-full h-96 flex flex-col items-center justify-center mt-20">
-                        <p class="poppins text-base  text-red-500 mt-5">Oops! No student found.</p>
-                    </div>
-                ';
-
-                $pagination = '';
-            }
-
-            $allStudents = Student::all();
-            $allStudentCount = $allStudents->count();
-
-            $data = array(
-                'student_data' => $output,
-                'enrolled' => $total_row,
-                'pagination' => $pagination,
-                'total' => $allStudentCount
-            );
-
-            return response()->json($data);
-        }
+        return view('student.create');
     }
 
 
     public function show(Student $student)
     {
 
-        $current_school_year = SchoolYear::where('is_current', true)->first();
+        // $current_school_year = SchoolYear::where('is_current', true)->first();
 
-        $studentSection = SectionStudents::where('student_id', $student->id)->where('school_year_id', $current_school_year->id)->first();
-
-        if (!is_null($studentSection)) {
-            $section = Section::where('id', $studentSection->section_id)->where('is_archived', false)->first();
-        } else {
-            $section = Section::where('id', $student->section_id)->where('is_archived', false)->first();
-        }
-
-        $parent = Guardian::where('id', $student->parent_id)->first();
 
         return view('student.show', [
             'student' => $student,
-            'section' => $section,
-            'parent' => $parent,
-            'student_section' => $studentSection
         ]);
     }
 
 
-    public function store(Request $request)
+    public function store(StoreStudentRequest $request) 
     {
+        $data = $request->validated();
 
-        $existingStudent = Student::where('lrn', $request->lrn)->where('is_archived', false)->first();
+        $existingStudentAccount = User::where('username', $data['lrn'])->first();
+        $existingStudent = Student::where('lrn', $data['lrn'])->first();
 
-        if ($existingStudent) {
-            return response()->json(['success' => false, 'message' => 'LRN is already assigned to another student']);
+        if ( $existingStudentAccount || $existingStudent) {
+            return redirect()->back()->with('error', 'LRN is already assigned to another student');
         }
 
-        $existingEmail = Guardian::where('email', $request->email)->first();
+        $studentAccount = User::create([
+            'username' => $data['lrn'],
+            'password' => Hash::make($data['lastName']),
+        ]);
 
-        if ($existingEmail) {
-            return response()->json(['success' => false, 'message' => 'The same email is alredy registered']);
-        }
+        if ($studentAccount) {
 
-        $studentGuardian = [
-            'first_name' => $request->parent_first_name,
-            'last_name' => $request->parent_last_name,
-            'middle_name' => $request->parent_middle_name,
-            'suffix' => $request->parent_suffix,
-            'sex' => $request->parent_sex,
-            'email' => $request->email,
-            'contact_no' => $request->parent_contact_no,
-            'address' => $request->address,
-        ];
-
-        $guardian = Guardian::create($studentGuardian);
-
-        $current_school_year = SchoolYear::where('is_current', true)->first();
-
-        if (!is_null($guardian)) {
-
-            $studentArray = [
-                'first_name' => $request->first_name,
-                'last_name' => $request->last_name,
-                'middle_name' => $request->middle_name,
-                'suffix' => $request->suffix,
-                'sex' => $request->sex,
-                'lrn' => $request->lrn,
-                'dob' => $request->dob,
-                'address' => $request->address,
-                // 'grade_level' => $request->grade_level,
-                'parent_id' => $guardian->id,
+            $guardianData = [
+                'firstName' => $data['parentsFirstName'],
+                'lastName' => $data['parentsLastName'],
+                'middleName' => $data['parentsMiddleName'],
+                'suffix' => $data['parentsSuffix'],
+                'dob' => $data['parentsDob'],
+                'sex' => $data['parentsSex'],
+                'contactNumber' => $data['parentsContactNumber'],
+                'user_id' => null,
             ];
+    
+            $guardianProfile = Profile::create($guardianData);
+    
+            $guardian = Guardian::create([
+                'profile_id' => $guardianProfile->id
+            ]);
 
+            if ($guardian) {
+                $student = Student::create([
+                    'lrn' => $data['lrn'],
+                    'user_id' => $studentAccount->id,
+                    'guardian_id' => $guardian->id,
+                ]);
 
-            $studentAccount = [
-                'name' => $request->first_name . " " . $request->last_name . " " . $request->middle_name,
-                'username' => $request->lrn,
-                'password' => Hash::make($request->lrn),
-            ];
+                if ($student) {
+                    $studentData = [
+                        'firstName' => $data['firstName'],
+                        'lastName' => $data['lastName'],
+                        'middleName' => $data['middleName'],
+                        'suffix' => $data['suffix'],
+                        'dob' => $data['dob'],
+                        'sex' => $data['sex'],
+                        'contactNumber' => $data['contactNumber'],
+                        'image' => $request->hasFile('image') ? $request->file('image')->store('profile', 'public') : null,
+                        'user_id' => $studentAccount->id,
+                    ];
+                    $studentProfile = Profile::create($studentData);
 
-            if ($request->hasFile('image')) {
-                $studentArray['image'] = $request->file('image')->store('profile', 'public');
-                $studentAccount['image'] = $request->file('image')->store('profile', 'public');
+                    Address::create([
+                        'lot' => $data['lot'],
+                        'block' => $data['block'],
+                        'street' => $data['street'],
+                        'subdivision' => $data['subdivision'],
+                        'barangay' => $data['barangay'],
+                        'city' => $data['city'],
+                        'province' => $data['province'],
+                        'zipCode' => $data['zipCode'],
+                        'profile_id' => $studentProfile->id
+                    ]);
+                    return redirect()->back()->with('success', 'Student successfully added!');
+                }
             }
 
-            $student = Student::create($studentArray);
-
-            $account = User::create($studentAccount);
-
-            if (!is_null($student) && !is_null($account)) {
-                Logs::addToLog('New student has been added to the masterlist | LRN [' . $student->lrn . ']');
-                return response()->json(['success' => true, 'message' => 'Student has been saved!']);
-            } else {
-                Logs::addToLog('Failed to add new student');
-                return response()->json(['success' => false, 'message' => 'Saving unsuccessful!']);
-            }
         } else {
-            Logs::addToLog('Failed to add the guradian and new student');
-            return response()->json(['success' => false, 'message' => 'Saving unsuccessful, please check the details of Guirdian.']);
+            return redirect()->back()->with('error', 'There was a problem creating the student account.');
         }
     }
 
