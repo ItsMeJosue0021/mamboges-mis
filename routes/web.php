@@ -117,7 +117,8 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
             Route::get('/{student}/edit', 'edit')->name('student.edit');
             Route::put('/{student}/update', 'update')->name('student.update');
             Route::get('/{student}', 'show')->name('student.show');
-            Route::delete('/{student}/delete', 'delete')->name('student.delete');
+            Route::get('/{student}/archiving-info', 'archivingInfo')->name('student.archiving-info');
+            Route::post('/{student}/delete', 'delete')->name('student.delete');
         });
     });
 

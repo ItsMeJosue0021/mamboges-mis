@@ -8,11 +8,13 @@ use App\Models\Guardian;
 use App\Models\SectionStudents;
 use App\Models\ActivityStatistics;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Student extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'lrn',
@@ -45,7 +47,7 @@ class Student extends Model
     {
         return $this->hasMany(SectionStudents::class);
     }
-    
+
 
     public function scopeFilter($query, array $filters) {
 

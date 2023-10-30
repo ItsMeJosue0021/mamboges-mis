@@ -39,7 +39,8 @@
                             <span class="poppins text-sm">SECTION: </span>
                             <span class="poppins text-sm">{{ $section->name ?? 'Student Unenrolled' }}</span>
                         </div>
-                        <div class="flex items-center justify-between border border-gray-300 border-t-0 py-1 px-2 rounded-b">
+                        <div
+                            class="flex items-center justify-between border border-gray-300 border-t-0 py-1 px-2 rounded-b">
                             <span class="poppins text-sm">LRN: </span>
                             <span class="poppins text-sm">{{ $student->lrn }}</span>
                         </div>
@@ -48,10 +49,12 @@
                     <div class="flex items-start">
                         <div class="flex flex-col items-start space-y-2">
                             <a href="{{ route('student.edit', $student->id) }}">
-                                <i class='bx bx-edit text-blue-500 text-xl cursor-pointer rounded bg-blue-50 py-1 px-2'></i>
+                                <i
+                                    class='bx bx-edit text-blue-500 text-xl cursor-pointer rounded bg-blue-50 py-1 px-2'></i>
                             </a>
-                            <a href="">
-                                <i class='bx bx-trash text-red-500 text-xl rounded bg-red-50 cursor-pointer py-1 px-2'></i>
+                            <a href="{{ route('student.archiving-info', $student->id) }}">
+                                <i
+                                    class='bx bx-trash text-red-500 text-xl rounded bg-red-50 cursor-pointer py-1 px-2'></i>
                             </a>
                         </div>
                     </div>

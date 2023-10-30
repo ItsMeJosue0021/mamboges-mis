@@ -110,7 +110,7 @@ class StudentController extends Controller
         $data = $request->validated();
 
         $existingStudentAccount = User::where('username', $data['lrn'])->first();
-        $existingStudent = Student::where('lrn', $data['lrn'])->first();
+        $existingStudent = Student::withTrashed()->where('lrn', $data['lrn'])->first();
 
         if ( $existingStudentAccount || $existingStudent) {
             return redirect()->back()->with('error', 'LRN is already assigned to another student');
@@ -248,74 +248,34 @@ class StudentController extends Controller
         if (!$addressUpdated) {
             return redirect()->back()->with('error', 'There was a problem updating the address.');
         }
-
         return redirect()->back()->with('success', 'Student information successfully updated!');
-
     }
 
-    public function delete(Request $request, $id)
+    public function archivingInfo(Student $student) {
+        return view('student.delete', [
+            'student' => $student
+        ]);
+    }
+
+    public function delete(Request $request, $studentId)
     {
+        // dd($request->all());
 
-        $student = Student::where('id', $id)->first();
+        $student = Student::find($studentId);
 
-        $lastClassAttended = SectionStudents::where('student_id', $student->id)->latest()->first();
-
-        $grade_level = null;
-        $section = null;
-
-        if (!is_null($lastClassAttended)) {
-            $grade_level = $lastClassAttended->grade_level;
-            $section = $lastClassAttended->section_id;
+        if (!$student) {
+            return redirect()->back()->with('error', 'Student not found');
         }
 
-        if ($student) {
-            $toBeArchived = [
-                'student_id' => $student->id,
-                'first_name' => $student->first_name,
-                'last_name' => $student->last_name,
-                'middle_name' => $student->middle_name,
-                'suffix' => $student->suffix,
-                'sex' => $student->sex,
-                'lrn' => $student->lrn,
-                'dob' => $student->dob,
-                'address' => $student->address,
-                'grade_level' => $grade_level,
-                'reason' => $request->reason,
-                'image' => $student->image,
-                'section_id' => $section,
-                'parent_id' => $student->parent_id,
-            ];
+        $student->update([
+            'ReasonForArchiving' => $request->reason,
+            'ArchivedBy' => auth()->user()->id,
+        ]);
 
-            $archivedStudent = ArchivedStudents::create($toBeArchived);
-
-            if (!is_null($archivedStudent)) {
-
-                $studentDeleted = $student->delete();
-
-                // $lastClassAttendedDeleted = $lastClassAttended->delete();
-
-                if ($lastClassAttended) {
-                    $lastClassAttendedDeleted = $lastClassAttended->delete();
-                } else {
-                    $lastClassAttendedDeleted = true; // If $lastClassAttended is null, consider it as deleted.
-                }
-
-                if ($studentDeleted && $lastClassAttendedDeleted) {
-
-                    Logs::addToLog('Student has been moved to archive | LRN [' . $student->lrn . ']');
-
-                    return response()->json(['success' => true, 'message' => 'Student deleted successfully']);
-
-                } else {
-                    return response()->json(['success' => false, 'message' => 'Unable to delete student']);
-                }
-            } else {
-                return response()->json(['success' => false, 'message' => 'Something went wrong']);
-            }
-        } else {
-            return response()->json(['success' => false, 'message' => 'Student not found.']);
+        if (!$student->delete()) {
+            return redirect()->back()->with('error', 'There was a problem deleting the student.');
         }
 
+        return redirect()->route('student.index')->with('success', 'Student successfully deleted!');
     }
-
 }
