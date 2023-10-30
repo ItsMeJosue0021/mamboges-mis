@@ -113,11 +113,11 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
         Route::controller(StudentController::class)->group(function () {
             Route::get('', 'index')->name('student.index');
             Route::get('/create', 'create')->name('student.create');
-            Route::get('/search', 'getStudents')->name('student.getStudents');
-            Route::get('/{student}', 'show')->name('student.show');
-            Route::put('/{student}/edit', 'update')->name('student.update');
-            Route::delete('/{student}/delete', 'delete')->name('student.delete');
             Route::post('/register', 'store')->name('student.store');
+            Route::get('/{student}/edit', 'edit')->name('student.edit');
+            Route::put('/{student}/update', 'update')->name('student.update');
+            Route::get('/{student}', 'show')->name('student.show');
+            Route::delete('/{student}/delete', 'delete')->name('student.delete');
         });
     });
 

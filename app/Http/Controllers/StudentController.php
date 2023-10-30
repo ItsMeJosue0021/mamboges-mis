@@ -15,6 +15,7 @@ use App\Models\SectionStudents;
 use App\Models\ArchivedStudents;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreStudentRequest;
+use App\Http\Requests\UpdateStudentRequest;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class StudentController extends Controller
@@ -92,17 +93,19 @@ class StudentController extends Controller
 
     public function show(Student $student)
     {
-
-        // $current_school_year = SchoolYear::where('is_current', true)->first();
-
+        if ($student->isEnrolled) {
+            $current_school_year = SchoolYear::where('is_current', true)->first();
+            $section = $student->sectionStudents->where('school_year_id', $current_school_year->id)->first()->section;
+        }
 
         return view('student.show', [
-            'student' => $student,
+            'student' => $student ?? 'null',
+            'section' => $section ?? 'null',
         ]);
     }
 
 
-    public function store(StoreStudentRequest $request) 
+    public function store(StoreStudentRequest $request)
     {
         $data = $request->validated();
 
@@ -130,9 +133,9 @@ class StudentController extends Controller
                 'contactNumber' => $data['parentsContactNumber'],
                 'user_id' => null,
             ];
-    
+
             $guardianProfile = Profile::create($guardianData);
-    
+
             $guardian = Guardian::create([
                 'profile_id' => $guardianProfile->id
             ]);
@@ -178,91 +181,76 @@ class StudentController extends Controller
         }
     }
 
-    public function update(Request $request, $id)
+    public function edit(Student $student) {
+        return view('student.edit', [
+            'student' => $student,
+        ]);
+    }
+
+    public function update(UpdateStudentRequest $request, $studentId)
     {
-        $student = Student::find($id);
-        $guardian = Guardian::find($student->parent_id);
+        $data = $request->validated();
+
+        $student = Student::find($studentId);
 
         if (!$student) {
-            return response()->json(['success' => false, 'message' => 'Student not found']);
+            return redirect()->back()->with('error', 'Student not found');
         }
 
-        $lrn = $request->lrn;
-        $existingStudent = Student::where('lrn', $lrn)->where('id', '!=', $id)->where('is_archived', false)->first();
+        $studentUpdted = $student->user->profile->update([
+            'firstName' => $data['firstName'],
+            'lastName' => $data['lastName'],
+            'middleName' => $data['middleName'],
+            'suffix' => $data['suffix'],
+            'dob' => $data['dob'],
+            'sex' => $data['sex'],
+            'contactNumber' => $data['contactNumber'],
+            'image' => $request->hasFile('image') ? $request->file('image')->store('profile', 'public') : null,
+        ]);
 
-        if ($existingStudent) {
-            return response()->json(['success' => false, 'message' => 'LRN is already assigned to another student']);
+        if (!$studentUpdted) {
+            return redirect()->back()->with('error', 'There was a problem updating the student profile.');
         }
 
-        $email = $request->email;
-        $existingEmail = Guardian::where('email', $email)
-            ->where('id', '!=', $student->parent_id)
-            ->first();
+        $guardianUpdated = $student->guardian->profile->update([
+            'firstName' => $data['parentsFirstName'],
+            'lastName' => $data['parentsLastName'],
+            'middleName' => $data['parentsMiddleName'],
+            'suffix' => $data['parentsSuffix'],
+            'dob' => $data['parentsDob'],
+            'sex' => $data['parentsSex'],
+            'contactNumber' => $data['parentsContactNumber']
+        ]);
 
-        if ($existingEmail) {
-            return response()->json(['success' => false, 'message' => 'The same email is already registered']);
+        if (!$guardianUpdated) {
+            return redirect()->back()->with('error', 'There was a problem updating the guardian profile.');
         }
 
-        $studentGuardian = [
-            'first_name' => $request->parent_first_name,
-            'last_name' => $request->parent_last_name,
-            'middle_name' => $request->parent_middle_name,
-            'suffix' => $request->parent_suffix,
-            'sex' => $request->parent_sex,
-            'email' => $request->email,
-            'contact_no' => $request->parent_contact_no,
-            'address' => $request->address,
-        ];
+        $lrnUpdated = $student->update([
+            'lrn' => $data['lrn']
+        ]);
 
-        $guardian->update($studentGuardian);
-
-        $current_school_year = SchoolYear::where('is_current', true)->first();
-
-        if (!is_null($guardian)) {
-            $studentArray = [
-                'first_name' => $request->first_name,
-                'last_name' => $request->last_name,
-                'middle_name' => $request->middle_name,
-                'suffix' => $request->suffix,
-                'sex' => $request->sex,
-                'lrn' => $request->lrn,
-                'dob' => $request->dob,
-                'address' => $request->address,
-                'parent_id' => $guardian->id,
-            ];
-
-            if ($request->hasFile('image')) {
-                $studentArray['image'] = $request->file('image')->store('profile', 'public');
-            }
-
-            $student->update($studentArray);
-
-            if ($student->wasChanged() || $guardian->wasChanged()) {
-
-                $studUserAccount = User::where('username', $student->lrn)->first();
-
-                $studentAccount = [
-                    'name' => $request->first_name . " " . $request->last_name . " " . $request->middle_name,
-                    'username' => $request->lrn,
-                    'password' => Hash::make($request->lrn),
-                ];
-
-                if ($request->hasFile('image')) {
-                    $studentAccount['image'] = $request->file('image')->store('profile', 'public');
-                }
-
-                $studUserAccount->update($studentAccount);
-
-                Logs::addToLog('Student information has been altered | LRN [' . $student->lrn . ']');
-                return response()->json(['success' => true, 'message' => 'Student information has been updated']);
-            } else {
-                Logs::addToLog('Failed to alter student information | LRN [' . $student->lrn . ']');
-                return response()->json(['success' => false, 'message' => 'Nothing was changed']);
-            }
-        } else {
-            Logs::addToLog('Failed to alter the gaurdian and student information');
-            return response()->json(['success' => false, 'message' => 'Saving unsuccessful, please check the details of Guardian']);
+        if (!$lrnUpdated) {
+            return redirect()->back()->with('error', 'There was a problem updating the LRN.');
         }
+
+        $addressUpdated = $student->user->profile->address->update([
+            'lot' => $data['lot'],
+            'block' => $data['block'],
+            'street' => $data['street'],
+            'subdivision' => $data['subdivision'],
+            'barangay' => $data['barangay'],
+            'city' => $data['city'],
+            'province' => $data['province'],
+            'zipCode' => $data['zipCode'],
+        ]);
+
+        if (!$addressUpdated) {
+            return redirect()->back()->with('error', 'There was a problem updating the address.');
+        }
+
+        return redirect()->back()->with('success', 'Student information successfully updated!');
+
     }
 
     public function delete(Request $request, $id)

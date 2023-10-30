@@ -1,15 +1,17 @@
 <x-guidance-layout>
     <div class="w-full p-4">
         <div class="flex flex-col space-y-2 pb-3">
-            <a href="{{ route('student.index') }}" id="back"
+            <a href="{{ route('student.show', $student->id) }}" id="back"
                 class="flex w-fit justify-start items-center space-x-2 py-1 px-4 group rounded bg-gray-200 hover:bg-gray-300 cursor-pointer group">
                 <i class='bx bx-left-arrow-alt text-black text-lg '></i>
                 <p class="poppins text-sm text-black">Back</p>
             </a>
         </div>
 
-        <form action="{{ route('student.store') }}" method="POST" class="" enctype="multipart/form-data">
+        <form action="{{ route('student.update', $student->id) }}" method="POST" class=""
+            enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class="pb-6">
                 <div class="pb-3">
                     <h2 class="text-xl font-semibold text-gray-700 dark:text-gray-200 ">
@@ -20,15 +22,15 @@
                 </div>
 
                 <div class="flex items-start space-x-4 ">
-                    <div class="flex flex-col space-y-1 items-start justify-start w-1/3">
+                    <div class="flex flex-col items-start justify-start min-w-[330px]">
                         <label for="tag" class="poppins text-sm font-medium text-gray-700">Image
                             @error('cover_photo')
                                 <span class="text-xs font-light text-red-600">{{ $message }}</span>
                             @enderror
                         </label>
                         <label for="dropzone-file"
-                            class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                            <div id="description" class="flex flex-col items-center justify-center pt-5 pb-6">
+                            class="flex flex-col items-center justify-center w-full h-72 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                            <div id="description" class="hidden flex flex-col items-center justify-center pt-5 pb-6">
                                 <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -42,6 +44,8 @@
                             </div>
                             <img id="image-preview" src="#" alt="Preview"
                                 class="hidden w-full h-full rounded-md" />
+                            <img id="db-cover-photo" src="{{ asset('storage/' . $student->user->profile->image) }}"
+                                alt="Image" class="w-full h-full rounded-md" />
                             <input id="dropzone-file" type="file" name="image" class="hidden"
                                 accept="image/png, image/jpeg, image/gif" onchange="previewCoverPhoto(this)" />
                         </label>
@@ -49,6 +53,7 @@
                         <script>
                             function previewCoverPhoto(input) {
                                 var imagePreview = document.getElementById('image-preview');
+                                var dbCoverPhoto = document.getElementById('db-cover-photo');
                                 var description = document.getElementById('description');
 
                                 if (input.files && input.files[0]) {
@@ -57,6 +62,7 @@
                                     reader.onload = function(e) {
                                         imagePreview.src = e.target.result;
                                         imagePreview.classList.remove('hidden');
+                                        dbCoverPhoto.classList.add('hidden');
                                         description.classList.add('hidden');
                                     };
 
@@ -64,13 +70,14 @@
                                 } else {
                                     imagePreview.src = '';
                                     imagePreview.classList.add('hidden');
-                                    description.classList.remove('hidden');
+                                    description.classList.add('hidden');
+                                    dbCoverPhoto.classList.add('hidden');
                                 }
                             }
                         </script>
                     </div>
 
-                    <div class="w-2/3 flex-col space-y-4">
+                    <div class="w-full flex-col space-y-4">
                         <div class="flex items-center space-x-4">
                             <div class="w-full flex flex-col ">
                                 <div class="flex items-baseline space-x-2">
@@ -80,7 +87,8 @@
                                         <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <input type="text" name="firstName" id="firstName" value="{{ old('firstName') }}"
+                                <input type="text" name="firstName" id="firstName"
+                                    value="{{ old('firstName') ?? $student->user->profile->firstName }}"
                                     class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                     placeholder="First Name">
                             </div>
@@ -93,7 +101,8 @@
                                         <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <input type="text" name="lastName" id="lastName" value="{{ old('lastName') }}"
+                                <input type="text" name="lastName" id="lastName"
+                                    value="{{ old('lastName') ?? $student->user->profile->lastName }}"
                                     class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                     placeholder="Last Name">
                             </div>
@@ -108,7 +117,8 @@
                                         <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <input type="text" name="middleName" id="middleName" value="{{ old('middleName') }}"
+                                <input type="text" name="middleName" id="middleName"
+                                    value="{{ old('middleName') ?? $student->user->profile->middleName }}"
                                     class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                     placeholder="Middle Name">
                             </div>
@@ -122,7 +132,8 @@
                                             <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    <input type="text" name="suffix" id="suffix" value="{{ old('suffix') }}"
+                                    <input type="text" name="suffix" id="suffix"
+                                        value="{{ old('suffix') ?? $student->user->profile->suffix }}"
                                         class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                         placeholder="Suffix">
                                 </div>
@@ -137,9 +148,13 @@
                                     </div>
                                     <select name="sex" id="sex"
                                         class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full">
-                                        <option value="Male" {{ old('sex') == 'Male' ? 'selected' : '' }}>Male
+                                        <option value="Male"
+                                            {{ old('sex') == 'Male' || $student->user->profile->sex == 'Male' ? 'selected' : '' }}>
+                                            Male
                                         </option>
-                                        <option value="Female" {{ old('sex') == 'Female' ? 'selected' : '' }}>Female
+                                        <option value="Female"
+                                            {{ old('sex') == 'Female' || $student->user->profile->sex == 'Female' ? 'selected' : '' }}>
+                                            Female
                                         </option>
                                     </select>
                                 </div>
@@ -156,7 +171,7 @@
                                     @enderror
                                 </div>
                                 <input type="text" name="contactNumber" id="contactNumber"
-                                    value="{{ old('contactNumber') }}"
+                                    value="{{ old('contactNumber') ?? $student->user->profile->contactNumber }}"
                                     class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                     placeholder="Contact Number">
                             </div>
@@ -169,7 +184,8 @@
                                         <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <input type="date" name="dob" id="dob" value="{{ old('dob') }}"
+                                <input type="date" name="dob" id="dob"
+                                    value="{{ old('dob') ?? $student->user->profile->dob }}"
                                     class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                     placeholder="Date Of Birth">
 
@@ -199,7 +215,8 @@
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <input type="text" name="lrn" id="lrn" value="{{ old('lrn') }}"
+                            <input type="text" name="lrn" id="lrn"
+                                value="{{ old('lrn') ?? $student->lrn }}"
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Learner's Reference Number">
                         </div>
@@ -224,7 +241,8 @@
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <input type="text" name="lot" id="lot" value="{{ old('lot') }}"
+                            <input type="text" name="lot" id="lot"
+                                value="{{ old('lot') ?? $student->user->profile->address->lot }}"
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Lot">
                         </div>
@@ -236,7 +254,8 @@
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <input type="text" name="block" id="block" value="{{ old('block') }}"
+                            <input type="text" name="block" id="block"
+                                value="{{ old('block') ?? $student->user->profile->address->block }}"
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Block">
                         </div>
@@ -248,7 +267,8 @@
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <input type="text" name="street" id="street" value="{{ old('street') }}"
+                            <input type="text" name="street" id="street"
+                                value="{{ old('street') ?? $student->user->profile->address->street }}"
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Street">
                         </div>
@@ -262,7 +282,7 @@
                                 @enderror
                             </div>
                             <input type="text" name="subdivision" id="subdivision"
-                                value="{{ old('subdivision') }}"
+                                value="{{ old('subdivision') ?? $student->user->profile->address->subdivision }}"
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Subdivision">
                         </div>
@@ -277,7 +297,8 @@
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <input type="text" name="barangay" id="barangay" value="{{ old('barangay') }}"
+                            <input type="text" name="barangay" id="barangay"
+                                value="{{ old('barangay') ?? $student->user->profile->address->barangay }}"
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Barangay">
                         </div>
@@ -291,7 +312,8 @@
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <input type="text" name="city" id="city" value="{{ old('city') }}"
+                            <input type="text" name="city" id="city"
+                                value="{{ old('city') ?? $student->user->profile->address->city }}"
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="City/Municipality">
                         </div>
@@ -304,7 +326,8 @@
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <input type="text" name="province" id="province" value="{{ old('province') }}"
+                            <input type="text" name="province" id="province"
+                                value="{{ old('province') ?? $student->user->profile->address->province }}"
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Province">
                         </div>
@@ -317,7 +340,8 @@
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <input type="number" name="zipCode" id="zipCode" value="{{ old('zipCode') }}"
+                            <input type="number" name="zipCode" id="zipCode"
+                                value="{{ old('zipCode') ?? $student->user->profile->address->zipCode }}"
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Zip Code">
                         </div>
@@ -344,7 +368,7 @@
                                 @enderror
                             </div>
                             <input type="text" name="parentsFirstName" id="parentsFirstName"
-                                value="{{ old('parentsFirstName') }}"
+                                value="{{ old('parentsFirstName') ?? $student->guardian->profile->firstName }}"
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="First Name">
                         </div>
@@ -358,7 +382,7 @@
                                 @enderror
                             </div>
                             <input type="text" name="parentsLastName" id="parentsLastName"
-                                value="{{ old('parentsLastName') }}"
+                                value="{{ old('parentsLastName') ?? $student->guardian->profile->lastName }}"
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Last Name">
                         </div>
@@ -375,7 +399,7 @@
                                 @enderror
                             </div>
                             <input type="text" name="parentsMiddleName" id="parentsMiddleName"
-                                value="{{ old('parentsMiddleName') }}"
+                                value="{{ old('parentsMiddleName') ?? $student->guardian->profile->middleName }}"
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Middle Name">
                         </div>
@@ -390,7 +414,7 @@
                                     @enderror
                                 </div>
                                 <input type="text" name="parentsSuffix" id="parentsSuffix"
-                                    value="{{ old('parentsSuffix') }}"
+                                    value="{{ old('parentsSuffix') ?? $student->guardian->profile->suffix }}"
                                     class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                     placeholder="Suffix">
                             </div>
@@ -405,10 +429,14 @@
                                 </div>
                                 <select name="parentsSex" id="parentsSex"
                                     class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full">
-                                    <option value="Male" {{ old('parentsSex') == 'Male' ? 'selected' : '' }}>Male
+                                    <option value="Male"
+                                        {{ old('sex') == 'Male' || $student->guardian->profile->sex == 'Male' ? 'selected' : '' }}>
+                                        Male
                                     </option>
-                                    <option value="Female" {{ old('parentsSex') == 'Female' ? 'selected' : '' }}>
-                                        Female</option>
+                                    <option value="Female"
+                                        {{ old('sex') == 'Female' || $student->guardian->profile->sex == 'Female' ? 'selected' : '' }}>
+                                        Female
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -424,7 +452,7 @@
                                 @enderror
                             </div>
                             <input type="text" name="parentsContactNumber" id="parentsContactNumber"
-                                value="{{ old('parentsContactNumber') }}"
+                                value="{{ old('parentsContactNumber') ?? $student->guardian->profile->contactNumber }}"
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Mobile Number">
                         </div>
@@ -437,7 +465,8 @@
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <input type="date" name="parentsDob" id="parentsDob" value="{{ old('parentsDob') }}"
+                            <input type="date" name="parentsDob" id="parentsDob"
+                                value="{{ old('parentsDob') ?? $student->guardian->profile->dob }}"
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Date Of Birth">
 
