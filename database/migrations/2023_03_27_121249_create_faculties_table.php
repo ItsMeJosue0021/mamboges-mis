@@ -17,7 +17,10 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Department::class)->nullable();
+            $table->string('reasonForArchiving')->nullable();
+            $table->integer('archivedBy')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -205,7 +205,7 @@ class StudentController extends Controller
             'dob' => $data['dob'],
             'sex' => $data['sex'],
             'contactNumber' => $data['contactNumber'],
-            'image' => $request->hasFile('image') ? $request->file('image')->store('profile', 'public') : null,
+            'image' => $request->hasFile('image') ? $request->file('image')->store('profile', 'public') : $student->user->profile->image,
         ]);
 
         if (!$studentUpdted) {
@@ -259,8 +259,7 @@ class StudentController extends Controller
 
     public function delete(Request $request, $studentId)
     {
-        // dd($request->all());
-
+        
         $student = Student::find($studentId);
 
         if (!$student) {

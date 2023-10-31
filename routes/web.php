@@ -100,12 +100,15 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
     Route::get('get-update-images', [UpdatesController::class, 'getImages'])->name('update.images');
 
     // FACULTY
-    Route::controller(FacultyController::class)->group(function () {
-        Route::get('/faculties', 'index')->name('faculties.index');
-        Route::post('/faculties/save', 'store')->name('faculties.store');
-        Route::get('/faculties/{faculty}', 'show')->name('faculties.show');
-        Route::put('/faculties/{faculty}/update', 'update')->name('faculties.update');
-        Route::delete('/faculties/{faculty}/delete', 'delete')->name('faculties.delete');
+    Route::prefix('faculties')->group(function () {
+        Route::controller(FacultyController::class)->group(function () {
+            Route::get('', 'index')->name('faculties.index');
+            Route::post('/save', 'store')->name('faculties.store');
+            Route::get('/{faculty}', 'show')->name('faculties.show');
+            Route::get('/{faculty}/archiving-info', 'archivingInfo')->name('faculties.archiving-info');
+            Route::put('/{faculty}/update', 'update')->name('faculties.update');
+            Route::post('/{faculty}/delete', 'delete')->name('faculties.delete');
+        });
     });
 
     // STUDENT

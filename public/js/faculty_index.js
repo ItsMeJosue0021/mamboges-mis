@@ -5,15 +5,13 @@ $(document).ready(function() {
     add_faculty_btn.click(function() {
         add_faculty_modal.removeClass('hidden');
     });
-    
+
     const cancel_add_faculty = $('#cancel');
 
     cancel_add_faculty.click(function() {
         add_faculty_modal.addClass('hidden');
         $('#faculty-form')[0].reset();
-        setTimeout(function(){
-            location.reload();
-        }, 1000);
+        location.reload();
     });
 
     if ($("#faculty-form").length > 0) {
@@ -66,9 +64,9 @@ $(document).ready(function() {
                         if (response.success) {
                             message =  $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-20 py-3 z-20"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');
                             $('#faculty-form')[0].reset();
-                            
+
                         } else {
-                            message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-20 py-3 z-20"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');   
+                            message = $('<div class="fixed top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-20 py-3 z-20"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div>');
                         }
 
                         $('#container').append(message);
@@ -78,6 +76,8 @@ $(document).ready(function() {
                                 message.remove();
                             });
                         }, 3000);
+
+                        location.reload();
 
                         $saveBtn.text('Save');
                     },
