@@ -4,14 +4,16 @@
         <div class="flex justify-between items-center px-4 py-4 border-b border-gray-300">
             <h1 class="poppins text-2xl font-medium">LEARNERS</h1>
             <div class="w-2/3 flex">
-                <form action="{{ route('student.index') }}" class="flex w-full justify-end space-x-4">
-                    <input name="search" type="text"
-                        placeholder="Search by First name, Last name or LRN.."
-                        class="w-500px poppins text-sm focus:outline-none focus:bg-blue-100 border border-gray-400 rounded focus:border-blue-400 py-2 px-4">
-                    <button class="poppins py-2 px-4 bg-blue-600 text-sm text-white font-medium rounded cursor-pointer">Search</button>
-                    <a href="{{ route('student.create') }}"
-                        class="poppins py-2 px-4 bg-blue-600 text-sm text-white font-medium rounded cursor-pointer">New
-                        Student</a>
+                <form action="{{ route('student.index') }}" class="flex w-full items-center justify-end space-x-4">
+                    <div class="flex items-center space-x-1 p-1">
+                        <input name="search" type="text" placeholder="Search by First name, Last name or LRN.."
+                            class="w-500px poppins text-sm focus:outline-none focus:bg-blue-100 border border-gray-400 rounded focus:border-blue-400 py-2 px-4">
+                        <button type="submit"
+                            class="poppins bg-gray-600 hover:bg-blue-600 rounded px-3 py-1  flex justify-center items-center">
+                            <i class='bx bx-search text-white text-lg'></i>
+                        </button>
+                    </div>
+                    <a href="{{ route('student.create') }}" class="poppins py-2 px-4 bg-blue-600 text-sm text-white font-medium rounded cursor-pointer">New</a>
                 </form>
             </div>
         </div>

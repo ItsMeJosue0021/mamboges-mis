@@ -88,40 +88,54 @@ class SectionController extends Controller
         }
     }
 
-
-    public function update(Request $request, $id)
+    public function edit(Section $section)
     {
-        $section = Section::find($id);
-        $sectionBefore = Section::find($id);
+        // $faculties = Faculty::whereDoesntHave('section')->get();
+        return view('sections.edit', [
+            'section' => $section,
+            'faculties' => Faculty::all(),
+        ]);
+    }
+
+
+    public function update(Request $request, $sectionId)
+    {
+        // dd($request->all());
+        $section = Section::find($sectionId);
         if (!$section) {
-            return response()->json(['success' => false, 'message' => 'Section not found.']);
+            return redirect()->back()->with('error', 'Section not found.');
         }
 
-        $existingSection = Section::where('name', $request->name)
-            ->where('id', '<>', $id)
+        $nameExists = Section::where('name', $request->name)
+            ->where('id', '!=', $section->id)
             ->first();
-
-        if ($existingSection) {
-            return response()->json(['success' => false, 'message' => 'The section name is already taken.']);
+        if ($nameExists) {
+            return redirect()->back()->with('error', 'Section name already exists.');
         }
 
-        $existingAdviser = Section::where('adviser_faculty_id', $request->adviser)
-            ->where('id', '<>', $id)
+        if ($request->adviser) {
+            $adviserTaken = Section::where('faculty_id', $request->adviser)
+            ->where('id', '!=', $section->id)
             ->first();
-
-        if ($existingAdviser) {
-            return response()->json(['success' => false, 'message' => 'The adviser is already assigned to another section.']);
-        }
-
-        $section->name = $request->name;
-        // $section->grade_level = $request->grade_level;
-        $section->adviser_faculty_id = $request->adviser;
-
-        if ($section->save()) {
-            Logs::addToLog('Section has been updated | from: [' . $sectionBefore->name . '] [' . $sectionBefore->adviser_faculty_id . '] to [' . $request->name . '] [' . $request->adviser . ']');
-            return response()->json(['success' => true, 'message' => 'The Section has been updated!']);
+            if ($adviserTaken) {
+                return redirect()->back()->with('error', 'Teacher is already assigned to another section.');
+            }
+            $adviser = $request->adviser;
         } else {
-            return response()->json(['success' => false, 'message' => 'Updating unsuccessful!']);
+            $adviser = null;
+        }
+
+        $updatedSection = $section->update([
+            'name' => $request->name,
+            'gradeLevel' => $request->gradeLevel,
+            'faculty_id' => $adviser
+        ]);
+
+        if ($updatedSection) {
+            Logs::addToLog('Section has been updated | from: [' . $section->name . '] [' . $section->faculty_id . '] to [' . $request->name . '] [' . $request->adviser . ']');
+            return redirect()->route('sections.index')->with('success', 'Section has been updated.');
+        } else {
+            return redirect()->back()->with('error', 'Something went wrong, try refreshing the page.');
         }
     }
 
@@ -149,7 +163,7 @@ class SectionController extends Controller
 
     }
 
-    
+
 
     public function searchStudent(Request $request)
     {
@@ -202,7 +216,7 @@ class SectionController extends Controller
     //                         ->orWhere('middleName', 'like', '%' . $searhQuery . '%');
     //             })
     //             ->orderBy('id', 'desc')
-    //             ->get();                
+    //             ->get();
 
     //         } else {
     //             $data = Student::orderBy('id', 'desc')->get();

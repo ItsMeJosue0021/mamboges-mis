@@ -14,15 +14,50 @@ use App\Models\SectionStudents;
 use App\Models\SectionSubjects;
 use App\Models\ArchivedFaculties;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class FacultyController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->search) {
+
+            $collection = collect([]);
+
+            foreach (Faculty::all() as $faculty) {
+                if (
+                    strcasecmp($faculty->user->profile->lastName, $request->search) == 0 ||
+                    strcasecmp($faculty->user->profile->firstName, $request->search) == 0 ||
+                    strcasecmp($faculty->user->profile->middleName, $request->search) == 0
+                ) {
+                    $collection->push($faculty);
+                }
+            }
+
+            $faculties = $this->paginator($collection, $request);
+        } else {
+            $faculties = Faculty::latest()->paginate(10);
+        }
+
         return view('faculty.index', [
-            'faculties' => Faculty::latest()->paginate(10),
+            'faculties' => $faculties,
             'departments' => Department::all(),
         ]);
+    }
+
+    public function paginator($collection, $request)
+    {
+        $perPage = 10;
+        $page = request('page', 1);
+        $faculties = new LengthAwarePaginator(
+            $collection->forPage($page, $perPage),
+            $collection->count(),
+            $perPage,
+            $page,
+            ['path' => route('faculties.index'), 'query' => $request->query()]
+        );
+
+        return $faculties;
     }
 
     public function show(Faculty $faculty)

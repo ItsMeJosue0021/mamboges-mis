@@ -47,11 +47,11 @@ class StudentController extends Controller
             foreach (Student::all() as $student) {
                 if (
                     $student->lrn == $request->search ||
-                    $student->user->profile->lastName == $request->search ||
-                    $student->user->profile->firstName == $request->search ||
-                    $student->user->profile->middleName == $request->search ||
-                    $student->user->profile->address->barangay == $request->search ||
-                    $student->user->profile->address->city == $request->search
+                    strcasecmp($student->user->profile->lastName, $request->search) == 0 ||
+                    strcasecmp($student->user->profile->firstName, $request->search) == 0 ||
+                    strcasecmp($student->user->profile->middleName, $request->search) == 0 ||
+                    strcasecmp($student->user->profile->address->barangay, $request->search) == 0 ||
+                    strcasecmp($student->user->profile->address->city, $request->search) == 0
                 ) {
                     $collection->push($student);
                 }
@@ -112,7 +112,7 @@ class StudentController extends Controller
         $existingStudentAccount = User::where('username', $data['lrn'])->first();
         $existingStudent = Student::withTrashed()->where('lrn', $data['lrn'])->first();
 
-        if ( $existingStudentAccount || $existingStudent) {
+        if ($existingStudentAccount || $existingStudent) {
             return redirect()->back()->with('error', 'LRN is already assigned to another student');
         }
 
@@ -181,7 +181,8 @@ class StudentController extends Controller
         }
     }
 
-    public function edit(Student $student) {
+    public function edit(Student $student)
+    {
         return view('student.edit', [
             'student' => $student,
         ]);
@@ -251,7 +252,8 @@ class StudentController extends Controller
         return redirect()->back()->with('success', 'Student information successfully updated!');
     }
 
-    public function archivingInfo(Student $student) {
+    public function archivingInfo(Student $student)
+    {
         return view('student.delete', [
             'student' => $student
         ]);
@@ -259,7 +261,7 @@ class StudentController extends Controller
 
     public function delete(Request $request, $studentId)
     {
-        
+
         $student = Student::find($studentId);
 
         if (!$student) {

@@ -25,7 +25,7 @@
                     <select name="grade_level" id="grade_level"
                     class="poppins py-2 px-4 text-base border border-gray-300 rounded focus:outline-none focus:border-blue-500">
                         <option disabled selected value="">Select Grade Level</option>
-                        <option value="Kinder">Kinder</option>
+                        <option value="0">Kinder</option>
                         <option value="1">Grade 1</option>
                         <option value="2">Grade 2</option>
                         <option value="3">Grade 3</option>
@@ -43,11 +43,11 @@
                     </div>
                     <select name="adviser" id="adviser"
                     class="poppins py-2 px-4 text-base border border-gray-300 rounded focus:outline-none focus:border-blue-500">
-                        <option disabled selected value="">Select Adviser</option>
+                        <option disabled selected value="">Select Adviser</option>    
                         @foreach ($faculties as $faculty)
                             <option value="{{$faculty->id}}">
-                                {{$faculty->user->profile->suffix ?? ''}}
-                                {{$faculty->user->profile->firstName}}
+                                {{$faculty->user->profile->suffix ?? ''}} 
+                                {{$faculty->user->profile->firstName}} 
                                 {{$faculty->user->profile->lastName}}
                             </option>
                         @endforeach
@@ -55,7 +55,7 @@
                 </div>
 
                 <div class="flex items-center justify-start space-x-4 pt-4 ">
-                    <button type="submit"
+                    <button type="submit" 
                         class="poppins text-SM font-medium text-white bg-blue-600 hover:bg-blue-700  border border-blue-600 hover:border-blue-700 py-2 px-8 rounded">
                         Save
                     </button>
@@ -68,5 +68,5 @@
             </form>
         </div>
     </div>
-    <x-scripts.modal-new-section />
+    <x-scripts.modal-new-subject />
 </div>

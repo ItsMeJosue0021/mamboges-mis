@@ -126,18 +126,19 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
     });
 
     // SECTIONS
-    Route::controller(SectionController::class)->group(function () {
-        Route::get('/sections', 'index')->name('sections.index');
-        Route::get('/sections/search', 'searchStudent')->name('sections.searchStudent');
-        Route::post('/sections/save', 'store')->name('sections.store');
-        Route::post('/sections/import', 'import')->name('sections.import');
-        Route::get('/sections/{section}', 'show')->name('sections.show');
-        Route::get('/sections/edit/{section}', 'getSection')->name('sections.getSection');
-        Route::get('/sections/{section}/edit', 'edit')->name('sections.edit');
-        Route::put('/sections/{section}/update', 'update')->name('sections.update');
-        Route::delete('/sections/{section}/delete', 'delete')->name('sections.delete');
-        Route::post('/sections/{section}/importstudent', 'importStudent')->name('sections.importStudent');
-        Route::post('/sections/{section}/student/save', 'addStudent')->name('sections.addStudent');
+    Route::prefix('sections')->group(function () {
+        Route::controller(SectionController::class)->group(function () {
+            Route::get('', 'index')->name('sections.index');
+            Route::get('/search', 'searchStudent')->name('sections.searchStudent');
+            Route::post('/save', 'store')->name('sections.store');
+            Route::post('/import', 'import')->name('sections.import');
+            Route::get('/{section}', 'show')->name('sections.show');
+            Route::get('/{section}/edit', 'edit')->name('sections.edit');
+            Route::put('/{section}/update', 'update')->name('sections.update');
+            Route::delete('/{section}/delete', 'delete')->name('sections.delete');
+            Route::post('/{section}/importstudent', 'importStudent')->name('sections.importStudent');
+            Route::post('/{section}/student/save', 'addStudent')->name('sections.addStudent');
+        });
     });
 
     // SECTION STUDENTS
