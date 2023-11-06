@@ -93,6 +93,8 @@ class StudentController extends Controller
 
     public function show(Student $student)
     {
+        $student = Student::withTrashed()->find($student->id);
+
         if ($student->isEnrolled) {
             $current_school_year = SchoolYear::where('is_current', true)->first();
             $section = $student->sectionStudents->where('school_year_id', $current_school_year->id)->first()->section;
@@ -271,10 +273,16 @@ class StudentController extends Controller
         $student->update([
             'ReasonForArchiving' => $request->reason,
             'ArchivedBy' => auth()->user()->id,
+            'lastSectionAttended' => $student->sectionStudents->first()->section->name ?? null,
+            'gradeLevelWhenArchived' => $student->sectionStudents->first()->section->gradeLevel ?? null,
         ]);
 
         if (!$student->delete()) {
             return redirect()->back()->with('error', 'There was a problem deleting the student.');
+        }
+
+        foreach($student->sectionStudents as $sectionStudent) {
+            $sectionStudent->delete();
         }
 
         return redirect()->route('student.index')->with('success', 'Student successfully deleted!');

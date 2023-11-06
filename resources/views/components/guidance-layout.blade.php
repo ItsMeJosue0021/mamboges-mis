@@ -151,7 +151,7 @@
 
                                 <a id="link10"
                                     class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50"
-                                    href="/archive">
+                                    href="{{ route('archive.students') }}">
                                     <i class='bx bx-archive text-xl text-lightblack group-hover:text-blue-600'></i>
                                     <p class="poppins text-sm group-hover:text-blue-600">Archive</p>
                                 </a>

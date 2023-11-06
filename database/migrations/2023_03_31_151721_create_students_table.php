@@ -21,6 +21,8 @@ return new class extends Migration
             $table->foreignIdFor(Guardian::class)->nullable();
             $table->boolean('isEnrolled')->default(false);
             $table->string('reasonForArchiving')->nullable();
+            $table->string('lastSectionAttended')->nullable();
+            $table->string('gradeLevelWhenArchived')->nullable();
             $table->integer('archivedBy')->nullable();
             $table->timestamps();
             $table->softDeletes();

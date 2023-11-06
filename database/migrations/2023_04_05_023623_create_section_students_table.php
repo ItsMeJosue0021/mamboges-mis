@@ -16,10 +16,11 @@ return new class extends Migration
     {
         Schema::create('section_students', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Student::class)->constrained();
+            $table->foreignIdFor(Student::class)->constrained()->cascadeOnDelete;
             $table->foreignIdFor(Section::class)->constrained();
             $table->foreignIdFor(SchoolYear::class)->constrained();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

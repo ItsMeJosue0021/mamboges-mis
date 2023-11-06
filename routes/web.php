@@ -190,10 +190,18 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
     Route::get('/logs', [LogsController::class, 'index']);
 
     // ARCHIVE
-    Route::controller(ArchiveController::class)->group(function () {
-        Route::get('/archive', 'index')->name('archive.index');
-        Route::get('/archive/student/{id}', 'showArchivedStudent')->name('archive.student.show');
-        Route::get('/archive/faculty/{id}', 'showArchivedFaculty')->name('archive.faculty.show');
+    Route::prefix('archive')->group(function () {
+        Route::controller(ArchiveController::class)->group(function () {
+            Route::get('', 'index')->name('archive.index');
+            Route::get('/students', 'students')->name('archive.students');
+            Route::get('/faculties', 'faculties')->name('archive.faculties');
+            Route::get('/student/{studentId}/restore', 'restoreStudent')->name('archive.student.restore');
+            Route::get('/faculties/{facultyId}/restore', 'restoreFaculty')->name('archive.faculty.restore');
+
+
+            Route::get('/student/{id}', 'showArchivedStudent')->name('archive.student.show');
+            Route::get('/faculty/{id}', 'showArchivedFaculty')->name('archive.faculty.show');
+        });
     });
 
     Route::controller(AchievementController::class)->group(function () {

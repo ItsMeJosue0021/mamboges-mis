@@ -7,10 +7,12 @@ use App\Models\Student;
 use App\Models\SchoolYear;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class SectionStudents extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'section_id',
