@@ -8,9 +8,6 @@ use Illuminate\Http\Request;
 
 class SubjectsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $subjects = Subjects::all();
@@ -21,26 +18,20 @@ class SubjectsController extends Controller
 
     }
 
-
     public function getSubject($id) {
-
         $subject = Subjects::findOrFail($id);
         return response()->json($subject);
-        
-    }
 
+    }
 
     public function store(Request $request)
     {
         $subject = [
-            'subject_name' => $request->subject_name,
-            'grade_level' => $request->grade_level,
+            'name' => $request->subject_name,
         ];
 
-        $savedSubject = Subjects::create($subject);
-
-        if (!is_null($savedSubject)) {
-            Logs::addToLog('New subject has been added | SUBJECT [' . $savedSubject->subject_name . ']');
+        if (Subjects::create($subject)) {
+            Logs::addToLog('New subject has been added | SUBJECT [' . $request->subject_name . ']');
             return response()->json(['success' => true, 'message' => 'New subject has been added!']);
         } else {
             return response()->json(['success' => false, 'message' => 'Saving unsuccessful!']);
@@ -50,35 +41,28 @@ class SubjectsController extends Controller
 
     public function update(Request $request, $id)
     {
-        $subject_before = Subjects::find($id);
-
         $subject = Subjects::find($id);
+        $subjectName = $subject->name;
 
         $editSubject = [
-            'subject_name' => $request->edit_subject_name,
-            'grade_level' => $request->edit_grade_level,
+            'name' => $request->edit_subject_name
         ];
 
         $subject->update($editSubject);
 
         if ($subject->wasChanged()) {
-            Logs::addToLog('A subject has been updated from [' . $subject_before->subject_name . '] to [' . $subject->subject_name . ']');
+            Logs::addToLog('A subject has been updated from [' . $subjectName . '] to [' . $request->subject_name . ']');
             return response()->json(['success' => true, 'message' => 'Subject has been updated!']);
         } else {
             return response()->json(['success' => false, 'message' => 'Nothing was changed!']);
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function delete($id)
     {
         $subject = Subjects::find($id);
-        if ($subject) {
-            $subject->is_archived = true;
-            $subject->save();
-            Logs::addToLog('A subject has been deleted | SUBJECT [' . $subject->subject_name . ']');
+        if ($subject->delete()) {
+            Logs::addToLog('A subject has been deleted | SUBJECT [' . $subject->name . ']');
             return response()->json(['success' => true, 'message' => 'Subject deleted successfully']);
         } else {
             return response()->json(['success' => false, 'message' => 'Subject not found.']);

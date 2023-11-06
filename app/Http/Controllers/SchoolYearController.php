@@ -28,8 +28,8 @@ class SchoolYearController extends Controller
                     if ($schoolYear->id == $currentSchoolYear->id) {
                         $selected = 'selected';
                     }
-                
-                    $output .= 
+
+                    $output .=
                     '<option value="' . $schoolYear->id . '" ' . $selected . '>' . $schoolYear->name . '</option>
                     ';
                 }
@@ -41,14 +41,14 @@ class SchoolYearController extends Controller
             $schoolYears = array(
                 'school_years'  => $output,
             );
-            echo json_encode($schoolYears);       
+            echo json_encode($schoolYears);
         }
     }
 
     public function changeSchoolYear(Request $request)
     {
-        $students = Student::where('is_archived', false)->get();
-        
+        // $students = Student::where('is_archived', false)->get();
+
         $currentSchoolYear = SchoolYear::where('is_current', true)->first();
 
         $newSchoolYear = SchoolYear::where('id', $request->new_school_year)->first();
@@ -63,15 +63,14 @@ class SchoolYearController extends Controller
 
             if ($currentSchoolYear && $newSchoolYear) {
 
-
+                $students = Student::all();
                 foreach($students as $student) {
-                    $student->grade_level = 'unenrolled';
-                    $student->section_id = null;
+                    $student->isEnrolled = false;
                     $student->save();
                 }
 
                 Logs::addToLog('School year has been changed');
-                
+
                 return response()->json(['success' => true, 'message' => 'School year has been changed']);
             } else {
                 return response()->json(['success' => true, 'message' => 'Please try again']);
@@ -102,26 +101,4 @@ class SchoolYearController extends Controller
         }
     }
 
-    public function show(SchoolYear $schoolYear) 
-    {
-        //
-    }
-
-
-    public function edit(SchoolYear $schoolYear)
-    {
-        //
-    }
-
-
-    public function update(Request $request, SchoolYear $schoolYear)
-    {
-        //
-    }
-
-
-    public function destroy(SchoolYear $schoolYear)
-    {
-        //
-    }
 }

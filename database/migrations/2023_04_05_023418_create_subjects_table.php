@@ -15,7 +15,6 @@ return new class extends Migration
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignIdFor(Department::class)->constrained();
             $table->timestamps();
         });
     }

@@ -15,38 +15,31 @@ class SubjectSeeder extends Seeder
     {
         $subjects = [
             [
-                'name' => 'English',
-                'department_id' => 1,
+                'name' => 'English'
             ],
             [
-                'name' => 'Math',
-                'department_id' => 2,
+                'name' => 'Math'
             ],
             [
-                'name' => 'Filipino',
-                'department_id' => 3,
+                'name' => 'Filipino'
             ],
             [
-                'name' => 'Science',
-                'department_id' => 4,
+                'name' => 'Science'
             ],
             [
-                'name' => 'TLE',
-                'department_id' => 5,
+                'name' => 'TLE'
             ],
             [
-                'name' => 'MAPEH',
-                'department_id' => 6,
+                'name' => 'MAPEH'
             ],
         ];
 
         foreach ($subjects as $subject) {
             DB::table('subjects')->insert([
                 'name' => $subject['name'],
-                'department_id' => $subject['department_id'],
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
-        }  
+        }
     }
 }

@@ -38,7 +38,7 @@
                         {{$subject->name}}
                     </p>
 
-                    {{-- <p class="w-full poppins text-center text-base "> 
+                    {{-- <p class="w-full poppins text-center text-base ">
                         @if ($subject->grade_level == 0)
                             Kinder
                         @else
@@ -59,7 +59,7 @@
                 </div>
             @endforeach
         <div>
-        
+
         <div id="add-subject-modal" class="hidden absolute top-0 left-0 w-full h-full overflow-auto">
             <div class="w-full h-full flex flex-col items-center justify-center space-y-6 px-32 py-8 bg-black bg-opacity-5">
                 {{-- action="/subject/save" action="javascript:void(0)"--}}
@@ -97,13 +97,13 @@
                             <option value="6">Grade 6</option>
                         </select>
                     </div> --}}
-    
+
                     <div class="flex items-center justify-start space-x-4 pt-4 ">
-                        <button type="submit" 
+                        <button type="submit"
                             class="poppins text-base font-medium text-white bg-blue-500 hover:bg-blue-600  border border-blue-500 hover:border-blue-600 py-2 px-8 rounded">
                             Save
                         </button>
-    
+
                         <a id="cancel"
                             class="poppins text-base font-medium text-blue-400 border border-blue-400 hover:border-blue-600 hover:text-blue-600 py-2 px-6 rounded cursor-pointer">
                             Cancel
@@ -167,13 +167,13 @@
                             <option value="6">Grade 6</option>
                         </select>
                     </div> --}}
-    
+
                     <div class="flex items-center justify-start space-x-4 pt-4 ">
-                        <button type="submit" 
+                        <button type="submit"
                             class="poppins text-base font-medium text-white bg-blue-500 hover:bg-blue-600  border border-blue-500 hover:border-blue-600 py-2 px-8 rounded">
                             Update
                         </button>
-    
+
                         <a id="edit-cancel"
                             class="poppins text-base font-medium text-blue-400 border border-blue-400 hover:border-blue-600 hover:text-blue-600 py-2 px-6 rounded cursor-pointer">
                             Cancel
@@ -184,7 +184,7 @@
         </div>
     </div>
 </x-guidance-layout>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
-<script src="{{ asset('js/subject_index.js') }}"></script>
+<script type="module" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script type="module" src="{{ asset('js/subject_index.js') }}"></script>

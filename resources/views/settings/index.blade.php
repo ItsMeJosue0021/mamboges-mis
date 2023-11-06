@@ -10,14 +10,14 @@
 
             <div class="w-full">
                 <div class="w-full flex flex-col items-center justify-center">
-                    
+
                     <div class="w-fit flex flex-col p-4 rounded-md shadow border border-gray-200">
                         <div class="w-700px flex flex-col space-y-6">
                             <div class="flex flex-col space-y-4">
                                 <div>
                                     <h1 class="poppins text-lg text-gray-800 font-semibold">CURRENT SCHOOL YEAR</h1>
                                 </div>
-    
+
                                 <form method="POST" action="/schoolyears/change" id="change-sy-form" class="flex flex-col space-y-1">
                                     @csrf
                                     @method('PUT')
@@ -26,9 +26,9 @@
                                         <span class="error text-xs text-red-600"></span>
                                     </div>
                                     <div class="flex items-center space-x-3">
-                                        <select name="new_school_year" id="new_school_year" 
+                                        <select name="new_school_year" id="new_school_year"
                                         class="w-full poppins text-gray-800 border border-gray-300 rounded py-2 px-2">
-                                           
+
                                         </select>
                                         <div>
                                             <button type="submit" class="poppins text-white bg-blue-500 rounded py-2 px-3">change</button>
@@ -79,7 +79,7 @@
         </div>
     </div>
 </x-guidance-layout>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
-<script src="{{ asset('js/settings_index.js') }}"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script type="module" src="{{ asset('js/settings_index.js') }}"></script>
