@@ -6,13 +6,13 @@
 
                 <div class="w-full lg:w-1/4 flex flex-col items-center p-4">
                     <div class="w-64 h-64 bg-white rounded-md p-2">
-                        <img class="w-full h-full rounded-md" src="{{Auth::user()->image ? asset('storage/' . Auth::user()->image) : asset('image/mamboges.jpg')}}" alt="" srcset="">
+                        <img class="w-full h-full rounded-md" src="{{Auth::user()->profile->image ? asset('storage/' . Auth::user()->profile->image) : asset('image/mamboges.jpg')}}" alt="" srcset="">
                     </div>
-    
+
                     <div class="w-full flex flex-col space-y-4">
                         <div class="w-full flex items-center justify-center py-3 border-b border-gray-300">
                             <span>
-                                <h1 class="poppins text-lg font-semibold text-gray-600">{{$student->first_name}} {{$student->middle_name}} {{$student->last_name}}</h1>
+                                <h1 class="poppins text-lg font-semibold text-gray-600">{{$student->user->profile->firstName}} {{$student->user->profile->middleName}} {{$student->user->profile->lastName}}</h1>
                             </span>
                         </div>
                         <div class="w-full">
@@ -23,19 +23,19 @@
                                 <h1 class="poppins text-base text-gray-600 hover:text-white hover:bg-blue-500 rounded px-2 py-1" >Section:
                                     @if ($section)
                                     {{$section->name}}
-                                @else
-                                    <span class="poppins text-sm text-red-400">No section yet</span>
-                                @endif
+                                    @else
+                                        <span class="poppins text-sm text-red-400">No Record</span>
+                                    @endif
                                 </h1>
                             </div>
                             <div class="border-b border-gray-200 hover:border-blue-500">
                                 <h1 class="poppins text-base text-gray-600 hover:text-white hover:bg-blue-500 rounded px-2 py-1" >
-                                    @if ($student_section == null)
-                                    <span class="text-blue-400 text-sm">Waiting for section assignment</span>
-                                    @elseif ($student_section->grade_level == 'kinder')
+                                    @if ($section == null)
+                                        <span class="text-blue-400 text-sm">No Recordt</span>
+                                    @elseif ($section->gradeLevel == 'kinder')
                                         Kinder
                                     @else
-                                        Grade {{ $student_section->grade_level }}
+                                        Grade {{ $section->gradeLevel  }}
                                     @endif
                                 </h1>
                             </div>
@@ -49,7 +49,7 @@
                         </div>
                     </div>
                 </div>
-        
+
                 <div class="w-full lg:w-3/4 flex py-4">
                     <div class="w-full flex flex-col py-4 space-y-4">
                         <div class="w-full flex items-center border-b border-gray-300 p-2">

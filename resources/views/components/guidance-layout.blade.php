@@ -201,7 +201,8 @@
             <!-- main -->
             <div class="ml-250px w-full h-full flex flex-col">
                 <!-- header -->
-                <div class="sticky top-0 w-full flex items-center justify-between py-2 px-4 border-b border-gray-300 bg-white shadow z-10">
+                <div
+                    class="sticky top-0 w-full flex items-center justify-between py-2 px-4 border-b border-gray-300 bg-white shadow z-10">
                     <div class="">
                         <p>SCHOOL YEAR: <span class="text-blue-500">{{ $schoolYear }}</span></p>
                     </div>
@@ -249,7 +250,8 @@
                             </x-dropdown>
                         </div>
                         <img class="h-9 w-9 rounded-full border bprder-gray-200"
-                        src="{{Auth::user()->image ? asset('storage/' . Auth::user()->image) : asset('image/mamboges.jpg')}}" alt="">
+                            src="{{ Auth::user()->profile->image ? asset('storage/' . Auth::user()->profile->image) : asset('image/mamboges.jpg') }}"
+                            alt="">
                     </div>
                 </div>
 
@@ -262,7 +264,7 @@
 
         </div>
 
-        <x-flash-messages/>
+        <x-flash-messages />
 
     </section>
 

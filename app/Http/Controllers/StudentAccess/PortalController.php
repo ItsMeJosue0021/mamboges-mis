@@ -18,19 +18,11 @@ class PortalController extends Controller
 
         $student = Student::where('lrn', Auth::user()->username)->first();
 
-        $studentSection = SectionStudents::where('student_id', $student->id)
-                                        ->where('school_year_id', $current_school_year->id)->first();
-
-        // $sectionId = $studentSection->section_id;
-        $section = '';
-        if ($studentSection) {
-            $section = Section::where('id', $studentSection->section_id)->where('is_archived', false)->first();
-        }
+        $currentSection = $student->sectionStudents->where('school_year_id', $current_school_year->id)->first();
 
         return view('student.portal', [
             'student' => $student,
-            'section' => $section,
-            'student_section' => $studentSection
+            'section' => $currentSection->section,
         ]);
     }
 

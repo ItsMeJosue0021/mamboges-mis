@@ -3,16 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Faculty;
-use App\Models\Section;
 use App\Models\Student;
-use App\Models\Guardian;
-use App\Models\Department;
-use App\Models\SchoolYear;
-use Illuminate\Http\Request;
-use App\Models\SectionStudents;
-use App\Models\SectionSubjects;
-use App\Models\ArchivedStudents;
-use App\Models\ArchivedFaculties;
 
 class ArchiveController extends Controller
 {
@@ -37,7 +28,6 @@ class ArchiveController extends Controller
             return redirect()->back()->with('error','No record found.');
         }
         if ($student->restore()) {
-            // $student = Student::find($studentId);
             foreach($student->sectionStudents()->onlyTrashed()->get() as $sectionStudent) {
                 $sectionStudent->restore();
             }
@@ -54,8 +44,5 @@ class ArchiveController extends Controller
             return redirect()->back()->with('success','Faculty has been restored.');
         }
     }
-
-
-
 
 }

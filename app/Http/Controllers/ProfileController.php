@@ -24,63 +24,95 @@ class ProfileController extends Controller
         ]);
     }
 
+    public function update(Request $request) {
+        $user = Auth::user();
+
+        $request ->validate([
+            'image' => 'nullable',
+            'firstName' => 'required',
+            'lastName' => 'required',
+            'middleName' => 'nullable',
+            'suffix' => 'nullable',
+            'sex' => 'required|in:Male,Female',
+            'contactNumber' => 'nullable',
+            'dob' => 'required|date',
+        ]);
+
+        $profileUpdated = $user->profile->update([
+            'firstName' => $request->firstName,
+            'middleName' => $request->middleName,
+            'lastName' => $request->lastName,
+            'suffix' => $request->suffix,
+            'dob' => $request->dob,
+            'sex' => $request->sex,
+            'contactNumber' => $request->contactNumber,
+            'image' => $request->hasFile('image') ? $request->file('image')->store('profile', 'public') : $user->profile->image,
+        ]);
+
+        if (!$profileUpdated) {
+            return redirect()->back()->with('error','Unable to update profile.');
+        }
+
+        return redirect()->back()->with('success','Profile updated successfully.');
+    }
+
     /**
      * Update the user's profile information.
      */
-    public function update(Request $request): RedirectResponse
-    {
-        // dd($request->all());
-        $id = Auth::user()->id;
+    // public function update(Request $request): RedirectResponse
+    // {
+    //     // dd($request->all());
+    //     $id = Auth::user()->id;
 
-        $userType = Auth::user()->type;
+    //     $userType = Auth::user()->type;
 
-        $user = User::where('id', $id)->first();
+    //     $user = User::where('id', $id)->first();
 
-        $userInfo = [
-            'name' => $request->name,
-            'email' => $request->email,
-        ];
+    //     $userInfo = [
+    //         'name' => $request->name,
+    //         'email' => $request->email,
+    //     ];
 
-        if ($user->type == 'guidance' || $user->type == 'faculty') {
-            $userInfo['username'] = $request->email;
-        }
+    //     if ($user->type == 'guidance' || $user->type == 'faculty') {
+    //         $userInfo['username'] = $request->email;
+    //     }
 
-        if ($request->hasFile('image') ) {
-            $userInfo['image'] = $request->file('image')->store('profile', 'public');
-        }
+    //     if ($request->hasFile('image') ) {
+    //         $userInfo['image'] = $request->file('image')->store('profile', 'public');
+    //     }
 
-        if ($userType == 'student') {
+    //     if ($userType == 'student') {
 
-            $student = Student::where('lrn', Auth::user()->username)->first();
+    //         $student = Student::where('lrn', Auth::user()->username)->first();
 
-            if ($request->hasFile('image') ) {
-                $student->image = $request->file('image')->store('profile', 'public');
-            }
+    //         if ($request->hasFile('image') ) {
+    //             $student->image = $request->file('image')->store('profile', 'public');
+    //         }
 
-            $student->save();
-        }
+    //         $student->save();
+    //     }
 
-        if ($userType == 'faculty') {
+    //     if ($userType == 'faculty') {
 
-            $faculty = Faculty::where('email', Auth::user()->username)->first();
+    //         $faculty = Faculty::where('email', Auth::user()->username)->first();
 
-            if ($request->hasFile('image') ) {
-                $faculty->image = $request->file('image')->store('profile', 'public');
-            }
+    //         if ($request->hasFile('image') ) {
+    //             $faculty->image = $request->file('image')->store('profile', 'public');
+    //         }
 
-            $faculty->save();
-        }
+    //         $faculty->save();
+    //     }
 
 
-        $user->update($userInfo);
+    //     $user->update($userInfo);
 
-        if (Auth::user()->type == 'student') {
-            return Redirect::route('student.profile')->with('status', 'profile-updated');
-        } else {
-            return Redirect::route('profile.edit')->with('status', 'profile-updated');
-        }
+    //     if (Auth::user()->type == 'student') {
+    //         return Redirect::route('student.profile')->with('status', 'profile-updated');
+    //     } else {
+    //         return Redirect::route('profile.edit')->with('status', 'profile-updated');
+    //     }
 
-    }
+    // }
 
     /**
      * Delete the user's account.
