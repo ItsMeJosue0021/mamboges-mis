@@ -15,7 +15,7 @@ class SectionSubjects extends Model
 
     protected $fillable = [
         'section_id',
-        'subject_id',
+        'subjects_id',
         'faculty_id',
         'school_year_id',
     ];
@@ -25,7 +25,7 @@ class SectionSubjects extends Model
         return $this->belongsTo(Section::class);
     }
 
-    public function subject()
+    public function subjects()
     {
         return $this->belongsTo(Subjects::class);
     }

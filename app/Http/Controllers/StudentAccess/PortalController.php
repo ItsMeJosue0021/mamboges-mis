@@ -20,9 +20,10 @@ class PortalController extends Controller
 
         $currentSection = $student->sectionStudents->where('school_year_id', $current_school_year->id)->first();
 
-        return view('student.portal', [
+        return view('portal.index', [
             'student' => $student,
-            'section' => $currentSection->section,
+            'section' => $currentSection->section ?? null,
+            'classes' => $student->sectionStudents
         ]);
     }
 

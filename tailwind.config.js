@@ -10,6 +10,7 @@ module.exports = {
         './public/js/*.js',
         './resources/views/**/*.blade.php',
         './resources/css/*.css',
+        "./node_modules/flowbite/**/*.js"
     ],
 
     theme: {
@@ -19,10 +20,6 @@ module.exports = {
             },
 
             backgroundImage: {
-                // 'school': "url('/image/school-blur.png')",
-                // 'mambog-classes': "url('/image/mamboges2.png')",
-                // 'deped': "url('/image/deped.png')",
-                // 'mambog': "url('/image/mamboges.jpg')",
                 'mambog-2': "url('/image/bg-mambog.jpg')",
             },
 
@@ -34,8 +31,6 @@ module.exports = {
                 'desktop': '1280px',
             },
             colors: {
-                // red: '#d90429',
-                // blue: '#004e89',
                 lightgray: '#EFF0F3',
                 yellow: '#FBE830',
                 black: '#212529',
@@ -47,7 +42,7 @@ module.exports = {
             },
             margin: {
                 '250px': '250px',
-                
+
             },
             width: {
                 '60px': '60px',
@@ -89,7 +84,7 @@ module.exports = {
                 '900px': '900px',
             },
             fontSize: {
-                
+
             },
             boxShadow: {
                 'EmailForm': '0px 0px 6px 0px rgba(0,0,0,0.2)',
@@ -100,6 +95,7 @@ module.exports = {
     plugins: [
         require('@tailwindcss/forms'),
         require('daisyui'),
+        require('flowbite/plugin'),
         forms
     ],
 

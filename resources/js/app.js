@@ -4,6 +4,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import 'boxicons';
 import jQuery from 'jquery';
+import 'flowbite';
 
 window.$ = jQuery;
 

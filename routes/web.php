@@ -306,7 +306,7 @@ Route::middleware(['auth', 'role:student'])->group(function () {
 
     Route::controller(PortalController::class)->group(function () {
         Route::get('/portal/classes', 'portal')->name('student.portal');
-        Route::get('/account/settings', 'account')->name('student.profile');
+        Route::get('/student/account', 'account')->name('change.password');
     });
 
 });

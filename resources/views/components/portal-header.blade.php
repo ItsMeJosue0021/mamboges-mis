@@ -1,5 +1,5 @@
-<div class="w-full fixed bg-base-100 z-50 border-b border-gray-200 bg-white">
-    <div class="navbar flex justify-between items-center container mx-auto md:px-22 lg:px-28 ">
+<div class="w-full fixed z-50 border-b border-gray-200 bg-white">
+    <div class="navbar flex justify-between items-center w-full max-w-[1400px] mx-auto px-4 ">
         <div class="flex items-center">
             <div class="flex items-center space-x-2">
                 <a href="/" class="flex items-center space-x-2">
@@ -10,23 +10,22 @@
                     </div>
                 </a>
             </div>
-            {{-- <div class="hidden md:flex items-center space-x-2 px-5">
-                <div class="py-2 px-4 hover:bg-gray-200 rounded">
-                    <a class="font-sans text-base" href="/">Home</a>
-                </div>
-            </div> --}}
         </div>
 
         <div class="flex space-x-2">
             <div class="dropdown dropdown-end">
-                <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-                    <div class="w-10 rounded-full">
-                        <img src="{{Auth::user()->profile->image ? asset('storage/' . Auth::user()->profile->image) : asset('image/mamboges.jpg')}}" />
+                <label tabindex="0">
+                    <div class="flex space-x-2 items-center cursor-pointer p-1 px-2 rounded-md hover:bg-gray-200 group">
+                         <p class="poppins text-gray-500 group-hover:text-gray-700 hidden md:block">{{ Auth::user()->profile->firstName }} {{ Auth::user()->profile->lastName }}</p>
+                        <div class="w-10 rounded-full">
+                            <img src="{{Auth::user()->profile->image ? asset('storage/' . Auth::user()->profile->image) : asset('image/mamboges.jpg')}}" class="rounded-full" />
+                        </div>
                     </div>
                 </label>
-                <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                    <li><a href="/account/settings">Account Settings</a></li>
-                    {{-- <li class="active:bg-blue-700"><a>Logout</a></li> --}}
+                <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded w-52">
+                    <x-dropdown-link :href="route('change.password')">
+                        {{ __('Change Password') }}
+                    </x-dropdown-link>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <x-dropdown-link :href="route('logout')"
