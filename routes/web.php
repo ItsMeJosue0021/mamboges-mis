@@ -46,12 +46,9 @@ use App\Http\Controllers\ClassRecordEvaluationCriteriaController;
 |
 */
 
-Route::get('/faculty/dashboard', [FacultyController::class, 'dashboard']);
-
-Route::get('/student/dashboard', [StudentController::class, 'index']);
-
-
 require __DIR__ . '/auth.php';
+
+
 
 // HOME
 Route::get('/', [WebsiteController::class, 'index'])->name('home');
@@ -66,6 +63,14 @@ Route::get('/news-and-announcements/{update}', [UpdatesController::class, 'show'
 // ACHIEVEMENTS
 Route::get('/schoool-achievements', [AchievementController::class, 'index'])->name('achievements.index');
 Route::get('/schoool-achievements/{achievement}', [AchievementController::class, 'show'])->name('achievements.show');
+
+// DOWNLOADABLES
+Route::get('/downloadable-files', [DownloadableFileController::class, 'index'])->name('downloadables.index');
+Route::get('/downloadable/viewer/{fileId}', [DownloadableFileController::class, 'viewPDF'])->name('downloadables.view');
+
+// CALENDAR OF ACTIVITIES
+Route::get('/calendar-of-activities', [CalendarOfActivitiesController::class, 'show'])->name('calendar.show');
+
 
 
 Route::middleware('auth')->group(function () {
@@ -223,10 +228,7 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
     Route::delete('/achievements/{achievement}/delete-image/{achievementImage}', [AchievementImageController::class, 'destroy'])
         ->name('achievementImage.delete');
 
-    Route::get('/viewer/{fileId}', [DownloadableFileController::class, 'viewPDF'])->name('downloadables.view');
-
     Route::controller(DownloadableFileController::class)->group(function () {
-        Route::get('/downloadables', 'index')->name('downloadables.index');
         Route::get('/downloadables/list', 'list')->name('downloadables.list');
         Route::post('/downloadables/save', 'store')->name('downloadables.store');
         Route::get('/downloadables/{downloadableFile}', 'show')->name('downloadables.show');

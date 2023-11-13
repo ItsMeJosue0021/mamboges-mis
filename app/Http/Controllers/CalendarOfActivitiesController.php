@@ -15,6 +15,12 @@ class CalendarOfActivitiesController extends Controller
         ]);
     }
 
+    public function show() {
+        return view('calendar.show', [
+            'calendars' => CalendarOfActivities::all()
+        ]);
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -63,7 +69,7 @@ class CalendarOfActivitiesController extends Controller
         ]);
 
         $calendarOfActivities->name = $request->name;
-        
+
         if ($request->hasFile('fileName')) {
             $file = $request->file('fileName');
             $filePath = $file->store('calendar', 'public');
@@ -95,7 +101,6 @@ class CalendarOfActivitiesController extends Controller
 
     public function view($id)
     {
-
         $file = CalendarOfActivities::find($id);
         $fileName = $file->fileName;
 

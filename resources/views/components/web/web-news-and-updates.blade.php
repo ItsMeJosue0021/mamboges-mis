@@ -1,7 +1,7 @@
 <section class="bg-gray-50">
     <div class="max-w-[1300px] mx-auto px-4 py-16 md:py-24">
         <div class="w-full flex items-center justify-center pb-12">
-            <span class="text-3xl font-semibold poppins">News and Announcements</span>
+            <span class="text-3xl font-semibold text-center poppins">News and Announcements</span>
         </div>
         <div class="flex items-start md:space-x-4 justify-between">
 

@@ -31,10 +31,13 @@
                                 <a class="poppins text-sm">Organizational Structure</a>
                             </li>
                             <li class="p-2 rounded  hover:bg-gray-200 cursor-pointer">
-                                <a class="poppins text-sm">Calendar of Activities</a>
+                                <a href="{{ route('calendar.show') }}" class="poppins text-sm">Calendar of Activities</a>
                             </li>
                             <li class="p-2 rounded  hover:bg-gray-200 cursor-pointer">
                                 <a href="{{ route('achievements.index') }}" class="poppins text-sm">Awards and Achievements</a>
+                            </li>
+                            <li class="p-2 rounded  hover:bg-gray-200 cursor-pointer">
+                                <a href="{{ route('downloadables.index') }}" class="poppins text-sm">Downloadables</a>
                             </li>
                         </ul>
                     </div>
@@ -59,10 +62,10 @@
                         <a href="" class="poppins ">Organizational Structure</a>
                     </li>
                     <li class="p-2 rounded  hover:bg-gray-200 cursor-pointer">
-                        <a href="" class="poppins ">Calendar of Activities</a>
+                        <a href="{{ route('calendar.show') }}" class="poppins ">Calendar of Activities</a>
                     </li>
                     <li class="p-2 rounded  hover:bg-gray-200 cursor-pointer">
-                        <a href="" class="poppins ">Downloadables</a>
+                        <a href="{{ route('downloadables.index') }}" class="poppins ">Downloadables</a>
                     </li>
                 </ul>
             </div>

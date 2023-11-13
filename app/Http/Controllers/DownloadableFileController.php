@@ -11,7 +11,10 @@ class DownloadableFileController extends Controller
 {
     public function index()
     {
-        return view('downloadables.index');
+        $groups = DownloadableFilesGroup::latest()->paginate(9);
+        return view('downloadables.index', [
+            'groups' => $groups,
+        ]);
     }
 
     public function list()
@@ -141,6 +144,7 @@ class DownloadableFileController extends Controller
         } else {
             return back()->with('error', 'PDF file not found');
         }
-    }
+
+   }
 
 }
