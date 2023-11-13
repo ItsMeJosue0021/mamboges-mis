@@ -1,17 +1,10 @@
-<section class="bg-school bg-cover">
-    <div class="container mx-auto tablet:px-24">
-        <div class="flex h-80 flex-col items-center justify-center">
-            <h1 class="castoro text-5xl text-lightblack font-bold text-center">News and Updates</h1>
-        </div>
-    </div>
-</section>
 <section class="">
-    <div class="container mx-auto tablet:px-24">
+    <div class="w-full max-w-[1300px] mx-auto px-4">
         <div class="py-4">
             <div class="flex items-center justify-start py-8">
                 <div class="w-full flex">
-                    <form action="/updates" class="flex w-full justify-between space-x-10">
-                        <input name="search" type="text" placeholder="Search for feedback" class="w-full poppins text-base focus:outline-none border-2 border-gray-200 focus:border-gray-400 py-2 px-4 rounded">
+                    <form action="{{ route('update.index') }}" class="flex w-full justify-between space-x-4">
+                        <input name="search" type="text" placeholder="Search news and annoucenments" class="w-full poppins text-base focus:outline-none border-2 border-gray-300 focus:border-gray-500 py-2 px-4 rounded">
                         <button type="submit" class="poppins text-sm text-white bg-red-600 hover:bg-red-700 hover:text-white rounded py-2 px-6">Search</button>
                     </form>
                 </div>
@@ -25,7 +18,7 @@
                         <a class="poppins text-xm text-blue-500 hover:underline" href="/updates">Refresh</a>
                     </div>
                 @endif
-                
+
                 @foreach ($updates as $update)
                     <x-updates-home-card :update="$update"/>
                 @endforeach

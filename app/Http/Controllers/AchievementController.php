@@ -11,7 +11,7 @@ class AchievementController extends Controller
     public function index()
     {
         return view('achievements.index', [
-            'achievements' => Achievement::latest()->simplePaginate(9)
+            'achievements' => Achievement::latest()->filter(Request(['search']))->paginate(9)
         ]);
     }
 
@@ -20,7 +20,7 @@ class AchievementController extends Controller
         return view('achievements.create');
     }
 
-    public function list() 
+    public function list()
     {
         return view('achievements.list', [
             'achievements' => Achievement::latest()->simplePaginate(9)

@@ -8,7 +8,7 @@
                     </a>
                     <div class="flex items-center space-x-1 border-l-2 px-2 group">
                         <i class='bx bxs-news text-yellow text-xl' ></i>
-                        <a href="/updates" class="text-white poppins text-sm group-hover:text-yellow">News and Announcements</a>
+                        <a href="{{ route('update.index') }}" class="text-white poppins text-sm group-hover:text-yellow">News and Announcements</a>
                     </div>
                 </div>
             </div>

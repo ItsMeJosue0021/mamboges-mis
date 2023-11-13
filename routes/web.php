@@ -59,6 +59,14 @@ Route::get('/', [WebsiteController::class, 'index'])->name('home');
 // SEND FEEDBACK FROM WEBSITE
 Route::post('/feedback/save', [FeedbackController::class, 'store'])->name('feedback.store');
 
+// NEWS AND ANNOUNCEMENTS
+Route::get('/news-and-announcements', [UpdatesController::class, 'index'])->name('update.index');
+Route::get('/news-and-announcements/{update}', [UpdatesController::class, 'show'])->name('update.show');
+
+// ACHIEVEMENTS
+Route::get('/schoool-achievements', [AchievementController::class, 'index'])->name('achievements.index');
+Route::get('/schoool-achievements/{achievement}', [AchievementController::class, 'show'])->name('achievements.show');
+
 
 Route::middleware('auth')->group(function () {
     Route::controller(ProfileController::class)->group(function () {
@@ -81,11 +89,9 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
     // UPDATES
     Route::prefix('updates')->group(function () {
         Route::controller(UpdatesController::class)->group(function () {
-            Route::get('/', 'index')->name('update.index');
             Route::get('/create', 'create')->name('update.create');
             Route::get('/list', 'list')->name('update.list');
             Route::post('/save', 'store')->name('update.store');
-            Route::get('/{update}', 'show')->name('update.show');
             Route::get('/{update}/edit', 'edit')->name('update.edit');
             Route::put('/{update}/update', 'update')->name('update.update');
             Route::delete('/{update}/delete', 'delete')->name('update.delete');
@@ -207,8 +213,6 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
     Route::controller(AchievementController::class)->group(function () {
         Route::get('/achievements/create', 'create')->name('achievements.create');
         Route::post('/achievements/save', 'store')->name('achievements.store');
-        Route::get('/achievements', 'index')->name('achievements.index');
-        Route::get('/achievements/{achievement}', 'show')->name('achievements.show');
         Route::get('/achievements/{achievement}/edit', 'edit')->name('achievements.edit');
         Route::get('/achievments/list', 'list')->name('achievements.list');
         Route::get('/get-images', 'getImages')->name('achievements.images');

@@ -12,7 +12,7 @@ class UpdatesController extends Controller
     public function index()
     {
         return view('updates.index', [
-            'updates' => Updates::latest()->filter(Request(['tag', 'search']))->simplePaginate(9)
+            'updates' => Updates::latest()->filter(Request(['tag', 'search']))->paginate(9)
         ]);
     }
 
@@ -20,15 +20,15 @@ class UpdatesController extends Controller
     {
         return view('updates.list', [
             'updates' => Updates::filter(Request(['tag', 'search']))
-                ->orderBy('updates.created_at', 'desc') 
+                ->orderBy('updates.created_at', 'desc')
                 ->simplePaginate(9)
         ]);
-        
+
     }
 
-    public function show()
+    public function show(Updates $update)
     {
-        return view('updates.show');
+        return view('updates.show', ['update' => $update]);
     }
 
     public function create()

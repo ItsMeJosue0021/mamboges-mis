@@ -6,7 +6,7 @@
 
         <title>Mambog Elementary School</title>
         {{-- icon --}}
-        <link rel="icon" href="image/mambog.png"/>
+        <link rel="icon" href="{{asset('image/mambog.png')}}"/>
 
         {{-- links --}}
 
@@ -19,8 +19,11 @@
     <body>
         <x-red-header/>
         <x-nav-header/>
-        <x-web-hero/>
-        <x-web-news-and-updates :firstupdate="$first_update" :updates="$updates" />
+        <x-web.web-hero/>
+        <x-web.web-news-and-updates :firstupdate="$first_update" :updates="$updates" />
+        <x-web.web-achievement :firstachievement="$first_achievement" :achievements="$achievements" />
+        <x-web.web-missionvission />
+        <x-web.web-feedback />
         <x-footer/>
     </body>
 </html>
