@@ -18,8 +18,8 @@
 </head>
 
 <body>
-    <section class="w-full min-w-900px">
-        <div class="h-fit min-h-screen  mx-auto flex">
+    <section class="w-full">
+        <div class="h-fit min-h-screen mx-auto flex">
             <!-- main -->
             <div class="w-full h-full flex flex-col  mx-auto pb-4">
                 <!-- header -->
@@ -35,11 +35,11 @@
                     </div>
                     <div class="flex items-center space-x-2 ">
                         {{-- <i class='bx bx-cog text-2xl text-lightestgray '></i> --}}
-                        <div class="hidden sm:flex sm:items-center">
+                        <div class="flex sm:items-center">
                             <x-dropdown  width="48">
                                 <x-slot name="trigger">
                                     <button class="inline-flex items-center border border-transparent text-sm font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                                        <img class="h-10 w-10 rounded-full border bprder-gray-200"  src="{{Auth::user()->image ? asset('storage/' . Auth::user()->image) : asset('image/mamboges.jpg')}}" alt="">
+                                        <img class="h-10 w-10 rounded-full border bprder-gray-200"  src="{{Auth::user()->profile->image ? asset('storage/' . Auth::user()->profile->image) : asset('image/mamboges.jpg')}}" alt="">
                                     </button>
                                 </x-slot>
                                 <x-slot name="content" class=" ">

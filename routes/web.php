@@ -5,6 +5,7 @@ use App\Http\Controllers\LrController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\LogsController;
 use App\Http\Controllers\ScoreController;
+use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\ArchiveController;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\FacultyController;
@@ -70,6 +71,10 @@ Route::get('/downloadable/viewer/{fileId}', [DownloadableFileController::class, 
 
 // CALENDAR OF ACTIVITIES
 Route::get('/calendar-of-activities', [CalendarOfActivitiesController::class, 'show'])->name('calendar.show');
+Route::get('/viewer/{calendarOfActivities}', [CalendarOfActivitiesController::class, 'view'])->name('calendar.view');
+
+// MODULE
+Route::get('/modules/viewer/{moduleId}', [ModuleController::class, 'view'])->name('module.view');
 
 
 
@@ -245,7 +250,6 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
         Route::controller(CalendarOfActivitiesController::class)->group(function () {
             Route::get('', 'index')->name('calendar.index');
             Route::post('/save', 'store')->name('calendar.store');
-            Route::get('/viewer/{calendarOfActivities}', 'view')->name('calendar.view');
             Route::get('/{calendarOfActivities}/edit', 'edit')->name('calendar.edit');
             Route::put('/{calendarOfActivities}/update', 'update')->name('calendar.update');
             Route::delete('/{calendarOfActivities}/delete', 'destroy')->name('calendar.delete');
@@ -292,12 +296,13 @@ Route::middleware(['auth', 'role:faculty'])->group(function () {
 
     Route::get('/classes/{class}/class-record', [ClassRecordController::class, 'index'])->name('class.record');
 
-    Route::put('/update-percentage/{classRecordEvaluationCriteria}/record/{classRecordId}', [ClassRecordEvaluationCriteriaController::class, 'changePercentage'])
+    Route::put('/update-percentage/{classRecordEvaluationCriteria}/record/{classRecordId}',
+    [ClassRecordEvaluationCriteriaController::class, 'changePercentage'])
         ->name('class.percentage.update');
 
-    Route::get('/get-percentage/{classRecordEvaluationCriteria}', [ClassRecordEvaluationCriteriaController::class, 'getPercentage'])
+    Route::get('/get-percentage/{classRecordEvaluationCriteria}',
+    [ClassRecordEvaluationCriteriaController::class, 'getPercentage'])
         ->name('class.percentage.get');
-
 
     // ACTIVITIES
     Route::post('/create-activity', [ActivityController::class, 'store'])->name('activity.store');
@@ -333,6 +338,12 @@ Route::middleware(['auth', 'role:lr'])->group(function () {
         Route::get('/video-lessons/{videoLesson}/edit', 'edit')->name('video-lessons.edit');
         Route::put('/video-lessons/{videoLesson}/update', 'update')->name('video-lessons.update');
         Route::delete('/video-lessons/{videoLesson}/delete', 'delete')->name('video-lessons.delete');
+    });
+
+    Route::prefix('modules')->group(function () {
+        Route::controller(ModuleController::class)->group(function () {
+            Route::post('/save', 'store')->name('module.store');
+        });
     });
 
 });

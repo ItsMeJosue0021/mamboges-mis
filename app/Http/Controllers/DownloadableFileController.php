@@ -145,6 +145,6 @@ class DownloadableFileController extends Controller
             return back()->with('error', 'PDF file not found');
         }
 
-   }
+    }
 
 }
