@@ -72,7 +72,7 @@ class ModuleController extends Controller
         ]);
 
         $thumbnailPath = $request->hasFile('thumbnail') ? $request->file('thumbnail')->store('thumbnails', 'public') : $module->thumbnail;
-        $filePath = $request->file('file') ? $request->file('file')->store('modules', 'public') : $module->file;
+        $filePath = $request->hasFile('file') ? $request->file('file')->store('modules', 'public') : $module->file;
 
         $moduleUpdated = $module->update([
             'title' => $request->title,

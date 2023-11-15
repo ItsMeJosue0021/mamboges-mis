@@ -13,7 +13,7 @@
                         class="relative w-full p-4 rounded bg-white hover:bg-gray-200 transition-all ease-in-out duration-200 shadow-md flex items-center justify-between border border-gray-200">
                         <div class="w-full flex flex-col md:flex-row items-center space-x-4">
                             <video controls src="{{ $video->video ? asset($video->video) : asset('image/mamboges.jpg') }}"
-                                alt="video" class="w-full md:w-32 h-28 rounded">
+                                alt="video" class="w-full md:w-64 h-28 rounded">
                             </video>
                             <div class="w-full flex flex-col ">
                                 <h1 class="poppins text-lg text-black font-semibold">{{ $video->title }}</h1>
@@ -22,7 +22,13 @@
                                         $subject = App\Models\Subjects::find($video->topic);
                                     @endphp
                                     <span class="poppins text-sm text-green-600">{{ $subject->name }}</span>
-                                    <span class="poppins text-sm text-blue-500">{{ $video->grade }}</span>
+                                    <span class="poppins text-sm text-blue-500">
+                                        @if ($video->grade == 'Kinder')
+                                            {{ $video->grade }}
+                                        @else
+                                            Grade {{$video->grade}}
+                                        @endif
+                                    </span>
                                 </div>
                                 <p class="poppins text-sm text-gray-600">
                                     {!! substr($video->description, 0, 45) !!}{{ strlen($video->description) > 45 ? '...' : '' }}</p>

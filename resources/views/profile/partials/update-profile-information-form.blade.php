@@ -8,8 +8,8 @@
         @csrf
         @method('PUT')
 
-        <div class="w-full flex items-center space-x-4 ">
-            <div class="flex flex-col items-start justify-start min-w-[330px]">
+        <div class="w-full flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 ">
+            <div class="flex flex-col items-start justify-start w-full md:w-[330px]">
                 <label for="tag" class="poppins text-sm font-medium text-gray-700">Image
                     @error('cover_photo')
                         <span class="text-xs font-light text-red-600">{{ $message }}</span>
@@ -65,7 +65,7 @@
             </div>
 
 
-            <div class="w-2/3 flex-col space-y-6">
+            <div class="w-full md:w-2/3 flex-col space-y-6">
                 <div class="flex items-center space-x-4">
                     <div class="w-full flex flex-col ">
                         <div class="flex items-baseline space-x-2">

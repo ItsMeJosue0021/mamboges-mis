@@ -28,26 +28,49 @@
                         </a>
                     </div>
                     <div class="flex items-center space-x-2 ">
-                        <div class="hidden sm:flex sm:items-center">
+                        <div class="flex sm:items-center">
                             <x-dropdown  width="48">
                                 <x-slot name="trigger">
                                     <button class="inline-flex items-center border border-transparent text-sm font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                                         <img class="h-10 w-10 rounded-full border bprder-gray-200"  src="{{Auth::user()->profile->image ? asset('storage/' . Auth::user()->profile->image) : asset('image/mamboges.jpg')}}" alt="">
                                     </button>
                                 </x-slot>
+                                
                                 <x-slot name="content" class=" ">
-                                    <x-dropdown-link :href="route('profile.edit')">
-                                        {{ __('Profile') }}
-                                    </x-dropdown-link>
-                                    <!-- Authentication -->
-                                    <form method="POST" action="{{ route('logout') }}">
-                                        @csrf
-                                        <x-dropdown-link :href="route('logout')"
-                                                onclick="event.preventDefault();
-                                                            this.closest('form').submit();">
-                                            {{ __('Log Out') }}
+                                    @if (Auth::user()->type == 'lr')
+                                        <x-dropdown-link :href="route('lr.video')">
+                                            {{ __('Videos') }}
                                         </x-dropdown-link>
-                                    </form>
+                                        <x-dropdown-link :href="route('lr.module')">
+                                            {{ __('Modules') }}
+                                        </x-dropdown-link>
+                                        <x-dropdown-link :href="route('profile.edit')">
+                                            {{ __('Profile') }}
+                                        </x-dropdown-link>
+                                        <!-- Authentication -->
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                            <x-dropdown-link :href="route('logout')"
+                                                    onclick="event.preventDefault();
+                                                                this.closest('form').submit();">
+                                                {{ __('Log Out') }}
+                                            </x-dropdown-link>
+                                        </form>
+                                    @else
+                                        <x-dropdown-link :href="route('profile.edit')">
+                                            {{ __('Profile') }}
+                                        </x-dropdown-link>
+                                        <!-- Authentication -->
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                            <x-dropdown-link :href="route('logout')"
+                                                    onclick="event.preventDefault();
+                                                                this.closest('form').submit();">
+                                                {{ __('Log Out') }}
+                                            </x-dropdown-link>
+                                        </form>
+                                    @endif
+                                    
                                 </x-slot>
                             </x-dropdown>
                         </div>

@@ -9,7 +9,7 @@
         </div>
          <form action="{{ route('video.store') }}" method="POST" enctype="multipart/form-data" >
             @csrf
-            <div class="w-full flex flex-col md:flex-row items-start md:space-x-4">
+            <div class="w-full flex flex-col md:flex-row items-start space-y-4 md:space-y-0 md:space-x-4">
                 <div class="w-full md:w-3/5">
                     <label for="dropzone-file" class="relative flex flex-col items-center justify-center w-full h-[450px] border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                         <div id="description" class="flex flex-col items-center justify-center pt-5 pb-6">

@@ -86,6 +86,18 @@ Route::middleware('auth')->group(function () {
     });
 });
 
+
+
+/*
+|--------------------------------------------------------------------------
+| Guidance Routes
+|--------------------------------------------------------------------------
+|
+| Here is where the routes that only the guidnace officer can access
+|
+*/
+
+
 Route::middleware(['auth', 'role:guidance'])->group(function () {
 
     // FEEDBACK
@@ -283,10 +295,18 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
         });
     });
 
-
-
 });
 
+
+
+/*
+|--------------------------------------------------------------------------
+| Faculty Routes
+|--------------------------------------------------------------------------
+|
+| Here is where the routes that only the faculties can access
+|
+*/
 
 
 Route::middleware(['auth', 'role:faculty'])->group(function () {
@@ -313,6 +333,15 @@ Route::middleware(['auth', 'role:faculty'])->group(function () {
 });
 
 
+/*
+|--------------------------------------------------------------------------
+| Students Routes
+|--------------------------------------------------------------------------
+|
+| Here is where the routes that only the students can access
+|
+*/
+
 Route::middleware(['auth', 'role:student'])->group(function () {
 
     Route::controller(PortalController::class)->group(function () {
@@ -321,6 +350,18 @@ Route::middleware(['auth', 'role:student'])->group(function () {
     });
 
 });
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Learning Resources officer Routes
+|--------------------------------------------------------------------------
+|
+| Here is where the routes that only the LR officer can access
+|
+*/
+
 
 Route::middleware(['auth', 'role:lr'])->group(function () {
 

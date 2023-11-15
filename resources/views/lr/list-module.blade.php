@@ -21,7 +21,13 @@
                                         $subject = App\Models\Subjects::find($module->topic);
                                     @endphp
                                     <span class="poppins text-sm text-green-600">{{ $subject->name }}</span>
-                                    <span class="poppins text-sm text-blue-500">{{ $module->grade }}</span>
+                                    <span class="poppins text-sm text-blue-500">
+                                        @if ($module->grade == 'Kinder')
+                                            {{ $module->grade }}
+                                        @else
+                                            Grade {{$module->grade}}
+                                        @endif
+                                    </span>
                                 </div>
                                 <p class="poppins text-sm text-gray-600">
                                     {!! substr($module->description, 0, 45) !!}{{ strlen($module->description) > 45 ? '...' : '' }}</p>
