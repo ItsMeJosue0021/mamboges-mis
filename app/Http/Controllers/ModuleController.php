@@ -9,6 +9,14 @@ use Illuminate\Support\Facades\Response;
 
 class ModuleController extends Controller
 {
+    public function index() {
+        $modules = Module::latest()->paginate(15);
+
+        return view('lr.web-modules', [
+            'modules' => $modules,
+            'subjects' => Subjects::all(),
+        ]);
+    }
     public function create() {
         return view('lr.module', [
             'subjects' => Subjects::all(),

@@ -16,6 +16,12 @@
                     <li class="p-2 px-4 hover:border-b hover:bg-gray-200 rounded  cursor-pointer">
                         <a href="/" class="poppins font-medium text-base">Home</a>
                     </li>
+                    <li class="p-2 px-4 hover:border-b hover:bg-gray-200 rounded  cursor-pointer">
+                        <a href="{{ route('module.index') }}" class="poppins font-medium text-base">Modules</a>
+                    </li>
+                    <li class="p-2 px-4 hover:border-b hover:bg-gray-200 rounded  cursor-pointer">
+                        <a class="poppins font-medium text-base">Videos</a>
+                    </li>
                     <li class="p-2 px-4 hover:border-b hover:bg-gray-200 rounded cursor-pointer">
                         <a href="{{ route('update.index') }}" class="poppins font-medium text-base">News &
                             Announcements</a>

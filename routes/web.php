@@ -75,6 +75,7 @@ Route::get('/viewer/{calendarOfActivities}', [CalendarOfActivitiesController::cl
 
 // MODULE
 Route::get('/modules/viewer/{moduleId}', [ModuleController::class, 'view'])->name('module.view');
+Route::get('/resources/modules', [ModuleController::class, 'index'])->name('module.index');
 
 
 
