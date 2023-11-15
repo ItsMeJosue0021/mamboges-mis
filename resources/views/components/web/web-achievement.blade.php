@@ -60,7 +60,7 @@
                 @if ($firstachievement == null && count($achievements) == 0)
                     <a
                         class="h-[120px] flex items-center justify-center md:justify-end space-x-4 cursor-pointer animate-pulse">
-                        <p class="text-base poppins font-medium text-red-600">No updates yet</p>
+                        <p class="text-base poppins font-medium text-red-600">Nothing is posted</p>
                         <i class='bx bx-chevrons-right text-3xl text-red-600'></i>
                     </a>
                 @else

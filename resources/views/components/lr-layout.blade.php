@@ -42,7 +42,13 @@
                                         <img class="h-10 w-10 rounded-full border bprder-gray-200"  src="{{Auth::user()->profile->image ? asset('storage/' . Auth::user()->profile->image) : asset('image/mamboges.jpg')}}" alt="">
                                     </button>
                                 </x-slot>
-                                <x-slot name="content" class=" ">
+                                <x-slot name="content">
+                                    <x-dropdown-link :href="route('lr.video')">
+                                        {{ __('Videos') }}
+                                    </x-dropdown-link>
+                                    <x-dropdown-link :href="route('lr.module')">
+                                        {{ __('Modules') }}
+                                    </x-dropdown-link>
                                     <x-dropdown-link :href="route('profile.edit')">
                                         {{ __('Profile') }}
                                     </x-dropdown-link>

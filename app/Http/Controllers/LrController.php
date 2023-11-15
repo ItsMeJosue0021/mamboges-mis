@@ -17,8 +17,7 @@ class LrController extends Controller
 
     public function module()
     {
-        return view('lr.module', [
-            'subjects' => Subjects::all(),
+        return view('lr.list-module', [
             'modules' => Module::all(),
         ]);
     }

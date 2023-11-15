@@ -328,6 +328,17 @@ Route::middleware(['auth', 'role:lr'])->group(function () {
         Route::controller(LrController::class)->group(function () {
             Route::get('/video-lesson', 'videoLesson')->name('lr.video');
             Route::get('/modules', 'module')->name('lr.module');
+            Route::get('modules/list')->name('module.list');
+        });
+
+        Route::prefix('modules')->group(function () {
+            Route::controller(ModuleController::class)->group(function () {
+                Route::get('/create', 'create')->name('module.create');
+                Route::post('/save', 'store')->name('module.store');
+                Route::get('{moduleId}/edit', 'edit')->name('module.edit');
+                Route::put('{moduleId}/update', 'update')->name('module.update');
+                Route::delete('{moduleId}/delete', 'delete')->name('module.delete');
+            });
         });
     });
 
@@ -340,10 +351,13 @@ Route::middleware(['auth', 'role:lr'])->group(function () {
         Route::delete('/video-lessons/{videoLesson}/delete', 'delete')->name('video-lessons.delete');
     });
 
-    Route::prefix('modules')->group(function () {
-        Route::controller(ModuleController::class)->group(function () {
-            Route::post('/save', 'store')->name('module.store');
-        });
-    });
+    // Route::prefix('modules')->group(function () {
+    //     Route::controller(ModuleController::class)->group(function () {
+    //         Route::post('/save', 'store')->name('module.store');
+    //         Route::get('{moduleId}/edit', 'edit')->name('module.edit');
+    //         Route::put('{moduleId}/update', 'update')->name('module.update');
+    //         Route::delete('{moduleId}/delete', 'delete')->name('module.delete');
+    //     });
+    // });
 
 });
