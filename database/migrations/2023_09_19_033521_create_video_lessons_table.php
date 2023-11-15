@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,11 +12,10 @@ return new class extends Migration
     {
         Schema::create('video_lessons', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('description');
+            $table->string('title')->nullable();
+            $table->longText('description')->nullable();
             $table->string('topic');
             $table->string('grade');
-            // $table->string('thumbnail');
             $table->string('video');
             $table->timestamps();
         });

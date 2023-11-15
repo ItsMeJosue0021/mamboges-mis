@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Subjects;
 use App\Models\VideoLesson;
 use Illuminate\Http\Request;
 
@@ -11,6 +12,12 @@ class VideoLessonController extends Controller
     {
         return view('videolessons.index', [
             'videolessons' => VideoLesson::latest()->filter(Request(['topic', 'grade']))->simplePaginate(9),
+        ]);
+    }
+
+    public function create() {
+        return view('lr.video', [
+            'subjects' => Subjects::all(),
         ]);
     }
 

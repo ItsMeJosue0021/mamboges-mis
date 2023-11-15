@@ -1,10 +1,13 @@
 <x-lr-layout>
     <div class="flex w-full flex-col space-y-4">
-        <div class="flex items-center space-x-4">
-            <a href="{{ route('lr.video') }}" class="poppins text-sm px-4 py-2 rounded-sm text-white bg-blue-700 hover:bg-blue-800">Video Lessons</a>
-            <a href="{{ route('lr.module') }}" class="poppins text-sm px-4 py-2 rounded-sm bg-gray-200 hover:bg-gray-300">Modules</a>
+        <div class="flex flex-col space-y-2 pb-3">
+            <a href="{{ route('lr.video') }}" id="back"
+                class="flex w-fit justify-start items-center space-x-2 py-1 px-4 group rounded bg-gray-200 hover:bg-gray-300 cursor-pointer group">
+                <i class='bx bx-left-arrow-alt text-black text-lg '></i>
+                <p class="poppins text-sm text-black">Back</p>
+            </a>
         </div>
-         <form action="{{ route('video-lessons.store') }}" method="POST" enctype="multipart/form-data" >
+         <form action="{{ route('video.store') }}" method="POST" enctype="multipart/form-data" >
             @csrf
             <div class="w-full flex flex-col md:flex-row items-start md:space-x-4">
                 <div class="w-full md:w-3/5">
