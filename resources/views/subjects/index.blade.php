@@ -1,5 +1,5 @@
 <x-guidance-layout>
-    <div id="container" class="w-full relative">
+    <div id="container" class="w-full">
 
         <div class="flex justify-between items-center px-4 py-4 border-b border-gray-300">
             <div class="flex border-l-4 border-red-400 py-1 px-2">
@@ -113,7 +113,7 @@
             </div>
         </div>
 
-        <div id="delete-modal" class="hidden absolute top-0 left-0 w-full h-full">
+        <div id="delete-modal" class="hidden absolute top-0 left-0 w-full h-full z-50">
             <div class="flex flex-col w-full h-full items-center justify-start space-y-6 bg-black bg-opacity-5 ">
                 <div class="flex flex-col p-4 rounded-md bg-white shadow-lg space-y-2 mt-60" id="delete-subject-id">
                     <div class="flex space-x-2">
@@ -129,10 +129,10 @@
             </div>
         </div>
 
-        <div id="edit-subject-modal" class="hidden absolute top-0 left-0 w-full h-full overflow-auto">
+        <div id="edit-subject-modal" class="hidden absolute top-0 left-0 w-full h-full overflow-auto z-50">
             <div class="w-full h-full flex flex-col items-center justify-center space-y-6 px-32 py-8 bg-black bg-opacity-5">
                 {{-- action="/departments/save" action="javascript:void(0)"--}}
-                <form id="edit-subject-form" method="POST" action="javascript:void(0)"  class="w-full flex flex-col space-y-6 bg-white p-8 pt-0 rounded-lg shadow-lg">
+                <form id="edit-subject-form" method="POST" action="javascript:void(0)"  class="w-1/2 flex flex-col space-y-6 bg-white p-8 pt-0 rounded-lg shadow-lg">
                     @csrf
                     @method('PUT')
                     <div class="w-full flex py-4">

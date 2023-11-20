@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Updates;
 use App\Models\Achievement;
-use Illuminate\Http\Request;
+use App\Models\OrgChartRow;
 
 class WebsiteController extends Controller
 {
@@ -14,6 +14,7 @@ class WebsiteController extends Controller
             'first_update' => Updates::latest()->first(),
             'achievements' => Achievement::latest()->take(3)->get(),
             'first_achievement' => Achievement::latest()->first(),
+            'rows' => OrgChartRow::orderBy('order')->get(),
         ]);
     }
 }

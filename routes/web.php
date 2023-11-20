@@ -73,9 +73,12 @@ Route::get('/downloadable/viewer/{fileId}', [DownloadableFileController::class, 
 Route::get('/calendar-of-activities', [CalendarOfActivitiesController::class, 'show'])->name('calendar.show');
 Route::get('/viewer/{calendarOfActivities}', [CalendarOfActivitiesController::class, 'view'])->name('calendar.view');
 
-// MODULE
+// MODULES
 Route::get('/modules/viewer/{moduleId}', [ModuleController::class, 'view'])->name('module.view');
 Route::get('/resources/modules', [ModuleController::class, 'index'])->name('module.index');
+
+//VIDEOS
+Route::get('/resources/videos', [VideoLessonController::class, 'index'])->name('video.index');
 
 
 
@@ -384,7 +387,6 @@ Route::middleware(['auth', 'role:lr'])->group(function () {
 
         Route::prefix('video-lessons')->group(function () {
             Route::controller(VideoLessonController::class)->group(function () {
-                Route::get('/all', 'index')->name('video.index');
                 Route::get('/create', 'create')->name('video.create');
                 Route::post('/save', 'store')->name('video.store');
                 Route::get('/{videoLesson}', 'show')->name('video.show');

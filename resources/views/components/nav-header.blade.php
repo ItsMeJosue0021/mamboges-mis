@@ -20,7 +20,7 @@
                         <a href="{{ route('module.index') }}" class="poppins font-medium text-base">Modules</a>
                     </li>
                     <li class="p-2 px-4 hover:border-b hover:bg-gray-200 rounded  cursor-pointer">
-                        <a class="poppins font-medium text-base">Videos</a>
+                        <a href="{{ route('video.index') }}" class="poppins font-medium text-base">Videos</a>
                     </li>
                     <li class="p-2 px-4 hover:border-b hover:bg-gray-200 rounded cursor-pointer">
                         <a href="{{ route('update.index') }}" class="poppins font-medium text-base">News &
@@ -37,10 +37,12 @@
                                 <a class="poppins text-sm">Organizational Structure</a>
                             </li>
                             <li class="p-2 rounded  hover:bg-gray-200 cursor-pointer">
-                                <a href="{{ route('calendar.show') }}" class="poppins text-sm">Calendar of Activities</a>
+                                <a href="{{ route('calendar.show') }}" class="poppins text-sm">Calendar of
+                                    Activities</a>
                             </li>
                             <li class="p-2 rounded  hover:bg-gray-200 cursor-pointer">
-                                <a href="{{ route('achievements.index') }}" class="poppins text-sm">Awards and Achievements</a>
+                                <a href="{{ route('achievements.index') }}" class="poppins text-sm">Awards and
+                                    Achievements</a>
                             </li>
                             <li class="p-2 rounded  hover:bg-gray-200 cursor-pointer">
                                 <a href="{{ route('downloadables.index') }}" class="poppins text-sm">Downloadables</a>
@@ -57,6 +59,12 @@
                 <ul tabindex="0" class="dropdown-content z-[1] p-2 shadow bg-base-100 rounded-md w-80">
                     <li class="p-2 rounded  hover:bg-gray-200 cursor-pointer">
                         <a href="/" class="poppins ">Home</a>
+                    </li>
+                    <li class="p-2 rounded  hover:bg-gray-200 cursor-pointer">
+                        <a href="{{ route('module.index') }}" class="poppins ">Modules</a>
+                    </li>
+                    <li class="p-2 rounded  hover:bg-gray-200 cursor-pointer">
+                        <a href="{{ route('video.index') }}" class="poppins ">Videos</a>
                     </li>
                     <li class="p-2 rounded  hover:bg-gray-200 cursor-pointer">
                         <a href="{{ route('update.index') }}" class="poppins ">News and Announcements</a>

@@ -368,7 +368,7 @@
                                 @enderror
                             </div>
                             <input type="text" name="parentsFirstName" id="parentsFirstName"
-                                value="{{ old('parentsFirstName') ?? $student->guardian->profile->firstName }}"
+                                value="{{ old('parentsFirstName') ?? ($student->guardian->profile->firstName ?? '') }}"
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="First Name">
                         </div>
@@ -382,7 +382,7 @@
                                 @enderror
                             </div>
                             <input type="text" name="parentsLastName" id="parentsLastName"
-                                value="{{ old('parentsLastName') ?? $student->guardian->profile->lastName }}"
+                                value="{{ old('parentsLastName') ?? ($student->guardian->profile->lastName ?? '') }}"
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Last Name">
                         </div>
@@ -399,7 +399,7 @@
                                 @enderror
                             </div>
                             <input type="text" name="parentsMiddleName" id="parentsMiddleName"
-                                value="{{ old('parentsMiddleName') ?? $student->guardian->profile->middleName }}"
+                                value="{{ old('parentsMiddleName') ?? ($student->guardian->profile->middleName ?? '') }}"
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Middle Name">
                         </div>
@@ -414,7 +414,7 @@
                                     @enderror
                                 </div>
                                 <input type="text" name="parentsSuffix" id="parentsSuffix"
-                                    value="{{ old('parentsSuffix') ?? $student->guardian->profile->suffix }}"
+                                    value="{{ old('parentsSuffix') ?? ($student->guardian->profile->suffix ?? '') }}"
                                     class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                     placeholder="Suffix">
                             </div>
@@ -430,11 +430,11 @@
                                 <select name="parentsSex" id="parentsSex"
                                     class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full">
                                     <option value="Male"
-                                        {{ old('sex') == 'Male' || $student->guardian->profile->sex == 'Male' ? 'selected' : '' }}>
+                                        {{ old('sex') == 'Male' || ($student->guardian->profile->sex ?? '') == 'Male' ? 'selected' : '' }}>
                                         Male
                                     </option>
                                     <option value="Female"
-                                        {{ old('sex') == 'Female' || $student->guardian->profile->sex == 'Female' ? 'selected' : '' }}>
+                                        {{ old('sex') == 'Female' || ($student->guardian->profile->sex ?? '') == 'Female' ? 'selected' : '' }}>
                                         Female
                                     </option>
                                 </select>
@@ -452,7 +452,7 @@
                                 @enderror
                             </div>
                             <input type="text" name="parentsContactNumber" id="parentsContactNumber"
-                                value="{{ old('parentsContactNumber') ?? $student->guardian->profile->contactNumber }}"
+                                value="{{ old('parentsContactNumber') ?? ($student->guardian->profile->contactNumber ?? '') }}"
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Mobile Number">
                         </div>
@@ -466,7 +466,7 @@
                                 @enderror
                             </div>
                             <input type="date" name="parentsDob" id="parentsDob"
-                                value="{{ old('parentsDob') ?? $student->guardian->profile->dob }}"
+                                value="{{ old('parentsDob') ?? ($student->guardian->profile->dob ?? '') }}"
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Date Of Birth">
 

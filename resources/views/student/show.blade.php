@@ -72,23 +72,23 @@
                         <div>
                             <span class="font-medium">Name:</span>
                             <span>
-                                {{ $student->guardian->profile->suffix }}
-                                {{ $student->guardian->profile->firstName }}
-                                {{ $student->guardian->profile->middleName }}
-                                {{ $student->guardian->profile->lastName }}
+                                {{ $student->guardian->profile->suffix ?? '' }}
+                                {{ $student->guardian->profile->firstName ?? '' }}
+                                {{ $student->guardian->profile->middleName ?? ''}}
+                                {{ $student->guardian->profile->lastName ?? 'No Record' }}
                             </span>
                         </div>
                         <div>
                             <span class="font-medium">Date Of Birth:</span>
-                            <span> {{ $student->guardian->profile->dob }} </span>
+                            <span> {{ $student->guardian->profile->dob ?? 'No Record' }} </span>
                         </div>
                         <div>
                             <span class="font-medium">Sex:</span>
-                            <span> {{ $student->guardian->profile->sex }} </span>
+                            <span> {{ $student->guardian->profile->sex ?? 'No Record' }} </span>
                         </div>
                         <div>
                             <span class="font-medium">Contact Number:</span>
-                            <span> {{ $student->guardian->profile->contactNumber }} </span>
+                            <span> {{ $student->guardian->profile->contactNumber ?? 'No Record' }} </span>
                         </div>
                     </div>
 

@@ -23,6 +23,7 @@
         <x-web.web-news-and-updates :firstupdate="$first_update" :updates="$updates" />
         <x-web.web-achievement :firstachievement="$first_achievement" :achievements="$achievements" />
         <x-web.web-missionvission />
+        <x-web.org-chart :orgChartRows="$rows" />
         <x-web.web-feedback />
         <x-footer/>
     </body>

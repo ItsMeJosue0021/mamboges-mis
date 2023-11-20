@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class OrgChartRowController extends Controller
 {
+
+    public function index() {
+        return view('org-chart.index');
+    }
+
     public function create()
     {
         return view('org-chart.create', [

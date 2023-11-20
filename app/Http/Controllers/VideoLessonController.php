@@ -10,8 +10,8 @@ class VideoLessonController extends Controller
 {
     public function index()
     {
-        return view('videolessons.index', [
-            'videolessons' => VideoLesson::latest()->filter(Request(['topic', 'grade']))->simplePaginate(9),
+        return view('lr.web-videos', [
+            'videos' => VideoLesson::latest()->filter(Request(['topic', 'grade']))->simplePaginate(12),
         ]);
     }
 

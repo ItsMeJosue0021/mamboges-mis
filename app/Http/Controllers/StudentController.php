@@ -215,7 +215,7 @@ class StudentController extends Controller
             return redirect()->back()->with('error', 'There was a problem updating the student profile.');
         }
 
-        $guardianUpdated = $student->guardian->profile->update([
+        $guardianProfileInfo = [
             'firstName' => $data['parentsFirstName'],
             'lastName' => $data['parentsLastName'],
             'middleName' => $data['parentsMiddleName'],
@@ -223,7 +223,18 @@ class StudentController extends Controller
             'dob' => $data['parentsDob'],
             'sex' => $data['parentsSex'],
             'contactNumber' => $data['parentsContactNumber']
-        ]);
+        ];
+
+        if (is_null($student->guardian)) {
+            $guardianCreated = Profile::create($guardianProfileInfo);
+            $guardianUpdated = Guardian::create([
+                'profile_id' => $guardianCreated->id
+            ]);
+            $student->guardian_id = $guardianUpdated->id;
+            $student->save();
+        } else {
+            $guardianUpdated = $student->guardian->profile->update($guardianProfileInfo);
+        }
 
         if (!$guardianUpdated) {
             return redirect()->back()->with('error', 'There was a problem updating the guardian profile.');
