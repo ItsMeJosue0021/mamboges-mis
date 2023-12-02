@@ -9,7 +9,7 @@
     </div>
     <div class="flex items-center space-x-4 py-2">
         <span class="poppins mt-1 text-gray-500 text-sm">{{$update->created_at}}</span>
-        <a class="text-xs text-red-600 py-1 px-2 border border-red-600 rounded" href="/updates?tag={{$update->tag->tag}}">{{$update->tag->tag ?? ''}}</a>
+        <a class="text-xs text-red-600 py-1 px-2 border border-red-600 rounded" href="/news-and-announcements?tag={{$update->tag->tag}}">{{$update->tag->tag ?? ''}}</a>
     </div>
     <div>
         {!! substr($update->description, 0, 45) !!}{{ strlen($update->description) > 45 ? "..." : "" }}

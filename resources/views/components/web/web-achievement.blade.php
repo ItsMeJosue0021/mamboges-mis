@@ -31,7 +31,7 @@
                 </div>
             @endif
 
-            <div class="flex flex-col space-y-4">
+            <div class="w-full flex flex-col space-y-4">
                 @foreach ($achievements as $achievement)
                     <div class="flex flex-col md:flex-row items-center md:space-x-3" data-aos="fade-up"
                     data-aos-delay="500">
@@ -58,19 +58,19 @@
                 @endforeach
 
                 @if ($firstachievement == null && count($achievements) == 0)
-                    <a
-                        class="h-[120px] flex items-center justify-center md:justify-end space-x-4 cursor-pointer animate-pulse">
-                        <p class="text-base poppins font-medium text-red-600">Nothing is posted</p>
-                        <i class='bx bx-chevrons-right text-3xl text-red-600'></i>
-                    </a>
+                    <div class="w-full h-[120px] flex items-center justify-center">
+                        <a class="flex items-center justify-center md:justify-end space-x-4 cursor-pointer">
+                            <p class="text-base poppins font-medium text-red-600">Nothing is posted</p>
+                        </a>
+                    </div>
                 @else
-                    <a href="{{ route('achievements.index') }}"
-                        class="h-[120px] flex items-center justify-center md:justify-end space-x-4 cursor-pointer animate-pulse">
-                        <p class="text-base poppins font-medium text-blue-600">See more posts</p>
-                        <i class='bx bx-chevrons-right text-3xl text-blue-600'></i>
-                    </a>
+                    <div class="w-full h-[120px] flex items-center justify-center">
+                        <a href="{{ route('achievements.index') }}" class="flex items-center justify-center md:justify-end space-x-4 cursor-pointer animate-pulse">
+                            <p class="text-base poppins font-medium text-blue-600">See more posts</p>
+                            <i class='bx bx-chevrons-right text-3xl text-blue-600'></i>
+                        </a>
+                    </div>
                 @endif
-
             </div>
         </div>
     </div>

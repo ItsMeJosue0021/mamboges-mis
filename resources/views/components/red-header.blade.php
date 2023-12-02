@@ -14,11 +14,29 @@
             </div>
             <div class="flex justify-between items-center">
                 <div>
-                    @if (Route::has('student.login'))
+                    @auth
+                        @if (Auth::user()->type == 'guidance')
+                            <div class="flex py-1 px-3 items-center space-x-2 border-2 border-yellow cursor-pointer hover:border-white group">
+                                <a href="{{ route('update.list') }}" class="text-yellow poppins text-sm group-hover:text-white">Admin</a>
+                            </div>
+                        @elseif (Auth::user()->type == 'lr')
+                            <div class="flex py-1 px-3 items-center space-x-2 border-2 border-yellow cursor-pointer hover:border-white group">
+                                <a href="{{ route('lr.video') }}" class="text-yellow poppins text-sm group-hover:text-white">Resources</a>
+                            </div>
+                        @elseif (Auth::user()->type == 'faculty')
+                            <div class="flex py-1 px-3 items-center space-x-2 border-2 border-yellow cursor-pointer hover:border-white group">
+                                <a href="{{ route('faculty.classes') }}" class="text-yellow poppins text-sm group-hover:text-white">Classes</a>
+                            </div>
+                        @elseif (Auth::user()->type == 'student')
+                        <div class="flex py-1 px-3 items-center space-x-2 border-2 border-yellow cursor-pointer hover:border-white group">
+                            <a href="{{ route('student.portal') }}" class="text-yellow poppins text-sm group-hover:text-white">Classes</a>
+                        </div>
+                        @endif
+                    @else
                         <div class="flex py-1 px-3 items-center space-x-2 border-2 border-yellow cursor-pointer hover:border-white group">
                             <a href="{{ route('student.login') }}" class="text-yellow poppins text-sm group-hover:text-white">Login</a>
                         </div>
-                    @endif
+                    @endauth
                 </div>
             </div>
         </div>
