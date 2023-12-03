@@ -1,7 +1,7 @@
 <x-guidance-layout>
     <div class="w-full h-full flex justify-center items-start p-4">
-        <div class="w-full flex space-x-4" >
-            <div class="w-1/2 " id="uploadFormWrapper">
+        <div class="w-full flex flex-col md:flex-row md:space-x-4" >
+            <div class="w-full md:w-1/2 " id="uploadFormWrapper">
                 <form action="{{ route('calendar.store') }}" method="POST" enctype="multipart/form-data" class="flex flex-col space-y-4">
                     @csrf
                     <div class="flex flex-col space-y-2">
@@ -14,11 +14,11 @@
                                         <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                     @enderror
                                 </label>
-                                <input class="relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] 
-                                text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden 
-                                file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] 
-                                file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] 
-                                file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 
+                                <input class="relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem]
+                                text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden
+                                file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem]
+                                file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px]
+                                file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700
                                 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700
                                 dark:file:text-neutral-100 dark:focus:border-primary"
                                 type="file"
@@ -34,8 +34,8 @@
                     </div>
                 </form>
             </div>
-            
-            <div class="w-1/2 flex flex-col p-4 h-[630px] overflow-y-auto">
+
+            <div class="w-full md:w-1/2 flex flex-col py-4 h-[630px] overflow-y-auto">
                 <div class="flex flex-col space-y-2">
                     <h1 class="poppins text-lg font-medium">RECENT CALENDARS</h1>
                     <div class="flex flex-col space-y-2">
@@ -57,9 +57,9 @@
                                     </div>
                                 </div>
                                 <div class="p-2 px-4 border-t border-gray-200">
-                                    <a href="{{ route('calendar.view', $calendar->id) }}" target="_blank" 
+                                    <a href="{{ route('calendar.view', $calendar->id) }}" target="_blank"
                                         class="poppins text-sm text-blue-600 hover:underline">
-                                        {{ $calendar->fileName }}
+                                        {{substr($calendar->fileName, 0, 30)}}{{ strlen($calendar->fileName) > 45 ? "..." : "" }}
                                     </a>
                                 </div>
                             </div>

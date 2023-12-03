@@ -225,8 +225,8 @@
                                         </div>
                                     </button>
                                 </x-slot>
-                                <x-slot name="content" class=" ">
-                                    <x-dropdown-link :href="route('profile.edit')">
+                                <x-slot name="content" >
+                                    <x-dropdown-link :href="route('guidance.profile')">
                                         {{ __('Profile') }}
                                     </x-dropdown-link>
                                     <!-- Authentication -->

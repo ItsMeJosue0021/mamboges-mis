@@ -10,8 +10,8 @@
             <form action="{{ route('update.update', $update->id) }}" method="POST" enctype="multipart/form-data" data-update-id="{{ $update->id }}" id="form">
                 @csrf
                 @method('PUT')
-                <div class="flex items-start space-x-4 ">
-                    <div class="w-3/4 h-96 flex flex-col space-y-2">
+                <div class="flex flex-col md:flex-row items-start space-y-4 md:space-y-0 md:space-x-4 ">
+                    <div class="w-full md:w-3/4 h-auto md:h-96 flex flex-col space-y-2">
                         <div class="w-full flex items-center justify-between space-x-4">
                             <div class="flex flex-col space-y-1 w-full">
                                 <label for="title" class="poppins text-sm font-semibold">TITLE
@@ -32,7 +32,7 @@
                             </div>
                         </div>
                         <div class="flex flex-col space-y-1">
-                            <label class="poppins text-sm font-semibold">DESCRIPTION 
+                            <label class="poppins text-sm font-semibold">DESCRIPTION
                                 @error('description')
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                 @enderror
@@ -41,14 +41,15 @@
                                 {{ old('description') ? old('description') : $update->description }}
                             </textarea>
                         </div>
-                        <div class="pt-4">
+                        <div class="pt-4 hidden md:flex">
                             <button type="submit" class="poppins text-sm text-white px-6 py-2 rounded bg-blue-700">UPDATE</button>
                         </div>
                     </div>
-                    <div class="w-1/4 h-96 flex flex-col space-y-4">
-                        
+
+                    <div class="w-full md:w-1/4 h-auto md:h-96 flex flex-col space-y-4">
+
                         <div class="flex flex-col space-y-1 items-start justify-start w-full">
-                            <label for="tag" class="poppins text-sm font-semibold">COVER PHOTO 
+                            <label for="tag" class="poppins text-sm font-semibold">COVER PHOTO
                                 @error('cover_photo')
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                 @enderror
@@ -65,23 +66,23 @@
                                 <img id="db-cover-photo" src="{{ asset('storage/' . $update->cover_photo) }}" alt="Database Cover Photo" class="w-full h-full rounded-md" />
                                 <input id="dropzone-file" type="file" name="cover_photo" class="hidden" accept="image/png, image/jpeg, image/gif" onchange="previewCoverPhoto(this)" />
                             </label>
-                            
-                            <script> 
+
+                            <script>
                                 function previewCoverPhoto(input) {
                                     var imagePreview = document.getElementById('image-preview');
                                     var dbCoverPhoto = document.getElementById('db-cover-photo');
                                     var description = document.getElementById('description');
-                                    
+
                                     if (input.files && input.files[0]) {
                                         var reader = new FileReader();
-                                        
+
                                         reader.onload = function(e) {
                                             imagePreview.src = e.target.result;
                                             imagePreview.classList.remove('hidden');
                                             dbCoverPhoto.classList.add('hidden');
                                             description.classList.add('hidden');
                                         };
-                                        
+
                                         reader.readAsDataURL(input.files[0]);
                                     } else {
                                         imagePreview.src = '';
@@ -91,7 +92,7 @@
                                     }
                                 }
                             </script>
-                        </div> 
+                        </div>
 
                         <div class="flex flex-col space-y-1 items-start justify-start w-full">
                             <label for="images" class="poppins text-sm font-semibold">MORE IMAGES</label>
@@ -135,12 +136,12 @@
                                             dataType:'json',
                                             success: function(data) {
                                                 console.log(data);
-                                                
-                                                $('#images-container').empty();  
+
+                                                $('#images-container').empty();
 
                                                 if (data.length > 0) {
                                                     $.each(data, function (index, image) {
-                                                        
+
                                                         var fileName = image.fileName;
                                                         var truncatedFileName = fileName.length > 28 ? fileName.substring(0, 28) + '...' : fileName;
 
@@ -167,18 +168,18 @@
 
                                     function deleteImage() {
                                         $(".delete-button").click(function () {
-                                        
+
                                             var imageId = $(this).data("image-id");
-                                            var updateId = $(this).data("update-id"); 
+                                            var updateId = $(this).data("update-id");
 
                                             var csrfToken = $('meta[name="csrf-token"]').attr("content");
 
                                             $.ajax({
                                                 type: "DELETE",
                                                 url: "/updates/" + updateId + "/delete-image/" + imageId,
-                                                
+
                                                 headers: {
-                                                    "X-CSRF-TOKEN": csrfToken, 
+                                                    "X-CSRF-TOKEN": csrfToken,
                                                 },
                                                 success: function (response) {
                                                     var message;
@@ -201,11 +202,11 @@
                                                                             '<i class="bx bx-block text-red-500 text-4xl"></i>' +
                                                                             '<p class="poppins text-sm text-red-700">' + response.message + '</p>' +
                                                                         '</div>' +
-                                                                    '</div>');  
+                                                                    '</div>');
                                                     }
 
                                                     $('#container').append(message);
-                                                    
+
                                                     setTimeout(function(){
                                                         message.fadeOut('slow', function() {
                                                             message.remove();
@@ -226,14 +227,14 @@
                         <script>
                             function previewImages(input) {
                                 var imagePreviews = document.getElementById('image-previews');
-                                
+
                                 // Clear any existing image previews
                                 imagePreviews.innerHTML = '';
 
                                 if (input.files && input.files.length > 0) {
                                     for (var i = 0; i < input.files.length; i++) {
                                         var file = input.files[i];
-                                        
+
                                         var previewContainer = document.createElement('div');
                                         previewContainer.className = 'p-1 rounded-md flex items-center justify-between  border border-gray-300';
 
@@ -254,7 +255,7 @@
                                                 previewContainer.remove();
                                             };
                                         })(previewContainer);
-                                        
+
                                         // Append elements to the preview container
                                         previewContainer.appendChild(image);
                                         previewContainer.appendChild(fileName);
@@ -267,6 +268,9 @@
                             }
 
                         </script>
+                    </div>
+                    <div class="md:hidden flex w-full ">
+                        <button type="submit" class="w-full poppins text-base font-semibold border-2 border-gray-300 text-black hover:text-white px-6 py-2 rounded bg-white hover:bg-blue-700">Update</button>
                     </div>
                 </div>
             </form>

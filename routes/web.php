@@ -104,6 +104,10 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'role:guidance'])->group(function () {
 
+    Route::controller(ProfileController::class)->group(function () {
+        Route::get('/guidance/profile', 'guidance')->name('guidance.profile');
+    });
+
     // FEEDBACK
     Route::controller(FeedbackController::class)->group(function () {
         Route::get('/feedback', 'index')->name('feedback.index');

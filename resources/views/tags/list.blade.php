@@ -1,7 +1,7 @@
 <x-guidance-layout>
     <section>
         <div class="p-4">
-            <div class="flex flex-col space-y-2">
+            <div class="flex flex-col space-y-2 mb-4">
                 <a href="{{ route('update.list') }}" id="back" class="flex w-fit justify-start items-center space-x-2 py-1 px-4 group rounded bg-gray-200 hover:bg-gray-300 cursor-pointer group">
                     <i class='bx bx-left-arrow-alt text-black text-lg '></i>
                     <p class="poppins text-sm text-black">Back</p>
@@ -9,7 +9,7 @@
             </div>
 
             <div class="flex items-start justify-center ">
-                <div class="w-1/2 flex flex-col space-y-4">
+                <div class="w-full md:w-1/2 flex flex-col space-y-4">
                     <form action="{{ route('tags.store') }}" method="POST"
                     class="w-full flex flex-col space-y-3 rounded shadow border border-gray-200 p-4">
                     @csrf

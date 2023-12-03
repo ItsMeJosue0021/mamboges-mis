@@ -14,9 +14,12 @@ use App\Http\Requests\ProfileUpdateRequest;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
+    public function guidance(Request $request) {
+        return view('profile.guidance-profile', [
+            'user' => $request->user(),
+        ]);
+    }
+
     public function edit(Request $request): View
     {
         return view('profile.edit', [
@@ -56,67 +59,6 @@ class ProfileController extends Controller
         return redirect()->back()->with('success','Profile updated successfully.');
     }
 
-    /**
-     * Update the user's profile information.
-     */
-    // public function update(Request $request): RedirectResponse
-    // {
-    //     // dd($request->all());
-    //     $id = Auth::user()->id;
-
-    //     $userType = Auth::user()->type;
-
-    //     $user = User::where('id', $id)->first();
-
-    //     $userInfo = [
-    //         'name' => $request->name,
-    //         'email' => $request->email,
-    //     ];
-
-    //     if ($user->type == 'guidance' || $user->type == 'faculty') {
-    //         $userInfo['username'] = $request->email;
-    //     }
-
-    //     if ($request->hasFile('image') ) {
-    //         $userInfo['image'] = $request->file('image')->store('profile', 'public');
-    //     }
-
-    //     if ($userType == 'student') {
-
-    //         $student = Student::where('lrn', Auth::user()->username)->first();
-
-    //         if ($request->hasFile('image') ) {
-    //             $student->image = $request->file('image')->store('profile', 'public');
-    //         }
-
-    //         $student->save();
-    //     }
-
-    //     if ($userType == 'faculty') {
-
-    //         $faculty = Faculty::where('email', Auth::user()->username)->first();
-
-    //         if ($request->hasFile('image') ) {
-    //             $faculty->image = $request->file('image')->store('profile', 'public');
-    //         }
-
-    //         $faculty->save();
-    //     }
-
-
-    //     $user->update($userInfo);
-
-    //     if (Auth::user()->type == 'student') {
-    //         return Redirect::route('student.profile')->with('status', 'profile-updated');
-    //     } else {
-    //         return Redirect::route('profile.edit')->with('status', 'profile-updated');
-    //     }
-
-    // }
-
-    /**
-     * Delete the user's account.
-     */
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [

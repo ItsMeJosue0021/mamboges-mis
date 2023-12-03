@@ -14,9 +14,9 @@
                             <p class="poppins font-semibold text-center pb-2">{{ $row->title ?? '' }}</p>
 
                             @if ($row->orgChartRowItems)
-                                <div class="w-full flex justify-center items-center space-x-4">
+                                <div class="w-full flex justify-center items-center space-x-4 overflow-x-auto">
                                     @foreach ($row->orgChartRowItems as $item)
-                                        <div class="w-36 h-full p-2 rounded border border-gray-300 relative group">
+                                        <div class="w-36 min-w-[128px] h-full p-2 rounded border border-gray-300 relative group">
                                             <div class="w-full h-24 bg-gray-100 flex justify-center items-center">
                                                 <img src="{{ asset('storage/' . $item->image) }}" alt=""
                                                     class="h-full">
@@ -45,18 +45,18 @@
                             <div
                                 class="absolute top-1/2 left-3 transform -translate-y-1/2 flex flex-col space-y-2 cursor-pointer">
                                 <button data-row-id="{{ $row->id }}"
-                                    class="addItemBtn flex justify-center items-center py-1 px-2 rounded-full border bprder-gray-300">
+                                    class="addItemBtn flex justify-center items-center py-1 px-2 rounded-full border bprder-gray-300 bg-white">
                                     <i class='bx bx-plus text-sm text-gray-600 hover:text-green-600'></i>
                                 </button>
                                 <button data-row-id="{{ $row->id }}"
-                                    class="updateRowBtn flex justify-center items-center py-1 px-2 rounded-full border bprder-gray-300">
+                                    class="updateRowBtn flex justify-center items-center py-1 px-2 rounded-full border bprder-gray-300 bg-white">
                                     <i class='bx bx-edit text-gray-600 hover:text-blue-500 text-sm cursor-pointer'></i>
                                 </button>
                                 <form action="{{ route('org.chart.delete', $row->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button data-row-id="{{ $row->id }}"
-                                        class="flex justify-center items-center py-1 px-2 rounded-full border bprder-gray-300">
+                                        class="flex justify-center items-center py-1 px-2 rounded-full border bprder-gray-300 bg-white">
                                         <i class='bx bx-trash text-gray-600 hover:text-red-500 text-sm'></i>
                                     </button>
                                 </form>
@@ -83,7 +83,7 @@
             <div id="addItemModal"
                 class="hidden fixed top-0 left-0 w-full h-full min-h-screen bg-black bg-opacity-10 flex justify-center items-center p-8 z-50">
                 <form action="{{ route('org.chart.item.store') }}" method="POST" enctype="multipart/form-data"
-                    class="rounded p-6 bg-white w-2/5">
+                    class="rounded p-6 bg-white w-full md:w-2/5">
                     @csrf
                     <div class="w-fill flex justify-end">
                         <i class='bx bx-x text-xl text-gray-500 cursor-pointer hover:text-red-600 closeBtn'></i>
@@ -144,7 +144,7 @@
             <div id="updateItemModal"
                 class="hidden fixed top-0 left-0 w-full h-full min-h-screen bg-black bg-opacity-10 flex justify-center items-center p-8 z-50">
                 <form action="{{ route('org.chart.item.update') }}" method="POST" enctype="multipart/form-data"
-                    class="rounded p-6 bg-white w-2/5">
+                    class="rounded p-6 bg-white w-full md:w-2/5">
                     @csrf
                     @method('PUT')
                     <div class="w-fill flex justify-end">
@@ -195,7 +195,7 @@
 
             <div id="updateRowModal"
                 class="hidden fixed top-0 left-0 w-full h-full min-h-screen bg-black bg-opacity-10 flex justify-center items-center p-8 z-50">
-                <form action="{{ route('org.chart.update') }}" method="POST" class="rounded p-6 bg-white w-2/5">
+                <form action="{{ route('org.chart.update') }}" method="POST" class="rounded p-6 bg-white w-full md:w-2/5">
                     @csrf
                     @method('PUT')
                     <div class="w-fill flex justify-end">

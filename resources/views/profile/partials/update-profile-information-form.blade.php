@@ -66,7 +66,7 @@
 
 
             <div class="w-full md:w-2/3 flex-col space-y-6">
-                <div class="flex items-center space-x-4">
+                <div class="flex flex-col md:flex-row items-center space-y-4 md:-space-y-0 md:space-x-4">
                     <div class="w-full flex flex-col ">
                         <div class="flex items-baseline space-x-2">
                             <label for="firstName" class="poppins text-sm font-medium text-gray-700">First Name
@@ -94,7 +94,7 @@
                     </div>
                 </div>
 
-                <div class="flex items-center space-x-4">
+                <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
                     <div class="w-full flex flex-col ">
                         <div class="flex items-baseline space-x-2">
                             <label for="middleName" class="poppins text-sm font-medium text-gray-700">Middle

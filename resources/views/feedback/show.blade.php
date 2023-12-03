@@ -12,15 +12,17 @@
         </div>
     @endif
 
-    <div class="py-2 pt-4 px-8">
-        <a class="flex w-fit justify-start items-center space-x-2 group rounded" href="/feedback">
-            <i class='bx bx-left-arrow-alt text-gray-600 text-2xl group-hover:text-red-700'></i>
-            <p class="poppins text-base text-gray-600 group-hover:text-red-700">back</p>
-        </a>
+    <div class="w-full p-4">
+        <div class="flex flex-col space-y-2">
+            <a href="{{ route('feedback.index') }}" id="back" class="flex w-fit justify-start items-center space-x-2 py-1 px-4 group rounded bg-gray-200 hover:bg-gray-300 cursor-pointer group">
+                <i class='bx bx-left-arrow-alt text-black text-lg '></i>
+                <p class="poppins text-sm text-black">Back</p>
+            </a>
+        </div>
     </div>
 
-    <div class="w-full h-600px flex flex-col py-4 px-8 overflow-y-auto">
-        <div class="w-full flex items-center justify-between pb-4 border-b border-gray-300 mb-5">
+    <div class="w-full flex flex-col py-4 px-4 overflow-y-auto">
+        <div class="w-full flex flex-col-reverse md:flex-row items-start md:items-center justify-start md:justify-between pb-4 border-b border-gray-300 mb-5">
             <div class="flex items-center space-x-4">
                 <div class="bg-gray-400 rounded-full p-2 px-3">
                     <i class='bx bxs-user text-3xl text-gray-100'></i>
@@ -28,15 +30,16 @@
                 <div class="flex flex-col">
                     <h1 class="poppins text-xl font-medium text-gray-800 ">{{$feedback->name}}</h1>
                     <h2 class="poppins text-sm text-blue-500 hover:underline cursor-pointer">{{$feedback->email}}</h2>
+                    <p class="md:hidden poppins text-sm text-gray-600 pt-1">{{$feedback->created_at}}</p>
                 </div>
             </div>
-            <div class="">
+            <div class="hidden md:flex">
                 <p class="poppins text-sm text-gray-600">{{$feedback->created_at}}</p>
             </div>
         </div>
 
         <div class="">
-            <p class="poppins text-justify p-4">{{$feedback->message}}</p>
+            <p class="poppins text-justify py-4">{{$feedback->message}}</p>
         </div>
 
         <div class="w-full flex flex-col py-4">
@@ -54,7 +57,7 @@
                     </div>
 
                     <div class="w-full flex items-end space-x-4 focus-within:border-gray-500 py-1 \">
-                        <input type="text" name="subject" id="subject" placeholder="Subject" 
+                        <input type="text" name="subject" id="subject" placeholder="Subject"
                         class="w-full poppins text-sm text-gray-700 rounded border border-gray-300 focus:outline-none">
                     </div>
 
@@ -77,7 +80,7 @@
 <script>
     $(document).ready(function() {
         $('#replyForm').hide();
-        
+
         $('#replyBtn').click(function() {
             $('#replyForm').toggle();
             $('#replyBtn').hide();
