@@ -73,7 +73,7 @@
                         <a href="{{ route('achievements.index') }}" class="poppins ">Awards and Achievements</a>
                     </li>
                     <li class="p-2 rounded  hover:bg-gray-200 cursor-pointer">
-                        <a href="" class="poppins ">Organizational Structure</a>
+                        <a href="{{ route('org.chart') }}" class="poppins ">Organizational Structure</a>
                     </li>
                     <li class="p-2 rounded  hover:bg-gray-200 cursor-pointer">
                         <a href="{{ route('calendar.show') }}" class="poppins ">Calendar of Activities</a>

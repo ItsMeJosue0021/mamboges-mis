@@ -42,29 +42,34 @@
             </div>
 
             <div class="w-full">
-                <div class="w-full flex space-x-8 py-2">
-                    <div class="w-full flex items-center space-x-4  py-1">
-                        <h1 class="poppins text-lg text-gray-700 font-medium px-2 py-1 rounded border-l-3 border-gray-400">STUDENTS</h1>
-                        <a id="add-student" class="poppins py-1 px-4 text-sm text-white font-medium cursor-pointer rounded flex items-center bg-blue-600 hover:scale-105">
-                            <i class='bx bx-user-plus text-lg px-1'></i>
-                            Add
-                        </a>
+                <div class="w-full flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8 py-2">
+                    <div class="w-full flex flex-col space-y-6">
+                        <div class="w-full flex items-center justify-between space-x-4  py-1">
+                            <h1 class="poppins text-lg text-gray-700 font-medium px-2 py-1 rounded border-l-3 border-gray-400">STUDENTS</h1>
+                            <a id="add-student" class="poppins py-1 px-4 text-xs text-white font-medium cursor-pointer rounded flex items-center bg-blue-600 hover:scale-105">
+                                <i class='bx bx-user-plus text-lg px-1'></i>
+                                Add
+                            </a>
+                        </div>
+                        <div id="students-list1" class="w-full h-auto"></div>
                     </div>
 
-                    <div class="w-full flex items-center space-x-4 py-1">
-                        <h1 class="poppins text-lg text-gray-700 font-medium px-2 py-1 rounded border-l-3 border-gray-400">SUBJECTS</h1>
-                        <a id="add-subject" class="poppins py-1 px-4 text-sm text-white font-medium cursor-pointer rounded flex items-center bg-blue-600 hover:scale-105">
-                            <i class='bx bx-list-plus text-lg px-1'></i>
-                            Add
-                        </a>
+                    <div class="w-full flex flex-col space-y-6">
+                        <div class="w-full flex items-center justify-between space-x-4 py-1">
+                            <h1 class="poppins text-lg text-gray-700 font-medium px-2 py-1 rounded border-l-3 border-gray-400">SUBJECTS</h1>
+                            <a id="add-subject" class="poppins py-1 px-4 text-xs text-white font-medium cursor-pointer rounded flex items-center bg-blue-600 hover:scale-105">
+                                <i class='bx bx-list-plus text-lg px-1'></i>
+                                Add
+                            </a>
+                        </div>
+                        <div id="subjects-list" class="w-full h-auto"></div>
                     </div>
                 </div>
 
-                <div class="w-full flex space-x-8">
+                {{-- <div class="w-full flex space-x-8">
                     <div id="students-list1" class="w-full h-auto"></div>
                     <div id="subjects-list" class="w-full h-auto"></div>
-                </div>
-
+                </div> --}}
             </div>
         </div>
 
@@ -80,25 +85,24 @@
                             <h2 class="text-3xl font-bold">Enroll Student</h2>
                         </div>
 
-                        <div class="w-full flex space-x-4">
-                            <div class="w-1/2 h-fit max-h-[500px] overflow-y-auto p-4">
+                        <div class="w-full flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-4">
+                            <div class="w-full md:w-1/2 h-fit max-h-[500px] overflow-y-auto md:p-4">
                                 <div class="mb-3">
                                     <h1 class="poppins text-base font-medium">Search Student</h1>
                                     <input type="text" name="search-student" id="search-student"
                                     class="poppins w-full py-2 px-4 text-base border-2 border-gray-300 rounded focus:outline-none focus:border-blue-500 mr-3"
                                     placeholder="Seach for student.."/>
                                 </div>
-
                                 <div id="students-list-container"></div>
                             </div>
-                            <div class="w-1/2 h-fit max-h-[500px] overflow-auto p-4">
+                            <div class="w-full md:w-1/2 h-fit max-h-[500px] overflow-auto md:p-4">
                                 <h1 class="poppins text-base py-2 font-medium">Current Student</h1>
                                 <div id="students-list2"></div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="flex items-center justify-start space-x-4 pt-4 px-4 ">
+                    <div class="flex items-center justify-start space-x-4 pt-4 md:px-4 ">
                         <button id="done"
                             class="poppins text-sm font-medium text-white bg-blue-600 hover:bg-blue-700  border border-blue-600 hover:border-blue-700 py-2 px-8 ">
                             Done
@@ -115,12 +119,12 @@
 
          {{-- ADD SUBJECT MODAL --}}
          <div id="add-subject-modal" class="hidden absolute top-0 left-0 w-full h-full">
-            <div class="flex flex-col w-full h-full items-center justify-start space-y-6 bg-black bg-opacity-5 pt-40">
-                <div class="flex flex-col w-fit items-center justify-center space-y-6 bg-white p-6 rounded-md shadow-lg">
+            <div class="flex flex-col w-full h-full items-center justify-start space-y-6 bg-black bg-opacity-5 pt-40 px-4">
+                <div class="flex flex-col w-full md:w-fit items-center justify-center space-y-6 bg-white p-6 rounded-md shadow-lg">
 
                     <x-scripts.modal-add-subject />
 
-                    <form id="add-subject-form" method="POST" action="javascript:void(0)" class="w-700px flex flex-col space-y-3">
+                    <form id="add-subject-form" method="POST" action="javascript:void(0)" class="w-full md:w-[700px] flex flex-col space-y-3">
                         @csrf
                         <div class="w-full flex">
                             <h1 class="poppins text-xl text-gray-800 font-medium">ADD SUBJECTS</h1>

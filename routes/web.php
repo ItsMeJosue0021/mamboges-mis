@@ -80,6 +80,9 @@ Route::get('/resources/modules', [ModuleController::class, 'index'])->name('modu
 //VIDEOS
 Route::get('/resources/videos', [VideoLessonController::class, 'index'])->name('video.index');
 
+// ORG CHART
+Route::get('/organizational-chart', [OrgChartRowController::class, 'index'])->name('org.chart');
+
 
 
 Route::middleware('auth')->group(function () {
@@ -89,7 +92,6 @@ Route::middleware('auth')->group(function () {
         Route::delete('/profile', 'destroy')->name('profile.destroy');
     });
 });
-
 
 
 /*
@@ -125,7 +127,6 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
             Route::get('/{update}/edit', 'edit')->name('update.edit');
             Route::put('/{update}/update', 'update')->name('update.update');
             Route::delete('/{update}/delete', 'delete')->name('update.delete');
-
         });
 
         Route::controller(UpdateImageController::class)->group(function () {
@@ -278,7 +279,6 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
 
     Route::prefix('org')->group(function () {
         Route::controller(OrgChartRowController::class)->group(function () {
-            Route::get('/chart', 'index')->name('org.chart.index');
             Route::get('/chart/create', 'create')->name('org.chart.create');
             Route::prefix('row')->group(function () {
                 Route::post('/save', 'store')->name('org.chart.store');

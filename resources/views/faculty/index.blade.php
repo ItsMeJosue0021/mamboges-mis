@@ -2,14 +2,14 @@
     <div id="container" class="w-full">
 
         <div class="flex justify-between items-center px-4 py-4 border-b border-gray-300">
-            <h1 class="poppins text-2xl font-medium">FACULTY</h1>
-            <div class="w-2/3 flex">
-                <form action="{{ route('faculties.index') }}" class="flex w-full items-center justify-end space-x-4">
-                    <div class="flex items-center space-x-1 p-1">
-                        <input name="search" type="text" placeholder="Search for faculty member"
-                            class="w-500px poppins text-sm focus:outline-none focus:bg-blue-100 border border-gray-400 rounded focus:border-blue-400 py-2 px-4">
+            <h1 class="hidden md:block poppins text-2xl font-medium">FACULTY</h1>
+            <div class="w-full md:w-2/3 flex">
+                <form action="{{ route('faculties.index') }}" class="flex w-full items-center justify-between md:justify-end space-x-4">
+                    <div class="flex items-center space-x-2 p-1">
+                        <input name="search" type="text" placeholder="Type here.."
+                            class="w-full md:w-[500px] poppins text-sm focus:outline-none focus:bg-blue-100 border border-gray-400 rounded focus:border-blue-400 py-2 px-4">
                         <button type="submit"
-                            class="poppins bg-gray-600 hover:bg-blue-600 rounded px-3 py-1  flex justify-center items-center">
+                            class="poppins bg-gray-600 hover:bg-blue-600 rounded px-6 py-1  flex justify-center items-center">
                             <i class='bx bx-search text-white text-lg'></i>
                         </button>
                     </div>
@@ -38,7 +38,7 @@
                         </p>
                     </div>
 
-                    <p class="w-full poppins text-sm group-hover:text-blue-500">
+                    <p class="hidden md:block w-full poppins text-sm group-hover:text-blue-500">
                         {{ $faculty->department->name ?? '' }}
                     </p>
 
@@ -48,18 +48,18 @@
             @endforeach
         </div>
 
-        <div id="add-facuty-modal" class="hidden absolute top-0 left-0 w-full h-screen z-50">
-            <div
-                class="w-full h-full flex flex-col items-center justify-center space-y-6 px-32 py-8 bg-black bg-opacity-10">
+        {{-- Add Faculty Modal --}}
+        <div id="add-facuty-modal" class="hidden absolute top-0 left-0 w-full h-auto md:h-screen z-50">
+            <div class="w-full h-full flex flex-col items-center justify-center space-y-6 px-4 md:px-32 py-8 bg-black bg-opacity-10">
                 <form id="faculty-form" method="POST" action="javascript:void(0)"
-                    class="w-full flex flex-col space-y-2 bg-white p-8 pt-0 rounded-lg shadow-md">
+                    class="w-full flex flex-col space-y-2 bg-white p-4 md:p-8 pt-0 rounded-lg shadow-md">
                     @csrf
                     <div class="w-full flex py-4">
                         <h1 class="poppins text-xl text-gray-800 font-medium">TEACHER'S INFORMATION</h1>
                     </div>
 
-                    <div class="flex space-x-4 items-start">
-                        <div class="flex flex-col space-y-1 items-start justify-start w-1/3">
+                    <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 items-start">
+                        <div class="flex flex-col space-y-1 items-start justify-start w-full md:w-1/3">
                             <label for="tag" class="poppins text-sm font-medium text-gray-700">Image
                                 @error('cover_photo')
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
@@ -108,8 +108,8 @@
                                 }
                             </script>
                         </div>
-                        <div class="flex flex-col space-y-2">
-                            <div class="w-full flex space-x-4">
+                        <div class="w-full flex flex-col space-y-2">
+                            <div class="w-full flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
                                 <div class="w-full flex flex-col space-y-1">
                                     <div class="flex items-baseline space-x-2">
                                         <label for="first_name" class="poppins text-sm font-medium text-gray-600">FIRST
@@ -150,12 +150,12 @@
                                         <span class="error text-xs text-red-600"></span>
                                     </div>
                                     <input type="text" name="suffix" id="suffix"
-                                        class="poppins py-2 px-4 text-base border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-60px"
+                                        class="w-full poppins py-2 px-4 text-base border border-gray-300 rounded focus:outline-none focus:border-blue-500 md:w-[60px]"
                                         placeholder="jr.">
                                 </div>
                             </div>
 
-                            <div class="w-full flex space-x-4">
+                            <div class="w-full flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
                                 <div class="w-full flex flex-col space-y-1">
                                     <div class="flex items-baseline space-x-2">
                                         <label for="sex"

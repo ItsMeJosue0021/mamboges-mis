@@ -2,14 +2,14 @@
     <div id="container" class="w-full">
 
         <div class="flex justify-between items-center px-4 py-3 border-b border-gray-300">
-            <h1 class="poppins text-xl font-medium">SECTIONS</h1>
-            <div class="w-2/3 flex">
-                <form action="/sections" class="flex w-full items-center justify-end space-x-4">
-                    <div class="flex items-center space-x-1 p-1">
+            <h1 class="hidden md:block poppins text-xl font-medium">SECTIONS</h1>
+            <div class="w-full md:w-2/3 flex">
+                <form action="/sections" class="flex w-full items-center justify-center md:justify-end space-x-4">
+                    <div class="w-full flex items-center space-x-2 p-1">
                         <input name="search" type="text" placeholder="Type here.."
-                            class="w-500px poppins text-sm rounded py-2 px-4">
+                            class="w-full md:w-[500px] poppins text-sm rounded py-2 px-4">
                         <button type="submit"
-                            class="poppins bg-gray-600 hover:bg-blue-600 rounded px-3 py-1  flex justify-center items-center">
+                            class="poppins bg-gray-600 hover:bg-blue-600 rounded px-6 py-1  flex justify-center items-center">
                             <i class='bx bx-search text-white text-lg'></i>
                         </button>
                     </div>
@@ -75,11 +75,12 @@
                     </tbody>
                 </table>
             </div>
+
             <div class="pt-4">
                 {{ $sections->links() }}
             </div>
-            <div>
 
+            <div>
                 <x-modals.add-new-section :faculties="$faculties" />
 
                 <div id="delete-modal" class="hidden absolute top-0 left-0 w-full h-screen z-50">

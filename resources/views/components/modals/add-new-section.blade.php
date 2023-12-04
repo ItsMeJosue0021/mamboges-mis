@@ -1,7 +1,7 @@
 <div id="add-modal" class="hidden absolute top-0 left-0 w-full h-screen z-50">
-    <div class="flex flex-col w-full h-full items-center justify-center space-y-6 bg-black bg-opacity-10 p-8">
-        <div class="flex flex-col w-fit items-center justify-center space-y-6 bg-white p-6 rounded-md shadow-lg">
-            <form id="section-form" method="POST" action="javascript:void(0)" class="w-700px flex flex-col space-y-3">
+    <div class="flex flex-col w-full h-full items-center justify-center space-y-6 bg-black bg-opacity-10 p-4">
+        <div class="flex flex-col w-full md:w-fit items-center justify-center space-y-6 bg-white p-6 rounded-md shadow-lg">
+            <form id="section-form" method="POST" action="javascript:void(0)" class="w-full md:w-[700px] flex flex-col space-y-3">
                 @csrf
                 <div class="w-full flex">
                     <h1 class="poppins text-xl text-gray-800 font-medium">NEW SECTION</h1>

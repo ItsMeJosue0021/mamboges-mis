@@ -1,15 +1,15 @@
 <x-guidance-layout>
     <div id="container" class="w-full">
         {{-- <div class="fixed z-30 top-3 rounded left-1/2 transform -translate-x-1/2 bg-green-100 px-14 py-3"><p class="poppins text-lg text-green-800 ">' + response.message + '</p></div> --}}
-        <div class="flex justify-between items-center px-4 py-4 border-b border-gray-300">
-            <h1 class="poppins text-2xl font-medium">LEARNERS</h1>
-            <div class="w-2/3 flex">
-                <form action="{{ route('student.index') }}" class="flex w-full items-center justify-end space-x-4">
-                    <div class="flex items-center space-x-1 p-1">
-                        <input name="search" type="text" placeholder="Search by First name, Last name or LRN.."
-                            class="w-500px poppins text-sm focus:outline-none focus:bg-blue-100 border border-gray-400 rounded focus:border-blue-400 py-2 px-4">
+        <div class="w-full flex justify-between items-center px-4 py-4 border-b border-gray-300">
+            <h1 class="hidden md:block poppins text-2xl font-medium">LEARNERS</h1>
+            <div class="w-full md:w-2/3 flex">
+                <form action="{{ route('student.index') }}" class="flex w-full items-center justify-between md:justify-end space-x-4">
+                    <div class="flex items-center space-x-2 p-1">
+                        <input name="search" type="text" placeholder="Type here.."
+                            class="w-full md:w-[500px] poppins text-sm focus:outline-none focus:bg-blue-100 border border-gray-400 rounded focus:border-blue-400 py-2 px-4">
                         <button type="submit"
-                            class="poppins bg-gray-600 hover:bg-blue-600 rounded px-3 py-1  flex justify-center items-center">
+                            class="poppins bg-gray-600 hover:bg-blue-600 rounded px-6 py-1  flex justify-center items-center">
                             <i class='bx bx-search text-white text-lg'></i>
                         </button>
                     </div>
@@ -18,62 +18,62 @@
             </div>
         </div>
 
-        <div class="w-full px-4 overflow-auto">
+        <div class="w-full px-4 ">
             <div class="w-full py-4 px-2">
-                <div class="w-fit flex space-x-2">
+                <div class="w-full flex space-x-2 overflow-x-auto py-2">
                     <a data-grade-level="0" href="{{ route('student.index') }}"
-                        class="level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                        class="min-w-[100px] flex items-center justify-center level space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <p class="poppins text-base cursor-pointer no-underline">All</p>
                     </a>
 
                     <a data-grade-level="1" href="{{ route('student.index', ['grade_level' => 'Kinder']) }}"
-                        class="level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                        class=" min-w-[100px] level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <label class="poppins text-base cursor-pointer">Kinder</label>
                     </a>
 
                     <a data-grade-level="2" href="{{ route('student.index', ['grade_level' => '1']) }}"
-                        class="level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                        class="min-w-[100px] level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <label class="poppins text-base cursor-pointer">Grade 1</label>
                     </a>
 
                     <a data-grade-level="3" href="{{ route('student.index', ['grade_level' => '2']) }}"
-                        class="level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                        class="min-w-[100px] level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <label class="poppins text-base cursor-pointer">Grade 2</label>
                     </a>
 
                     <a data-grade-level="4" href="{{ route('student.index', ['grade_level' => '3']) }}"
-                        class="level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                        class="min-w-[100px] level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <label class="poppins text-base cursor-pointer">Grade 3</label>
                     </a>
 
                     <a data-grade-level="5" href="{{ route('student.index', ['grade_level' => '4']) }}"
-                        class="level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                        class="min-w-[100px] level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <label class="poppins text-base cursor-pointer">Grade 4</label>
                     </a>
 
                     <a data-grade-level="6" href="{{ route('student.index', ['grade_level' => '5']) }}"
-                        class="level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                        class="min-w-[100px] level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <label class="poppins text-base cursor-pointer">Grade 5</label>
                     </a>
 
                     <a data-grade-level="7" href="{{ route('student.index', ['grade_level' => '6']) }}"
-                        class="level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
+                        class="min-w-[100px] level flex items-center space-x-2 rounded py-1 px-4 bg-gray-200 group hover:bg-blue-400 hover:text-white cursor-pointer">
                         <label class="poppins text-base cursor-pointer">Grade 6</label>
                     </a>
                 </div>
 
                 <div class="flex items-center space-x-4">
                     <div class="pt-4 py-2 flex space-x-3 items-center">
-                        <h1>TOTAL LEARNERS:</h1>
+                        <h1 class="text-sm md:text-base">TOTAL LEARNERS:</h1>
                         <h1 id="total-student"
-                            class="text-base text-blue-400 font-medium px-2 border border-blue-400 rounded">
+                            class="text-sm md:text-base text-blue-400 font-medium px-2 border border-blue-400 rounded">
                             {{ $totalLearners }}</h1>
                     </div>
 
                     <div class="pt-4 py-2 flex space-x-3 items-center">
-                        <h1>RESULT COUNT:</h1>
+                        <h1 class="text-sm md:text-base">RESULT COUNT:</h1>
                         <h1 id="enrolled-student"
-                            class="text-base text-blue-400 font-medium px-2 border border-blue-400 rounded">
+                            class="text-sm md:text-base text-blue-400 font-medium px-2 border border-blue-400 rounded">
                             {{ $resultCount }}</h1>
                     </div>
                 </div>
@@ -101,7 +101,7 @@
                             </div>
                             <div>
                                 <a href="{{ route('student.show', $student->id) }}"
-                                    class="poppins py-2 px-4 bg-blue-600 text-xs text-white font-medium rounded cursor-pointer">View</a>
+                                    class="poppins py-2 px-4 border border-gray-300 text-black hover:bg-blue-600 text-xs hover:text-white font-medium rounded cursor-pointer">Profile</a>
                             </div>
                         </div>
                     @endforeach

@@ -1,18 +1,10 @@
 <x-guidance-layout>
     <div id="container" class="w-full relative">
         <div class="flex flex-col p-4">
-            <div class="py-2">
-                <a id="back" class="flex w-fit justify-start items-center space-x-2 group rounded cursor-pointer" href="/settings">
-                    <i class='bx bx-left-arrow-alt text-gray-600 text-2xl group-hover:text-red-700'></i>
-                    <p class="poppins text-base text-gray-600 group-hover:text-red-700">back</p>
-                </a>
-            </div>
-
-            <div class="w-full">
+              <div class="w-full">
                 <div class="w-full flex flex-col items-center justify-center">
-
-                    <div class="w-fit flex flex-col p-4 rounded-md shadow border border-gray-200">
-                        <div class="w-700px flex flex-col space-y-6">
+                    <div class="w-full md:w-fit flex flex-col p-4 rounded-md shadow border border-gray-200">
+                        <div class="w-full md:w-[700px] flex flex-col space-y-6">
                             <div class="flex flex-col space-y-4">
                                 <div>
                                     <h1 class="poppins text-lg text-gray-800 font-semibold">CURRENT SCHOOL YEAR</h1>
@@ -41,7 +33,7 @@
                                 <div>
                                     <h1 class="poppins text-lg text-gray-800 font-semibold">ADD NEW SCHOOL YEAR</h1>
                                 </div>
-                                <form method="POST" action="/schoolyears/new" id="add-newSY-form" class="w-full flex items-end justify-between">
+                                <form method="POST" action="/schoolyears/new" id="add-newSY-form" class="w-full flex flex-col md:flex-row space-y-4 md:space-y-0 md:items-end justify-between">
                                     @csrf
                                     <div class="flex flex-col space-y-1 justify-end">
                                         <div  class="flex items-baseline space-x-2">

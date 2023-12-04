@@ -17,4 +17,6 @@ class WebsiteController extends Controller
             'rows' => OrgChartRow::orderBy('order')->get(),
         ]);
     }
+
+    
 }

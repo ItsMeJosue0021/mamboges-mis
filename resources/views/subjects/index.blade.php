@@ -10,9 +10,9 @@
             </div>
         </div>
 
-        <div class="h-600px px-4 overflow-auto w-full">
+        <div class="h-auto px-4 overflow-auto w-full">
             <div class="h-full flex flex-col">
-                <a class="w-full flex justify-between py-1 px-4 border-b border-gray-300  items-center">
+                <a class="w-full flex justify-between py-1 px-2 border-b border-gray-300  items-center">
 
                     <p class="w-full poppins text-lg font-semibold ">SUBJECT</p>
 
@@ -33,7 +33,7 @@
             @foreach ($subjects as $subject)
                 {{-- href="/sections/{{$section->id}}" --}}
 
-                <div class="w-full flex justify-between py-1 px-4 border-b border-gray-300 items-center">
+                <div class="w-full flex justify-between py-1 px-2 border-b border-gray-300 items-center">
                     <p class="w-full poppins text-base font-normal ">
                         {{$subject->name}}
                     </p>
@@ -58,12 +58,14 @@
                     </div>
                 </div>
             @endforeach
-        <div>
+            </div>
+        </div>
 
-        <div id="add-subject-modal" class="hidden absolute top-0 left-0 w-full h-full overflow-auto">
-            <div class="w-full h-full flex flex-col items-center justify-center space-y-6 px-32 py-8 bg-black bg-opacity-5">
+        {{-- Add Subject Modal --}}
+        <div id="add-subject-modal" class="hidden absolute top-0 left-0 w-full h-screen z-50">
+            <div class="w-full h-full flex flex-col items-center justify-center space-y-6 px-4 md:px-32 py-8 bg-black bg-opacity-5">
                 {{-- action="/subject/save" action="javascript:void(0)"--}}
-                <form id="subject-form" method="POST" action="/subjects/save" class="w-full flex flex-col space-y-6 bg-white p-8 pt-0 rounded-lg shadow-lg">
+                <form id="subject-form" method="POST" action="/subjects/save" class="w-full md:w-96 flex flex-col space-y-2 bg-white p-4 md:p-6 pt-0 rounded-lg shadow-md">
                     @csrf
                     <div class="w-full flex py-4">
                         <h1 class="poppins text-xl text-gray-800 font-medium">NEW SUBJECT</h1>
@@ -113,8 +115,9 @@
             </div>
         </div>
 
-        <div id="delete-modal" class="hidden absolute top-0 left-0 w-full h-full z-50">
-            <div class="flex flex-col w-full h-full items-center justify-start space-y-6 bg-black bg-opacity-5 ">
+        {{-- Delete Modal --}}
+        <div id="delete-modal" class="hidden absolute top-0 left-0 w-full h-screen z-50">
+            <div class="flex flex-col w-full h-full items-center justify-start space-y-6 bg-black bg-opacity-5 px-4">
                 <div class="flex flex-col p-4 rounded-md bg-white shadow-lg space-y-2 mt-60" id="delete-subject-id">
                     <div class="flex space-x-2">
                         <i class='bx bx-trash text-red-500 text-xl  cursor-pointer ' ></i>
@@ -129,10 +132,11 @@
             </div>
         </div>
 
-        <div id="edit-subject-modal" class="hidden absolute top-0 left-0 w-full h-full overflow-auto z-50">
-            <div class="w-full h-full flex flex-col items-center justify-center space-y-6 px-32 py-8 bg-black bg-opacity-5">
+        {{-- Edit Subject Modal --}}
+        <div id="edit-subject-modal" class="hidden absolute top-0 left-0 w-full h-screen z-50">
+            <div class="w-full h-full flex flex-col items-center justify-center space-y-6 px-4 md:px-32 py-8 bg-black bg-opacity-5">
                 {{-- action="/departments/save" action="javascript:void(0)"--}}
-                <form id="edit-subject-form" method="POST" action="javascript:void(0)"  class="w-1/2 flex flex-col space-y-6 bg-white p-8 pt-0 rounded-lg shadow-lg">
+                <form id="edit-subject-form" method="POST" action="javascript:void(0)"  class="w-full md:w-1/2 flex flex-col space-y-6 bg-white p-8 pt-0 rounded-lg shadow-lg">
                     @csrf
                     @method('PUT')
                     <div class="w-full flex py-4">

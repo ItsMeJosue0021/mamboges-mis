@@ -32,8 +32,7 @@
     <section id="container" class="w-full relative">
         <div class="h-fit w-full flex">
             <!-- sidebar -->
-            <div
-                class="h-screen overflow-y-auto hidden md:flex flex-grow border-r border-gray-300 bg-white shadow fixed z-30">
+            <div class="h-screen overflow-y-auto hidden md:flex flex-grow border-r border-gray-300 bg-white shadow fixed z-30">
                 <div class="h-fit p-2 px-4 min-w-250px">
                     <!-- logo -->
                     <div class="flex items-center py-2 mb-2">
@@ -197,14 +196,11 @@
             <div class="md:ml-250px w-full h-full flex flex-col">
                 <!-- header -->
                 <div class="sticky top-0 w-full flex items-center justify-between py-2 px-4 border-b border-gray-300 bg-white shadow z-10">
-
-                    <div class="flex md:hidden items-center py-2 mb-2">
+                    <div class="flex md:hidden items-center py-2">
                         <button class="px-2 py-1 rounded hover:bg-gray-100" type="button" data-drawer-target="drawer-navigation" data-drawer-show="drawer-navigation" aria-controls="drawer-navigation">
                             <i class='bx bx-menu text-4xl text-gray-700'></i>
                         </button>
                     </div>
-
-
                     <div class="hidden md:block">
                         <p>SCHOOL YEAR: <span class="text-blue-500">{{ $schoolYear }}</span></p>
                     </div>
@@ -390,8 +386,6 @@
                 </ul>
             </div>
         </div>
-
-
     </section>
 
 </body>

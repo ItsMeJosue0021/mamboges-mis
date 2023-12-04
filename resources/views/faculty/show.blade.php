@@ -9,10 +9,10 @@
         </div>
 
         <div class="w-full flex flex-col space-y-6 py-4">
-            <div class="w-full h-250px flex items-center space-x-4 rounded border border-gray-200 shadow p-4">
-                <div class="w-64">
+            <div class="relative w-full h-auto md:h-[250px] flex flex-col md:flex-row space-y-4 md:space-y-0 items-center md:space-x-4 rounded border border-gray-200 shadow p-4">
+                <div class="w-64 h-64 md:h-auto">
                     <img src="{{ $faculty->user->profile->image ? asset('storage/' . $faculty->user->profile->image) : ($faculty->user->profile->sex == 'Female' ? asset('image/female.png') : asset('image/male.png')) }}"
-                        alt="" class="w-full h-full rounded">
+                        alt="" class="w-full h-full md:rounded rounded-full">
                 </div>
 
                 <div class="w-full h-fit flex items-start justify-between p-4 ">
@@ -45,22 +45,23 @@
                         </div>
                     </div>
 
-                    <div class="flex flex-col space-y-2">
-                        <a id="edit-faculty" class="edit-faculty" data-faculty-id="{{ $faculty->id }}">
+                    <div class="flex flex-col space-y-2 absolute top-2 right-2">
+                        <button id="edit-faculty" class="edit-faculty" data-faculty-id="{{ $faculty->id }}">
                             <i class='bx bx-edit text-blue-500 text-xl cursor-pointer rounded bg-blue-50 py-1 px-2'></i>
-                        </a>
+                        </button>
                         <a href="{{ route('faculties.archiving-info', $faculty->id) }}">
                             <i class='bx bx-trash text-red-500 text-xl rounded bg-red-50 cursor-pointer py-1 px-2'></i>
                         </a>
                     </div>
                 </div>
+
             </div>
 
             <div class="w-full py-2 px-2 mb-4 border-b border-gray-300">
                 <p class="text-base">HANDLED CLASSES</p>
             </div>
 
-            <div class="w-full flex flex-col space-y-2 h-screen">
+            <div class="w-full flex flex-col space-y-2 h-auto min-28">
                 @if (count($classes) == 0)
                     <div class="h-64 w-full flex items-center justify-center">
                         <h1 class="poppins text-red-500 text-sm">No classes assigned yet.</h1>
@@ -92,18 +93,19 @@
 
         </div>
 
-        <div id="edit-facuty-modal" class="hidden absolute top-0 left-0 w-full h-screen z-50">
-            <div class="w-full h-full flex flex-col justify-start space-y-6 px-32 py-8 pt-20 bg-black bg-opacity-10">
+        {{-- Edit Faculty Modal --}}
+        <div id="edit-facuty-modal" class="hidden absolute top-0 left-0 w-full h-auto md:h-screen z-50">
+            <div class="w-full h-full flex flex-col justify-start space-y-6 px-4 md:px-32 py-8 md:pt-20 bg-black bg-opacity-10">
                 <form id="edit-faculty-form" method="POST" action="javascript:void(0)"
-                    class="w-full flex flex-col space-y-6 bg-white p-8 pt-0 rounded-lg shadow-md">
+                    class="w-full flex flex-col space-y-2 bg-white p-4 md:p-8 pt-0 rounded-lg shadow-md">
                     @csrf
                     @method('PUT')
-                    <div class="w-full flex py-4">
+                    <div class="w-full flex pb-4">
                         <h1 class="poppins text-xl text-gray-800 font-medium">TEACHER'S INFORMATION</h1>
                     </div>
 
-                    <div class="flex space-x-4 items-start">
-                        <div class="flex flex-col space-y-1 items-start justify-start w-1/3">
+                    <div class="flex flex-col md:flex-row space-y-4 space-0 md:space-x-4 items-start">
+                        <div class="flex flex-col space-y-1 items-start justify-start w-full md:w-1/3">
                             <label for="tag" class="poppins text-sm font-medium text-gray-700">Image
                                 @error('cover_photo')
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
@@ -158,8 +160,8 @@
                                 }
                             </script>
                         </div>
-                        <div class="flex flex-col space-y-2">
-                            <div class="w-full flex space-x-4">
+                        <div class="w-full flex flex-col space-y-2">
+                            <div class="w-full flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
                                 <div class="w-full flex flex-col space-y-1">
                                     <div class="flex items-baseline space-x-2">
                                         <label for="first_name" class="poppins text-sm font-medium text-gray-600">FIRST
@@ -204,12 +206,12 @@
                                     </div>
                                     <input type="text" name="suffix" id="suffix"
                                         value="{{ $faculty->user->profile->suffix }}"
-                                        class="poppins py-2 px-4 text-base border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-60px"
+                                        class="poppins py-2 px-4 text-base border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full md:w-[60px]"
                                         placeholder="jr.">
                                 </div>
                             </div>
 
-                            <div class="w-full flex space-x-4">
+                            <div  class="w-full flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
                                 <div class="w-full flex flex-col space-y-1">
                                     <div class="flex items-baseline space-x-2">
                                         <label for="sex"

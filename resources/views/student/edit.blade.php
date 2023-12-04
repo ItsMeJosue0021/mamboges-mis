@@ -21,8 +21,8 @@
                         indicates required fields.</p>
                 </div>
 
-                <div class="flex items-start space-x-4 ">
-                    <div class="flex flex-col items-start justify-start min-w-[330px]">
+                <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 items-start md:space-x-4 ">
+                    <div class="flex flex-col items-start justify-start w-full md:min-w-[330px] md:w-[500px]">
                         <label for="tag" class="poppins text-sm font-medium text-gray-700">Image
                             @error('cover_photo')
                                 <span class="text-xs font-light text-red-600">{{ $message }}</span>
@@ -78,7 +78,7 @@
                     </div>
 
                     <div class="w-full flex-col space-y-4">
-                        <div class="flex items-center space-x-4">
+                        <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 items-center md:space-x-4">
                             <div class="w-full flex flex-col ">
                                 <div class="flex items-baseline space-x-2">
                                     <label for="firstName" class="poppins text-sm font-medium text-gray-700">First Name
@@ -108,7 +108,7 @@
                             </div>
                         </div>
 
-                        <div class="flex items-center space-x-4">
+                        <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 items-center md:space-x-4">
                             <div class="w-full flex flex-col ">
                                 <div class="flex items-baseline space-x-2">
                                     <label for="middleName" class="poppins text-sm font-medium text-gray-700">Middle
@@ -233,7 +233,7 @@
                         indicates required fields.</p>
                 </div>
                 <div class="flex flex-col space-y-4">
-                    <div class="flex items-center space-x-4">
+                    <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 items-center md:space-x-4">
                         <div class="w-full flex flex-col space-y-1">
                             <div class="flex items-baseline space-x-2">
                                 <label for="lot" class="poppins text-sm font-medium text-gray-700">Lot</label>
@@ -288,7 +288,7 @@
                         </div>
                     </div>
 
-                    <div class="flex items-center space-x-4">
+                    <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 items-center md:space-x-4">
                         <div class="w-full flex flex-col space-y-1">
                             <div class="flex items-baseline space-x-2">
                                 <label for="barangay" class="poppins text-sm font-medium text-gray-700">Barangay <span
@@ -358,7 +358,7 @@
                         indicates required fields.</p>
                 </div>
                 <div class="flex-col space-y-4">
-                    <div class="flex items-center space-x-4">
+                    <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 items-center md:space-x-4">
                         <div class="w-full flex flex-col space-y-1">
                             <div class="flex items-baseline space-x-2">
                                 <label for="parentsFirstName" class="poppins text-sm font-medium text-gray-700">First
@@ -388,7 +388,7 @@
                         </div>
                     </div>
 
-                    <div class="flex items-center space-x-4">
+                    <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 items-center md:space-x-4">
                         <div class="w-full flex flex-col space-y-1">
                             <div class="flex items-baseline space-x-2">
                                 <label for="parentsMiddleName"
@@ -491,9 +491,9 @@
                 </div>
             </div>
 
-            <div class="flex items-center justify-start">
+            <div class="w-full flex items-center justify-start">
                 <button type="submit"
-                    class="px-4 py-2 rounded text-white bg-blue-600 hover:bg-blue-700 poppins">Submit</button>
+                    class="w-full md:w-fit text-center px-4 py-2 rounded text-white bg-blue-600 hover:bg-blue-700 poppins">Update</button>
             </div>
         </form>
     </div>

@@ -10,7 +10,9 @@ class OrgChartRowController extends Controller
 {
 
     public function index() {
-        return view('org-chart.index');
+        return view('org-chart.index', [
+            'rows' => OrgChartRow::orderBy('order')->get(),
+        ]);
     }
 
     public function create()

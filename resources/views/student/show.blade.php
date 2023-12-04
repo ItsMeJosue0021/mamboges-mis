@@ -8,14 +8,25 @@
             </a>
         </div>
 
-        <div class="w-full flex flex-col space-y-6 py-4 pb-6">
-            <div class="w-full h-250px flex space-x-4">
-                <div class="min-w-[250px] w-[230px] h-[220px] rounded border border-gray-200 shadow">
+        <div class="w-full flex flex-col space-y-6 py-4">
+            <div class="w-full h-auto flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+                <div class="w-full md:min-w-[250px] md:w-[230px] md:h-[220px] rounded border border-gray-200 shadow relative">
                     <img src="{{ $student->user->profile->image ? asset('storage/' . $student->user->profile->image) : asset('image/mamboges.jpg') }}"
                         alt="" class="w-full h-full rounded">
+
+                    <div class="md:hidden flex flex-col items-start space-y-2 absolute right-2 top-2">
+                        <a href="{{ route('student.edit', $student->id) }}">
+                            <i
+                                class='bx bx-edit text-blue-500 text-xl cursor-pointer rounded bg-blue-50 py-1 px-2'></i>
+                        </a>
+                        <a href="{{ route('student.archiving-info', $student->id) }}">
+                            <i
+                                class='bx bx-trash text-red-500 text-xl rounded bg-red-50 cursor-pointer py-1 px-2'></i>
+                        </a>
+                    </div>
                 </div>
 
-                <div class="w-full h-fit flex justify-between p-4 rounded-md shadow space-x-4 border border-gray-200">
+                <div class="w-full h-fit flex justify-between md:p-4 rounded-md shadow space-x-4 md:border border-gray-200">
                     <div class="w-full flex flex-col">
                         <div class="flex items-center space-x-2 border border-gray-300 py-1 px-2 bg-blue-100 rounded-t">
                             <span class="poppins text-2xl font-medium">{{ $student->user->profile->firstName }}</span>
@@ -46,7 +57,7 @@
                         </div>
                     </div>
 
-                    <div class="flex items-start">
+                    <div class="hidden md:flex items-start">
                         <div class="flex flex-col items-start space-y-2">
                             <a href="{{ route('student.edit', $student->id) }}">
                                 <i
@@ -61,12 +72,12 @@
                 </div>
             </div>
 
-            <div class="w-full flex space-x-4 h-screen">
-                <div class="w-2/3 h-full flex justify-center items-center shadow-md rounded border border-gray-200">
+            <div class="w-full flex flex-col-reverse md:flex-row md:space-x-4">
+                <div class="w-full md:w-2/3 h-auto min-h-[500px] flex justify-center items-center shadow-md rounded border border-gray-200">
                     <p>This is the report card area</p>
                 </div>
 
-                <div class="w-1/3 h-full ">
+                <div class="w-full md:w-1/3 h-full  mb-4 md:mb-0">
                     <div class="w-full shadow rounded border border-gray-200 p-4">
                         <h1 class="poppins font-medium text-lg border-b border-gray-300 mb-2">Parents information</h1>
                         <div>

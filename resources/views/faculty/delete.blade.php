@@ -9,7 +9,7 @@
         </div>
         <div class="w-full flex items-start justify-center">
             <form action="{{ route('faculties.delete', $faculty->id) }}" method="POST"
-                class="w-1/2 rounded-md p-4 border border-gray-200 shadow">
+                class="w-full md:w-1/2 rounded-md p-4 border border-gray-200 shadow">
                 @csrf
                 <div class="flex flex-col ">
                     <div class="mb-2">
@@ -40,7 +40,7 @@
 
 
                             <div id="otherReason" class="hidden flex-col space-y-1">
-                                
+
                             </div>
 
                             <div class="flex items-center space-x-3 pt-3">
