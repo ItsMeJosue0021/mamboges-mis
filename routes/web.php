@@ -111,13 +111,14 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
     });
 
     // FEEDBACK
-    Route::controller(FeedbackController::class)->group(function () {
-        Route::get('/feedback', 'index')->name('feedback.index');
-        Route::get('/feedback/{feedback}', 'show')->name('feedback.show');
-        Route::post('/feedback/{feedback}/replyfeedback', 'reply')->name('feedback.reply');
-        Route::put('/feedback/{feedback}/read', 'read')->name('feedback.read');
+    Route::prefix('feedback')->group(function () {
+        Route::controller(FeedbackController::class)->group(function () {
+            Route::get('', 'index')->name('feedback.index');
+            Route::get('/{feedback}', 'show')->name('feedback.show');
+            Route::post('/{feedback}/replyfeedback', 'reply')->name('feedback.reply');
+            Route::put('/{feedback}/read', 'read')->name('feedback.read');
+        });
     });
-
     // UPDATES
     Route::prefix('updates')->group(function () {
         Route::controller(UpdatesController::class)->group(function () {
@@ -196,31 +197,36 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
     Route::get('/parents', [GuardianController::class, 'index']);
 
     // DEPARTMENTS
-    Route::controller(DepartmentController::class)->group(function () {
-        Route::get('/departments', 'index')->name('departments.index');
-        Route::post('/departments/save', 'store')->name('departments.store');
-        Route::get('/departments/edit/{department}', 'getDepartment')->name('departments.getDepartment');
-        Route::delete('/departments/{department}/delete', 'delete')->name('departments.delete');
-        Route::put('/departments/{department}/update', 'update')->name('departments.update');
+    Route::prefix('departments')->group(function () {
+        Route::controller(DepartmentController::class)->group(function () {
+            Route::get('', 'index')->name('departments.index');
+            Route::post('/save', 'store')->name('departments.store');
+            Route::get('/edit/{department}', 'getDepartment')->name('departments.getDepartment');
+            Route::delete('/{department}/delete', 'delete')->name('departments.delete');
+            Route::put('/{department}/update', 'update')->name('departments.update');
+        });
     });
-
     // SUBJECTS
-    Route::controller(SubjectsController::class)->group(function () {
-        Route::get('/subjects', 'index')->name('subjects.index');
-        Route::post('/subjects/save', 'store')->name('subjects.store');
-        Route::get('/subjects/edit/{subject}', 'getSubject')->name('subjects.getSubject');
-        Route::put('/subjects/{subject}/update', 'update')->name('subjects.update');
-        Route::delete('/subjects/{subject}/delete', 'delete')->name('subjects.delete');
+    Route::prefix('subjects')->group(function () {
+        Route::controller(SubjectsController::class)->group(function () {
+            Route::get('', 'index')->name('subjects.index');
+            Route::post('/save', 'store')->name('subjects.store');
+            Route::get('/edit/{subject}', 'getSubject')->name('subjects.getSubject');
+            Route::put('/{subject}/update', 'update')->name('subjects.update');
+            Route::delete('/{subject}/delete', 'delete')->name('subjects.delete');
+        });
     });
 
     // SETTINGS
     Route::get('/settings', [SettingsController::class, 'index']);
 
     // SCHOOL YEAR
-    Route::controller(SchoolYearController::class)->group(function () {
-        Route::get('/schoolyears', 'getSchoolYears')->name('schoolyear');
-        Route::post('/schoolyears/new', 'store')->name('schoolyear.store');
-        Route::put('/schoolyears/change', 'changeSchoolYear')->name('schoolyear.change');
+    Route::prefix('schoolyears')->group(function () {
+        Route::controller(SchoolYearController::class)->group(function () {
+            Route::get('', 'getSchoolYears')->name('schoolyear');
+            Route::post('/new', 'store')->name('schoolyear.store');
+            Route::put('/change', 'changeSchoolYear')->name('schoolyear.change');
+        });
     });
 
     // LOGS
@@ -241,26 +247,32 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
         });
     });
 
-    Route::controller(AchievementController::class)->group(function () {
-        Route::get('/achievements/create', 'create')->name('achievements.create');
-        Route::post('/achievements/save', 'store')->name('achievements.store');
-        Route::get('/achievements/{achievement}/edit', 'edit')->name('achievements.edit');
-        Route::get('/achievments/list', 'list')->name('achievements.list');
-        Route::get('/get-images', 'getImages')->name('achievements.images');
-        Route::put('/achievements/{achievement}/update', 'update')->name('achievements.update');
-        Route::delete('/achievements/{achievement}/delete', 'delete')->name('achievements.delete');
+    // ACHIEVEMENTS
+    Route::prefix('achievements')->group(function () {
+        Route::controller(AchievementController::class)->group(function () {
+            Route::get('/create', 'create')->name('achievements.create');
+            Route::post('/save', 'store')->name('achievements.store');
+            Route::get('/{achievement}/edit', 'edit')->name('achievements.edit');
+            Route::get('/list', 'list')->name('achievements.list');
+            Route::put('/achievements/{achievement}/update', 'update')->name('achievements.update');
+            Route::delete('/achievements/{achievement}/delete', 'delete')->name('achievements.delete');
+        });
     });
+
+    Route::get('/get-images', [AchievementController::class, 'getImages'])->name('achievements.images');
 
     Route::delete('/achievements/{achievement}/delete-image/{achievementImage}', [AchievementImageController::class, 'destroy'])
         ->name('achievementImage.delete');
 
-    Route::controller(DownloadableFileController::class)->group(function () {
-        Route::get('/downloadables/list', 'list')->name('downloadables.list');
-        Route::post('/downloadables/save', 'store')->name('downloadables.store');
-        Route::get('/downloadables/{downloadableFile}', 'show')->name('downloadables.show');
-        Route::get('/downloadables/{downloadableFile}/edit', 'edit')->name('downloadables.edit');
-        Route::put('/downloadables/{downloadableFile}/update', 'update')->name('downloadables.update');
-        Route::delete('/downloadables/{downloadableFile}/delete', 'destroy')->name('downloadables.delete');
+    Route::prefix('achievement-images')->group(function () {
+        Route::controller(DownloadableFileController::class)->group(function () {
+            Route::get('/list', 'list')->name('downloadables.list');
+            Route::post('/save', 'store')->name('downloadables.store');
+            Route::get('/{downloadableFile}', 'show')->name('downloadables.show');
+            Route::get('/{downloadableFile}/edit', 'edit')->name('downloadables.edit');
+            Route::put('/{downloadableFile}/update', 'update')->name('downloadables.update');
+            Route::delete('/{downloadableFile}/delete', 'destroy')->name('downloadables.delete');
+        });
     });
 
     Route::controller(DownloadableFilesGroupController::class)->group(function () {
