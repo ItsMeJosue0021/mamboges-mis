@@ -29,6 +29,17 @@
                             <i class='bx bx-menu text-4xl text-gray-700'></i>
                         </button>
                     </div>
+
+                    <div class="hidden md:flex items-center">
+                        <a href="/" class="flex items-center space-x-2">
+                            <img class="w-[60px] h-[60px]" src="{{ asset('image/mambog.png') }}" alt="">
+                            <div class="flex flex-col">
+                                <p class="castoro text-sm font-bold">MAMBOG</p>
+                                <p class="castoro text-xs font-medium">ELEMENTARY SCHOOL</p>
+                            </div>
+                        </a>
+                    </div>
+
                     <div class="flex items-center space-x-2 ">
                         {{-- <i class='bx bx-cog text-2xl text-lightestgray '></i> --}}
                         <div class="flex sm:items-center">

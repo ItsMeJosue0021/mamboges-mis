@@ -81,12 +81,12 @@
 
                         <x-scripts.modal-search-student />
 
-                        <div class="px-4">
+                        <div class="">
                             <h2 class="text-3xl font-bold">Enroll Student</h2>
                         </div>
 
                         <div class="w-full flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-4">
-                            <div class="w-full md:w-1/2 h-fit max-h-[500px] overflow-y-auto md:p-4">
+                            <div class="w-full md:w-1/2 h-auto max-h-[500px] overflow-y-auto md:p-4">
                                 <div class="mb-3">
                                     <h1 class="poppins text-base font-medium">Search Student</h1>
                                     <input type="text" name="search-student" id="search-student"

@@ -4,6 +4,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: 'old-english';
+    src: url('/font/old-english.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.old-english {
+    font-family: 'old-english', sans-serif;
+}
 
 .poppins {
     font-family: 'Poppins', sans-serif;
@@ -22,7 +32,7 @@ label.error {
 }
 
 .active p, .active i {
-    color: #2563EB; 
+    color: #2563EB;
 }
 
 .active-archive, .active-level {
@@ -62,4 +72,3 @@ input::-webkit-inner-spin-button {
           linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
           var(--dot-color);
   }
-    

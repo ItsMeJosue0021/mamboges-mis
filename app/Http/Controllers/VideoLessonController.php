@@ -11,7 +11,7 @@ class VideoLessonController extends Controller
     public function index()
     {
         return view('lr.web-videos', [
-            'videos' => VideoLesson::latest()->filter(Request(['topic', 'grade']))->simplePaginate(12),
+            'videos' => VideoLesson::latest()->filter(Request(['search', 'grade']))->simplePaginate(12),
         ]);
     }
 

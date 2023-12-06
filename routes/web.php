@@ -49,8 +49,6 @@ use App\Http\Controllers\ClassRecordEvaluationCriteriaController;
 
 require __DIR__ . '/auth.php';
 
-
-
 // HOME
 Route::get('/', [WebsiteController::class, 'index'])->name('home');
 

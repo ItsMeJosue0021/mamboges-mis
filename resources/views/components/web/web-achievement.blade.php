@@ -6,32 +6,34 @@
         <div class="flex flex-row-reverse items-start md:space-x-4 justify-between">
 
             @if ($firstachievement != null)
-                <div class="w-[700px] hidden md:flex flex-col space-y-2" data-aos="fade-right"
+                <div class="w-[700px] hidden md:flex flex-col space-y-2 relative" data-aos="fade-right"
                 data-aos-delay="500">
                     <img alt=""
                         src="{{ $firstachievement->coverPhoto ? asset('storage/' . $firstachievement->coverPhoto) : asset('image/mamboges.jpg') }}"
                         class="w-full h-[450px] rounded shadow-md">
-                    <div class="flex flex-col space-y-1 py-2">
 
-                        <h1 class="poppins font-semibold text-lg text-gray-800">
-                            {{ substr($firstachievement->title, 0, 70) }}{{ strlen($firstachievement->title) > 70 ? '...' : '' }}
-                        </h1>
-                        <p class="poppins text-sm text-gray-600 ">
-                            <span class="poppins text-gray-500 text-sm">{{$firstachievement->created_at}}</span>
-                        </p>
-                        <p class="poppins text-sm text-gray-600 ">
-                            {!! substr($firstachievement->description, 0, 90) !!}{{ strlen($firstachievement->description) > 90 ? '...' : '' }}
-                        </p>
-                        <div class="flex items-center justify-start py-2">
-                            <a href="{{ route('achievements.show', $firstachievement->id) }}"
-                                class="poppins px-2 py-1 text-xs text-blue-600 border border-blue-600 hover:bg-blue-600 hover:text-white ">Read
-                                More</a>
+                    <div class="w-full absolute bottom-0 left-0 bg-gradient-to-t from-black to-transparent opacity-70">
+                        <div class="w-full flex flex-col space-y-1 p-6 text-gray-200 poppins text-sm">
+                            <h1 class="poppins font-semibold text-lg text-white">
+                                {{ substr($firstachievement->title, 0, 70) }}{{ strlen($firstachievement->title) > 70 ? '...' : '' }}
+                            </h1>
+                            <p class="poppins text-sm text-white ">
+                                <span class="poppins text-white text-sm">{{$firstachievement->created_at}}</span>
+                            </p>
+                            <p class="poppins text-white ">
+                                {!! substr($firstachievement->description, 0, 90) !!}{{ strlen($firstachievement->description) > 90 ? '...' : '' }}
+                            </p>
+                            <div class="flex items-center justify-start py-2">
+                                <a href="{{ route('achievements.show', $firstachievement->id) }}"
+                                    class="poppins px-2 py-1 text-xs text-white border border-white">Read
+                                    More</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             @endif
 
-            <div class="w-full flex flex-col space-y-4">
+            <div class="w-full md:w-1/2 flex flex-col space-y-4">
                 @foreach ($achievements as $achievement)
                     <div class="flex flex-col md:flex-row items-center md:space-x-3" data-aos="fade-up"
                     data-aos-delay="500">

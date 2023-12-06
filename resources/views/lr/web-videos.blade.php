@@ -5,7 +5,6 @@
                 class="w-full flex flex-col md:flex-row md:items-center md:justify-between pb-4 mb-8 border-b border-gray-300">
                 <h1 class="w-full poppins text-2xl font-medium">Video Lessons</h1>
                 <form action="{{ route('video.index') }}" class="w-full">
-                    @csrf
                     <div class="w-full flex items-center space-x-2 md:space-x-4">
                         <input name="search" type="text"
                             class="w-2/4 md:w-96 rounded poppins text-sm border border-gray-400"

@@ -2,17 +2,17 @@
 
     <x-wr-config :evaluations="$evaluations" />
 
-    <form action="{{ route('score.store') }}" method="POST"> 
+    <form action="{{ route('score.store') }}" method="POST" class="w-full ">
         @csrf
         <input name="criteria_id" type="hidden" value="{{$evaluations->first()->id}}">
 
-        <div class="w-full border-l border-b border-gray-400 bg-white rounded-md">
+        <div class="w-full overflow-x-auto border-l border-b border-gray-400 bg-white rounded-md">
             {{-- row 2 --}}
             <div class="w-full flex border-t border-b border-r  border-gray-400 bg-gray-100 rounded-t-md">
                 <div class="w-1/4 flex justify-start items-center px-2 py-2 border-r border-gray-400">
                     <p class="poppins text-sm">ACTIVITY NUMBER</p>
                 </div>
-                
+
                 <div class="w-3/4 flex justify-between border-gray-400">
                     <div class="flex">
                         @foreach ($activities as $index => $activity)
@@ -30,7 +30,7 @@
                         <div class="w-[65px] flex justify-center items-center rounded-tr-md border-gray-400">
                             <p class="poppins text-xs font-medium">WS</p>
                         </div>
-                    </div>  
+                    </div>
                 </div>
             </div>
 
@@ -67,8 +67,8 @@
             </div>
 
             {{-- row 4 --}}
-            <div class="border-r border-gray-400 rounded-br-md">                      
-                @foreach ($students as $student)          
+            <div class="border-r border-gray-400 rounded-br-md">
+                @foreach ($students as $student)
                     <x-wr-student-row :student="$student" :activities="$activities" :evaluations="$evaluations" :totalscore="$total_score"/> {{--:activities="$activities"--}}
                 @endforeach
             </div>

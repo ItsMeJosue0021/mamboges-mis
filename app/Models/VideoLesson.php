@@ -30,6 +30,4 @@ class VideoLesson extends Model
                 ->orWhere('topic', 'like', '%' . request('search') . '%');
         }
     }
-
-
 }

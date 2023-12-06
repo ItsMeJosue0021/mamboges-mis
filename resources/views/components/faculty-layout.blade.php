@@ -23,11 +23,11 @@
             <div class="w-full h-full flex flex-col pb-4">
                 <!-- header -->
                 <div
-                    class="fixed w-full flex items-center justify-between py-3 px-8 border-b border-gray-300 bg-white shadow z-10">
+                    class="w-full sticky top-0 flex items-center justify-between py-3 px-4 border-b border-gray-300 bg-white shadow z-10">
 
                     <div class="flex items-center">
                         <a href="/" class="flex items-center space-x-2">
-                            <img class="w-60px h-60px" src="{{ asset('image/mambog.png') }}" alt="">
+                            <img class="w-[60px] h-[60px]" src="{{ asset('image/mambog.png') }}" alt="">
                             <div class="flex flex-col">
                                 <p class="castoro text-sm font-bold">MAMBOG</p>
                                 <p class="castoro text-xs font-medium">ELEMENTARY SCHOOL</p>
@@ -35,7 +35,7 @@
                         </a>
                     </div>
                     <div class="flex items-center space-x-2 ">
-                        <div class="hidden sm:flex sm:items-center">
+                        <div class="flex sm:items-center">
                             <x-dropdown width="48">
                                 <x-slot name="trigger">
                                     <button
@@ -64,7 +64,7 @@
                     </div>
                 </div>
                 <!-- main content -->
-                <div id="container" class="w-full pt-24 px-8">
+                <div id="container" class="w-full px-4">
                     <main>
                         {{ $slot }}
                     </main>

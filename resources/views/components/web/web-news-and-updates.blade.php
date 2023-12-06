@@ -10,23 +10,26 @@
                     <img alt=""
                         src="{{ $firstupdate->cover_photo ? asset('storage/' . $firstupdate->cover_photo) : asset('image/mamboges.jpg') }}"
                         class="w-full h-[450px] rounded shadow-md">
-                    <div class="flex flex-col space-y-1 py-2">
-                        <a href="#" class="poppins text-red-600 text-sm ">
-                            {{ $firstupdate->tag->tag ?? '' }}
-                        </a>
-                        <h1 class="poppins font-semibold text-lg text-gray-800">
-                            {{ substr($firstupdate->title, 0, 70) }}{{ strlen($firstupdate->title) > 70 ? '...' : '' }}
-                        </h1>
-                        <p class="poppins text-sm text-gray-600 ">
-                            <span class="poppins text-gray-500 text-sm">{{ $firstupdate->created_at }}</span>
-                        </p>
-                        <p class="poppins text-sm text-gray-600 ">
-                            {!! substr($firstupdate->description, 0, 90) !!}{{ strlen($firstupdate->description) > 90 ? '...' : '' }}
-                        </p>
-                        <div class="flex items-center justify-start py-2">
-                            <a href="{{ route('update.show', $firstupdate->id) }}"
-                                class="poppins px-2 py-1 text-xs text-blue-600 border border-blue-600 hover:bg-blue-600 hover:text-white ">Read
-                                More</a>
+
+                    <div class="w-full absolute bottom-0 left-0 bg-gradient-to-t from-black to-transparent opacity-70">
+                        <div class="flex flex-col space-y-1 backdrop-blur-sm p-6 text-gray-200 poppins">
+                            <a href="#" class="poppins text-red-600 text-sm ">
+                                {{ $firstupdate->tag->tag ?? '' }}
+                            </a>
+                            <h1 class="poppins font-semibold text-lg text-white">
+                                {{ substr($firstupdate->title, 0, 70) }}{{ strlen($firstupdate->title) > 70 ? '...' : '' }}
+                            </h1>
+                            <p class="poppins text-sm text-white ">
+                                <span class="poppins text-white text-sm">{{ $firstupdate->created_at }}</span>
+                            </p>
+                            <p class="poppins text-sm ">
+                                {!! substr($firstupdate->description, 0, 90) !!}{{ strlen($firstupdate->description) > 90 ? '...' : '' }}
+                            </p>
+                            <div class="flex items-center justify-start py-2">
+                                <a href="{{ route('update.show', $firstupdate->id) }}"
+                                    class="poppins px-2 py-1 text-xs text-white border border-white ">Read
+                                    More</a>
+                            </div>
                         </div>
                     </div>
                 </div>

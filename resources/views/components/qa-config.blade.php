@@ -17,7 +17,7 @@
         <div class="w-fit flex items-center space-x-3 rounded py-2 px-2 border border-gray-300">
             {{-- <p class="poppins py-1 px-3 rounded-[3px] border border-gray-300 text-xs">10</p>
             <h2 class="poppins text-sm ">ACTIVITIES</h2> --}}
-            <a id="new-assessment" class="poppins text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 px-2 py-1 rounded-[3px] cursor-pointer">NEW ACTIVITY</a>
+            <a id="new-assessment" class="poppins text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 px-2 py-1 rounded-[3px] cursor-pointer">ADD ASSESSMENT</a>
         </div>
     </div>
 
@@ -41,19 +41,19 @@
         });
 
         $("#QA_changePercentageButton").click(function(e) {
-            e.preventDefault(); 
-    
-            var form = $('#QA_PercentageForm'); 
+            e.preventDefault();
+
+            var form = $('#QA_PercentageForm');
             var evaluationId = $(this).data("evaluation-id");
             var csrfToken = $('meta[name="csrf-token"]').attr('content');
             var classRecordId = $('#classRecordId').data('class-record-id');
 
             $.ajaxSetup({ headers: {'X-CSRF-TOKEN': csrfToken} });
-    
+
             $.ajax({
                 type: "POST",
                 url: '/update-percentage/' + evaluationId + '/record/' + classRecordId,
-                data: form.serialize(), 
+                data: form.serialize(),
                 success: function(response) {
                     var message;
                     if (response.status === 'success') {
@@ -71,7 +71,7 @@
                                             '<i class="bx bx-block text-red-500 text-4xl"></i>' +
                                             '<p class="poppins text-sm text-red-700">' + response.message + '</p>' +
                                         '</div>' +
-                                    '</div>');   
+                                    '</div>');
                     }
 
                     $('#container').append(message);
