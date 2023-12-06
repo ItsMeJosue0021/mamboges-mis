@@ -40,7 +40,7 @@
                         <x-written-works :students="$students" :evaluations="$evaluations" :activities="$wr_activities" :classrecord="$class_record"/>
                         <x-performance-task :students="$students" :evaluations="$evaluations" :activities="$pt_activities" :classrecord="$class_record"/>
                         <x-quarterly-assessment :students="$students" :evaluations="$evaluations" :activities="$qa_activities" :classrecord="$class_record"/>
-                        <x-final-grade :students="$students" :classrecord="$class_record" :wrActivities="$wr_activities" :ptActivities="$pt_activities" :qaActivities="$qa_activities" />
+                        <x-final-grade :students="$students" :evaluations="$evaluations" :classrecord="$class_record" :wrActivities="$wr_activities" :ptActivities="$pt_activities" :qaActivities="$qa_activities" />
                     </div>
                 </div>
             </div>
