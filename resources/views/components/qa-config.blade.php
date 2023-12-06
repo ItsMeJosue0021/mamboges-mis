@@ -1,4 +1,4 @@
-<div class="w-full flex items-center justify-between border border-gray-300 shadow rounded py-2 px-2 mb-3">
+<div class="w-full flex items-center justify-between border border-gray-400 py-2 px-2 mb-3">
     <div class="w-full flex items-center space-x-4 rounded">
         <div class="w-fit flex items-center space-x-4">
             <h1 class="poppins h-full rounded p-2 text-sm font-bold">QUARTERLY ASSESSMENT</h1>

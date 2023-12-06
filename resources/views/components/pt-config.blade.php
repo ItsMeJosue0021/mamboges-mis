@@ -1,4 +1,4 @@
-<div class="w-full flex items-center justify-between border border-gray-300 shadow rounded py-2 px-2 mb-3">
+<div class="w-full flex items-center justify-between border border-gray-400 py-2 px-2 mb-3">
     <div class="w-full flex items-center space-x-4 rounded">
         <div class="w-fit flex items-center space-x-4">
             <h1 class="poppins h-full rounded p-2 text-sm font-bold">PERFORMANCE TASK</h1>
@@ -41,19 +41,19 @@
         });
 
         $("#PT_changePercentageButton").click(function(e) {
-            e.preventDefault(); 
-    
-            var form = $('#PT_percentageForm'); 
+            e.preventDefault();
+
+            var form = $('#PT_percentageForm');
             var evaluationId = $(this).data("evaluation-id");
             var csrfToken = $('meta[name="csrf-token"]').attr('content');
             var classRecordId = $('#classRecordId').data('class-record-id');
 
             $.ajaxSetup({ headers: {'X-CSRF-TOKEN': csrfToken} });
-    
+
             $.ajax({
                 type: "POST",
                 url: '/update-percentage/' + evaluationId + '/record/' + classRecordId,
-                data: form.serialize(), 
+                data: form.serialize(),
                 success: function(response) {
                     var message;
                     if (response.status === 'success') {
@@ -71,7 +71,7 @@
                                             '<i class="bx bx-block text-red-500 text-4xl"></i>' +
                                             '<p class="poppins text-sm text-red-700">' + response.message + '</p>' +
                                         '</div>' +
-                                    '</div>');   
+                                    '</div>');
                     }
 
                     $('#container').append(message);
