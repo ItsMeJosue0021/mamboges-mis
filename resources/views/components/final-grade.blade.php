@@ -1,72 +1,18 @@
 <div id="final" class="hidden">
-    <div class="w-full flex items-center justify-between border border-gray-300 shadow py-2 px-2 mb-3">
+    <div class="configuration w-full flex items-center justify-between border border-gray-500  py-2 px-2 mb-3">
         <div class="w-full flex items-center space-x-4 ">
-            <div class="w-fit flex items-center space-x-4">
+            <div class="w-full flex items-center justify-between space-x-4">
                 <h1 class="poppins h-full rounded p-2 text-sm font-bold">CLASS RECORD</h1>
+                <a href="{{ route('class.record.printable', $class->id) }}" class="text-sm bg-gray-600 hover:bg-gray-700 text-white py-2 px-4 flex items-center poppins">
+                    <i class='bx bx-printer text-white text-base mr-2'></i> Print
+                </a>
             </div>
         </div>
     </div>
 
-    {{-- <div class=" w-full border-t border-l border-r border-gray-400 rounded-md">
-        <div class="flex justify-start border-b border-gray-400 rounded-t-md bg-gray-200 ">
-            <div class="w-1/4 flex justify-start items-center px-2 border-r border-gray-400">
-                <p class="poppins text-sm text-center font-semibold">Learners</p>
-            </div>
-            <div class="w-3/4 flex justify-end">
-                <div class="flex border-l border-gray-400">
-                    <div class="w-[150px] flex flex-col justify-center items-center border-r border-gray-400 py-2">
-                        <p class="poppins text-sm text-center font-semibold">Written Works</p>
-                    </div>
-                    <div class="w-[150px] flex flex-col justify-center items-center border-r border-gray-400 py-2">
-                        <p class="poppins text-sm text-center font-semibold">Performance</p>
-                        <p class="poppins text-sm text-center font-semibold">Tasks</p>
-                    </div>
-                    <div class="w-[150px] flex flex-col justify-center items-center border-r border-gray-400 py-2">
-                        <p class="poppins text-sm text-center font-semibold">Quarterly</p>
-                        <p class="poppins text-sm text-center font-semibold">Assessments</p>
-                    </div>
-                    <div class="w-[150px] flex flex-col justify-center items-center">
-                        <p class="poppins text-sm text-center font-semibold">Final Grade</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @foreach ($students as $student)
-            <div class="flex justify-start border-b border-gray-400 ">
-                <div class="w-1/4 flex justify-start items-center px-2 border-r border-gray-400">
-                    <div class="flex space-x-2 py-2">
-                        <p class="poppins text-sm">{{ $student->user->profile->firstName }},</p>
-                        <p class="poppins text-sm">{{ $student->user->profile->lastName }}</p>
-                        <p class="poppins text-sm">{{ substr($student->user->profile->middleName, 0, 1) }}.</p>
-                    </div>
-                </div>
-
-                @php
-                    $evaluationCriterias = $classrecord->classRecordEvaluationCriterias;
-                    $finalGrade = 0;
-                @endphp
-
-                <div class="w-3/4 flex justify-end">
-                    <div class="flex border-l border-gray-400">
-                        @foreach ($evaluationCriterias as $evaluationCriteria)
-                            @php
-                                $activity_statistic = $student->activityStatistics->where('class_record_evaluation_criteria_id', $evaluationCriteria->id)->first();
-                                $finalGrade += $activity_statistic->ws ?? 0;
-                            @endphp
-                            <div class="w-[150px] flex justify-center items-center border-r border-gray-400">
-                                <p class="poppins text-sm">{{ $activity_statistic->ws ?? 0 }}</p>
-                            </div>
-                        @endforeach
-                        <div class="w-[150px] flex justify-center items-center">
-                            <p class="poppins text-sm">{{ $finalGrade }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-    </div> --}}
-    <div class="w-full mt-16 mb-10 border border-gray-200 old-english">
-        <div class="w-full flex items-start relative">
+    {{-- class record to be printed --}}
+    <div id="class-record" class="w-full mt-16 mb-10 old-english ">
+        <div class="w-full flex items-start relative ">
             <img src="{{ asset('image/deped/deped.png') }}" alt="" class="w-48 h-20 absolute right-4 top-0">
             <div class="p-5">
                 <img src="{{ asset('image/deped/deped-circle.png') }}" alt="" class="w-24 ">
@@ -123,7 +69,7 @@
             <div class="w-20"></div>
         </div>
         <div class="w-full flex">
-            <div class="w-1/5 h-6 border-2 border-r-0 border-gray-700 flex items-center justify-center text-[10px]">
+            <div class="min-w-[20%] w-1/5 h-6 border-2 border-r-0 border-gray-700 flex items-center justify-center text-[10px]">
                 <span class="font-bold">THIRD QUARTER</span>
             </div>
             <div
@@ -142,7 +88,7 @@
             </div>
         </div>
         <div class="w-full flex">
-            <div class="w-1/5 flex border-0 border-l-2 border-gray-700">
+            <div class="min-w-[20%] w-1/5 flex border-0 border-l-2 border-gray-700">
                 <div class="w-6">
                     <div class="h-[48px] border-b-2 border-r-2 border-gray-700"></div>
                     <div class="h-4 border-b-2 border-r-2 border-gray-700"></div>
@@ -334,7 +280,7 @@
         </div>
 
         <div class="w-full flex bg-gray-200">
-            <div class="w-1/5 flex border-0 border-l-2 border-gray-700">
+            <div class="min-w-[20%] w-1/5 flex border-0 border-l-2 border-gray-700">
                 <div class="w-6 h-4 border-b-2 border-r-2 border-gray-700 flex items-center justify-center">
                     <span class="text-[10px] h-4 "></span>
                 </div>
@@ -479,6 +425,22 @@
             <x-class-record-student :loop="$loop" :student="$student" :evaluations="$evaluations" :classrecord="$classrecord"
                 :wrActivities="$wrActivities" :ptActivities="$ptActivities" :qaActivities="$qaActivities" />
         @endforeach
-
+        @foreach ($students as $student)
+            <x-class-record-student :loop="$loop" :student="$student" :evaluations="$evaluations" :classrecord="$classrecord"
+                :wrActivities="$wrActivities" :ptActivities="$ptActivities" :qaActivities="$qaActivities" />
+        @endforeach
+        @foreach ($students as $student)
+            <x-class-record-student :loop="$loop" :student="$student" :evaluations="$evaluations" :classrecord="$classrecord"
+                :wrActivities="$wrActivities" :ptActivities="$ptActivities" :qaActivities="$qaActivities" />
+        @endforeach
+        @foreach ($students as $student)
+            <x-class-record-student :loop="$loop" :student="$student" :evaluations="$evaluations" :classrecord="$classrecord"
+                :wrActivities="$wrActivities" :ptActivities="$ptActivities" :qaActivities="$qaActivities" />
+        @endforeach
+        @foreach ($students as $student)
+            <x-class-record-student :loop="$loop" :student="$student" :evaluations="$evaluations" :classrecord="$classrecord"
+                :wrActivities="$wrActivities" :ptActivities="$ptActivities" :qaActivities="$qaActivities" />
+        @endforeach
     </div>
-    </body>
+
+</body>

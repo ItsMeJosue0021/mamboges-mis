@@ -1,0 +1,12 @@
+
+/* Print layout styles */
+@media print {
+    #class-record {
+        width: 100%; /* Set the width to 100% for printing */
+        margin: 0; /* Remove any margins for printing */
+        page-break-before: always; /* Ensure each section starts on a new page */
+        /* Additional styles for the print layout */
+        transform: scale(0.8); /* Adjust the scale as needed to fit onto the A4 paper */
+        transform-origin: top left; /* Set the transformation origin to top left */
+    }
+}

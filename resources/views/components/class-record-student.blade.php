@@ -10,7 +10,7 @@
 
 
 <div class="w-full flex">
-    <div class="w-1/5 flex border-0 border-l-2 border-gray-700">
+    <div class="min-w-[20%] w-1/5 flex border-0 border-l-2 border-gray-700">
         <div class="w-6 h-4 border-b border-r-2 border-gray-700 flex items-center justify-center">
             <span class="text-[10px] h-4 ">{{ $loop->index + 1 }}</span>
         </div>

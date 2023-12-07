@@ -11,8 +11,25 @@
 
     <link rel="icon" href="{{ asset('image/mambog.png') }}" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.js"></script>
+    <link rel="stylesheet" href="{{ asset('css/print-class-record.css') }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <style>
+
+        @media print {
+            #class-record {
+                width: 100%; /* Set the width to 100% for printing */
+                margin: 0; /* Remove any margins for printing */
+                page-break-before: always; /* Ensure each section starts on a new page */
+                /* Additional styles for the print layout */
+                transform: scale(0.8); /* Adjust the scale as needed to fit onto the A4 paper */
+                transform-origin: top left; /* Set the transformation origin to top left */
+            }
+        }
+
+    </style>
 
 </head>
 

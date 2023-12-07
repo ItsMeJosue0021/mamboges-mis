@@ -334,6 +334,8 @@ Route::middleware(['auth', 'role:faculty'])->group(function () {
 
     Route::get('/classes/{class}/class-record', [ClassRecordController::class, 'index'])->name('class.record');
 
+    Route::get('/classes/{class}/class-record/print', [ClassRecordController::class, 'printableClassRecord'])->name('class.record.printable');
+
     Route::put('/update-percentage/{classRecordEvaluationCriteria}/record/{classRecordId}',
     [ClassRecordEvaluationCriteriaController::class, 'changePercentage'])
         ->name('class.percentage.update');

@@ -1,7 +1,7 @@
 <x-faculty-layout>
     <section class="w-full flex items-start relative">
         <div class="w-full overflow-x-auto">
-            <div class="min-w-[1600px] md:min-w-[1500px] md:w-full h-auto flex flex-col items-start p-2 ">
+            <div class="min-w-[1400px] md:w-full h-auto flex flex-col items-start p-2 ">
                 <div>
                     <a id="back" class="flex w-fit justify-start items-center space-x-2 py-1 px-4 group rounded bg-gray-200 hover:bg-gray-300 cursor-pointer group" href="/classes">
                         <i class='bx bx-left-arrow-alt text-black text-lg '></i>
@@ -40,13 +40,11 @@
                         <x-written-works :students="$students" :evaluations="$evaluations" :activities="$wr_activities" :classrecord="$class_record"/>
                         <x-performance-task :students="$students" :evaluations="$evaluations" :activities="$pt_activities" :classrecord="$class_record"/>
                         <x-quarterly-assessment :students="$students" :evaluations="$evaluations" :activities="$qa_activities" :classrecord="$class_record"/>
-                        <x-final-grade :students="$students" :evaluations="$evaluations" :classrecord="$class_record" :wrActivities="$wr_activities" :ptActivities="$pt_activities" :qaActivities="$qa_activities" />
+                        <x-final-grade :class="$class" :students="$students" :evaluations="$evaluations" :classrecord="$class_record" :wrActivities="$wr_activities" :ptActivities="$pt_activities" :qaActivities="$qa_activities" />
                     </div>
                 </div>
             </div>
         </div>
-
-
 
         <x-wr-modal :evaluations="$evaluations" :classrecord="$class_record" />
         <x-pt-modal :evaluations="$evaluations" :classrecord="$class_record" />
