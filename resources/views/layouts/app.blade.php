@@ -57,15 +57,6 @@
                                     <p class="poppins text-sm group-hover:text-blue-600">Change Password</p>
                                 </a>
                             </li>
-
-                            {{-- <li>
-                                <a id="link13"
-                                    class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50"
-                                    href="{{ route('lr.module') }}">
-                                    <i class='bx bx-book text-xl text-lightblack group-hover:text-blue-600'></i>
-                                    <p class="poppins text-sm group-hover:text-blue-600">Modules</p>
-                                </a>
-                            </li> --}}
                         </ul>
                     </div>
                 </div>
