@@ -11,7 +11,7 @@
     </div>
 
     {{-- class record to be printed --}}
-    <div id="class-record" class="w-full mt-16 mb-10 old-english ">
+    <div id="class-record" class="w-full mt-16 mb-10 ">
         <div class="w-full flex items-start relative ">
             <img src="{{ asset('image/deped/deped.png') }}" alt="" class="w-48 h-20 absolute right-4 top-0">
             <div class="p-5">
@@ -20,10 +20,10 @@
             <div class="w-full">
                 <div class="w-full">
                     <div class="w-full flex items-end justify-center">
-                        <h1 class="text-2xl font-bold old-english">Class Record</h1>
+                        <h1 class="text-2xl font-bold ">Class Record</h1>
                     </div>
                     <div class="w-full flex items-end justify-center py-1">
-                        <span class="text-[7px] italic old-english">(Pursuant to Deped Order 8 series of 2015)</span>
+                        <span class="text-[7px] italic ">(Pursuant to Deped Order 8 series of 2015)</span>
                     </div>
                 </div>
                 <div class="w-full flex space-x-12">
