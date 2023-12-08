@@ -140,7 +140,7 @@
             <span>{{ $initialGrade }}</span>
         </div>
         <div class="w-full h-4 text-[10px] border-b border-gray-700 flex flex-col items-center justify-center space-y-4">
-            <span></span>
+            <span>{{ transmutate($initialGrade) }}</span>
         </div>
     </div>
 </div>

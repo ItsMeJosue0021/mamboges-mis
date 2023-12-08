@@ -3,7 +3,9 @@
         <div class="w-full overflow-x-auto">
             <div class="min-w-[1400px] md:w-full h-auto flex flex-col items-start p-2 ">
                 <div>
-                    <a id="back" class="flex w-fit justify-start items-center space-x-2 py-1 px-4 group rounded bg-gray-200 hover:bg-gray-300 cursor-pointer group" href="/classes">
+                    <a id="back"
+                        class="flex w-fit justify-start items-center space-x-2 py-1 px-4 group rounded bg-gray-200 hover:bg-gray-300 cursor-pointer group"
+                        href="/classes">
                         <i class='bx bx-left-arrow-alt text-black text-lg '></i>
                         <p class="poppins text-sm text-black">Back</p>
                     </a>
@@ -11,25 +13,30 @@
 
                 <div class="w-full flex justify-between items-center py-2">
                     <div class="w-full flex space-x-4 items-center">
-                        <div class="flex items-center border border-gray-700" id="classRecordId" data-class-record-id="{{ $class_record->id}}">
+                        <div class="flex items-center border border-gray-700" id="classRecordId"
+                            data-class-record-id="{{ $class_record->id }}">
                             <p class="poppins text-sm bg-gray-700 text-white px-4 py-2">Class Name</p>
-                            <p class="poppins text-sm font-medium px-4 py-2 text-gray-700">{{$class_record->name}}</p>
+                            <p class="poppins text-sm font-medium px-4 py-2 text-gray-700">{{ $class_record->name }}</p>
                         </div>
                         <div class="flex items-center border border-gray-700">
                             <p class="poppins text-sm bg-gray-700 text-white px-4 py-2">Teacher</p>
                             <p class="poppins text-sm font-medium px-4 py-2 flex space-x-2 items-center text-gray-700">
-                                <span>{{$class_record->faculty->user->profile->firstName}}</span>
-                                <span>{{$class_record->faculty->user->profile->lastName}}</span>
+                                <span>{{ $class_record->faculty->user->profile->firstName }}</span>
+                                <span>{{ $class_record->faculty->user->profile->lastName }}</span>
                             </p>
                         </div>
                     </div>
 
                     <div class="flex space-x-2 items-center">
                         <span class="poppins text-sm bg-gray-700 text-white px-4 py-2">Quarter</span>
-                        <a href="?quarter=1" class="quarter poppins text-sm bg-gray-200 px-4 py-2 hover:bg-blue-800 hover:text-white">1</a>
-                        <a href="?quarter=2" class="quarter poppins text-sm bg-gray-200 px-4 py-2 hover:bg-blue-800 hover:text-white">2</a>
-                        <a href="?quarter=3" class="quarter poppins text-sm bg-gray-200 px-4 py-2 hover:bg-blue-800 hover:text-white">3</a>
-                        <a href="?quarter=4" class="quarter poppins text-sm bg-gray-200 px-4 py-2 hover:bg-blue-800 hover:text-white">4</a>
+                        <a href="?quarter=1"
+                            class="quarter poppins text-sm bg-gray-200 px-4 py-2 hover:bg-blue-800 hover:text-white">1</a>
+                        <a href="?quarter=2"
+                            class="quarter poppins text-sm bg-gray-200 px-4 py-2 hover:bg-blue-800 hover:text-white">2</a>
+                        <a href="?quarter=3"
+                            class="quarter poppins text-sm bg-gray-200 px-4 py-2 hover:bg-blue-800 hover:text-white">3</a>
+                        <a href="?quarter=4"
+                            class="quarter poppins text-sm bg-gray-200 px-4 py-2 hover:bg-blue-800 hover:text-white">4</a>
                     </div>
                 </div>
 
@@ -37,10 +44,13 @@
                     <x-evaluations :evaluations="$evaluations" />
 
                     <div class="w-full eval-container">
-                        <x-written-works :students="$students" :evaluations="$evaluations" :activities="$wr_activities" :classrecord="$class_record"/>
-                        <x-performance-task :students="$students" :evaluations="$evaluations" :activities="$pt_activities" :classrecord="$class_record"/>
-                        <x-quarterly-assessment :students="$students" :evaluations="$evaluations" :activities="$qa_activities" :classrecord="$class_record"/>
-                        <x-final-grade :class="$class" :students="$students" :evaluations="$evaluations" :classrecord="$class_record" :wrActivities="$wr_activities" :ptActivities="$pt_activities" :qaActivities="$qa_activities" />
+                        <x-written-works :students="$students" :evaluations="$evaluations" :activities="$wr_activities" :classrecord="$class_record" />
+                        <x-performance-task :students="$students" :evaluations="$evaluations" :activities="$pt_activities" :classrecord="$class_record" />
+                        <x-quarterly-assessment :students="$students" :evaluations="$evaluations" :activities="$qa_activities"
+                            :classrecord="$class_record" />
+                        <x-final-grade :subjects="$subjects" :schoolYear="$schoolYear" :class="$class" :students="$students"
+                            :evaluations="$evaluations" :classrecord="$class_record" :wrActivities="$wr_activities" :ptActivities="$pt_activities"
+                            :qaActivities="$qa_activities" />
                     </div>
                 </div>
             </div>
@@ -93,7 +103,8 @@
                     if (h1Text.toUpperCase().includes(section.toUpperCase())) {
                         sections.forEach((otherSection) => {
                             if (otherSection !== section) {
-                                document.getElementById(otherSection).classList.add('hidden');
+                                document.getElementById(otherSection).classList
+                                    .add('hidden');
                             }
                         });
                         element.classList.remove('hidden');
@@ -107,13 +118,28 @@
         const showModal = (modal) => modal.classList.remove('hidden');
         const hideModal = (modal) => modal.classList.add('hidden');
 
-        const modals = [
-            { buttonId: 'new-written-act', modalId: 'written-modal', cancelId: 'written-act-cancel' },
-            { buttonId: 'new-pt-act', modalId: 'pt-modal', cancelId: 'pt-act-cancel' },
-            { buttonId: 'new-assessment', modalId: 'assessment-modal', cancelId: 'assessment-cancel' }
+        const modals = [{
+                buttonId: 'new-written-act',
+                modalId: 'written-modal',
+                cancelId: 'written-act-cancel'
+            },
+            {
+                buttonId: 'new-pt-act',
+                modalId: 'pt-modal',
+                cancelId: 'pt-act-cancel'
+            },
+            {
+                buttonId: 'new-assessment',
+                modalId: 'assessment-modal',
+                cancelId: 'assessment-cancel'
+            }
         ];
 
-        modals.forEach(({ buttonId, modalId, cancelId }) => {
+        modals.forEach(({
+            buttonId,
+            modalId,
+            cancelId
+        }) => {
             const newBtn = document.getElementById(buttonId);
             const modal = document.getElementById(modalId);
             const cancel = document.getElementById(cancelId);

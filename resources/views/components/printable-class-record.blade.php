@@ -21,22 +21,22 @@
                     <div class="w-full flex items-start justify-end space-x-12">
                         <div>
                             <span class="font-bold text-[13px]">REGION</span>
-                            <input type="text"
+                            <input type="text" disabled
                                 class="w-[133.5px] h-6 text-center text-[12px] p-0 border border-b-0 border-gray-700 placeholder:text-center"
-                                placeholder="IV-A">
+                                value="IV-A">
                         </div>
                         <div>
                             <span class="font-bold text-[13px]">DIVISION</span>
-                            <input type="text"
+                            <input type="text" disabled
                                 class="w-[180px] h-6 text-center text-[12px] p-0 border border-b-0 border-gray-700 placeholder:text-center"
-                                placeholder="BACOOR CITY">
+                                value="BACOOR CITY">
                         </div>
                     </div>
                     <div class="w-full flex items-start justify-end">
                         <div class="w-full flex space-x-1 items-center justify-end">
                             <span class="font-bold text-[13px]">SCHOOL NAME</span>
-                            <input type="text"
-                                class="w-[423px] h-6 text-center text-[12px] p-0 border border-gray-700 placeholder:text-center">
+                            <input type="text" disabled
+                                class="w-[423px] h-6 text-center text-[12px] p-0 border border-gray-700 placeholder:text-center" value="MAMBOG ELEMENTARY SCHOOL">
                         </div>
                     </div>
                 </div>
@@ -44,13 +44,13 @@
                     <div class="w-full h-full flex items-end justify-end space-x-12">
                         <div>
                             <span class="font-bold text-[13px]">SCHOOL ID</span>
-                            <input type="text"
-                                class="w-[200px] h-6 text-center text-[12px] p-0 border- border-gray-700 placeholder:text-center">
+                            <input type="text" disabled
+                                class="w-[200px] h-6 text-center text-[12px] p-0 border- border-gray-700 placeholder:text-center" value="107873">
                         </div>
                         <div>
                             <span class="font-bold text-[13px]">SCHOOL YEAR</span>
-                            <input type="text"
-                                class="w-[180px] h-6 text-center text-[12px] p-0 border border-gray-700 placeholder:text-center">
+                            <input type="text" disabled
+                                class="w-[180px] h-6 text-center text-[12px] p-0 border border-gray-700 placeholder:text-center" value="{{ $schoolYear }}">
                         </div>
                     </div>
                 </div>
@@ -60,21 +60,27 @@
     </div>
     <div class="w-full flex">
         <div class="min-w-[20%] w-1/5 h-6 border-2 border-r-0 border-gray-700 flex items-center justify-center text-[10px]">
-            <span class="font-bold">THIRD QUARTER</span>
+            <span class="font-bold uppercase">{{ $classrecord->quarter->name }}</span>
         </div>
         <div
             class="w-1/4 h-6 border-2 border-r-0 border-gray-700 flex items-center justify-center space-x-12 text-[10px]">
             <span class="font-bold">GRADE & SECTION:</span>
-            <span>4-GUMAMELA</span>
+            <span class="uppercase">
+                {{ $classrecord->grade }} - {{ $classrecord->section }}
+            </span>
         </div>
         <div
             class="w-2/6 h-6 border-2 border-r-0 border-gray-700 flex items-center justify-center space-x-12 text-[10px]">
             <span class="font-bold">TEACHER:</span>
-            <span>JOSHUA C. SALCEDA</span>
+            <span class="uppercase">
+                {{ $class->faculty->user->profile->firstName }}
+                {{ $class->faculty->user->profile->middleName }}
+                {{ $class->faculty->user->profile->lastName }}
+            </span>
         </div>
         <div class="w-2/6 h-6 border-2 border-gray-700 flex items-center justify-center space-x-12 text-[10px]">
             <span class="font-bold">SUBJECT:</span>
-            <span>FILIPINO</span>
+            <span class="uppercase">{{ $classrecord->subject }}</span>
         </div>
     </div>
     <div class="w-full flex">
@@ -97,7 +103,7 @@
         <div class="w-2/6 border-0 border-l-2 border-gray-700 ">
             <div class="w-full">
                 <div class="h-[48px] flex items-center justify-center border-b-2 border-gray-700">
-                    <span class="font-bold text-[11px]">WRITTEN WORKS (30%)</span>
+                    <span class="font-bold text-[11px]">WRITTEN WORKS ({{ $evaluations->first()->percentage}}%)</span>
                 </div>
                 <div class="w-full h-4 border-b-2 border-gray-700 flex items-center justify-between">
                     <div class="h-4 border-gray-700 flex items-center">
@@ -162,7 +168,7 @@
         <div class="w-2/6 border-0 border-l-2 border-gray-700 ">
             <div class="w-full">
                 <div class="h-[48px] flex items-center justify-center border-b-2 border-gray-700">
-                    <span class="font-bold text-[11px]">PERFORMANCE TASKS (50%)</span>
+                    <span class="font-bold text-[11px]">PERFORMANCE TASKS ({{ $evaluations->skip(1)->first()->percentage}}%)</span>
                 </div>
                 <div class="w-full h-4 border-b-2 border-gray-700 flex items-center justify-between">
                     <div class="h-4 border-gray-700 flex items-center">
@@ -230,7 +236,7 @@
                     class="h-[48px] flex flex-col items-center justify-center border-b-2 border-gray-700 text-[11px]">
                     <span class="font-bold text-center">QUARTERLY</span>
                     <span class="font-bold text-center">ASSEMENT</span>
-                    <span class="font-bold text-center">(20%)</span>
+                    <span class="font-bold text-center">({{ $evaluations->skip(2)->first()->percentage}}%)</span>
                 </div>
                 <div class="h-4 flex items-center border-b-2 border-gray-700">
                     <div class="w-10 h-4 text-[10px] border-r-2 border-gray-700 flex items-center justify-center">
@@ -411,32 +417,176 @@
         </div>
     </div>
 
-    @foreach ($students as $student)
+    @php
+        $male = [];
+        $female = [];
+
+        foreach ($students as $key => $student) {
+            if ($student->user->profile->sex == 'Male') {
+                array_push($male, $student);
+            } else {
+                array_push($female, $student);
+            }
+        }
+    @endphp
+
+    @foreach ($male as $student)
         <x-class-record-student :loop="$loop" :student="$student" :evaluations="$evaluations" :classrecord="$classrecord"
             :wrActivities="$wrActivities" :ptActivities="$ptActivities" :qaActivities="$qaActivities" />
     @endforeach
-    @foreach ($students as $student)
+
+    <div class="w-full flex bg-gray-200">
+        <div class="min-w-[20%] w-1/5 flex border-0 border-l-2 border-gray-700">
+            <div class="w-6 h-4 border-b-2 border-r-2 border-gray-700 flex items-center justify-center">
+                <span class="text-[10px] h-4 "></span>
+            </div>
+            <div class="w-full">
+                <div class="w-full h-4 text-[10px] flex items-center justify-left border-b-2 border-gray-700">
+                    <span class="font-bold px-2">FEMALE</span>
+                </div>
+            </div>
+        </div>
+        <div class="w-2/6 border-0 border-l-2 border-gray-700 ">
+            <div class="w-full">
+                <div class="w-full h-4 border-b-2 border-gray-700 flex items-center justify-between ">
+                    <div class="h-4 border-gray-700 flex items-center">
+                        <div class="w-8 h-4 text-[10px] flex items-center justify-center border-r border-gray-700">
+                            <span class="font-bold"></span>
+                        </div>
+                        <div class="w-8 h-4 text-[10px] flex items-center justify-center border-r border-gray-700">
+                            <span class="font-bold"></span>
+                        </div>
+                        <div class="w-8 h-4 text-[10px] flex items-center justify-center border-r border-gray-700">
+                            <span class="font-bold"></span>
+                        </div>
+                        <div class="w-8 h-4 text-[10px] flex items-center justify-center border-r border-gray-700">
+                            <span class="font-bold"></span>
+                        </div>
+                        <div class="w-8 h-4 text-[10px] flex items-center justify-center border-r border-gray-700">
+                            <span class="font-bold"></span>
+                        </div>
+                        <div class="w-8 h-4 text-[10px] flex items-center justify-center border-r border-gray-700">
+                            <span class="font-bold"></span>
+                        </div>
+                        <div class="w-8 h-4 text-[10px] flex items-center justify-center border-r border-gray-700">
+                            <span class="font-bold"></span>
+                        </div>
+                        <div class="w-8 h-4 text-[10px] flex items-center justify-center border-r border-gray-700">
+                            <span class="font-bold"></span>
+                        </div>
+                        <div class="w-8 h-4 text-[10px] flex items-center justify-center border-r border-gray-700">
+                            <span class="font-bold"></span>
+                        </div>
+                        <div
+                            class="w-8 h-4 text-[10px] flex items-center justify-center border-r-2 border-gray-700">
+                            <span class="font-bold"></span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center">
+                        <div
+                            class="w-10 h-4 text-[10px] border-r-2 border-gray-700 flex items-center justify-center">
+                            <span class="font-bold"></span>
+                        </div>
+                        <div
+                            class="w-10 h-4 text-[10px] border-r-2 border-gray-700 flex items-center justify-center">
+                            <span class="font-bold"></span>
+                        </div>
+                        <div class="w-10 h-4 text-[10px] flex items-center justify-center">
+                            <span class="font-bold"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w-2/6 border-0 border-l-2 border-gray-700 ">
+            <div class="w-full">
+                <div class="w-full h-4 border-b-2 border-gray-700 flex items-center justify-between ">
+                    <div class="h-4 border-gray-700 flex items-center">
+                        <div class="w-8 h-4 text-[10px] flex items-center justify-center border-r border-gray-700">
+                            <span class="font-bold"></span>
+                        </div>
+                        <div class="w-8 h-4 text-[10px] flex items-center justify-center border-r border-gray-700">
+                            <span class="font-bold"></span>
+                        </div>
+                        <div class="w-8 h-4 text-[10px] flex items-center justify-center border-r border-gray-700">
+                            <span class="font-bold"></span>
+                        </div>
+                        <div class="w-8 h-4 text-[10px] flex items-center justify-center border-r border-gray-700">
+                            <span class="font-bold"></span>
+                        </div>
+                        <div class="w-8 h-4 text-[10px] flex items-center justify-center border-r border-gray-700">
+                            <span class="font-bold"></span>
+                        </div>
+                        <div class="w-8 h-4 text-[10px] flex items-center justify-center border-r border-gray-700">
+                            <span class="font-bold"></span>
+                        </div>
+                        <div class="w-8 h-4 text-[10px] flex items-center justify-center border-r border-gray-700">
+                            <span class="font-bold"></span>
+                        </div>
+                        <div class="w-8 h-4 text-[10px] flex items-center justify-center border-r border-gray-700">
+                            <span class="font-bold"></span>
+                        </div>
+                        <div class="w-8 h-4 text-[10px] flex items-center justify-center border-r border-gray-700">
+                            <span class="font-bold"></span>
+                        </div>
+                        <div
+                            class="w-8 h-4 text-[10px] flex items-center justify-center border-r-2 border-gray-700">
+                            <span class="font-bold"></span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center">
+                        <div
+                            class="w-10 h-4 text-[10px] border-r-2 border-gray-700 flex items-center justify-center">
+                            <span class="font-bold"></span>
+                        </div>
+                        <div
+                            class="w-10 h-4 text-[10px] border-r-2 border-gray-700 flex items-center justify-center">
+                            <span class="font-bold"></span>
+                        </div>
+                        <div class="w-10 h-4 text-[10px] flex items-center justify-center">
+                            <span class="font-bold"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w-1/4 border-0 border-x-2 border-gray-700 flex items-start ">
+            <div class="w-auto">
+                <div class="h-4 flex items-center border-b-2 border-gray-700">
+                    <div class="w-10 h-4 text-[10px] border-r-2 border-gray-700 flex items-center justify-center">
+                        <span class="font-bold"></span>
+                    </div>
+                    <div class="w-10 h-4 text-[10px] border-r-2 border-gray-700 flex items-center justify-center">
+                        <span class="font-bold"></span>
+                    </div>
+                    <div class="w-10 h-4 text-[10px] flex items-center justify-center">
+                        <span class="font-bold"></span>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="w-full h-4 border-x-2 border-b-2 border-gray-700 text-[10px] flex flex-col items-center justify-center space-y-4">
+                <span></span>
+            </div>
+            <div
+                class="w-full h-4 text-[10px] border-b-2 border-gray-700 flex flex-col items-center justify-center space-y-4">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    @foreach ($female as $student)
         <x-class-record-student :loop="$loop" :student="$student" :evaluations="$evaluations" :classrecord="$classrecord"
             :wrActivities="$wrActivities" :ptActivities="$ptActivities" :qaActivities="$qaActivities" />
     @endforeach
-    @foreach ($students as $student)
-        <x-class-record-student :loop="$loop" :student="$student" :evaluations="$evaluations" :classrecord="$classrecord"
-            :wrActivities="$wrActivities" :ptActivities="$ptActivities" :qaActivities="$qaActivities" />
-    @endforeach
-    @foreach ($students as $student)
-        <x-class-record-student :loop="$loop" :student="$student" :evaluations="$evaluations" :classrecord="$classrecord"
-            :wrActivities="$wrActivities" :ptActivities="$ptActivities" :qaActivities="$qaActivities" />
-    @endforeach
-    @foreach ($students as $student)
-        <x-class-record-student :loop="$loop" :student="$student" :evaluations="$evaluations" :classrecord="$classrecord"
-            :wrActivities="$wrActivities" :ptActivities="$ptActivities" :qaActivities="$qaActivities" />
-    @endforeach
+
 </div>
 
 <script>
     function printClassRecord() {
         document.getElementById('printButton').style.display = 'none';
-
         // Print the document
         window.print();
 

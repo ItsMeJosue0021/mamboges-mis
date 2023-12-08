@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Models\Subjects;
 use App\Models\SchoolYear;
 use App\Models\ClassRecord;
 use Illuminate\Http\Request;
@@ -45,7 +46,9 @@ class ClassRecordController extends Controller
             'wr_activities' => $wr_activities,
             'pt_activities' => $pt_activities,
             'qa_activities' => $qa_activities,
-            'class' => $class
+            'class' => $class,
+            'schoolYear' => $current_school_year,
+            'subjects' => Subjects::all(),
         ]);
     }
 
@@ -81,7 +84,9 @@ class ClassRecordController extends Controller
             'wr_activities' => $wr_activities,
             'pt_activities' => $pt_activities,
             'qa_activities' => $qa_activities,
-            'class' => $class
+            'class' => $class,
+            'schoolYear' => $current_school_year,
+            'subjects' => Subjects::all(),
         ]);
     }
 }

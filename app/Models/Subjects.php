@@ -23,8 +23,7 @@ class Subjects extends Model
 
     public function sectionSubjects()
     {
-        return $this->hasMany(SectionSubjects::class);
+        return $this->belongsToMany(SectionSubjects::class);
     }
 
-    
 }

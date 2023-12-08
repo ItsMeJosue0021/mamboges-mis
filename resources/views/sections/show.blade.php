@@ -75,7 +75,7 @@
 
         {{-- ADD STUDENT MODAL --}}
         <div id="add-student-modal" class="hidden absolute top-0 left-0 w-full h-full">
-            <div class="flex flex-col w-full h-full items-center space-y-6  bg-black bg-opacity-5">
+            <div class="flex flex-col w-full h-auto items-center space-y-6  bg-black bg-opacity-5">
                 <div class="flex flex-col h-full w-full bg-white p-6 rounded-md shadow-2xl">
                     <div class="w-full flex flex-col">
 
@@ -86,14 +86,14 @@
                         </div>
 
                         <div class="w-full flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-4">
-                            <div class="w-full md:w-1/2 h-auto max-h-[500px] overflow-y-auto md:p-4">
+                            <div class="w-full md:w-1/2 h-auto max-h-[500px] min-h-[500px] overflow-y-auto md:p-4">
                                 <div class="mb-3">
                                     <h1 class="poppins text-base font-medium">Search Student</h1>
                                     <input type="text" name="search-student" id="search-student"
                                     class="poppins w-full py-2 px-4 text-base border-2 border-gray-300 rounded focus:outline-none focus:border-blue-500 mr-3"
                                     placeholder="Seach for student.."/>
                                 </div>
-                                <div id="students-list-container"></div>
+                                <div id="students-list-container" class="min-h-[500px]"></div>
                             </div>
                             <div class="w-full md:w-1/2 h-fit max-h-[500px] overflow-auto md:p-4">
                                 <h1 class="poppins text-base py-2 font-medium">Current Student</h1>

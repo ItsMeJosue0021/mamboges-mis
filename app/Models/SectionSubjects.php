@@ -25,7 +25,7 @@ class SectionSubjects extends Model
         return $this->belongsTo(Section::class);
     }
 
-    public function subjects()
+    public function subject()
     {
         return $this->belongsTo(Subjects::class);
     }

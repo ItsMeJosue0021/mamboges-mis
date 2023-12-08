@@ -47,6 +47,9 @@ class SectionSubjectsController extends Controller
             foreach ($quarters as $quarter) {
                 $class_record = [
                     'name' => $section->name . " | " . $subject->name,
+                    'subject' => $subject->name,
+                    'grade' => $section->gradeLevel,
+                    'section' => $section->name,
                     'section_subjects_id' => $savedSectionSubjects->id,
                     'faculty_id' => $savedSectionSubjects->faculty_id,
                     'school_year_id' => $current_school_year->id,
@@ -106,11 +109,11 @@ class SectionSubjectsController extends Controller
         }
 
         $classRecords = $sectionSubject->classRecords;
-        
+
         foreach ($classRecords as $classRecord ) {
             $classRecord->delete();
         }
-        
+
         $sectionSubject->delete();
 
         return response()->json(['success' => true, 'message' => 'Subject has been removed.']);
