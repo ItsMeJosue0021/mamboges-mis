@@ -28,8 +28,8 @@
 
 </head>
 
-<body>
-    <section id="container" class="w-full relative">
+<body class="bg-white">
+    <section id="container" class="w-full relative bg-white">
         <div class="h-fit w-full flex">
             <!-- sidebar -->
             <div class="h-screen overflow-y-auto hidden md:flex flex-grow border-r border-gray-300 bg-white shadow fixed z-30">
@@ -239,7 +239,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="h-full w-full ">
+                <div class="h-full w-full bg-white">
                     <main>
                         {{ $slot }}
                     </main>

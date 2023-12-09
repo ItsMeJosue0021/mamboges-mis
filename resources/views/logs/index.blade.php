@@ -13,7 +13,7 @@
                                 <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">ACTIVITY</th>
                                 <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">DATE & TIME</th>
                                 <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">IP ADDRESS</th>
-                                <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center" width="300px">USER AGENT</th>
+                                <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center" >USER AGENT</th>
                                 <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">USER</th>
                             </tr>
                         </thead>
@@ -31,7 +31,7 @@
                             @endif
                         </tbody>
                     </table>
-                </div>                
+                </div>
             </div>
             <div class="py-4">
                 {{ $logs->links() }}

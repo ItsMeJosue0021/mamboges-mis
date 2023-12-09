@@ -25,7 +25,7 @@
 <body class="font-sans text-gray-900 antialiased">
     <div class="w-full h-screen min-h-screen flex pt-6 sm:pt-0">
 
-        <div class="w-full h-full">
+        <div class="w-full h-full bg-white">
             {{ $slot }}
         </div>
 
