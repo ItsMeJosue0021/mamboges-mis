@@ -14,11 +14,11 @@
             <div class="flex flex-col space-y-3">
                 @foreach ($modules as $module)
                     <div
-                        class="relative w-full p-4 rounded bg-white hover:bg-gray-200 transition-all ease-in-out duration-200 shadow-md flex items-center justify-between border border-gray-200">
-                        <div class="w-full flex flex-col md:flex-row items-center space-x-4">
+                        class="relative w-full p-2 rounded bg-white hover:bg-gray-200 transition-all ease-in-out duration-200 shadow-md flex items-center justify-between border border-gray-200">
+                        <div class="w-full flex flex-col md:flex-row items-center md:space-x-4">
                             <img src="{{ $module->thumbnail ? asset('storage/' . $module->thumbnail) : asset('image/mamboges.jpg') }}"
-                                alt="thumbnail" class="w-full md:w-32 h-28 rounded">
-                            <div class="w-full flex flex-col ">
+                                alt="thumbnail" class="w-full md:w-64 h-40 rounded">
+                            <div class="w-full flex flex-col space-y-1">
                                 <h1 class="poppins text-lg text-black font-semibold">{{ $module->title }}</h1>
                                 <div class="flex items-center space-x-4">
                                     @php
@@ -36,10 +36,10 @@
                                 <p class="poppins text-sm text-gray-600">
                                     {!! substr($module->description, 0, 45) !!}{{ strlen($module->description) > 45 ? '...' : '' }}</p>
                                 <a href="{{ route('module.view', $module->id) }}" target="_blank"
-                                    class="text-sm poppins text-blue-600 hover:underline">{!! substr($module->file, 0, 20) !!}{{ strlen($module->file) > 20 ? '...' : '' }}</p></a>
+                                    class="w-fit text-sm poppins text-blue-600 hover:underline text-center py-1 px-3 border border-blue-600">Open</a>
                             </div>
                         </div>
-                        <div class="absolute top-4 right-4 md:flex flex-col items-center space-y-2 z-10">
+                        <div class="absolute top-4 right-4 md:flex flex-col items-center space-y-2 z-10 bg-white bg-opacity-50 p-2 rounded-md">
                             <a href="{{ route('module.edit', $module->id) }}">
                                 <i class='bx bx-edit text-xl text-blue-600'></i>
                             </a>
