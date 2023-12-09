@@ -1,12 +1,16 @@
 <x-lr-layout>
     <div class="flex w-full items-start justify-center ">
         <div class="w-full md:w-2/3">
-            <div class="flex items-center space-x-4 pb-5">
+            <div class="hidden md:flex items-center space-x-6 poppins w-full border-b border-gray-200">
+                <a href="{{ route('lr.video') }}" class="px-6 py-1">Videos</a>
+                <a href="{{ route('lr.module') }}" class="px-6 py-1 border-b-2 border-gray-400">Modules</a>
+            </div>
+            <div class="w-full flex items-center justify-between py-4">
+                <h1 class="poppins text-xl font-medium">Modules</h1>
                 <a href="{{ route('module.create') }}"
                     class="poppins text-sm px-4 py-2 rounded-sm text-white bg-blue-700 hover:bg-blue-800">Upload
                     Module</a>
             </div>
-            <h1 class="poppins text-2xl font-medium pb-3">Current Modules</h1>
             <div class="flex flex-col space-y-3">
                 @foreach ($modules as $module)
                     <div

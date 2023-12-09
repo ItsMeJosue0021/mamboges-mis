@@ -35,7 +35,7 @@
                                         <img class="h-10 w-10 rounded-full border bprder-gray-200"  src="{{Auth::user()->profile->image ? asset('storage/' . Auth::user()->profile->image) : asset('image/mamboges.jpg')}}" alt="">
                                     </button>
                                 </x-slot>
-                                
+
                                 <x-slot name="content" class=" ">
                                     @if (Auth::user()->type == 'lr')
                                         <x-dropdown-link :href="route('lr.video')">
@@ -70,14 +70,14 @@
                                             </x-dropdown-link>
                                         </form>
                                     @endif
-                                    
+
                                 </x-slot>
                             </x-dropdown>
                         </div>
                     </div>
                 </div>
                 <!-- main content -->
-                <div id="container" class="w-full pt-24 px-8">
+                <div id="container" class="w-full pt-24 px-8 h-auto min-h-screen bg-white text-gray-700">
                     <main>
                         {{$slot}}
                     </main>

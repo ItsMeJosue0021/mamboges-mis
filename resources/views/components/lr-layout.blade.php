@@ -76,7 +76,7 @@
                     </div>
                 </div>
                 <!-- main content -->
-                <div id="container" class="w-full py-4 px-8">
+                <div id="container" class="w-full py-4 px-8 bg-white text-gray-700 h-auto min-h-screen">
                     <main>
                         {{$slot}}
                     </main>
@@ -86,7 +86,7 @@
         <x-flash-messages/>
 
          <!-- drawer component -->
-         <div id="drawer-navigation" class="fixed top-0 left-0 z-50 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-64 dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-navigation-label">
+         <div id="drawer-navigation" class="fixed top-0 left-0 z-50 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-64 dark:bg-gray-800 text-gray-700" tabindex="-1" aria-labelledby="drawer-navigation-label">
             <h5 id="drawer-navigation-label" class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">Menu</h5>
             <button type="button" data-drawer-hide="drawer-navigation" aria-controls="drawer-navigation" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white" >
                 <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
