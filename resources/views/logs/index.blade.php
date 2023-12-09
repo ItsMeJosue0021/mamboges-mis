@@ -12,7 +12,7 @@
                                 <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">ACTIVITY</th>
                                 <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">DATE & TIME</th>
                                 <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">IP ADDRESS</th>
-                                <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center" >USER AGENT</th>
+                                <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center w-[300px] min-w-[300px]" >USER AGENT</th>
                                 <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">USER</th>
                             </tr>
                         </thead>
