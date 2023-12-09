@@ -42,7 +42,7 @@
                     <h1 class="poppins text-lg font-medium">CURRENT DOWNLOADABLE FILES</h1>
                     <div class="flex flex-col space-y-2 bg-white">
                         @foreach ($groups as $group)
-                            <div class="border border-gray-100 rounded-md shadow bg-white">
+                            <div class="border border-gray-100 rounded-md shadow">
                                 <div class="p-4 flex justify-between items-start bg-gray-200 rounded-t-md">
                                     <p class="poppins font-medium">{{ $group->name }}</p>
                                     <div class="flex items-center space-x-2">

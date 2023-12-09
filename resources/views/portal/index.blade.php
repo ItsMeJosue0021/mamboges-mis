@@ -12,24 +12,30 @@
                             @foreach ($classes as $class)
                                 <div tabindex="0" class="collapse collapse-arrow border border-gray-200 rounded bg-white">
                                     <div class="collapse-title">
-                                        <p>
+                                        <p class="font-bold">
                                             @if ($class->section->gradeLevel != 'Kinder')
                                                 Grade {{ $class->section->gradeLevel }}
                                             @else
                                                 {{ $class->section->gradeLevel }}
                                             @endif
+                                            - {{ $class->section->name }}
                                         </p>
+                                        <p class="text-sm">
+                                            {{ $class->section->faculty ? $class->section->faculty->user->profile->firstName : '' }}
+                                            {{ $class->section->faculty ? $class->section->faculty->user->profile->middleName : '' }}
+                                            {{ $class->section->faculty ? $class->section->faculty->user->profile->lastName : '' }}
+                                         </p>
                                     </div>
                                     <div class="collapse-content">
                                         @foreach ($class->section->sectionSubjects as $sectionSubject)
                                             @foreach ($classes as $class)
-                                                <div tabindex="0" class="collapse collapse-arrow border-b border-gray-200 bg-white mb-4">
-                                                    <div class="collapse-title">
-                                                        <h2>{{ $sectionSubject->subjects->name }}</h2>
+                                                <div  class=" border-b border-gray-200 bg-white mb-6">
+                                                    <div class="py-2">
+                                                        <h2 class="font-bold">{{ $sectionSubject->subjects->name }}</h2>
                                                     </div>
-                                                    <div class="collapse-content">
+                                                    <div >
                                                         @foreach ($class->section->sectionSubjects as $sectionSubject)
-                                                            <div class="flex justify-between p-2 px-1 border-t border-gray-200">
+                                                            <div class="flex justify-between py-2 border-t border-gray-200">
                                                                 <h2>{{ $sectionSubject->subjects->name }}</h2>
                                                                 <p>remarks</p>
                                                             </div>
