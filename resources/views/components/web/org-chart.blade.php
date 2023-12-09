@@ -3,9 +3,9 @@
         <h1 class="castoro text-3xl text-lightblack font-semibold text-center">ORGANIZATIONAL CHART</h1>
     </div>
     @if ($orgChartRows->isEmpty())
-        <div class="w-full h-96 flex justify-center items-center">
-            <p class="poppins text-sm text-red-600">No Record</p>
-        </div>
+    <div class="w-full h-96 flex flex-col items-center justify-center">
+        <img class="h-60 w-60" src="{{ asset('image/search.png') }}" alt="">
+    </div>
     @else
         @foreach ($orgChartRows as $row)
             <div class="w-full h-fit min-h-[150px] p-1">

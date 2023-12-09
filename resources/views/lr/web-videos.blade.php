@@ -1,5 +1,5 @@
 <x-web-layout>
-    <div class="flex w-full items-start justify-center ">
+    <div class="flex w-full items-start justify-center bg-white text-gray-700">
         <div class="w-full max-w-[1300px] mx-auto px-4 py-6">
             <div
                 class="w-full flex flex-col md:flex-row md:items-center md:justify-between pb-4 mb-8 border-b border-gray-300">

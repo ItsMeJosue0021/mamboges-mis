@@ -1,9 +1,8 @@
-<section>
-
-    <div class="container mx-auto tablet:px-24 relative">
-        <div id="container" class="container px-5 py-24 mx-auto flex sm:flex-nowrap flex-wrap">
+<section class="bg-white text-gray-700">
+    <div class="container mx-auto tablet:px-24 relative ">
+        <div id="container" class="container py-24 mx-auto flex sm:flex-nowrap flex-wrap">
             <div
-                class="lg:w-2/3 md:w-1/2 h-550px max-h-600px bg-gray-300 rounded-lg overflow-hidden sm:mr-10 p-10 flex items-end justify-start relative">
+                class="lg:w-2/3 md:w-1/2 h-[400px] md:h-[550px] md:max-h-[600px] bg-gray-300 rounded-lg overflow-hidden sm:mr-10 p-4 flex items-end justify-start relative">
                 <iframe class="absolute inset-0 w-full h-full" frameborder="0" title="map" marginheight="0"
                     marginwidth="0" scrolling="no"
                     src="https://maps.google.com/maps?q=Mambog%20elementary%20school%20bacoor%20cavite&t=&z=17&ie=UTF8&iwloc=&output=embed">
@@ -15,10 +14,10 @@
                     </div>
                     <div class="lg:w-1/2 px-6 mt-4 lg:mt-0">
                         <h2 class="poppins title-font font-semibold text-gray-900 tracking-widest text-sm">EMAIL</h2>
-                        <a class="poppins text-indigo-500 leading-relaxed text-sm">example@email.com</a>
+                        <a class="poppins text-indigo-500 leading-relaxed text-sm">mamboges.edu.ph@gmail.com</a>
                         <h2 class="poppins title-font font-semibold text-gray-900 tracking-widest text-sm mt-4">PHONE
                         </h2>
-                        <p class="poppins leading-relaxed text-sm">123-456-7890</p>
+                        <p class="poppins leading-relaxed text-sm">471-10-00</p>
                     </div>
                 </div>
             </div>

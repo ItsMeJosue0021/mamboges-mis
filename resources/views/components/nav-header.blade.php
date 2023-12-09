@@ -52,7 +52,7 @@
                 </ul>
             </div>
 
-            <div class="flex md:hidden dropdown dropdown-end dark:bg-white">
+            <div class="flex md:hidden dropdown dropdown-end dark:bg-white text-gray-700">
                 <label tabindex="0" class="px-1 border-2 border-gray-400 rounded-md cursor-pointer">
                     <i class='bx bx-menu text-2xl text-gray-400'></i>
                 </label>
@@ -64,7 +64,7 @@
                         <a href="{{ route('module.index') }}" class="poppins ">Modules</a>
                     </li>
                     <li class="p-2 rounded  hover:bg-gray-200 cursor-pointer">
-                        <a href="{{ route('video.index') }}" class="poppins ">Videos</a>
+                        <a href="{{ route('video.index') }}" class="poppins ">Videos Lessons</a>
                     </li>
                     <li class="p-2 rounded  hover:bg-gray-200 cursor-pointer">
                         <a href="{{ route('update.index') }}" class="poppins ">News and Announcements</a>

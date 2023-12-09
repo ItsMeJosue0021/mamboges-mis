@@ -1,5 +1,5 @@
 <x-web-layout>
-    <div class="w-full max-w-[1300px] mx-auto h-auto min-h-[600px] p-4">
+    <div class="w-full max-w-[1300px] mx-auto h-auto min-h-[600px] p-4 bg-white text-gray-700">
         <div class="w-full flex items-start justify-center">
             <div class="w-full md:w-1/2 flex flex-col space-y-4 pt-4">
                 <h1 class="poppins text-lg font-bold">CURRENT DOWNLOADABLE FILES</h1>
@@ -20,6 +20,11 @@
                         </div>
                     @endforeach
                 </div>
+                @if ($groups->isEmpty())
+                    <div class="w-full h-96 flex flex-col items-center justify-center">
+                        <img class="h-60 w-60" src="{{ asset('image/search.png') }}" alt="">
+                    </div>
+                @endif
             </div>
         </div>
     </div>

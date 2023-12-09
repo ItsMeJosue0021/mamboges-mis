@@ -1,5 +1,5 @@
 <x-web-layout>
-    <div class="flex w-full items-start justify-center ">
+    <div class="flex w-full items-start justify-center bg-white text-gray-700">
         <div class="w-full max-w-[1300px] mx-auto px-4 py-6">
             <div class="w-full flex flex-col md:flex-row md:items-center md:justify-between pb-4 mb-8 border-b border-gray-300">
                 <h1 class="w-full poppins text-2xl font-medium">Modules</h1>
@@ -32,7 +32,7 @@
                     <div
                         class="w-full md:w-72 h-78 flex flex-col justify-between items-center border border-gray-300 space-y-2 p-3 rounded-md bg-white hover:bg-gray-200 transition-all ease-in-out duration-200">
                         <img src="{{ $module->thumbnail ? asset('storage/' . $module->thumbnail) : asset('image/mamboges.jpg') }}"
-                            alt="thumbnail" class="w-full h-28 rounded">
+                            alt="thumbnail" class="w-full h-44 rounded">
                         <div class="w-full flex flex-col ">
                             <h1 class="poppins text-lg text-black font-semibold">{{ $module->title }}</h1>
                             <div class="flex items-center space-x-4">

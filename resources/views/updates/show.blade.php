@@ -1,5 +1,5 @@
 <x-web-layout>
-    <div>
+    <div class="bg-white text-gray-700 poppins">
         <div class="w-full max-w-[1300px] mx-auto p-4">
             <div class="flex flex-col space-y-2">
                 <a href="{{ route('update.index') }}" id="back"

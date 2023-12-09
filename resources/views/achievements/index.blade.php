@@ -1,8 +1,8 @@
 <x-web-layout>
-    <section class="">
+    <section class="bg-white text-gray-700">
         <div class="w-full max-w-[1300px] mx-auto px-4">
             <div class="py-4">
-                <div class="flex items-center justify-start py-8">
+                <div class="flex items-center justify-start py-4">
                     <div class="w-full flex">
                         <form action="{{ route('achievements.index') }}" class="flex w-full justify-between space-x-4">
                             <input name="search" type="text" placeholder="Search for achievements"

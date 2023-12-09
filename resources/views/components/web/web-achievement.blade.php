@@ -3,7 +3,8 @@
         <div class="w-full flex items-center justify-center pb-12">
             <h1 class="castoro text-3xl text-lightblack font-semibold text-center">SCHOOL'S ACHIEVEMENTS</h1>
         </div>
-        <div class="flex flex-row-reverse items-start md:space-x-4 justify-between">
+        <div class="flex flex-row-reverse items-start md:space-x-4 @if ($firstachievement != null)
+        justify-between @else justify-center @endif ">
 
             @if ($firstachievement != null)
                 <div class="w-[700px] hidden md:flex flex-col space-y-2 relative" data-aos="fade-right"
@@ -60,10 +61,13 @@
                 @endforeach
 
                 @if ($firstachievement == null && count($achievements) == 0)
-                    <div class="w-full h-[120px] flex items-center justify-center">
+                    {{-- <div class="w-full h-[120px] flex items-center justify-center">
                         <a class="flex items-center justify-center md:justify-end space-x-4 cursor-pointer">
                             <p class="text-base poppins font-medium text-red-600">Nothing is posted</p>
                         </a>
+                    </div> --}}
+                    <div class="w-full h-96 flex flex-col items-center justify-center">
+                        <img class="h-60 w-60" src="{{ asset('image/search.png') }}" alt="">
                     </div>
                 @else
                     <div class="w-full h-[120px] flex items-center justify-center">

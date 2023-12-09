@@ -32,12 +32,13 @@
             <div class="w-full tablet:w-auto flex flex-col space-y-4">
                 <h1 class="poppins text-lg font-semibold text-black text-center tablet:text-left">Quick Links</h1>
                 <div class="flex flex-col space-y-2">
-                    <a class="poppins text-base font-normal text-lightestgray hover:text-red-500 hover:underline text-center tablet:text-left" href="#">Enrollment Procedures</a>
-                    <a class="poppins text-base font-normal text-lightestgray hover:text-red-500 hover:underline text-center tablet:text-left" href="#">News and Announcements</a>
-                    <a class="poppins text-base font-normal text-lightestgray hover:text-red-500 hover:underline text-center tablet:text-left" href="#">Organizational Structure</a>
-                    <a class="poppins text-base font-normal text-lightestgray hover:text-red-500 hover:underline text-center tablet:text-left" href="#">Transparency Board</a>
-                    <a class="poppins text-base font-normal text-lightestgray hover:text-red-500 hover:underline text-center tablet:text-left" href="#">Calendar of Acvtivities</a>
-                    <a class="poppins text-base font-normal text-lightestgray hover:text-red-500 hover:underline text-center tablet:text-left" href="#">Downloadable Forms</a>
+                    <a class="poppins text-base font-normal text-lightestgray hover:text-red-500 hover:underline text-center tablet:text-left" href="{{ route('module.index') }}">Modules</a>
+                    <a class="poppins text-base font-normal text-lightestgray hover:text-red-500 hover:underline text-center tablet:text-left" href="{{ route('video.index') }}">Video Lessons</a>
+                    <a class="poppins text-base font-normal text-lightestgray hover:text-red-500 hover:underline text-center tablet:text-left" href="{{ route('update.index') }}">News and Announcements</a>
+                    <a class="poppins text-base font-normal text-lightestgray hover:text-red-500 hover:underline text-center tablet:text-left" href="{{ route('achievements.index') }}">Awards and Achievements</a>
+                    <a class="poppins text-base font-normal text-lightestgray hover:text-red-500 hover:underline text-center tablet:text-left" href="{{ route('org.chart') }}">Organizational Structure</a>
+                    <a class="poppins text-base font-normal text-lightestgray hover:text-red-500 hover:underline text-center tablet:text-left" href="{{ route('calendar.show') }}">Calendar of Acvtivities</a>
+                    <a class="poppins text-base font-normal text-lightestgray hover:text-red-500 hover:underline text-center tablet:text-left" href="{{ route('downloadables.index') }}">Downloadables</a>
                 </div>
             </div>
 

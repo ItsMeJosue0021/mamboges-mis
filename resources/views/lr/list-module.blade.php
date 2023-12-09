@@ -17,7 +17,7 @@
                         class="relative w-full p-2 rounded bg-white hover:bg-gray-200 transition-all ease-in-out duration-200 shadow-md flex items-center justify-between border border-gray-200">
                         <div class="w-full flex flex-col md:flex-row items-center md:space-x-4">
                             <img src="{{ $module->thumbnail ? asset('storage/' . $module->thumbnail) : asset('image/mamboges.jpg') }}"
-                                alt="thumbnail" class="w-full md:w-64 h-40 rounded">
+                                alt="thumbnail" class="w-full md:w-64 h-48 rounded">
                             <div class="w-full flex flex-col space-y-1">
                                 <h1 class="poppins text-lg text-black font-semibold">{{ $module->title }}</h1>
                                 <div class="flex items-center space-x-4">

@@ -1,5 +1,5 @@
 <x-guidance-layout>
-    <div class="w-full h-full flex justify-center items-start p-4">
+    <div class="w-full h-full flex justify-center items-start p-4 bg-white text-gray-700">
         <div class="w-full flex flex-col md:flex-row md:space-x-4" >
             <div class="w-full md:w-1/2 " id="uploadFormWrapper">
                 <form action="{{ route('calendar.store') }}" method="POST" enctype="multipart/form-data" class="flex flex-col space-y-4">
