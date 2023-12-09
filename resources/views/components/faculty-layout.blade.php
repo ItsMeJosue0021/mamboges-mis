@@ -34,7 +34,7 @@
 </head>
 
 <body>
-    <section class="w-full">
+    <section class="w-full ">
         <div class="h-fit min-h-screen flex">
             <!-- main -->
             <div class="w-full h-full flex flex-col pb-4">
@@ -42,7 +42,7 @@
                 <div
                     class="w-full sticky top-0 flex items-center justify-between py-3 px-4 border-b border-gray-300 bg-white shadow z-10">
 
-                    <div class="flex items-center">
+                    <div class="flex items-center text-gray-700">
                         <a href="/" class="flex items-center space-x-2">
                             <img class="w-[60px] h-[60px]" src="{{ asset('image/mambog.png') }}" alt="">
                             <div class="flex flex-col">
@@ -81,7 +81,7 @@
                     </div>
                 </div>
                 <!-- main content -->
-                <div id="container" class="w-full px-4">
+                <div id="container" class="w-full px-4 bg-white text-gray-700 h-auto min-h-screen">
                     <main>
                         {{ $slot }}
                     </main>
