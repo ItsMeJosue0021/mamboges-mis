@@ -30,7 +30,7 @@
             <x-portal-header/>
 
             <!-- Page Content -->
-            <main class="bg-white">
+            <main class="bg-white h-auto min-h-screen">
                 {{ $slot }}
             </main>
 

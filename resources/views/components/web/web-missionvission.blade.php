@@ -3,7 +3,7 @@
         <div class="flex justify-center py-8">
             <img class="h-[150px] w-[300px]" src="{{ asset('image/deped.png') }}" alt="">
         </div>
-        <div class="flex flex-col justify-between space-y-4  py-8">
+        <div class="flex flex-col justify-between space-y-4 px-4  py-8">
             <div class="w-full flex flex-col space-y-3 py-8 " data-aos="fade-up" data-aos-delay="400">
                 <h1 class="castoro text-3xl text-lightblack font-semibold text-center">VISION</h1>
                 <p class="poppins text-center text-base font-light">

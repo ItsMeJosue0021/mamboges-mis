@@ -1,11 +1,21 @@
-<div class="w-full fixed z-50 border-b border-gray-200 bg-white">
+<div class="w-full fixed z-50 border-b border-gray-200 bg-white text-gray-700">
     <div class="navbar flex justify-between items-center w-full max-w-[1400px] mx-auto px-4 ">
-        <div class="flex items-center">
-            <div class="flex md:hidden items-center py-2 mb-2">
+        <div class="flex md:hidden items-center">
+            <div class="items-center py-2 mb-2">
                 <button class="px-2 py-1 rounded hover:bg-gray-100" type="button" data-drawer-target="drawer-navigation" data-drawer-show="drawer-navigation" aria-controls="drawer-navigation">
                     <i class='bx bx-menu text-4xl text-gray-700'></i>
                 </button>
             </div>
+        </div>
+
+        <div class="hidden md:flex items-center">
+            <a href="/" class="flex items-center space-x-2">
+                <img class="w-[60px] h-[60px]" src="{{ asset('image/mambog.png') }}" alt="">
+                <div class="flex flex-col">
+                    <p class="castoro text-sm font-bold">MAMBOG</p>
+                    <p class="castoro text-xs font-medium">ELEMENTARY SCHOOL</p>
+                </div>
+            </a>
         </div>
 
         <div class="flex items-center space-x-2">
@@ -24,6 +34,9 @@
                     </button>
                 </x-slot>
                 <x-slot name="content" class=" ">
+                    <x-dropdown-link :href="route('change.password')">
+                        {{ __('Profile') }}
+                    </x-dropdown-link>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <x-dropdown-link :href="route('logout')"
