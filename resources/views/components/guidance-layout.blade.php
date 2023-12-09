@@ -28,7 +28,7 @@
 
 </head>
 
-<body class="bg-white">
+<body class="bg-white text-gray-700">
     <section id="container" class="w-full relative bg-white">
         <div class="h-fit w-full flex">
             <!-- sidebar -->
@@ -239,7 +239,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="h-full w-full bg-white">
+                <div class="w-full bg-white h-auto min-h-screen">
                     <main>
                         {{ $slot }}
                     </main>

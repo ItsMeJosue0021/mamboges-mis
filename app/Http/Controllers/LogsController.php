@@ -17,10 +17,10 @@ class LogsController extends Controller
     public function index()
     {
         $logs = Logs::logActivityLists();
-    
+
         return view('logs.index', [
             'logs' => $logs,
         ]);
     }
-    
+
 }
