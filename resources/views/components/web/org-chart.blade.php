@@ -1,4 +1,4 @@
-<div class="flex flex-col space-y-2 py-16 bg-white">
+<div class="flex flex-col space-y-2 py-16 bg-white text-gray-700">
     <div class="w-full flex items-center justify-center p-4">
         <h1 class="castoro text-3xl text-lightblack font-semibold text-center">ORGANIZATIONAL CHART</h1>
     </div>
@@ -18,8 +18,8 @@
                                     <img src="{{ asset('storage/' . $item->image) }}" alt=""
                                         class="w-full h-full rounded">
                                 </div>
-                                <p class="text-sm text-center font-bold">{{ $item->name ?? '' }}</p>
-                                <p class="text-xs text-center">{{ $item->position ?? '' }}</p>
+                                <p class=" text-xs md:text-sm text-center font-bold">{{ $item->name ?? '' }}</p>
+                                <p class="text-[10px] text-center">{{ $item->position ?? '' }}</p>
                             </div>
                         @endforeach
                     </div>
