@@ -23,7 +23,7 @@
             <!-- main -->
             <div class="w-full h-full flex flex-col  mx-auto pb-4">
                 <!-- header -->
-                <div class=" w-full flex items-center justify-between py-3 px-8 border-b border-gray-300 bg-white shadow z-10">
+                <div class=" w-full flex items-center justify-between py-3 px-4 border-b border-gray-300 bg-white shadow z-10">
                     <div class="flex md:hidden items-center py-2 mb-2">
                         <button class="px-2 py-1 rounded hover:bg-gray-100" type="button" data-drawer-target="drawer-navigation" data-drawer-show="drawer-navigation" aria-controls="drawer-navigation">
                             <i class='bx bx-menu text-4xl text-gray-700'></i>
@@ -76,7 +76,7 @@
                     </div>
                 </div>
                 <!-- main content -->
-                <div id="container" class="w-full py-4 px-8 bg-white text-gray-700 h-auto min-h-screen">
+                <div id="container" class="w-full py-4 px-4 bg-white text-gray-700 h-auto min-h-screen">
                     <main>
                         {{$slot}}
                     </main>

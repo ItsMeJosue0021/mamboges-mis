@@ -4,7 +4,7 @@
 
         <div class="h-[610px] w-full flex items-center">
             <div class="w-full md:w-1/2">
-                <div class="w-full flex flex-col justify-center space-y-6 p-4 rounded-lg pr-8">
+                <div class="w-full flex flex-col justify-center space-y-6 p-4 rounded-lg md:pr-8">
                     <p class="poppins text-red text-gray-800 font-semibold text-3xl text-center md:text-left animate-bounce"
                     data-aos="fade-right"
                     data-aos-delay="300">
