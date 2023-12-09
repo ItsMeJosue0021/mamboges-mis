@@ -35,13 +35,13 @@
                 </div>
             @endif
 
-            <div class="w-full md:w-1/2 flex flex-col space-y-4 justify-center items-center md:items-start">
+            <div class="w-full md:w-1/2 flex flex-col space-y-8 md:space-y-2 justify-center items-center md:items-start">
                 @foreach ($updates as $update)
-                    <div class="w-full md:w-fit flex flex-col md:flex-row items-center md:space-x-3" data-aos="fade-up" data-aos-delay="500">
+                    <div class="w-full md:w-fit flex flex-col md:flex-row items-center space-y-3 md:space-y-0 md:space-x-3" data-aos="fade-up" data-aos-delay="500">
                         <img alt=""
                             src="{{ $update->cover_photo ? asset('storage/' . $update->cover_photo) : asset('image/mamboges.jpg') }}"
                             class="w-full md:w-[200px] h-64 md:h-[140px] rounded shadow-md">
-                        <div class="w-full md:w-auto">
+                        <div class="w-full md:w-auto flex flex-col space-y-1">
                             <a href="/news-and-announcements?tag={{$update->tag->tag}}" class="poppins text-red-600 text-sm ">
                                 {{ $update->tag->tag ?? '' }}
                             </a>

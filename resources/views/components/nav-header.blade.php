@@ -53,8 +53,8 @@
             </div>
 
             <div class="flex md:hidden dropdown dropdown-end dark:bg-white text-gray-700">
-                <label tabindex="0" class="px-1 border-2 border-gray-400 rounded-md cursor-pointer">
-                    <i class='bx bx-menu text-2xl text-gray-400'></i>
+                <label tabindex="0" class="px-1 cursor-pointer">
+                    <i class='bx bx-menu text-4xl text-gray-700'></i>
                 </label>
                 <ul tabindex="0" class="dropdown-content z-[1] p-2 shadow rounded-md w-80 bg-white">
                     <li class="p-2 rounded  hover:bg-gray-200 cursor-pointer">
