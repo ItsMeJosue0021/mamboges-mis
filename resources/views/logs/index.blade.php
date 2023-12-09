@@ -12,7 +12,7 @@
                                 <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">ACTIVITY</th>
                                 <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">DATE & TIME</th>
                                 <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">IP ADDRESS</th>
-                                <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center w-[300px] min-w-[300px]" >USER AGENT</th>
+                                <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center" >USER AGENT</th>
                                 <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">USER</th>
                             </tr>
                         </thead>
@@ -23,7 +23,7 @@
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 text-left">{{ $log->subject }}</td>
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">{{ $log->created_at }}</td>
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">{{ $log->ip }}</td>
-                                    <td class="poppins text-xs border border-gray-400 px-4 py-2 text-center">{{ $log->agent }}</td>
+                                    <td class="poppins text-xs border border-gray-400 px-4 py-2 text-center w-[500px] max-w-[500px]">{{ $log->agent }}</td>
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">{{ $log->user_id }}</td>
                                 </tr>
                                 @endforeach
