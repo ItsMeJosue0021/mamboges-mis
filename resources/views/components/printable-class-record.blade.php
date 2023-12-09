@@ -1,7 +1,9 @@
-<button id="printButton" onclick="printClassRecord()" class="my-4 text-sm bg-gray-600 hover:bg-gray-700 text-white py-2 px-4 flex items-center poppins">
-    <i class='bx bx-printer text-white text-lg mr-2'></i> Print
-</button>
-<div id="class-record" class="w-full mb-10 ">
+<div id="printButton" class="py-4">
+    <button onclick="printClassRecord()" class="text-sm bg-gray-600 hover:bg-gray-700 text-white py-2 px-4 flex items-center poppins">
+        <i class='bx bx-printer text-white text-lg mr-2'></i> Print
+    </button>
+</div>
+<div id="class-record" class="w-full ">
     <div class="w-full flex items-start relative">
         <img src="{{ asset('image/deped/deped.png') }}" alt="" class="w-48 h-20 absolute right-4 top-0">
         <div class="p-5">

@@ -19,7 +19,7 @@
 
 <body>
     <section class="w-full">
-        <div id="container" class="min-w-[1600px] md:min-w-[1500px] w-full px-4">
+        <div id="container" class="min-w-[1600px] md:min-w-[1500px] w-full px-4 bg-white text-gray-700 h-auto min-h-screen">
             <main>
                 {{ $slot }}
             </main>

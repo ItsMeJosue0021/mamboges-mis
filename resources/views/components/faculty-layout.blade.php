@@ -37,7 +37,7 @@
     <section class="w-full ">
         <div class="h-fit min-h-screen flex">
             <!-- main -->
-            <div class="w-full h-full flex flex-col pb-4">
+            <div class="w-full h-full flex flex-col">
                 <!-- header -->
                 <div
                     class="w-full sticky top-0 flex items-center justify-between py-3 px-4 border-b border-gray-300 bg-white shadow z-10">
