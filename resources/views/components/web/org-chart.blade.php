@@ -18,7 +18,7 @@
                                     <img src="{{ asset('storage/' . $item->image) }}" alt=""
                                         class="w-full h-full rounded">
                                 </div>
-                                <p class=" text-xs md:text-sm text-center font-bold">{{ $item->name ?? '' }}</p>
+                                <p class=" text-[11px] md:text-sm text-center font-bold">{{ $item->name ?? '' }}</p>
                                 <p class="text-[10px] text-center">{{ $item->position ?? '' }}</p>
                             </div>
                         @endforeach
