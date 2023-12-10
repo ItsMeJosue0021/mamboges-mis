@@ -265,12 +265,12 @@
                 </div>
             </div>
             <div
-                class="w-full h-full border-x-2 border-b-2 border-gray-700 text-[10px] flex flex-col items-center justify-center space-y-4">
+                class="w-full h-full border-x-2 border-b-2 border-gray-700 text-[10px] flex flex-col items-center justify-center space-y-4 font-bold">
                 <span>Initial</span>
                 <span>Grade</span>
             </div>
             <div
-                class="w-full h-full text-[10px] border-b-2 border-gray-700 flex flex-col items-center justify-center space-y-4">
+                class="w-full h-full text-[10px] border-b-2 border-gray-700 flex flex-col items-center justify-center space-y-4 font-bold">
                 <span>Quarterly</span>
                 <span>Grade</span>
             </div>

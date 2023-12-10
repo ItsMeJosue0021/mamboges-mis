@@ -16,7 +16,7 @@
                 <div class="w-3/4 flex justify-between border-gray-400">
                     <div class="flex">
                         @foreach ($activities as $index => $activity)
-                            <x-activity-number :number="$index + 1"/>
+                            <x-activity-number :activity="$activity" :number="$index + 1"/>
                         @endforeach
                     </div>
 

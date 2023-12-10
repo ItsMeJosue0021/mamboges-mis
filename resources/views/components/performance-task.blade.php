@@ -2,7 +2,7 @@
 
     <x-pt-config :evaluations="$evaluations" />
 
-    <form action="{{ route('score.store') }}" method="POST"> 
+    <form action="{{ route('score.store') }}" method="POST">
         @csrf
         <input name="criteria_id" type="hidden" value="{{$evaluations->skip(1)->first()->id}}">
 
@@ -12,11 +12,11 @@
                 <div class="w-1/4 flex justify-start items-center px-2 py-2 border-r border-gray-400">
                     <p class="poppins text-sm">ACTIVITY NUMBER</p>
                 </div>
-                
+
                 <div class="w-3/4 flex justify-between border-gray-400">
                     <div class="flex">
                         @foreach ($activities as $index => $activity)
-                            <x-activity-number :number="$index + 1"/>
+                            <x-activity-number :activity="$activity" :number="$index + 1"/>
                         @endforeach
                     </div>
 
@@ -30,7 +30,7 @@
                         <div class="w-[65px] flex justify-center items-center rounded-tr-md border-gray-400">
                             <p class="poppins text-xs font-medium">WS</p>
                         </div>
-                    </div>  
+                    </div>
                 </div>
             </div>
 
@@ -67,8 +67,8 @@
             </div>
 
             {{-- row 4 --}}
-            <div class="border-r border-gray-400 rounded-br-md">                      
-                @foreach ($students as $student)          
+            <div class="border-r border-gray-400 rounded-br-md">
+                @foreach ($students as $student)
                     <x-pt-student-row :student="$student" :activities="$activities" :evaluations="$evaluations" :totalscore="$total_score"/> {{--:activities="$activities"--}}
                 @endforeach
             </div>
@@ -80,5 +80,5 @@
             {{-- <a href="{{ route('class.record', $classrecord->id) }}" class="poppins text-sm text-black bg-gray-200 hover:bg-gray-300 border border-gray-200 py-2 px-6 rounded">Refresh</a> --}}
         </div>
     </form>
-   
+
 </div>

@@ -16,7 +16,7 @@
         </div>
         <div class="w-full">
             <div class="w-full h-4 text-[10px] flex items-center justify-left border-b border-gray-700">
-                <span class="font-bold px-2">
+                <span class="font-bold uppercase px-2">
                     {{ $student->user->profile->firstName }}
                     {{ $student->user->profile->middleName }}
                     {{ $student->user->profile->lastName }}
@@ -30,18 +30,19 @@
                 <div class="h-4 border-gray-700 flex items-center">
                     @for ($i = 0; $i < 10; $i++)
                         @php
-                            $activityIndex = $i ;
+                            $activityIndex = $i;
                             $currentActivity = isset($wrActivities[$activityIndex]) ? $wrActivities[$activityIndex] : null;
-                            $isLastIteration = ($i == 9);
+                            $isLastIteration = $i == 9;
                             if ($currentActivity) {
                                 $score = $student->scores->where('activity_id', $currentActivity->id)->first();
-                                $scoreValue = $score ? $score->score : " ";
+                                $scoreValue = $score ? $score->score : ' ';
                             } else {
-                                $scoreValue = " ";
+                                $scoreValue = ' ';
                             }
                         @endphp
 
-                        <div class="w-8 h-4 text-[10px] flex items-center justify-center @if ($isLastIteration) border-r-2 @else border-r @endif border-gray-700">
+                        <div
+                            class="w-8 h-4 text-[10px] flex items-center justify-center @if ($isLastIteration) border-r-2 @else border-r @endif border-gray-700">
                             <span class="font-bold">{{ $scoreValue }}</span>
                         </div>
                     @endfor
@@ -63,7 +64,8 @@
                         <span class="font-bold">{{ $ps != 100 ? number_format($ps, 2) : 100 }}</span>
                     </div>
                     <div class="w-10 h-4 text-[10px] flex items-center justify-center">
-                        <span class="font-bold">{{ $ws != $evaluation_percentage ? (fmod($ws, 1) == 0 ? $ws : number_format($ws, 2)) : $evaluation_percentage }}</span>
+                        <span
+                            class="font-bold">{{ $ws != $evaluation_percentage ? (fmod($ws, 1) == 0 ? $ws : number_format($ws, 2)) : $evaluation_percentage }}</span>
                     </div>
                 </div>
             </div>
@@ -75,18 +77,19 @@
                 <div class="h-4 border-gray-700 flex items-center">
                     @for ($i = 0; $i < 10; $i++)
                         @php
-                            $activityIndex = $i ;
+                            $activityIndex = $i;
                             $currentActivity = isset($ptActivities[$activityIndex]) ? $ptActivities[$activityIndex] : null;
-                            $isLastIteration = ($i == 9);
+                            $isLastIteration = $i == 9;
                             if ($currentActivity) {
                                 $score = $student->scores->where('activity_id', $currentActivity->id)->first();
-                                $scoreValue = $score ? $score->score : " ";
+                                $scoreValue = $score ? $score->score : ' ';
                             } else {
-                                $scoreValue = " ";
+                                $scoreValue = ' ';
                             }
                         @endphp
 
-                        <div class="w-8 h-4 text-[10px] flex items-center justify-center @if ($isLastIteration) border-r-2 @else border-r @endif border-gray-700">
+                        <div
+                            class="w-8 h-4 text-[10px] flex items-center justify-center @if ($isLastIteration) border-r-2 @else border-r @endif border-gray-700">
                             <span class="font-bold">{{ $scoreValue }}</span>
                         </div>
                     @endfor
@@ -109,7 +112,8 @@
                         <span class="font-bold">{{ $ps != 100 ? number_format($ps, 2) : 100 }}</span>
                     </div>
                     <div class="w-10 h-4 text-[10px] flex items-center justify-center">
-                        <span class="font-bold">{{ $ws != $evaluation_percentage ? (fmod($ws, 1) == 0 ? $ws : number_format($ws, 2)) : $evaluation_percentage }}</span>
+                        <span
+                            class="font-bold">{{ $ws != $evaluation_percentage ? (fmod($ws, 1) == 0 ? $ws : number_format($ws, 2)) : $evaluation_percentage }}</span>
                     </div>
                 </div>
             </div>
@@ -126,21 +130,24 @@
             @endphp
             <div class="h-4 flex items-center border-b border-gray-700">
                 <div class="w-10 h-4 text-[10px] border-r-2 border-gray-700 flex items-center justify-center">
-                    <span class="font-bold">{{$total}}</span>
+                    <span class="font-bold">{{ $total }}</span>
                 </div>
                 <div class="w-10 h-4 text-[10px] border-r-2 border-gray-700 flex items-center justify-center">
                     <span class="font-bold">{{ $ps != 100 ? number_format($ps, 2) : 100 }}</span>
                 </div>
                 <div class="w-10 h-4 text-[10px] flex items-center justify-center">
-                    <span class="font-bold">{{ $ws != $evaluation_percentage ? (fmod($ws, 1) == 0 ? $ws : number_format($ws, 2)) : $evaluation_percentage }}</span>
+                    <span
+                        class="font-bold">{{ $ws != $evaluation_percentage ? (fmod($ws, 1) == 0 ? $ws : number_format($ws, 2)) : $evaluation_percentage }}</span>
                 </div>
             </div>
         </div>
-        <div class="w-full h-4 border-x-2 border-b border-gray-700 text-[10px] flex flex-col items-center justify-center space-y-4">
-            <span>{{ $initialGrade }}</span>
+        <div
+            class="w-full h-4 border-x-2 border-b border-gray-700 text-[10px] flex flex-col items-center justify-center space-y-4">
+            <span class="font-bold">{{ $initialGrade }}</span>
         </div>
-        <div class="w-full h-4 text-[10px] border-b border-gray-700 flex flex-col items-center justify-center space-y-4">
-            <span>{{ transmutate($initialGrade) }}</span>
+        <div
+            class="w-full h-4 text-[10px] border-b border-gray-700 flex flex-col items-center justify-center space-y-4">
+            <span class="font-bold">{{ transmutate($initialGrade) }}</span>
             <input hidden name="grades[{{ $student->id }}]" value="{{ transmutate($initialGrade) }}" />
         </div>
     </div>

@@ -352,8 +352,11 @@ Route::middleware(['auth', 'role:faculty'])->group(function () {
         ->name('class.percentage.get');
 
     // ACTIVITIES
-    Route::post('/create-activity', [ActivityController::class, 'store'])
+    Route::post('/activity/create', [ActivityController::class, 'store'])
     ->name('activity.store');
+
+    Route::get('/activity/{activity}/delete', [ActivityController::class, 'delete'])
+    ->name('activity.delete');
 
     //SCORES
     Route::post('/submit-scores', [ScoreController::class, 'store'])

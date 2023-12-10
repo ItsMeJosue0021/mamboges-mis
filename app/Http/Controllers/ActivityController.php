@@ -23,9 +23,17 @@ class ActivityController extends Controller
 
         return redirect()->back()->with('success', 'Activity created successfully!');
 
-        // return response()->json([
-        //     'message' => 'Activity created successfully!',
-        //     'activity' => $activity,
-        // ], 201);
+    }
+
+    public function delete($activityId) {
+        $activity = Activity::find($activityId);
+
+        if (!$activity) {
+            return redirect()->back()->with('error', 'Activity not found!');
+        }
+        if (!$activity->delete()) {
+            return redirect()->back()->with('error', 'Activity not deleted!');
+        }
+        return redirect()->back()->with('success', 'Activity deleted successfully!');
     }
 }
