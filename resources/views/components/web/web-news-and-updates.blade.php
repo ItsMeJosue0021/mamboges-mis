@@ -35,7 +35,7 @@
                 </div>
             @endif
 
-            <div class="w-full md:w-1/2 flex flex-col md:space-y-2 justify-center items-center md:items-start">
+            <div class="w-full md:w-1/2 flex flex-col space-y-8 md:space-y-2 justify-center items-center md:items-start">
                 @foreach ($updates as $update)
                     <div class="w-full md:w-fit flex flex-col md:flex-row items-center space-y-3 md:space-y-0 md:space-x-3" data-aos="fade-up" data-aos-delay="500">
                         <img alt=""
