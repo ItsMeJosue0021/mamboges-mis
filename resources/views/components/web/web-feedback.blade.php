@@ -1,6 +1,6 @@
 <section class="bg-white text-gray-700">
     <div class="container mx-auto tablet:px-24 relative ">
-        <div id="container" class="container px-4 py-24 mx-auto flex sm:flex-nowrap flex-wrap">
+        <div id="container" class="h-auto min-h-screen container px-4 py-24 mx-auto flex sm:flex-nowrap flex-wrap">
             <div
                 class="lg:w-2/3 md:w-1/2 h-96 md:h-[550px] bg-gray-300 rounded-lg overflow-hidden sm:mr-10 p-4 flex items-end justify-start relative">
                 <iframe class="absolute inset-0 w-full h-full" frameborder="0" title="map" marginheight="0"
