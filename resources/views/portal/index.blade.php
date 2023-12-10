@@ -28,21 +28,34 @@
                                     </div>
                                     <div class="collapse-content">
                                         @foreach ($class->section->sectionSubjects as $sectionSubject)
-                                            @foreach ($classes as $class)
-                                                <div  class=" border-b border-gray-200 bg-white mb-6">
-                                                    <div class="py-2">
-                                                        <h2 class="font-bold">{{ $sectionSubject->subjects->name }}</h2>
-                                                    </div>
-                                                    <div >
-                                                        @foreach ($class->section->sectionSubjects as $sectionSubject)
-                                                            <div class="flex justify-between py-2 border-t border-gray-200">
-                                                                <h2>{{ $sectionSubject->subjects->name }}</h2>
-                                                                <p>remarks</p>
-                                                            </div>
-                                                        @endforeach
-                                                    </div>
+                                            <div  class=" border-b border-gray-200 bg-white mb-6">
+                                                <div class="py-2 px-2 bg-gray-400 rounded">
+                                                    <h2 class="font-bold text-white ">
+                                                        {{ $sectionSubject->subjects->name }} |
+                                                        <span class="font-normal ">
+                                                            {{ $sectionSubject->faculty ? $sectionSubject->faculty->user->profile->firstName : '' }}
+                                                            {{ $sectionSubject->faculty ? $sectionSubject->faculty->user->profile->middleName : '' }}
+                                                            {{ $sectionSubject->faculty ? $sectionSubject->faculty->user->profile->lastName : ''}}
+                                                        </span>
+                                                    </h2>
                                                 </div>
-                                            @endforeach
+                                                <div>
+                                                    @php
+                                                        $student_grades = $grades->where('subjects_id', $sectionSubject->subjects->id)->where('school_year_id', $sectionSubject->schoolYear->id);
+                                                    @endphp
+                                                    @foreach ($student_grades as $grade)
+                                                        <div class="flex justify-between py-2 px-2 border-t border-gray-200">
+                                                            <span class="text-sm">{{ $grade->quarter->name }}</span>
+                                                            <span class="text-sm">{{ $grade->remarks }}</span>
+                                                        </div>
+                                                    @endforeach
+                                                    @if (count($student_grades) == 0)
+                                                        <div class="flex justify-center py-2 border-t border-gray-200">
+                                                            <span class="text-sm text-center text-red-500">No Grades Yet</span>
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                            </div>
                                         @endforeach
                                     </div>
 

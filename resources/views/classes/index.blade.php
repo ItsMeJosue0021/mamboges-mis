@@ -15,7 +15,7 @@
                             </div>
                         </div>
                         <div class="flex items-center rounded p-2 w-fit ">
-                            <a class="poppins text-sm text-black group-hover:text-blue-700" href="/classes/{{$class->id}}/class-record">Class Record</a>
+                            <a class="poppins text-sm text-black group-hover:text-blue-700" href="{{ route('class.record', $class->id) }}">Class Record</a>
                             <i class='bx bx-right-arrow-alt text-lg text-black group-hover:text-blue-700'></i>
                         </div>
                     </div>

@@ -47,7 +47,7 @@ class ClassRecordController extends Controller
             'pt_activities' => $pt_activities,
             'qa_activities' => $qa_activities,
             'class' => $class,
-            'schoolYear' => $current_school_year,
+            'current_school_year' => $current_school_year,
             'subjects' => Subjects::all(),
         ]);
     }

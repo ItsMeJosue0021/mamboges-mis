@@ -38,7 +38,7 @@ class ClassRecord extends Model
         return $this->belongsTo(Quarter::class);
     }
 
-    public function sectionSubject()
+    public function sectionSubjects()
     {
         return $this->belongsTo(SectionSubjects::class);
     }

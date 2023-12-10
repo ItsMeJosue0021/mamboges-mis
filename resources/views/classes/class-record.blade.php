@@ -48,7 +48,7 @@
                         <x-performance-task :students="$students" :evaluations="$evaluations" :activities="$pt_activities" :classrecord="$class_record" />
                         <x-quarterly-assessment :students="$students" :evaluations="$evaluations" :activities="$qa_activities"
                             :classrecord="$class_record" />
-                        <x-final-grade :subjects="$subjects" :schoolYear="$schoolYear" :class="$class" :students="$students"
+                        <x-final-grade :subjects="$subjects" :schoolyear="$current_school_year" :class="$class" :students="$students"
                             :evaluations="$evaluations" :classrecord="$class_record" :wrActivities="$wr_activities" :ptActivities="$pt_activities"
                             :qaActivities="$qa_activities" />
                     </div>

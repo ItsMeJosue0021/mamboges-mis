@@ -1,10 +1,11 @@
 <x-guest-layout>
     <div class="w-full h-full flex justify-center items-center px-4">
-        <div class="w-full md:w-96 flex flex-col space-y-4 items-center px-2 py-6 border border-gray-200 rounded-md shadow-md">
+        <div
+            class="w-full md:w-96 flex flex-col space-y-4 items-center px-2 py-6 border border-gray-200 rounded-md shadow-md">
 
             <div class="flex items-center justify-center">
                 <div class="flex justify-center tablet:justify-start items-center space-x-2">
-                    <img class="w-20 h-20" src="{{asset('image/mambog.png')}}" alt="">
+                    <img class="w-20 h-20" src="{{ asset('image/mambog.png') }}" alt="">
                     <div class="flex flex-col">
                         <p class="castoro text-gray-700 text-xl font-bold">MAMBOG</p>
                         <p class="castoro text-gray-600 text-sm font-medium">ELEMENTARY SCHOOL</p>
@@ -22,7 +23,8 @@
                     <!-- Email Address -->
                     <div>
                         <x-input-label for="email" :value="__('Email')" />
-                        <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" placeholder="sample@email.com"/>
+                        <x-text-input id="email" class="block mt-1 w-full" type="email" name="email"
+                            :value="old('email')" required autofocus autocomplete="username" placeholder="Email Address" />
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
 
@@ -30,13 +32,8 @@
                     <div class="mt-4">
                         <x-input-label for="password" :value="__('Password')" />
 
-                        <x-text-input id="password" class="block mt-1 w-full"
-                                        type="password"
-                                        name="password"
-                                        required
-                                        autocomplete="current-password"
-                                        placeholder="password"
-                                        data-type="password" />
+                        <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
+                            autocomplete="current-password" placeholder="Password" data-type="password" />
 
                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
@@ -52,7 +49,9 @@
                     <!-- Show Password -->
                     <div class="block mt-4">
                         <label for="show_password" class="inline-flex items-center">
-                            <input id="show_password" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" onchange="togglePasswordVisibility()">
+                            <input id="show_password" type="checkbox"
+                                class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500"
+                                onchange="togglePasswordVisibility()">
                             <span class="ml-2 text-sm text-gray-600">{{ __('Show password') }}</span>
                         </label>
                     </div>

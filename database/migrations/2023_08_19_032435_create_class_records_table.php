@@ -25,6 +25,7 @@ return new class extends Migration
             $table->foreignIdFor(Faculty::class)->constrained()->onDelete('cascade')->nullable();
             $table->foreignIdFor(SchoolYear::class)->constrained()->onDelete('cascade')->nullable();
             $table->foreignIdFor(Quarter::class)->constrained()->onDelete('cascade')->nullable();
+            $table->boolean('is_released')->default(false);
             $table->timestamps();
         });
     }

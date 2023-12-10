@@ -14,7 +14,7 @@
             <div class="hidden md:flex items-center">
                 <ul class="flex items-center space-x-2">
                     <li class="p-2 px-4 hover:border-b hover:bg-gray-200 rounded  cursor-pointer">
-                        <a href="/" class="poppins font-medium text-base">Home</a>
+                        <a href="/" class="poppins font-medium text-base text-gray-700">Home</a>
                     </li>
                     <li class="p-2 px-4 hover:border-b hover:bg-gray-200 rounded  cursor-pointer">
                         <a href="{{ route('module.index') }}" class="poppins font-medium text-base text-gray-700">Modules</a>

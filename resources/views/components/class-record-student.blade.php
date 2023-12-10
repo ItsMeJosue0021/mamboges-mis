@@ -141,6 +141,7 @@
         </div>
         <div class="w-full h-4 text-[10px] border-b border-gray-700 flex flex-col items-center justify-center space-y-4">
             <span>{{ transmutate($initialGrade) }}</span>
+            <input hidden name="grades[{{ $student->id }}]" value="{{ transmutate($initialGrade) }}" />
         </div>
     </div>
 </div>

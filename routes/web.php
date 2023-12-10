@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LrController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\LogsController;
+use App\Http\Controllers\GradeController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\ArchiveController;
@@ -330,11 +331,17 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
 Route::middleware(['auth', 'role:faculty'])->group(function () {
 
     // CLASS RECORD
-    Route::get('/classes', [ClassesController::class, 'index'])->name('faculty.classes');
+    Route::get('/classes', [ClassesController::class, 'index'])
+    ->name('faculty.classes');
 
-    Route::get('/classes/{class}/class-record', [ClassRecordController::class, 'index'])->name('class.record');
+    Route::get('/classes/{class}/record', [ClassRecordController::class, 'index'])
+    ->name('class.record');
 
-    Route::get('/classes/{class}/class-record/print', [ClassRecordController::class, 'printableClassRecord'])->name('class.record.printable');
+    Route::get('/classes/{class}/record/print', [ClassRecordController::class, 'printableClassRecord'])
+    ->name('class.record.printable');
+
+    Route::post('/classes/{class}/record/release', [GradeController::class, 'release'])->name('grade.release');
+    Route::post('/classes/{class}/record/unrelease', [GradeController::class, 'unrelease'])->name('grade.unrelease');
 
     Route::put('/update-percentage/{classRecordEvaluationCriteria}/record/{classRecordId}',
     [ClassRecordEvaluationCriteriaController::class, 'changePercentage'])
@@ -345,10 +352,13 @@ Route::middleware(['auth', 'role:faculty'])->group(function () {
         ->name('class.percentage.get');
 
     // ACTIVITIES
-    Route::post('/create-activity', [ActivityController::class, 'store'])->name('activity.store');
+    Route::post('/create-activity', [ActivityController::class, 'store'])
+    ->name('activity.store');
 
     //SCORES
-    Route::post('/submit-scores', [ScoreController::class, 'store'])->name('score.store');
+    Route::post('/submit-scores', [ScoreController::class, 'store'])
+    ->name('score.store');
+
 
 });
 

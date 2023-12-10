@@ -14,7 +14,7 @@ class ScoreController extends Controller
         // dd($request->all());
         try {
             $scores = $request->input('scores');
-            $studentSums = []; 
+            $studentSums = [];
 
             foreach ($scores as $studentId => $activityScores) {
                 $studentSum = 0;
@@ -61,7 +61,7 @@ class ScoreController extends Controller
 
                     $statistic->update(['ps' => $ps, 'ws' => $ws]);
                 }
-                
+
             }
 
             return redirect()->back()->with('success', 'Scores saved successfully');

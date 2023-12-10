@@ -1,17 +1,19 @@
 <x-guidance-layout>
-    <div id="container" class="w-full flex flex-col p-4 pb-0 relative h-auto min-h-screen">
+    <div id="container" class="w-full flex flex-col p-4 pb-0 h-auto min-h-screen">
         <div class="flex flex-col space-y-2 mb-4">
-            <a href="{{ route('sections.index') }}" id="back" class="flex w-fit justify-start items-center space-x-2 py-1 px-4 group rounded bg-gray-200 hover:bg-gray-300 cursor-pointer group">
+            <a href="{{ route('sections.index') }}" id="back"
+                class="flex w-fit justify-start items-center space-x-2 py-1 px-4 group rounded bg-gray-200 hover:bg-gray-300 cursor-pointer group">
                 <i class='bx bx-left-arrow-alt text-black text-lg '></i>
                 <p class="poppins text-sm text-black">Back</p>
             </a>
         </div>
         <div class="w-full h-auto min-h-600px flex flex-col items-start justify-start space-y-2">
-            <div class=" get-id w-full h-auto flex justify-between items-center border border-gray-200 rounded p-3 shadow bg-blue-800 " id="{{$section->id}}">
+            <div class=" get-id w-full h-auto flex justify-between items-center border border-gray-200 rounded p-3 shadow bg-blue-800 "
+                id="{{ $section->id }}">
                 <div class="w-full flex justify-between">
                     <div class="flex flex-col">
                         <div class="flex space-x-2 items-start">
-                            <h1 class="poppins text-2xl font-medium text-white">{{$section->name}}</h1>
+                            <h1 class="poppins text-2xl font-medium text-white">{{ $section->name }}</h1>
                         </div>
                         <h2 class="poppins text-lg text-gray-200">
                             @if ($section->faculty)
@@ -31,11 +33,12 @@
                                     {{ $section->gradeLevel }}
                                 @endif
                             </h2>
-                            <h3 class="poppins text-sm font-medium text-gray-400">S.Y. {{$school_year->name}}</h3>
+                            <h3 class="poppins text-sm font-medium text-gray-400">S.Y. {{ $school_year->name }}</h3>
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col border-2 border-gray-400 justify-center items-center py-2 px-4 h-full rounded">
+                <div
+                    class="flex flex-col border-2 border-gray-400 justify-center items-center py-2 px-4 h-full rounded">
                     <h1 id="student-count" class="poppins text-gray-200 text-2xl font-bold">0</h1>
                     <h1 class="poppins text-gray-300 text-xs font-bold">STUDENTS</h1>
                 </div>
@@ -45,8 +48,11 @@
                 <div class="w-full flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8 py-2">
                     <div class="w-full flex flex-col space-y-6">
                         <div class="w-full flex items-center justify-between space-x-4  py-1">
-                            <h1 class="poppins text-lg text-gray-700 font-medium px-2 py-1 rounded border-l-3 border-gray-400">STUDENTS</h1>
-                            <a id="add-student" class="poppins py-1 px-4 text-xs text-white font-medium cursor-pointer rounded flex items-center bg-blue-600 hover:scale-105">
+                            <h1
+                                class="poppins text-lg text-gray-700 font-medium px-2 py-1 rounded border-l-3 border-gray-400">
+                                STUDENTS</h1>
+                            <a id="add-student"
+                                class="poppins py-1 px-4 text-xs text-white font-medium cursor-pointer rounded flex items-center bg-blue-600 hover:scale-105">
                                 <i class='bx bx-user-plus text-lg px-1'></i>
                                 Add
                             </a>
@@ -56,8 +62,11 @@
 
                     <div class="w-full flex flex-col space-y-6">
                         <div class="w-full flex items-center justify-between space-x-4 py-1">
-                            <h1 class="poppins text-lg text-gray-700 font-medium px-2 py-1 rounded border-l-3 border-gray-400">SUBJECTS</h1>
-                            <a id="add-subject" class="poppins py-1 px-4 text-xs text-white font-medium cursor-pointer rounded flex items-center bg-blue-600 hover:scale-105">
+                            <h1
+                                class="poppins text-lg text-gray-700 font-medium px-2 py-1 rounded border-l-3 border-gray-400">
+                                SUBJECTS</h1>
+                            <a id="add-subject"
+                                class="poppins py-1 px-4 text-xs text-white font-medium cursor-pointer rounded flex items-center bg-blue-600 hover:scale-105">
                                 <i class='bx bx-list-plus text-lg px-1'></i>
                                 Add
                             </a>
@@ -74,9 +83,9 @@
         </div>
 
         {{-- ADD STUDENT MODAL --}}
-        <div id="add-student-modal" class="hidden absolute top-0 left-0 w-full h-full">
-            <div class="flex flex-col w-full h-auto items-center space-y-6  bg-black bg-opacity-5">
-                <div class="flex flex-col h-full w-full bg-white p-6 rounded-md shadow-2xl">
+        <div id="add-student-modal" class="hidden absolute md:fixed top-0 left-0 w-full md:h-screen z-50 md:p-12 bg-black bg-opacity-25">
+            <div class="flex flex-col w-full h-full items-center space-y-6 ">
+                <div class="flex flex-col h-full w-full bg-white p-6 rounded-md">
                     <div class="w-full flex flex-col">
 
                         <x-scripts.modal-search-student />
@@ -90,8 +99,8 @@
                                 <div class="mb-3">
                                     <h1 class="poppins text-base font-medium">Search Student</h1>
                                     <input type="text" name="search-student" id="search-student"
-                                    class="poppins w-full py-2 px-4 text-base border-2 border-gray-300 rounded focus:outline-none focus:border-blue-500 mr-3"
-                                    placeholder="Seach for student.."/>
+                                        class="poppins w-full py-2 px-4 text-base border-2 border-gray-300 rounded focus:outline-none focus:border-blue-500 mr-3"
+                                        placeholder="Seach for student.." />
                                 </div>
                                 <div id="students-list-container" class="min-h-[500px]"></div>
                             </div>
@@ -117,14 +126,17 @@
             </div>
         </div>
 
-         {{-- ADD SUBJECT MODAL --}}
-         <div id="add-subject-modal" class="hidden absolute top-0 left-0 w-full h-full">
-            <div class="flex flex-col w-full h-full items-center justify-start space-y-6 bg-black bg-opacity-5 pt-40 px-4">
-                <div class="flex flex-col w-full md:w-fit items-center justify-center space-y-6 bg-white p-6 rounded-md shadow-lg">
+        {{-- ADD SUBJECT MODAL --}}
+        <div id="add-subject-modal" class="hidden fixed top-0 left-0 w-full h-screen z-50">
+            <div
+                class="flex flex-col w-full h-full items-center justify-start space-y-6 bg-black bg-opacity-5 pt-40 px-4">
+                <div
+                    class="flex flex-col w-full md:w-fit items-center justify-center space-y-6 bg-white p-6 rounded-md shadow-lg">
 
                     <x-scripts.modal-add-subject />
 
-                    <form id="add-subject-form" method="POST" action="javascript:void(0)" class="w-full md:w-[700px] flex flex-col space-y-3">
+                    <form id="add-subject-form" method="POST" action="javascript:void(0)"
+                        class="w-full md:w-[700px] flex flex-col space-y-3">
                         @csrf
                         <div class="w-full flex">
                             <h1 class="poppins text-xl text-gray-800 font-medium">ADD SUBJECTS</h1>
@@ -132,30 +144,31 @@
 
                         <div class="flex flex-col space-y-1">
                             <div class="flex items-baseline space-x-2">
-                                <label for="subject"
-                                class="poppins text-sm font-medium text-gray-600">SUBJECT</label>
+                                <label for="subject" class="poppins text-sm font-medium text-gray-600">SUBJECT</label>
                                 <span class="error text-xs text-red-600"></span>
                             </div>
                             <select name="subjectId" id="subject"
-                            class="poppins py-2 px-4 text-base border border-gray-300 rounded focus:outline-none focus:border-blue-500">
+                                class="poppins py-2 px-4 text-base border border-gray-300 rounded focus:outline-none focus:border-blue-500">
                                 <option disabled selected value="">Select a Subject</option>
                                 @foreach ($subjects as $subject)
-                                <option value="{{$subject->id}}">{{$subject->name}}</option>
+                                    <option value="{{ $subject->id }}">{{ $subject->name }}</option>
                                 @endforeach
                             </select>
                         </div>
 
                         <div class="flex flex-col space-y-1">
                             <div class="flex items-baseline space-x-2">
-                                <label for="teacher"
-                                class="poppins text-sm font-medium text-gray-600">SUBJECT TEACHER</label>
+                                <label for="teacher" class="poppins text-sm font-medium text-gray-600">SUBJECT
+                                    TEACHER</label>
                                 <span class="error text-xs text-red-600"></span>
                             </div>
                             <select name="facultyId" id="teacher"
-                            class="poppins py-2 px-4 text-base border border-gray-300 rounded focus:outline-none focus:border-blue-500">
+                                class="poppins py-2 px-4 text-base border border-gray-300 rounded focus:outline-none focus:border-blue-500">
                                 <option disabled selected value="">Select a Teacher</option>
                                 @foreach ($faculties as $teacher)
-                                <option value="{{$teacher->id}}">{{$teacher->user->profile->suffix}} {{$teacher->user->profile->firstName}} {{$teacher->user->profile->lastName}}</option>
+                                    <option value="{{ $teacher->id }}">{{ $teacher->user->profile->suffix }}
+                                        {{ $teacher->user->profile->firstName }}
+                                        {{ $teacher->user->profile->lastName }}</option>
                                 @endforeach
                             </select>
                         </div>
