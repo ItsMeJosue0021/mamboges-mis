@@ -36,12 +36,12 @@
 
             <div class="w-full md:w-1/2 flex flex-col space-y-8 md:space-y-4">
                 @foreach ($achievements as $achievement)
-                    <div class="flex flex-col md:flex-row items-center md:space-x-3" data-aos="fade-up"
+                    <div class="flex flex-col md:flex-row items-center space-y-3 md:space-y-0 md:space-x-3" data-aos="fade-up"
                     data-aos-delay="500">
                         <img alt=""
                             src="{{ $achievement->coverPhoto ? asset('storage/' . $achievement->coverPhoto) : asset('image/mamboges.jpg') }}"
                             class="w-full md:w-[200px] h-64 md:h-[140px] rounded shadow-md">
-                        <div class="w-full md:w-auto">
+                        <div class="w-full md:w-auto flex flex-col space-y-1">
                             <h1 class="poppins font-semibold text-lg text-gray-800">
                                 {{ substr($achievement->title, 0, 25) }}{{ strlen($achievement->title) > 25 ? '...' : '' }}
                             </h1>
