@@ -1,4 +1,4 @@
-<section class="shadow-md border-b border-gray-200 bg-white ">
+<section class=" border-b border-gray-200 bg-white sticky top-0 z-20">
     <div class="max-w-[1300px] mx-auto px-4">
         <div class="w-full flex items-center justify-between">
             <div class="flex items-center py-2">
@@ -26,15 +26,15 @@
                         <a href="{{ route('update.index') }}" class="poppins font-medium text-base text-gray-700">News &
                             Announcements</a>
                     </li>
-                    <div class="flex dropdown dropdown-end">
+                    <div class="flex dropdown dropdown-end bg-white">
                         <label tabindex="0"
                             class="p-2 px-4 flex items-center space-x-3 hover:bg-gray-200 rounded cursor-pointer">
                             <p class="poppins text-gray-700">More</p>
                             <i class='bx bx-chevron-down text-lg'></i>
                         </label>
-                        <ul tabindex="0" class="dropdown-content z-[1] p-2 shadow-md bg-base-100 rounded-md w-56">
+                        <ul tabindex="0" class="dropdown-content z-[1] p-2 shadow-md bg-white rounded-md w-56">
                             <li class="p-2 rounded  hover:bg-gray-200 cursor-pointer">
-                                <a class="poppins text-sm text-gray-700">Organizational Structure</a>
+                                <a href="{{ route('org.chart') }}" class="poppins text-sm text-gray-700">Organizational Structure</a>
                             </li>
                             <li class="p-2 rounded  hover:bg-gray-200 cursor-pointer">
                                 <a href="{{ route('calendar.show') }}" class="poppins text-sm text-gray-700">Calendar of
@@ -52,7 +52,7 @@
                 </ul>
             </div>
 
-            <div class="flex md:hidden dropdown dropdown-end dark:bg-white text-gray-700">
+            <div class="flex md:hidden dropdown dropdown-end bg-white text-gray-700">
                 <label tabindex="0" class="px-1 cursor-pointer">
                     <i class='bx bx-menu text-4xl text-gray-700'></i>
                 </label>

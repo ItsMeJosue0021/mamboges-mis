@@ -23,8 +23,8 @@
             </div>
             @if (count($modules) == 0)
                 <div class="w-full h-80 flex flex-col items-center justify-center">
-                    <span class="text-sm text-red-600 poppins">No Record Found</span>
-                    <a href="{{ route('module.index') }}" class="text-sm poppins text-blue-600">Back</a>
+                    <img class="h-60 w-60" src="{{ asset('image/search.png') }}" alt="">
+                    <a href="{{ route('module.index') }}" class="text-sm poppins text-blue-600">Refresh</a>
                 </div>
             @endif
             <div class="flex flex-wrap gap-4">

@@ -73,7 +73,7 @@
                         </a>
                     </div>
                 @else
-                    <div class="w-full h-[120px] flex items-center justify-center">
+                    <div class="w-full h-[100px] flex items-center justify-center">
                         <a href="{{ route('update.index') }}"
                             class="flex items-center justify-center md:justify-end space-x-4 cursor-pointer animate-pulse">
                             <p class="text-base poppins font-medium text-blue-600">See more updates</p>

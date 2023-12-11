@@ -6,7 +6,7 @@
         <div class="flex flex-col justify-between space-y-4 px-4  py-8">
             <div class="w-full flex flex-col space-y-3 py-8 " data-aos="fade-up" data-aos-delay="400">
                 <h1 class="castoro text-3xl text-lightblack font-semibold text-center">VISION</h1>
-                <p class="poppins text-center text-base font-light">
+                <p class="poppins text-center text-base font-light text-gray-700">
                     We dream of Filipinos
                     who passionately love their country
                     and whose values and competencies
@@ -20,7 +20,7 @@
             </div>
             <div class="w-full flex flex-col space-y-3 py-8 " data-aos="fade-up" data-aos-delay="500">
                 <h1 class="castoro text-3xl text-lightblack font-semibold text-center">MISSION</h1>
-                <p class="poppins text-center text-base font-light">
+                <p class="poppins text-center text-base font-light text-gray-700">
                     To protect and promote the right of every Filipino to quality, equitable, culture-based, and
                     complete basic education where:
                     Students learn in a child-friendly, gender-sensitive, safe, and motivating environment.

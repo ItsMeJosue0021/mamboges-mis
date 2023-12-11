@@ -1,5 +1,5 @@
 <x-web-layout>
-    <div>
+    <div class="w-full bg-white text-gray-700">
         <div class="w-full max-w-[1300px] mx-auto p-4">
             <div class="flex flex-col space-y-2">
                 <a href="{{ route('achievements.index') }}" id="back"
