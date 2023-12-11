@@ -12,7 +12,7 @@
                 <form action="{{ route('calendar.update', $calendar->id) }}" method="POST" enctype="multipart/form-data" class="flex flex-col space-y-4">
                     @csrf
                     @method('PUT')
-                    <div class="flex flex-col space-y-2">
+                    <div class="flex flex-col space-y-2 bg-white">
                         <h1 class="poppins text-lg font-medium">UPDATE CALENDAR</h1>
                         <div class="flex flex-col space-y-3 rounded shadow p-4 border border-gray-100">
                             <div class="flex flex-col space-y-1">
@@ -26,7 +26,7 @@
                                     class="poppins text-sm px-4 py-2 rounded border-2 border-gray-200"
                                     value="{{ old('name') ?? $calendar->name}}">
                             </div>
-                            <div class="flex flex-col space-y-1">
+                            <div class="flex flex-col space-y-1 bg-white">
                                 <label class="poppins text-sm font-semibold">
                                     Current Calendar
                                 </label>

@@ -40,7 +40,7 @@
                     <h1 class="poppins text-lg font-medium">RECENT CALENDARS</h1>
                     <div class="flex flex-col space-y-2">
                         @foreach ($calendars as $calendar)
-                            <div class="border border-gray-100 bg-base-100 rounded-md shadow ">
+                            <div class="border border-gray-100 bg-base-100 rounded-md shadow bg-white">
                                 <div class="p-4 flex justify-between items-start bg-gray-200 rounded-t-md">
                                     <p class="poppins font-medium">{{ $calendar->name}}</p>
                                     <div class="flex items-center space-x-2">
@@ -56,7 +56,7 @@
                                         </form>
                                     </div>
                                 </div>
-                                <div class="p-2 px-4 border-t border-gray-200">
+                                <div class="p-2 px-4 border-t border-gray-200 bg-white">
                                     <a href="{{ route('calendar.view', $calendar->id) }}" target="_blank"
                                         class="poppins text-sm text-blue-600 hover:underline">
                                         {{substr($calendar->fileName, 0, 30)}}{{ strlen($calendar->fileName) > 45 ? "..." : "" }}
