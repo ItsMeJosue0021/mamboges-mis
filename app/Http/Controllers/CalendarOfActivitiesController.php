@@ -31,8 +31,11 @@ class CalendarOfActivitiesController extends Controller
             $file = $request->file('fileName');
             $filePath = $file->store('calendar', 'public');
 
+            $currentYear = date('Y');
+            $nextYear = $currentYear + 1;
+
             $calendarOfActivities = CalendarOfActivities::create([
-                'name' => 'Calendar of Activities - ' . date('Y'),
+                'name' => 'Calendar of Activities ' . $currentYear . '-' . $nextYear,
                 'fileName' => $filePath,
             ]);
 
