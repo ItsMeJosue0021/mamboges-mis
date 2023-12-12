@@ -3,8 +3,7 @@
         <div class="w-full flex items-center justify-center pb-12">
             <h1 class="castoro text-3xl text-lightblack font-semibold text-center">SCHOOL'S ACHIEVEMENTS</h1>
         </div>
-        <div class="flex flex-row-reverse items-start md:space-x-4 @if ($firstachievement != null)
-        justify-between @else justify-center @endif ">
+        <div class="flex flex-row-reverse items-start md:space-x-4 @if ($firstachievement != null) justify-between @else justify-center @endif ">
 
             @if ($firstachievement != null)
                 <div class="w-[700px] hidden md:flex flex-col space-y-2 relative" data-aos="fade-right"
