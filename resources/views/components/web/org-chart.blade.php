@@ -11,7 +11,7 @@
             <div class="w-full h-fit min-h-[150px] p-1">
                 <p class="poppins font-semibold text-center pb-2">{{ $row->title ?? '' }}</p>
                 @if ($row->orgChartRowItems)
-                    <div class="w-full flex justify-center items-center space-x-4 overflow-x-auto">
+                    <div class="w-full flex justify-center items-start space-x-4 overflow-x-auto">
                         @foreach ($row->orgChartRowItems as $item)
                             <div class="w-36 h-full p-2 rounded relative group flex flex-col items-center justify-center">
                                 <div class="w-16 md:w-full h-14 md:h-24 flex justify-center items-center">
