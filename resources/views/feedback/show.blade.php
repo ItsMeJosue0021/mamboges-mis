@@ -47,29 +47,29 @@
                 <button id="replyBtn" class="poppins text-white text-base bg-blue-500 py-2 px-6 rounded hover:bg-blue-600">Reply</button>
             </div>
 
-            <form id="replyForm" method="POST" action="/feedback/{{$feedback->id}}/replyfeedback" class="rounded-md border border-gray-300 mt-8 p-4 hidden">
+            <form id="replyForm" method="POST" action="/feedback/{{$feedback->id}}/replyfeedback" class="rounded-md border border-gray-500 mt-8 p-4 hidden">
                 @method('POST')
                 @csrf
                 <div class="flex flex-col space-y-3 mb-2">
                     <div class="flex items-center space-x-4">
-                        <i class='bx bx-reply text-xl text-gray-500'></i>
-                        <h2 class="poppins text-sm text-gray-500 hover:underline cursor-pointer">{{$feedback->email}}</h2>
+                        <i class='bx bx-reply text-xl text-blue-700'></i>
+                        <h2 class="poppins text-sm text-blue-700 hover:underline cursor-pointer">{{$feedback->email}}</h2>
                     </div>
 
-                    <div class="w-full flex items-end space-x-4 focus-within:border-gray-500 py-1 \">
+                    <div class="w-full flex items-end space-x-4 focus-within:border-gray-400 py-1 \">
                         <input type="text" name="subject" id="subject" placeholder="Subject"
-                        class="w-full poppins text-sm text-gray-700 rounded border border-gray-300 focus:outline-none">
+                        class="w-full poppins text-sm text-gray-700 rounded border border-gray-400 focus:outline-none">
                     </div>
 
                     <div class="flex h-60 w-full  ">
                         <textarea name="message" id="message" cols="30" rows="10"
-                        class="w-full h-full p-4 poppins text-sm focus:outline-none rounded-md border border-gray-300 focus:border-gray-500"
+                        class="w-full h-full p-4 poppins text-sm focus:outline-none rounded-md border border-gray-500 focus:border-gray-500"
                         placeholder="Your message here"></textarea>
                     </div>
 
                     <div class="flex items-center space-x-4">
-                        <button class="poppins text-white text-sm bg-blue-500 py-2 px-6 rounded hover:bg-red-600 border-2 border-blue-500 hover:border-blue-600">Send</button>
-                        <button id="cancel" class="poppins text-gray-400 text-sm py-2 px-6 rounded border-2 border-gray-300 hover:border-red-500 hover:text-red-500">Cancel</button>
+                        <button class="poppins text-white text-sm bg-blue-600 py-2 px-6 rounded hover:bg-blue-700 border-2 border-blue-600 hover:border-blue-700">Send</button>
+                        <button id="cancel" class="poppins text-gray-400 text-sm py-2 px-6 rounded border border-gray-300 hover:border-gray-500 hover:text-gray-700">Cancel</button>
                     </div>
                 </div>
             </form>

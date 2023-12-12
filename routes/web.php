@@ -83,7 +83,6 @@ Route::get('/resources/videos', [VideoLessonController::class, 'index'])->name('
 Route::get('/organizational-chart', [OrgChartRowController::class, 'index'])->name('org.chart');
 
 
-
 Route::middleware('auth')->group(function () {
     Route::controller(ProfileController::class)->group(function () {
         Route::get('/profile', 'edit')->name('profile.edit');
