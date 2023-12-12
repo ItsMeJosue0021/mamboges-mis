@@ -44,7 +44,7 @@
 
         <div class="w-full flex flex-col py-4">
             <div>
-                <button id="replyBtn" class="poppins text-white text-base bg-blue-500 py-2 px-6 rounded hover:bg-blue-600">Reply</button>
+                <button id="replyBtn" class="poppins text-white text-sm bg-blue-600 py-2 px-6 rounded hover:bg-blue-700">Reply</button>
             </div>
 
             <form id="replyForm" method="POST" action="/feedback/{{$feedback->id}}/replyfeedback" class="rounded-md border border-gray-500 mt-8 p-4 hidden">
