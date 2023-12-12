@@ -27,11 +27,27 @@ class SubjectSeeder extends Seeder
                 'name' => 'Science'
             ],
             [
-                'name' => 'TLE'
+                'name' => 'EPP'
             ],
             [
-                'name' => 'MAPEH'
+                'name' => 'ESP'
             ],
+            [
+                'name' => 'Araling Panlipunan'
+            ],
+            [
+                'name' => 'Music - MAPEH'
+            ],
+            [
+                'name' => 'Art - MAPEH'
+            ],
+            [
+                'name' => 'Health - MAPEH'
+            ],
+            [
+                'name' => 'PE - MAPEH'
+            ],
+
         ];
 
         foreach ($subjects as $subject) {

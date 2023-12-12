@@ -27,11 +27,17 @@ class DepartmentSeeder extends Seeder
                 'name' => 'Science'
             ],
             [
-                'name' => 'TLE'
+                'name' => 'EPP'
+            ],
+            [
+                'name' => 'ESP'
+            ],
+            [
+                'name' => 'Araling Panlipunan'
             ],
             [
                 'name' => 'MAPEH'
-            ],  
+            ],
         ];
 
         foreach ($departments as $department) {

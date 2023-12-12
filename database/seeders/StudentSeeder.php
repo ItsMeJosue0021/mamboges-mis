@@ -62,10 +62,52 @@ class StudentSeeder extends Seeder
                 'lrn' => '100000000010',
                 'user_id' => 17,
             ],
+            // Additional entries
+            [
+                'lrn' => '100000000011',
+                'user_id' => 18,
+            ],
+            [
+                'lrn' => '100000000012',
+                'user_id' => 19,
+            ],
+            [
+                'lrn' => '100000000013',
+                'user_id' => 20,
+            ],
+            [
+                'lrn' => '100000000014',
+                'user_id' => 21,
+            ],
+            [
+                'lrn' => '100000000015',
+                'user_id' => 22,
+            ],
+            [
+                'lrn' => '100000000016',
+                'user_id' => 23,
+            ],
+            [
+                'lrn' => '100000000017',
+                'user_id' => 24,
+            ],
+            [
+                'lrn' => '100000000018',
+                'user_id' => 25,
+            ],
+            [
+                'lrn' => '100000000019',
+                'user_id' => 26,
+            ],
+            [
+                'lrn' => '100000000020',
+                'user_id' => 27,
+            ],
         ];
 
-        foreach($students as $student) {
+        foreach ($students as $student) {
             Student::create($student);
         }
     }
+
 }
