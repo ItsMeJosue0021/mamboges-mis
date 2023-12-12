@@ -49,28 +49,28 @@
             <div class="w-1/2 hidden md:block ">
                 <div class="relative w-full h-[500px]">
                     <div class="rounded absolute bottom-0 left-0 hover:transform hover:scale-105 transition duration-300 ease-in-out hover:z-10 cursor-pointer ">
-                        <img  alt="" srcset="" src="{{asset('image/chairs.jpg')}}"
+                        <img  alt="" srcset="" src="{{asset('image/z1.jpg')}}"
                         data-aos="fade-up"
                         data-aos-delay="300"
                         class="h-[300px] w-[200px] shadow-lg rounded bg-white ">
                     </div>
 
                     <div class="rounded absolute bottom-[70px] left-[145px] hover:transform hover:scale-105 transition duration-300 ease-in-out hover:z-10 cursor-pointer">
-                        <img  alt="" srcset="" src="{{asset('image/child.jpg')}}"
+                        <img  alt="" srcset="" src="{{asset('image/AQ.jpg')}}"
                         data-aos="fade-down"
                         data-aos-delay="400"
                         class="h-[300px] w-[200px] shadow-lg rounded bg-white ">
                     </div>
 
                     <div class="rounded absolute bottom-[130px] left-[290px] hover:transform hover:scale-105 transition duration-300 ease-in-out hover:z-10 cursor-pointer">
-                        <img  alt="" srcset="" src="{{asset('image/globe.jpg')}}"
+                        <img  alt="" srcset="" src="{{asset('image/AC3.4.jpg')}}"
                         data-aos="fade-up"
                         data-aos-delay="500"
                         class="h-[300px] w-[200px] shadow-lg rounded bg-white ">
                     </div>
 
                     <div class="rounded absolute top-0 right-0 hover:h-[310px] hover:transform hover:scale-105 transition duration-300 ease-in-out hover:z-10 cursor-pointer">
-                        <img  alt="" srcset="" src="{{asset('image/chalk.jpg')}}"
+                        <img  alt="" srcset="" src="{{asset('image/AC3.2.jpg')}}"
                         data-aos="fade-down"
                         data-aos-delay="600"
                         class="h-[300px] w-[200px] shadow-lg rounded bg-white ">

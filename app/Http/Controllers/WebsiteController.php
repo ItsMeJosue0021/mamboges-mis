@@ -18,5 +18,5 @@ class WebsiteController extends Controller
         ]);
     }
 
-    
+
 }
