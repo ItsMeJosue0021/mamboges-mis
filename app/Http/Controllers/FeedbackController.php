@@ -33,15 +33,15 @@ class FeedbackController extends Controller
             'email' => $request->email,
             'message' => $request->message,
         );
-    
+
         $feedback = Feedback::create($feedbackAarray);
-    
+
         if (!is_null($feedback)) {
             Logs::addToLog('Feedback recieved from [' . $feedback->email . ']');
-            return response()->json(['success' => true, 'message' => 'Thank you for you feedback!']);
+            return response()->json(['success' => true, 'message' => 'Thank you for your feedback!']);
         } else {
             return response()->json(['success' => false, 'message' => 'Sending unsuccessful!']);
-        }   
+        }
     }
 
     public function read($id) {
@@ -81,6 +81,6 @@ class FeedbackController extends Controller
         } catch (Exception $e) {
             return redirect()->back()->with('error', 'Error sending email: ' . $e->getMessage());
         }
-    }  
+    }
 
 }
