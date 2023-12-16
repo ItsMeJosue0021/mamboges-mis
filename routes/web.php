@@ -73,7 +73,7 @@ Route::get('/calendar-of-activities', [CalendarOfActivitiesController::class, 's
 Route::get('/viewer/{calendarOfActivities}', [CalendarOfActivitiesController::class, 'view'])->name('calendar.view');
 
 // MODULES
-Route::get('/modules/viewer/{moduleId}', [ModuleController::class, 'view'])->name('module.view');
+Route::get('/modules/viewer/{moduleId}/{fileTitle}', [ModuleController::class, 'view'])->name('module.view');
 Route::get('/resources/modules', [ModuleController::class, 'index'])->name('module.index');
 
 //VIDEOS

@@ -35,17 +35,17 @@
                 @foreach ($videos as $video)
                     <div
                         class="w-full md:w-72 h-78 flex flex-col justify-between items-center  space-y-2 p-3 rounded bg-white hover:bg-gray-200 transition-all ease-in-out duration-200">
-                        <video class="w-full h-40 md:h-28 rounded" controls>
+                        <video class="w-full h-40 rounded" controls>
                             <source src="{{ $video->video ? asset($video->video) : asset('image/mamboges.jpg') }}" type="video/mp4">
                         </video>
                         <div class="w-full flex flex-col ">
-                            <h1 class="poppins text-lg text-black font-semibold">{{ $video->title }}</h1>
+                            <h1 class="poppins text-sm text-black font-semibold">{{ $video->title }}</h1>
                             <div class="flex items-center space-x-4">
                                 @php
                                     $subject = App\Models\Subjects::find($video->topic);
                                 @endphp
-                                <span class="poppins text-sm text-green-600">{{ $subject->name }}</span>
-                                <span class="poppins text-sm text-blue-500">
+                                <span class="poppins text-xs text-green-600">{{ $subject->name }}</span>
+                                <span class="poppins text-xs text-blue-500">
                                     @if ($video->grade == 'Kinder')
                                         {{ $video->grade }}
                                     @else

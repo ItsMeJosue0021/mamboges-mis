@@ -1,5 +1,5 @@
 <section class="bg-gray-50">
-    <div class="max-w-[1300px] mx-auto px-4 py-16 md:py-24">
+    <div class="max-w-[1300px] mx-auto px-4 py-16 ">
         <div class="w-full flex items-center justify-center pb-12">
             <h1 class="castoro text-3xl text-lightblack font-semibold text-center">SCHOOL'S ACHIEVEMENTS</h1>
         </div>

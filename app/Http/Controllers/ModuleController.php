@@ -119,8 +119,14 @@ class ModuleController extends Controller
         $filePath = public_path('storage/' . $fileName);
 
         if (file_exists($filePath)) {
-            return Response::stream(function () use ($filePath) {
+            return Response::stream(function () use ($filePath, $fileName) {
+                echo '<html><head><title>Custom Title</title>';
+                echo '</head><body>';
+                echo '<script type="text/javascript">';
+                echo 'document.title = "' . $fileName . '";';
+                echo '</script>';
                 readfile($filePath);
+                echo '</body></html>';
             }, 200, [
                 'Content-Type' => 'application/pdf',
                 'Content-Disposition' => 'inline; filename="' . $fileName . '"',
@@ -128,6 +134,6 @@ class ModuleController extends Controller
         } else {
             return back()->with('error', 'PDF file not found');
         }
-
     }
+
 }

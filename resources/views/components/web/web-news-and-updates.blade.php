@@ -1,5 +1,5 @@
 <section class="bg-gray-50">
-    <div class="max-w-[1300px] mx-auto px-4 py-16 md:py-24">
+    <div class="max-w-[1300px] mx-auto px-4 py-16 pb-8">
         <div class="w-full flex items-center justify-center pb-12">
             <h1 class="castoro text-3xl text-lightblack font-semibold text-center">NEWS AND ANNOUNCEMENTS</h1>
         </div>
@@ -9,7 +9,7 @@
                 <div class="w-[700px] hidden md:flex flex-col space-y-2" data-aos="fade-right" data-aos-delay="500">
                     <img alt="image"
                         src="{{ $firstupdate->cover_photo ? asset('storage/' . $firstupdate->cover_photo) : asset('image/mamboges.jpg') }}"
-                        class="w-full h-[450px] rounded shadow-md object-cover">
+                        class="w-full h-[450px] rounded shadow-md object-cover object-top">
 
                     <div class="w-full absolute bottom-0 left-0 bg-gradient-to-t from-black to-transparent opacity-70">
                         <div class="flex flex-col space-y-1 backdrop-blur-sm p-6 text-gray-200 poppins">

@@ -8,7 +8,7 @@
             </a>
         </div>
         <form action="{{ route('module.update', $module->id) }}" method="POST" enctype="multipart/form-data">
-            @method('PUT')  
+            @method('PUT')
             @csrf
             <div class="w-full flex items-start justify-center">
                 <div class="w-full md:w-2/3">
@@ -37,7 +37,7 @@
                                     <img id="image-preview" src="#" alt="Preview"
                                         class="hidden w-full h-full rounded-md" />
                                         <img id="db-cover-photo" src="{{ asset('storage/' . $module->thumbnail) }}"
-                                        alt="Image" class="w-full h-full rounded-md" />
+                                         class="w-full h-full rounded-md object-cover object-top" />
                                     <input id="dropzone-file" type="file" name="thumbnail" class="hidden"
                                         accept="image/png, image/jpeg, image/gif" onchange="previewCoverPhoto(this)" />
                                 </label>
@@ -121,8 +121,8 @@
                                         type="file" name="file" accept=".pdf">
                                         <div class="flex space-x-2 py-1">
                                             <span class="poppins text-xs font-bold">Current File:</span>
-                                            <a href="{{ route('module.view', $module->id) }}" target="_blank" class="poppins text-xs text-blue-600 hover:underline">
-                                                {!! substr($module->file, 0, 20) !!}{{ strlen($module->file) > 20 ? '...' : '' }}
+                                            <a href="{{ route('module.view', [$module->id, $module->title]) }}" target="_blank" class="poppins text-xs text-blue-600 hover:underline">
+                                                {!! substr($module->title, 0, 20) !!}{{ strlen($module->title) > 20 ? '...' : '' }}
                                             </a>
                                         </div>
 

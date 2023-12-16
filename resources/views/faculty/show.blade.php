@@ -10,9 +10,9 @@
 
         <div class="w-full flex flex-col space-y-6 py-4">
             <div class="relative w-full h-auto md:h-[250px] flex flex-col md:flex-row space-y-4 md:space-y-0 items-center md:space-x-4 rounded border border-gray-200 shadow p-4">
-                <div class="w-64 h-64 md:h-auto">
+                <div class="w-64 h-full">
                     <img src="{{ $faculty->user->profile->image ? asset('storage/' . $faculty->user->profile->image) : ($faculty->user->profile->sex == 'Female' ? asset('image/female.png') : asset('image/male.png')) }}"
-                        alt="" class="w-full h-full md:rounded rounded-full">
+                        alt="" class="w-full h-full md:rounded rounded-full object-cover object-top">
                 </div>
 
                 <div class="w-full h-fit flex items-start justify-between p-4 ">
@@ -71,17 +71,17 @@
                 @foreach ($classes as $class)
                     <div class="flex w-full space-y-2">
                         <div tabindex="0"
-                            class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-md h-fit w-full">
+                            class="collapse collapse-arrow border border-gray-200 bg-white rounded-md h-fit w-full">
                             <div class="collapse-title">
-                                <p>{{ $class->name }}</p>
+                                <p class="poppins font-bold">{{ $class->name }}</p>
                             </div>
                             <div class="collapse-content">
                                 @if (isset($students[$class->section_id]))
                                     @foreach ($students[$class->section_id] as $student)
                                         <div class="flex justify-between p-2 px-1 border-t border-gray-200">
-                                            <h2>{{ $student->last_name }} {{ $student->first_name }}
-                                                {{ $student->middle_name }}</h2>
-                                            <p>remarks</p>
+                                            <h2 class="poppins text-sm">{{ $student->user->profile->lastName }} {{ $student->user->profile->firstName }}
+                                                {{ $student->user->profile->middleName }}</h2>
+                                            {{-- <p>remarks</p> --}}
                                         </div>
                                     @endforeach
                                 @endif

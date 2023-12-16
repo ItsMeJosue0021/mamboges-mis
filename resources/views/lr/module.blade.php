@@ -20,7 +20,7 @@
                                 @enderror
                             </label>
                             <label for="dropzone-file"
-                                class="flex flex-col items-center justify-center w-full h-72 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                                class="flex flex-col items-center justify-center w-full h-72 border border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                                 <div id="description" class="flex flex-col items-center justify-center pt-5 pb-6">
                                     <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
@@ -70,12 +70,12 @@
                                     @enderror
                                 </label>
                                 <input type="text" name="title" id="title" placeholder="Title"
-                                    class="poppins rounded border-2 border-gray-300 text-sm">
+                                    class="poppins rounded border border-gray-300 text-sm">
                             </div>
                             <div class="w-full flex flex-col space-y-1">
                                 <label class="poppins text-sm font-semibold">GRADE</label>
                                 <select name="grade" id="grade"
-                                    class="poppins rounded border-2 border-gray-300 text-sm">
+                                    class="poppins rounded border border-gray-300 text-sm">
                                     <option value="Kinder">Kinder</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -89,7 +89,7 @@
                             <div class="w-full flex flex-col space-y-1">
                                 <label class="poppins text-sm font-semibold">TOPIC</label>
                                 <select name="topic" id="topic"
-                                    class="poppins rounded border-2 border-gray-300 text-sm">
+                                    class="poppins rounded border border-gray-300 text-sm">
                                     @foreach ($subjects as $subject)
                                         <option value="{{ $subject->id }}">{{ $subject->name }}</option>
                                     @endforeach
@@ -134,40 +134,50 @@
                 <h1 class="poppins text-2xl font-medium pb-3">Current Modules</h1>
                 <div class="flex flex-col space-y-3">
                     @foreach ($modules as $module)
-                        <div
-                            class="p-4 rounded bg-white hover:bg-gray-200 transition-all ease-in-out duration-200 shadow-md flex items-center justify-between border border-gray-200">
+                    <div
+                    class="relative w-full p-2 rounded bg-white hover:shadow transition-all ease-in-out duration-200 flex items-center justify-between border border-gray-200">
+                    <div class="w-full flex flex-row items-center space-x-4">
+                        <img src="{{ $module->thumbnail ? asset('storage/' . $module->thumbnail) : ''}}"
+                            class="w-16 h-16 rounded object-cover">
+                        <div class="w-full flex flex-col">
+                            <h1 class="hidden md:block poppins text-sm text-black font-semibold">
+                                {!! substr($module->title, 0, 70) !!}{{ strlen($module->title) > 70 ? '...' : '' }}
+                            </h1>
+                            <h1 class="md:hidden poppins text-sm text-black font-semibold">
+                                {!! substr($module->title, 0, 20) !!}{{ strlen($module->title) > 20 ? '...' : '' }}
+                            </h1>
                             <div class="flex items-center space-x-4">
-                                <img src="{{ $module->thumbnail ? asset('storage/' . $module->thumbnail) : asset('image/mamboges.jpg') }}"
-                                    alt="thumbnail" class="w-32 h-28 rounded">
-                                <div>
-                                    <h1 class="poppins text-lg text-black font-semibold">{{ $module->title }}</h1>
-                                    <div class="flex items-center space-x-4">
-                                        @php
-                                            $subject = App\Models\Subjects::find($module->topic);
-                                        @endphp
-                                        <span class="poppins text-sm text-gray-600">{{ $subject->name }}</span>
-                                        <span class="poppins text-sm text-gray-600">{{ $module->grade }}</span>
-                                    </div>
-                                    <p class="poppins text-sm text-gray-600">
-                                        {!! substr($module->description, 0, 45) !!}{{ strlen($module->description) > 45 ? '...' : '' }}
-                                    </p>
-                                    <a href="{{ route('module.view', $module->id) }}" target="_blank"
-                                        class="text-sm poppins text-blue-600 hover:underline">{{ $module->file }}</a>
-                                </div>
+                                @php
+                                    $subject = App\Models\Subjects::find($module->topic);
+                                @endphp
+                                <span class="poppins text-xs text-green-600">{{ $subject->name }}</span>
+                                <span class="poppins text-xs text-blue-500">
+                                    @if ($module->grade == 'Kinder')
+                                        {{ $module->grade }}
+                                    @else
+                                        Grade {{$module->grade}}
+                                    @endif
+                                </span>
                             </div>
-                            <div class="flex flex-col items-center space-y-2 z-10">
-                                <a href="{{ route('module.edit', $module->id) }}">
-                                    <i class='bx bx-edit text-xl text-blue-600'></i>
-                                </a>
-                                <form action="{{ route('module.delete', $module->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button>
-                                        <i class='bx bx-trash text-xl text-red-600'></i>
-                                    </button>
-                                </form>
-                            </div>
+                            <p class="poppins text-sm text-gray-600">
+                                {!! substr($module->description, 0, 45) !!}{{ strlen($module->description) > 45 ? '...' : '' }}</p>
+                            <a href="{{ route('module.view', [$module->id, $module->title]) }}" target="_blank"
+                                class="w-fit text-xs underline poppins text-blue-600 hover:underline text-center">Open</a>
                         </div>
+                    </div>
+                    <div class="absolute top-1 right-4 md:flex flex-col items-center space-y-2 z-10 bg-white bg-opacity-50 p-2 rounded-md">
+                        <a href="{{ route('module.edit', $module->id) }}">
+                            <i class='bx bx-edit text-sm text-blue-600'></i>
+                        </a>
+                        <form action="{{ route('module.delete', $module->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button>
+                                <i class='bx bx-trash text-sm text-red-600'></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
                     @endforeach
                 </div>
             </div>

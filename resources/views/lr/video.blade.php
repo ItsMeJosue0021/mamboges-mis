@@ -12,7 +12,7 @@
             <div class="w-full flex flex-col md:flex-row items-start space-y-4 md:space-y-0 md:space-x-4">
                 <div class="w-full md:w-3/5">
                     <label for="dropzone-file"
-                        class="relative flex flex-col items-center justify-center w-full h-[450px] border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                        class="relative flex flex-col items-center justify-center w-full h-[450px] border border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                         <div id="description" class="flex flex-col items-center justify-center pt-5 pb-6">
                             <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
@@ -44,7 +44,7 @@
                         <div class="w-full flex flex-col space-y-1">
                             <label class="poppins text-sm font-semibold">TITLE</label>
                             <input type="text" name="title" id="title"
-                                class="poppins rounded-md border-2 border-gray-300 text-sm "
+                                class="poppins rounded border border-gray-300 text-sm "
                                 placeholder="Title of the video">
                         </div>
 
@@ -61,7 +61,7 @@
                             <div class="w-full flex flex-col space-y-1">
                                 <label class="poppins text-sm font-semibold">GRADE</label>
                                 <select name="grade" id="grade"
-                                    class="poppins rounded-md border-2 border-gray-300 text-sm">
+                                    class="poppins rounded border border-gray-300 text-sm">
                                     <option value="Kinder">Kinder</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -75,7 +75,7 @@
                             <div class="w-full flex flex-col space-y-1">
                                 <label class="poppins text-sm font-semibold">TOPIC</label>
                                 <select name="topic" id="topic"
-                                    class="poppins rounded-md border-2 border-gray-300 text-sm">
+                                    class="poppins rounded border border-gray-300 text-sm">
                                     @foreach ($subjects as $subject)
                                         <option value="{{ $subject->id }}">{{ $subject->name }}</option>
                                     @endforeach
