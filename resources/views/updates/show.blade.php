@@ -8,8 +8,8 @@
                     <p class="poppins text-sm text-black">Back</p>
                 </a>
             </div>
-            <div class="flex flex-col md:flex-row items-start space-y-6 md:space-y-0 md:space-x-6 pt-6">
-                <div class="w-full md:w-1/2">
+            <div class="flex flex-col items-start space-y-6 pt-6">
+                <div class="w-full ">
                     <div class="flex flex-col space-y-8">
                         <div>
                             <h1 class="poppins text-3xl font-semibold title-font text-gray-900">{{ $update->title }}
@@ -25,7 +25,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="w-full md:w-1/2">
+                <div class="w-full ">
                     <div class="flex flex-col space-y-4">
                         @foreach ($update->updateImages as $images)
                             <img src="{{ asset('storage/' . $images->url) }}" alt="" class="w-full  rounded-md"

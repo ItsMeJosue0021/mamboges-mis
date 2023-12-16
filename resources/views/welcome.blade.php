@@ -26,5 +26,29 @@
         <x-web.web-missionvission />
         <x-web.web-feedback />
         <x-footer/>
+
+        <button onclick="topFunction()" id="myBtn" title="Go to top" class="fixed bottom-8 right-8 px-2 py-1 rounded cursor-pointer hidden bg-red-600 bg-opacity-10">
+            <i class='bx bx-up-arrow-circle text-6xl text-red-600'></i>
+        </button>
+
+        <script>
+            window.onscroll = function() {
+                scrollFunction();
+            };
+
+            function scrollFunction() {
+                var mybutton = document.getElementById("myBtn");
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    mybutton.style.display = "block";
+                } else {
+                    mybutton.style.display = "none";
+                }
+            }
+
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+        </script>
     </body>
 </html>

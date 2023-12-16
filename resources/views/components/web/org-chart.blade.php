@@ -13,12 +13,12 @@
                 @if ($row->orgChartRowItems)
                     <div class="w-full flex justify-center items-start space-x-4 overflow-x-auto">
                         @foreach ($row->orgChartRowItems as $item)
-                            <div class="w-36 h-full p-2 rounded relative group flex flex-col items-center justify-center">
-                                <div class="w-16 md:w-full h-14 md:h-24 flex justify-center items-center">
+                            <div class="w-40 h-full p-2 rounded relative group flex flex-col items-center justify-center">
+                                <div class="w-16 md:w-full h-auto flex justify-center items-center"> {{--  h-14 md:h-24 --}}
                                     <img src="{{ asset('storage/' . $item->image) }}" alt=""
                                         class="w-full h-full rounded">
                                 </div>
-                                <p class=" text-[11px] md:text-sm text-center font-bold">{{ $item->name ?? '' }}</p>
+                                <p class=" text-[10px] md:text-[12px] text-center font-bold">{{ $item->name ?? '' }}</p>
                                 <p class="text-[10px] text-center">{{ $item->position ?? '' }}</p>
                             </div>
                         @endforeach

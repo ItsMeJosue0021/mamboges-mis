@@ -10,7 +10,7 @@
                 data-aos-delay="500">
                     <img alt=""
                         src="{{ $firstachievement->coverPhoto ? asset('storage/' . $firstachievement->coverPhoto) : asset('image/mamboges.jpg') }}"
-                        class="w-full h-[450px] rounded shadow-md">
+                        class="w-full h-[450px] rounded shadow-md object-cover">
 
                     <div class="w-full absolute bottom-0 left-0 bg-gradient-to-t from-black to-transparent opacity-70">
                         <div class="w-full flex flex-col space-y-1 p-6 text-gray-200 poppins text-sm">
@@ -39,7 +39,7 @@
                     data-aos-delay="500">
                         <img alt=""
                             src="{{ $achievement->coverPhoto ? asset('storage/' . $achievement->coverPhoto) : asset('image/mamboges.jpg') }}"
-                            class="w-full md:w-[200px] h-64 md:h-[140px] rounded shadow-md">
+                            class="w-full md:w-[200px] h-64 md:h-[140px] rounded shadow-md object-cover">
                         <div class="w-full md:w-auto flex flex-col space-y-1">
                             <h1 class="poppins font-semibold text-lg text-gray-800">
                                 {{ substr($achievement->title, 0, 25) }}{{ strlen($achievement->title) > 25 ? '...' : '' }}

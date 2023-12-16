@@ -7,9 +7,9 @@
 
             @if ($firstupdate != null)
                 <div class="w-[700px] hidden md:flex flex-col space-y-2" data-aos="fade-right" data-aos-delay="500">
-                    <img alt=""
+                    <img alt="image"
                         src="{{ $firstupdate->cover_photo ? asset('storage/' . $firstupdate->cover_photo) : asset('image/mamboges.jpg') }}"
-                        class="w-full h-[450px] rounded shadow-md">
+                        class="w-full h-[450px] rounded shadow-md object-cover">
 
                     <div class="w-full absolute bottom-0 left-0 bg-gradient-to-t from-black to-transparent opacity-70">
                         <div class="flex flex-col space-y-1 backdrop-blur-sm p-6 text-gray-200 poppins">
@@ -41,7 +41,7 @@
                         data-aos="fade-up" data-aos-delay="500">
                         <img alt=""
                             src="{{ $update->cover_photo ? asset('storage/' . $update->cover_photo) : asset('image/mamboges.jpg') }}"
-                            class="w-full md:w-[200px] h-64 md:h-[140px] rounded shadow-md">
+                            class="w-full md:w-[200px] h-64 md:h-[140px] rounded shadow-md object-cover">
                         <div class="w-full md:w-auto flex flex-col space-y-1">
                             <a href="/news-and-announcements?tag={{ $update->tag->tag }}"
                                 class="poppins text-red-600 text-sm ">
