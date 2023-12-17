@@ -25,7 +25,7 @@
                     @foreach ($achievements as $achievement)
                         <div class="w-full p-4 md:w-1/3 sm:mb-0 mb-6" data-aos="fade-up" data-aos-delay="300">
                             <div class="rounded-lg h-64 overflow-hidden">
-                                <img alt="content" class="object-cover object-center h-full w-full"
+                                <img alt="content" class="object-cover object-top h-full w-full"
                                     src="{{ $achievement->coverPhoto ? asset('storage/' . $achievement->coverPhoto) : asset('image/mamboges.jpg') }}">
                             </div>
                             <div class="flex items-center space-x-4 mt-5">
