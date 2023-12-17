@@ -44,6 +44,9 @@ class AuthenticatedSessionController extends Controller
         }
 
         $request->session()->regenerate();
+
+        auth()->user()->generateCode();
+
         $request->session()->put('url.intended', $url);
         Logs::addToLog(Auth::user()->username . ' has logged in.');
         return redirect()->intended($url);
@@ -55,6 +58,8 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+
+        auth()->user()->generateCode();
 
         Logs::addToLog(Auth::user()->username . 'has logged in.');
 

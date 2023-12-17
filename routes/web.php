@@ -89,7 +89,13 @@ Route::middleware('auth')->group(function () {
         Route::put('/profile', 'update')->name('profile.update');
         Route::delete('/profile', 'destroy')->name('profile.destroy');
     });
+
+    Route::get('2fa', [App\Http\Controllers\UserCodeController::class, 'index'])->name('2fa.index');
+    Route::post('2fa', [App\Http\Controllers\UserCodeController::class, 'store'])->name('2fa.post');
+    Route::get('2fa/reset', [App\Http\Controllers\UserCodeController::class, 'resend'])->name('2fa.resend');
 });
+
+// Route::get('2fa', [App\Http\Controllers\UserCodeController::class, 'index'])->name('2fa.index');
 
 
 /*
@@ -102,7 +108,7 @@ Route::middleware('auth')->group(function () {
 */
 
 
-Route::middleware(['auth', 'role:guidance'])->group(function () {
+Route::middleware(['auth', 'role:guidance', '2fa'])->group(function () {
 
     Route::controller(ProfileController::class)->group(function () {
         Route::get('/guidance/profile', 'guidance')->name('guidance.profile');
@@ -148,7 +154,7 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
     });
 
     // STUDENT
-    Route::prefix('students')->group(function() {
+    Route::prefix('students')->group(function () {
         Route::controller(StudentController::class)->group(function () {
             Route::get('', 'index')->name('student.index');
             Route::get('/create', 'create')->name('student.create');
@@ -305,8 +311,8 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
         });
     });
 
-    Route::prefix('tags')->group(function() {
-        Route::controller(TagController::class)->group(function() {
+    Route::prefix('tags')->group(function () {
+        Route::controller(TagController::class)->group(function () {
             Route::get('', 'list')->name('tags.list');
             Route::post('/save', 'store')->name('tags.store');
             Route::delete('/{tag}/delete', 'destroy')->name('tags.delete');
@@ -327,39 +333,39 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
 */
 
 
-Route::middleware(['auth', 'role:faculty'])->group(function () {
+Route::middleware(['auth', 'role:faculty', '2fa'])->group(function () {
 
     // CLASS RECORD
     Route::get('/classes', [ClassesController::class, 'index'])
-    ->name('faculty.classes');
+        ->name('faculty.classes');
 
     Route::get('/classes/{class}/record', [ClassRecordController::class, 'index'])
-    ->name('class.record');
+        ->name('class.record');
 
     Route::get('/classes/{class}/record/print', [ClassRecordController::class, 'printableClassRecord'])
-    ->name('class.record.printable');
+        ->name('class.record.printable');
 
     Route::post('/classes/{class}/record/release', [GradeController::class, 'release'])->name('grade.release');
     Route::post('/classes/{class}/record/unrelease', [GradeController::class, 'unrelease'])->name('grade.unrelease');
 
     Route::put('/update-percentage/{classRecordEvaluationCriteria}/record/{classRecordId}',
-    [ClassRecordEvaluationCriteriaController::class, 'changePercentage'])
+        [ClassRecordEvaluationCriteriaController::class, 'changePercentage'])
         ->name('class.percentage.update');
 
     Route::get('/get-percentage/{classRecordEvaluationCriteria}',
-    [ClassRecordEvaluationCriteriaController::class, 'getPercentage'])
+        [ClassRecordEvaluationCriteriaController::class, 'getPercentage'])
         ->name('class.percentage.get');
 
     // ACTIVITIES
     Route::post('/activity/create', [ActivityController::class, 'store'])
-    ->name('activity.store');
+        ->name('activity.store');
 
     Route::get('/activity/{activity}/delete', [ActivityController::class, 'delete'])
-    ->name('activity.delete');
+        ->name('activity.delete');
 
     //SCORES
     Route::post('/submit-scores', [ScoreController::class, 'store'])
-    ->name('score.store');
+        ->name('score.store');
 
 
 });
@@ -374,7 +380,7 @@ Route::middleware(['auth', 'role:faculty'])->group(function () {
 |
 */
 
-Route::middleware(['auth', 'role:student'])->group(function () {
+Route::middleware(['auth', 'role:student', '2fa'])->group(function () {
 
     Route::controller(PortalController::class)->group(function () {
         Route::get('/portal/classes', 'portal')->name('student.portal');
@@ -395,7 +401,7 @@ Route::middleware(['auth', 'role:student'])->group(function () {
 */
 
 
-Route::middleware(['auth', 'role:lr'])->group(function () {
+Route::middleware(['auth', 'role:lr', '2fa'])->group(function () {
 
     Route::prefix('lr')->group(function () {
         Route::controller(LrController::class)->group(function () {
