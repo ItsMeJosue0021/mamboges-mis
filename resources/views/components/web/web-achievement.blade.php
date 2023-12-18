@@ -64,7 +64,7 @@
                         <img class="h-60 w-60" src="{{ asset('image/search.png') }}" alt="">
                     </div>
                 @else
-                    <div class="w-full h-[100px] flex items-center justify-center">
+                    <div class="w-full h-[70px] flex items-center justify-center">
                         <a href="{{ route('achievements.index') }}" class="flex items-center justify-center md:justify-end space-x-4 cursor-pointer animate-pulse">
                             <p class="text-base poppins font-medium text-blue-600">See more posts</p>
                             <i class='bx bx-chevrons-right text-3xl text-blue-600'></i>
