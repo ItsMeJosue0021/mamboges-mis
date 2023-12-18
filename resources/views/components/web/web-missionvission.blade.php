@@ -1,7 +1,7 @@
 <section class="hero-pattern">
     <div class="container mx-auto tablet:px-24 py-10">
         <div class="flex justify-center py-8">
-            <img class="h-[150px] w-[300px]" src="{{ asset('image/deped.png') }}" alt="">
+            <img class="h-[110px] w-[200px]" src="{{ asset('image/deped.png') }}" alt="">
         </div>
         <div class="flex flex-col justify-between space-y-4 px-4  py-8">
             <div class="w-full flex flex-col space-y-3 py-8 " data-aos="fade-up" data-aos-delay="400">
