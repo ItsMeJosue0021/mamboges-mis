@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Helpers\Logs;
+use App\Models\Grade;
 use App\Models\Address;
 use App\Models\Profile;
 use App\Models\Section;
@@ -100,10 +101,20 @@ class StudentController extends Controller
             $section = $student->sectionStudents->where('school_year_id', $current_school_year->id)->first()->section;
         }
 
+        $current_school_year = SchoolYear::where('is_current', true)->first();
+
+        $currentSection = $student->sectionStudents->where('school_year_id', $current_school_year->id)->first();
+
+        $grades = Grade::where('student_id', $student->id)->get();
+
         return view('student.show', [
-            'student' => $student ?? 'null',
-            'section' => $section ?? 'null',
+            'student' => $student,
+            'section' => $currentSection->section ?? null,
+            'classes' => $student->sectionStudents,
+            'grades' => $grades,
+            'school_year' => $current_school_year,
         ]);
+
     }
 
 

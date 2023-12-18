@@ -11,7 +11,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    <section class="w-full">
+    <section class="w-full text-gray-700">
         <div class="h-fit min-h-screen flex">
             <!-- main -->
             <div class="w-full h-full flex flex-col pb-4">

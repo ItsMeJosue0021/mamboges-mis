@@ -27,28 +27,7 @@
                                 {{ substr(auth()->user()->email, 0, 5) . '******' . substr(auth()->user()->email, -2) }}
                             </p> {{-- {{ substr(auth()->user()->email, 0, 5) . '******' . substr(auth()->user()->email,  -2) }} --}}
 
-                            {{-- @if ($message = Session::get('success'))
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="bg-green-200 text-green-800 border border-green-400 rounded-md p-2">
-                                            <button type="button" class="close" data-dismiss="alert">×</button>
-                                            <strong>{{ $message }}</strong>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
-
-                            @if ($message = Session::get('error'))
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="bg-red-200 text-red-800 border border-red-400 rounded-md p-2">
-                                            <button type="button" class="close" data-dismiss="alert">×</button>
-                                            <strong>{{ $message }}</strong>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif --}}
-
+                            
                             <div class="w-full flex flex-col mb-4 pt-4">
                                 {{-- <label for="code" class="text-md font-semibold text-sm">Your Code</label> --}}
                                 <input id="code" type="number"

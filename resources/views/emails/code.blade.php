@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>shouts.dev</title>
+    <title>Mambog Elementary School</title>
 </head>
 <body>
 <h1>{{ $title }}</h1>

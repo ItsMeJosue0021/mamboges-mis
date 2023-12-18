@@ -10,7 +10,8 @@
 
                         <div class="w-full flex flex-col space-y-2">
                             @foreach ($classes as $class)
-                                <div tabindex="0" class="collapse collapse-arrow border border-gray-200 rounded bg-white">
+                                <div tabindex="0"
+                                    class="collapse collapse-arrow border border-gray-200 rounded bg-white">
                                     <div class="collapse-title">
                                         <p class="font-bold">
                                             @if ($class->section->gradeLevel != 'Kinder')
@@ -24,18 +25,19 @@
                                             {{ $class->section->faculty ? $class->section->faculty->user->profile->firstName : '' }}
                                             {{ $class->section->faculty ? $class->section->faculty->user->profile->middleName : '' }}
                                             {{ $class->section->faculty ? $class->section->faculty->user->profile->lastName : '' }}
-                                         </p>
+                                        </p>
                                     </div>
                                     <div class="collapse-content">
                                         @foreach ($class->section->sectionSubjects as $sectionSubject)
-                                            <div  class=" border-b border-gray-200 bg-white mb-6">
-                                                <div class="py-2 px-2 bg-gray-400 rounded">
-                                                    <h2 class="font-bold text-white ">
-                                                        {{ $sectionSubject->subjects->name }} |
-                                                        <span class="font-normal ">
+                                            <div class="border border-gray-200 bg-white mb-6 p-4">
+                                                <div class="border border=gray-300 p-2 mb-4">
+                                                    <h2
+                                                        class="font-bold text-sm last:uppercase text-gray-700 w-full flex justify-between items-center">
+                                                        <span>SUBJECT: {{ $sectionSubject->subjects->name }}</span>
+                                                        <span class="">TEACHER:
                                                             {{ $sectionSubject->faculty ? $sectionSubject->faculty->user->profile->firstName : '' }}
                                                             {{ $sectionSubject->faculty ? $sectionSubject->faculty->user->profile->middleName : '' }}
-                                                            {{ $sectionSubject->faculty ? $sectionSubject->faculty->user->profile->lastName : ''}}
+                                                            {{ $sectionSubject->faculty ? $sectionSubject->faculty->user->profile->lastName : '' }}
                                                         </span>
                                                     </h2>
                                                 </div>
@@ -44,14 +46,17 @@
                                                         $student_grades = $grades->where('subjects_id', $sectionSubject->subjects->id)->where('school_year_id', $sectionSubject->schoolYear->id);
                                                     @endphp
                                                     @foreach ($student_grades as $grade)
-                                                        <div class="flex justify-between py-2 px-2 border-t border-gray-200">
+                                                        <div
+                                                            class="flex justify-between py-2 px-4 border-t border-gray-200">
                                                             <span class="text-sm">{{ $grade->quarter->name }}</span>
                                                             <span class="text-sm">{{ $grade->remarks }}</span>
                                                         </div>
                                                     @endforeach
+
                                                     @if (count($student_grades) == 0)
-                                                        <div class="flex justify-center py-2 border-t border-gray-200">
-                                                            <span class="text-sm text-center text-red-500">No Grades Yet</span>
+                                                        <div class="flex justify-center py-2 ">
+                                                            <span class="text-xs text-center text-red-500">No
+                                                                Grades</span>
                                                         </div>
                                                     @endif
                                                 </div>

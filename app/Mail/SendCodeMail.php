@@ -20,7 +20,7 @@ class SendCodeMail extends Mailable
     public function build()
     {
         $data = $this->details;
-        return $this->subject('Mail from shouts.dev')
-            ->view('emails.code',$data);
+        return $this->subject('Mail from Mambog Elementary School')
+            ->view('emails.code', $data);
     }
 }

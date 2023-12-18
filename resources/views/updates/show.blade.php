@@ -26,9 +26,9 @@
                     </div>
                 </div>
                 <div class="w-full ">
-                    <div class="flex flex-col space-y-4">
+                    <div class="flex flex-wrap gap-4">
                         @foreach ($update->updateImages as $images)
-                            <img src="{{ asset('storage/' . $images->url) }}" alt="" class="w-full  rounded-md"
+                            <img src="{{ asset('storage/' . $images->url) }}" alt="" class="w-96  rounded-md"
                                 data-aos="fade-up" data-aos-delay="500">
                         @endforeach
                     </div>
