@@ -11,7 +11,7 @@
                     class="poppins text-sm px-4 py-2 rounded-sm text-white bg-blue-700 hover:bg-blue-800">Upload
                     Video Lesson</a>
             </div>
-            <div class="flex flex-col space-y-3">
+            <div class="flex flex-wrap gap-4">
                 @foreach ($videos as $video)
                     <div
                         class="relative w-full md:w-80 p-2 rounded bg-white hover:bg-gray-200 transition-all ease-in-out duration-200 shadow-md flex items-center justify-between border border-gray-200">
