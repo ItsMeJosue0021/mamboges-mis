@@ -1,6 +1,6 @@
 <x-lr-layout>
     <div class="flex w-full items-start justify-center ">
-        <div class="w-full md:w-2/3">
+        <div class="w-full">
             <div class="hidden md:flex items-center space-x-6 poppins w-full border-b border-gray-200">
                 <a href="{{ route('lr.video') }}" class="px-6 py-1">Videos</a>
                 <a href="{{ route('lr.module') }}" class="px-6 py-1 border-b-2 border-gray-400">Modules</a>
