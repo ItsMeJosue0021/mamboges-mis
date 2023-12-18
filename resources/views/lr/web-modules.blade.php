@@ -32,8 +32,10 @@
                 <div
                 class="relative w-full md:w-96 p-2 bg-white hover:shadow transition-all ease-in-out duration-200 flex items-center justify-between rounded border border-gray-200">
                 <div class="w-full flex flex-row items-center space-x-4">
-                    <img src="{{ $module->thumbnail ? asset('storage/' . $module->thumbnail) : ''}}"
+                    @if ($module->thumbnail)
+                        <img src="{{ $module->thumbnail ? asset('storage/' . $module->thumbnail) : ''}}"
                         class="w-16 h-16 rounded object-cover border border-gray-200">
+                    @endif
                     <div class="w-full flex flex-col">
                         <h1 class="hidden md:block poppins text-sm text-black font-semibold">
                             {!! substr($module->title, 0, 30) !!}{{ strlen($module->title) > 30 ? '...' : '' }}

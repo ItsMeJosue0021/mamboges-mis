@@ -11,16 +11,18 @@
                     class="poppins text-sm px-4 py-2 rounded-sm text-white bg-blue-700 hover:bg-blue-800">Upload
                     Module</a>
             </div>
-            <div class="flex flex-col space-y-2">
+            <div class="flex flwx-wrap gap-4">
                 @foreach ($modules as $module)
                     <div
-                        class="relative w-full p-2 rounded bg-white hover:shadow transition-all ease-in-out duration-200 flex items-center justify-between border border-gray-200">
+                        class="relative w-full md:w-96 p-2 rounded bg-white hover:shadow transition-all ease-in-out duration-200 flex items-center justify-between border border-gray-200">
                         <div class="w-full flex flex-row items-center space-x-4">
-                            <img src="{{ $module->thumbnail ? asset('storage/' . $module->thumbnail) : ''}}"
+                            @if ($module->thumbnail)
+                                <img src="{{ $module->thumbnail ? asset('storage/' . $module->thumbnail) : ''}}"
                                 class="w-16 h-16 rounded object-cover border border-gray-200">
+                            @endif
                             <div class="w-full flex flex-col">
                                 <h1 class="hidden md:block poppins text-sm text-black font-semibold">
-                                    {!! substr($module->title, 0, 70) !!}{{ strlen($module->title) > 70 ? '...' : '' }}
+                                    {!! substr($module->title, 0, 30) !!}{{ strlen($module->title) > 30 ? '...' : '' }}
                                 </h1>
                                 <h1 class="md:hidden poppins text-sm text-black font-semibold">
                                     {!! substr($module->title, 0, 20) !!}{{ strlen($module->title) > 20 ? '...' : '' }}

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Response;
 class ModuleController extends Controller
 {
     public function index() {
-        $modules = Module::latest()->filter(Request(['grade', 'search']))->paginate(12);
+        $modules = Module::latest()->filter(Request(['grade', 'search']))->paginate(5);
 
         return view('lr.web-modules', [
             'modules' => $modules,
