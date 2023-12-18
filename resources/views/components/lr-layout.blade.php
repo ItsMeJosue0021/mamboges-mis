@@ -19,7 +19,7 @@
 
 <body>
     <section class="w-full">
-        <div class="h-fit min-h-screen mx-auto flex">
+        <div class="h-fit min-h-screen mx-auto flex text-gray-700">
             <!-- main -->
             <div class="w-full h-full flex flex-col  mx-auto">
                 <!-- header -->
