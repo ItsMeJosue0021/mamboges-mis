@@ -21,7 +21,7 @@
     <section class="w-full">
         <div class="h-fit min-h-screen mx-auto flex">
             <!-- main -->
-            <div class="w-full h-full flex flex-col  mx-auto pb-4">
+            <div class="w-full h-full flex flex-col  mx-auto">
                 <!-- header -->
                 <div class=" w-full flex items-center justify-between py-3 px-4 border-b border-gray-300 bg-white shadow z-10">
                     <div class="flex md:hidden items-center py-2 mb-2">
