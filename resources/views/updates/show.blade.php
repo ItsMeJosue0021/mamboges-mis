@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="w-full ">
-                    <div class="flex flex-wrap gap-4">
+                    <div class="flex flex-wrap gap-4 shrink">
                         @foreach ($update->updateImages as $images)
                             <img src="{{ asset('storage/' . $images->url) }}" alt="" class="w-[600px] h-fit rounded-md"
                                 data-aos="fade-up" data-aos-delay="500">
