@@ -1,4 +1,4 @@
-<div class="flex flex-col space-y-2 py-16 bg-white text-gray-700">
+<div class="flex flex-col space-y-2 py-12 bg-white text-gray-700">
     <div class="w-full flex items-center justify-center p-4">
         <h1 class="castoro text-3xl text-lightblack font-semibold text-center">ORGANIZATIONAL CHART</h1>
     </div>
