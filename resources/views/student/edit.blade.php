@@ -459,6 +459,20 @@
 
                         <div class="w-full flex flex-col space-y-1">
                             <div class="flex items-baseline space-x-2">
+                                <label for="parentsEmail"
+                                    class="poppins text-sm font-medium text-gray-700">Email Address <span class="text-red-500">*</span></label>
+                                @error('parentsEmail')
+                                    <span class="text-xs font-light text-red-600">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <input type="text" name="parentsEmail" id="parentsEmail" required
+                                 value="{{ old('parentsEmail') ?? ($student->user->email ?? '') }}"
+                                class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
+                                placeholder="Email Address">
+                        </div>
+
+                        <div class="w-full flex flex-col space-y-1">
+                            <div class="flex items-baseline space-x-2">
                                 <label for="parentsDob" class="poppins text-sm font-medium text-gray-700">Date Of
                                     Birth <span class="text-red-500">*</span></label>
                                 @error('parentsDob')

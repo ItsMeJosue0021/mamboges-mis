@@ -45,6 +45,7 @@ class StoreStudentRequest extends FormRequest
             'parentsSuffix' => 'nullable',
             'parentsSex' => 'required|in:Male,Female',
             'parentsContactNumber' => 'nullable',
+            'parentsEmail'=> 'required|email',
             'parentsDob' => 'required|date',
         ];
     }

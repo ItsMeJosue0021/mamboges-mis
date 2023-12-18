@@ -80,7 +80,7 @@
                                         <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <input type="text" name="firstName" id="firstName" value="{{ old('firstName') }}"
+                                <input type="text" name="firstName" id="firstName" value="{{ old('firstName') }}" required
                                     class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                     placeholder="First Name">
                             </div>
@@ -93,7 +93,7 @@
                                         <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <input type="text" name="lastName" id="lastName" value="{{ old('lastName') }}"
+                                <input type="text" name="lastName" id="lastName" value="{{ old('lastName') }}" required
                                     class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                     placeholder="Last Name">
                             </div>
@@ -169,7 +169,7 @@
                                         <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <input type="date" name="dob" id="dob" value="{{ old('dob') }}"
+                                <input type="date" name="dob" id="dob" value="{{ old('dob') }}" required
                                     class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                     placeholder="Date Of Birth">
 
@@ -199,7 +199,7 @@
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <input type="text" name="lrn" id="lrn" value="{{ old('lrn') }}"
+                            <input type="text" name="lrn" id="lrn" value="{{ old('lrn') }}" required
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Learner's Reference Number">
                         </div>
@@ -277,7 +277,7 @@
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <input type="text" name="barangay" id="barangay" value="{{ old('barangay') }}"
+                            <input type="text" name="barangay" id="barangay" value="{{ old('barangay') }}" required
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Barangay">
                         </div>
@@ -291,7 +291,7 @@
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <input type="text" name="city" id="city" value="{{ old('city') }}"
+                            <input type="text" name="city" id="city" value="{{ old('city') }}" required
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="City/Municipality">
                         </div>
@@ -304,7 +304,7 @@
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <input type="text" name="province" id="province" value="{{ old('province') }}"
+                            <input type="text" name="province" id="province" value="{{ old('province') }}" required
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Province">
                         </div>
@@ -343,7 +343,7 @@
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <input type="text" name="parentsFirstName" id="parentsFirstName"
+                            <input type="text" name="parentsFirstName" id="parentsFirstName" required
                                 value="{{ old('parentsFirstName') }}"
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="First Name">
@@ -357,7 +357,7 @@
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <input type="text" name="parentsLastName" id="parentsLastName"
+                            <input type="text" name="parentsLastName" id="parentsLastName" required
                                 value="{{ old('parentsLastName') }}"
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Last Name">
@@ -431,13 +431,27 @@
 
                         <div class="w-full flex flex-col space-y-1">
                             <div class="flex items-baseline space-x-2">
+                                <label for="parentsContactNumber"
+                                    class="poppins text-sm font-medium text-gray-700">Email Address <span class="text-red-500">*</span></label>
+                                @error('parentsEmail')
+                                    <span class="text-xs font-light text-red-600">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <input type="text" name="parentsEmail" id="parentsEmail" required
+                                value="{{ old('parentsEmail') }}"
+                                class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
+                                placeholder="Email Address">
+                        </div>
+
+                        <div class="w-full flex flex-col space-y-1">
+                            <div class="flex items-baseline space-x-2">
                                 <label for="parentsDob" class="poppins text-sm font-medium text-gray-700">Date Of
                                     Birth <span class="text-red-500">*</span></label>
                                 @error('parentsDob')
                                     <span class="text-xs font-light text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <input type="date" name="parentsDob" id="parentsDob" value="{{ old('parentsDob') }}"
+                            <input type="date" name="parentsDob" id="parentsDob" value="{{ old('parentsDob') }}" required
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Date Of Birth">
 

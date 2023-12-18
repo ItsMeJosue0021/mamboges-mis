@@ -130,6 +130,7 @@ class StudentController extends Controller
         }
 
         $studentAccount = User::create([
+            'email' => $data['parentsEmail'],
             'username' => $data['lrn'],
             'password' => Hash::make($data['lastName']),
         ]);
@@ -203,12 +204,27 @@ class StudentController extends Controller
 
     public function update(UpdateStudentRequest $request, $studentId)
     {
+
+        // dd($request->all());
         $data = $request->validated();
 
         $student = Student::find($studentId);
 
         if (!$student) {
             return redirect()->back()->with('error', 'Student not found');
+        }
+
+        if (isset($data['parentsEmail'])) {
+
+            $user = User::where('email', $data['parentsEmail'])->first();
+
+            if ($user) {
+                return redirect()->back()->with('error', 'Email is already assigned to another student');
+            } else {
+                $student->user->update([
+                    'email' => $data['parentsEmail']
+                ]);
+            }
         }
 
         $studentUpdted = $student->user->profile->update([
