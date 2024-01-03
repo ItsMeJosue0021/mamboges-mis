@@ -255,7 +255,7 @@
                                 @enderror
                             </div>
                             <input type="text" name="block" id="block"
-                                value="{{ old('block') ?? $student->user->profile->address->block }}"
+                                value="{{ old('block') ?? ($student->user->profile->address->block ?? '') }}"
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Block">
                         </div>
@@ -268,7 +268,7 @@
                                 @enderror
                             </div>
                             <input type="text" name="street" id="street"
-                                value="{{ old('street') ?? $student->user->profile->address->street }}"
+                                value="{{ old('street') ?? ($student->user->profile->address->street ?? '') }}"
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Street">
                         </div>
@@ -282,7 +282,7 @@
                                 @enderror
                             </div>
                             <input type="text" name="subdivision" id="subdivision"
-                                value="{{ old('subdivision') ?? $student->user->profile->address->subdivision }}"
+                                value="{{ old('subdivision') ?? ($student->user->profile->address->subdivision ?? '') }}"
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Subdivision">
                         </div>
@@ -298,7 +298,7 @@
                                 @enderror
                             </div>
                             <input type="text" name="barangay" id="barangay"
-                                value="{{ old('barangay') ?? $student->user->profile->address->barangay }}"
+                                value="{{ old('barangay') ?? ($student->user->profile->address->barangay ?? '') }}"
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Barangay">
                         </div>
@@ -313,7 +313,7 @@
                                 @enderror
                             </div>
                             <input type="text" name="city" id="city"
-                                value="{{ old('city') ?? $student->user->profile->address->city }}"
+                                value="{{ old('city') ?? ($student->user->profile->address->city ?? '') }}"
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="City/Municipality">
                         </div>
@@ -327,7 +327,7 @@
                                 @enderror
                             </div>
                             <input type="text" name="province" id="province"
-                                value="{{ old('province') ?? $student->user->profile->address->province }}"
+                                value="{{ old('province') ?? ($student->user->profile->address->province ?? '') }}"
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Province">
                         </div>
@@ -341,7 +341,7 @@
                                 @enderror
                             </div>
                             <input type="number" name="zipCode" id="zipCode"
-                                value="{{ old('zipCode') ?? $student->user->profile->address->zipCode }}"
+                                value="{{ old('zipCode') ?? ($student->user->profile->address->zipCode ?? '') }}"
                                 class="poppins py-2 px-4 text-sm border border-gray-300 rounded focus:outline-none focus:border-blue-500 w-full"
                                 placeholder="Zip Code">
                         </div>
