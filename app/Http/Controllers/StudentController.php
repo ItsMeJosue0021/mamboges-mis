@@ -219,18 +219,18 @@ class StudentController extends Controller
             return redirect()->back()->with('error', 'Student not found');
         }
 
-        if (isset($data['parentsEmail'])) {
+        // if (isset($data['parentsEmail'])) {
 
-            $user = User::where('email', $data['parentsEmail'])->first();
+        //     $user = User::where('email', $data['parentsEmail'])->first();
 
-            if ($user) {
-                return redirect()->back()->with('error', 'Email is already assigned to another student');
-            } else {
-                $student->user->update([
-                    'email' => $data['parentsEmail']
-                ]);
-            }
-        }
+        //     if ($user) {
+        //         return redirect()->back()->with('error', 'Email is already assigned to another student');
+        //     } else {
+        //         $student->user->update([
+        //             'email' => $data['parentsEmail']
+        //         ]);
+        //     }
+        // }
 
         $studentUpdted = $student->user->profile->update([
             'firstName' => $data['firstName'],
