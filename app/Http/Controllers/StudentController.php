@@ -124,6 +124,11 @@ class StudentController extends Controller
 
         $existingStudentAccount = User::where('username', $data['lrn'])->first();
         $existingStudent = Student::withTrashed()->where('lrn', $data['lrn'])->first();
+        $emailExist = User::where('email', $data['parentsEmail'])->first();
+
+        if ($emailExist) {
+            return redirect()->back()->with('error', 'Email address is already assigned to another student');
+        }
 
         if ($existingStudentAccount || $existingStudent) {
             return redirect()->back()->with('error', 'LRN is already assigned to another student');
@@ -319,7 +324,7 @@ class StudentController extends Controller
             return redirect()->back()->with('error', 'There was a problem deleting the student.');
         }
 
-        foreach($student->sectionStudents as $sectionStudent) {
+        foreach ($student->sectionStudents as $sectionStudent) {
             $sectionStudent->delete();
         }
 

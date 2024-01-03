@@ -34,7 +34,7 @@ class StoreStudentRequest extends FormRequest
             'lot' => 'nullable',
             'block' => 'nullable',
             'street' => 'nullable',
-            'subdivision' => 'nullable',
+            'subdivision' => 'required',
             'barangay' => 'required',
             'city' => 'required',
             'province' => 'required',
@@ -45,7 +45,7 @@ class StoreStudentRequest extends FormRequest
             'parentsSuffix' => 'nullable',
             'parentsSex' => 'required|in:Male,Female',
             'parentsContactNumber' => 'nullable',
-            'parentsEmail'=> 'required|email',
+            'parentsEmail' => 'required|email',
             'parentsDob' => 'required|date',
         ];
     }
