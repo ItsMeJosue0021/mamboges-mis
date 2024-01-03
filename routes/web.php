@@ -333,7 +333,7 @@ Route::middleware(['auth', 'role:guidance', '2fa'])->group(function () {
 */
 
 
-Route::middleware(['auth', 'role:faculty', '2fa'])->group(function () {
+Route::middleware(['auth', 'role:faculty', '2fa'])->group(function () { //''
 
     // CLASS RECORD
     Route::get('/classes', [ClassesController::class, 'index'])

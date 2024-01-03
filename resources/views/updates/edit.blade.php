@@ -107,122 +107,112 @@
                             </label>
                         </div>
 
-                        <div id="image-previews" class="flex flex-col space-y-2"></div>
+                        <div id="image-previews" class="flex flex-col space-y-2 h-[200px] max-h-[200px] overflow-y-auto z-20"></div>
 
-                        <div class="flex flex-col space-y-2 pb-4" id="images-container">
-                            {{-- @foreach ($update->updateImages as $updateImage)
-                                <div class="p-1 rounded-md flex items-center justify-between  border border-gray-300">
-                                    <img class="w-10 h-10 rounded" src="{{asset('storage/' . $updateImage->url)}}" alt="">
-                                    <p class="text-xs text-gray-500">{{ substr($updateImage->url, 0, 28) }}{{ strlen($updateImage->url) > 28 ? "..." : "" }}</p>
-                                    <a data-image-id="{{ $updateImage->id}}" data-update-id="{{ $update->id }}" class="delete-button rounded px-2 py-1 bg-gray-50 hover:bg-red-100">
-                                        <i class='bx bx-x text-lg text-red-300 hover:text-red-600'></i>
-                                    </a>
-                                </div>
-                            @endforeach --}}
+                        <div class="flex flex-col space-y-2 pb-4 border border-red-600 h-80 min-h-80 overflo-auto" id="images-container"></div>
 
-                            <script type="module">
-                                $(document).ready(function () {
-                                    var updateId = $('#form').data("update-id");
+                        <script type="module">
+                            $(document).ready(function () {
+                                var updateId = $('#form').data("update-id");
 
-                                    getImages(updateId);
+                                getImages(updateId);
 
-                                    function getImages(updateId) {
-                                        $.ajax({
-                                            url: "/get-update-images",
-                                            method: "GET",
-                                            data: {
-                                                updateId: updateId,
-                                            },
-                                            dataType:'json',
-                                            success: function(data) {
-                                                console.log(data);
+                                function getImages(updateId) {
+                                    $.ajax({
+                                        url: "/get-update-images",
+                                        method: "GET",
+                                        data: {
+                                            updateId: updateId,
+                                        },
+                                        dataType:'json',
+                                        success: function(data) {
+                                            console.log(data);
 
-                                                $('#images-container').empty();
+                                            $('#images-container').empty();
 
-                                                if (data.length > 0) {
-                                                    $.each(data, function (index, image) {
+                                            if (data.length > 0) {
+                                                $.each(data, function (index, image) {
 
-                                                        var fileName = image.fileName;
-                                                        var truncatedFileName = fileName.length > 28 ? fileName.substring(0, 28) + '...' : fileName;
+                                                    var fileName = image.fileName;
+                                                    var truncatedFileName = fileName.length > 28 ? fileName.substring(0, 28) + '...' : fileName;
 
-                                                        var ImageComponent = '<div class="p-1 rounded-md flex items-center justify-between  border border-gray-300">' +
-                                                            '<img class="w-10 h-10 rounded" src="/storage/' + fileName + '" alt="">' +
-                                                            '<p class="text-xs text-gray-500">' + truncatedFileName + '</p>' +
-                                                            '<a data-image-id="' + image.id + '" data-update-id="' + updateId + '" class="delete-button rounded px-2 py-1 bg-gray-50 hover:bg-red-100 cursor-pointer">' +
-                                                            '<i class="bx bx-x text-lg text-red-300 hover:text-red-600"></i>' +
-                                                            '</a>' +
-                                                            '</div>';
-                                                            $('#images-container').append(ImageComponent);
-                                                    });
-                                                    deleteImage();
-                                                } else {
-                                                    console.log('No images');
-                                                }
-                                            },
-                                            error: function(xhr, status, error) {
-                                                console.error(error);
+                                                    var ImageComponent = '<div class="p-1 h-12 min-h-[40px] rounded-md flex items-center justify-between  border border-gray-300">' +
+                                                        '<img class="w-10 h-10 rounded" src="/storage/' + fileName + '" alt="">' +
+                                                        '<p class="text-xs text-gray-500">' + truncatedFileName + '</p>' +
+                                                        '<a data-image-id="' + image.id + '" data-update-id="' + updateId + '" class="delete-button rounded px-2 py-1 bg-gray-50 hover:bg-red-100 cursor-pointer">' +
+                                                        '<i class="bx bx-x text-lg text-red-300 hover:text-red-600"></i>' +
+                                                        '</a>' +
+                                                        '</div>';
+                                                        $('#images-container').append(ImageComponent);
+                                                });
+                                                deleteImage();
+                                            } else {
+                                                console.log('No images');
                                             }
+                                        },
+                                        error: function(xhr, status, error) {
+                                            console.error(error);
+                                        }
 
-                                        });
-                                    }
+                                    });
+                                }
 
-                                    function deleteImage() {
-                                        $(".delete-button").click(function () {
+                                function deleteImage() {
+                                    $(".delete-button").click(function () {
 
-                                            var imageId = $(this).data("image-id");
-                                            var updateId = $(this).data("update-id");
+                                        var imageId = $(this).data("image-id");
+                                        var updateId = $(this).data("update-id");
 
-                                            var csrfToken = $('meta[name="csrf-token"]').attr("content");
+                                        var csrfToken = $('meta[name="csrf-token"]').attr("content");
 
-                                            $.ajax({
-                                                type: "DELETE",
-                                                url: "/updates/" + updateId + "/delete-image/" + imageId,
+                                        $.ajax({
+                                            type: "DELETE",
+                                            url: "/updates/" + updateId + "/delete-image/" + imageId,
 
-                                                headers: {
-                                                    "X-CSRF-TOKEN": csrfToken,
-                                                },
-                                                success: function (response) {
-                                                    var message;
-                                                    if (response.status === 'success') {
-                                                        message =  $('<div class="fixed top-5 left-1/2 bg-green-700 transform -translate-x-1/2 z-50 rounded-md">' +
-                                                                        '<div class="flex space-x-4 items-center border-2 border-green-400 bg-green-100 px-4 py-2 rounded-md">' +
-                                                                            '<i class="bx bx-check text-green-600 text-4xl"></i>' +
-                                                                            '<p class="poppins text-sm text-green-700">' + response.message + '</p>' +
-                                                                        '</div>' +
-                                                                    '</div>');
-                                                        getImages(updateId);
-                                                        setTimeout(function(){
-                                                            message.fadeOut('slow', function() {
-                                                                location.reload();
-                                                            });
-                                                        }, 1000);
-                                                    } else {
-                                                        message = $('<div class="fixed top-5 left-1/2 bg-red-700 transform -translate-x-1/2 z-50 rounded-md">' +
-                                                                        '<div class="flex space-x-4 items-center border-2 border-red-400 bg-red-100 px-4 py-2 rounded-md">' +
-                                                                            '<i class="bx bx-block text-red-500 text-4xl"></i>' +
-                                                                            '<p class="poppins text-sm text-red-700">' + response.message + '</p>' +
-                                                                        '</div>' +
-                                                                    '</div>');
-                                                    }
-
-                                                    $('#container').append(message);
-
+                                            headers: {
+                                                "X-CSRF-TOKEN": csrfToken,
+                                            },
+                                            success: function (response) {
+                                                var message;
+                                                if (response.status === 'success') {
+                                                    message =  $('<div class="fixed top-5 left-1/2 bg-green-700 transform -translate-x-1/2 z-50 rounded-md">' +
+                                                                    '<div class="flex space-x-4 items-center border-2 border-green-400 bg-green-100 px-4 py-2 rounded-md">' +
+                                                                        '<i class="bx bx-check text-green-600 text-4xl"></i>' +
+                                                                        '<p class="poppins text-sm text-green-700">' + response.message + '</p>' +
+                                                                    '</div>' +
+                                                                '</div>');
+                                                    getImages(updateId);
                                                     setTimeout(function(){
                                                         message.fadeOut('slow', function() {
-                                                            message.remove();
+                                                            location.reload();
                                                         });
-                                                    }, 3000);
-                                                },
-                                                error: function (xhr, status, error) {
-                                                    // Handle the error response here
-                                                    console.error(error);
+                                                    }, 1000);
+                                                } else {
+                                                    message = $('<div class="fixed top-5 left-1/2 bg-red-700 transform -translate-x-1/2 z-50 rounded-md">' +
+                                                                    '<div class="flex space-x-4 items-center border-2 border-red-400 bg-red-100 px-4 py-2 rounded-md">' +
+                                                                        '<i class="bx bx-block text-red-500 text-4xl"></i>' +
+                                                                        '<p class="poppins text-sm text-red-700">' + response.message + '</p>' +
+                                                                    '</div>' +
+                                                                '</div>');
                                                 }
-                                            });
+
+                                                $('#container').append(message);
+
+                                                setTimeout(function(){
+                                                    message.fadeOut('slow', function() {
+                                                        message.remove();
+                                                    });
+                                                }, 3000);
+                                            },
+                                            error: function (xhr, status, error) {
+                                                // Handle the error response here
+                                                console.error(error);
+                                            }
                                         });
-                                    }
-                                });
-                            </script>
-                        </div>
+                                    });
+                                }
+                            });
+                        </script>
 
                         <script>
                             function previewImages(input) {

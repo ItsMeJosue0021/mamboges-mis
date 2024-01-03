@@ -31,7 +31,7 @@ return [
     |
     */
 
-    'lifetime' => env('SESSION_LIFETIME', 120),
+    'lifetime' => env('SESSION_LIFETIME', 30),
 
     'expire_on_close' => false,
 
@@ -43,7 +43,7 @@ return [
     | This option allows you to easily specify that all of your session data
     | should be encrypted before it is stored. All encryption will be run
     | automatically by Laravel and you can use the Session like normal.
-    |
+    | 
     */
 
     'encrypt' => false,

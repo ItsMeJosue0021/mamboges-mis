@@ -11,14 +11,14 @@
                     class="poppins text-sm px-4 py-2 rounded-sm text-white bg-blue-700 hover:bg-blue-800">Upload
                     Module</a>
             </div>
-            <div class="flex flwx-wrap gap-4">
+            <div class="flex flex-wrap gap-4">
                 @foreach ($modules as $module)
                     <div
                         class="relative w-full md:w-96 p-2 rounded bg-white hover:shadow transition-all ease-in-out duration-200 flex items-center justify-between border border-gray-200">
                         <div class="w-full flex flex-row items-center space-x-4">
                             @if ($module->thumbnail)
-                                <img src="{{ $module->thumbnail ? asset('storage/' . $module->thumbnail) : ''}}"
-                                class="w-16 h-16 rounded object-cover border border-gray-200">
+                                <img src="{{ $module->thumbnail ? asset('storage/' . $module->thumbnail) : '' }}"
+                                    class="w-16 h-16 rounded object-cover border border-gray-200">
                             @endif
                             <div class="w-full flex flex-col">
                                 <h1 class="hidden md:block poppins text-sm text-black font-semibold">
@@ -36,7 +36,7 @@
                                         @if ($module->grade == 'Kinder')
                                             {{ $module->grade }}
                                         @else
-                                            Grade {{$module->grade}}
+                                            Grade {{ $module->grade }}
                                         @endif
                                     </span>
                                 </div>
@@ -46,7 +46,8 @@
                                     class="w-fit text-xs underline poppins text-blue-600 hover:underline text-center">Open</a>
                             </div>
                         </div>
-                        <div class="absolute top-1 right-4 md:flex flex-col items-center space-y-2 z-10 bg-white bg-opacity-50 p-2 rounded-md">
+                        <div
+                            class="absolute top-1 right-4 md:flex flex-col items-center space-y-2 z-10 bg-white bg-opacity-50 p-2 rounded-md">
                             <a href="{{ route('module.edit', $module->id) }}">
                                 <i class='bx bx-edit text-sm text-blue-600'></i>
                             </a>
