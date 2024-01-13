@@ -10,6 +10,7 @@ class UserCodeController extends Controller
 {
     public function index()
     {
+        
         return view('2fa');
     }
 
