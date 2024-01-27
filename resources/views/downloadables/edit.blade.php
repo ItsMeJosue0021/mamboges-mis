@@ -2,14 +2,15 @@
     <div class="w-full h-full p-4">
         <div>
             <a class="flex w-fit justify-start items-center space-x-2 py-1 px-4 group rounded bg-gray-200 hover:bg-gray-300 cursor-pointer group"
-            href="{{ route('downloadables.list') }}">
+                href="{{ route('downloadables.list') }}">
                 <i class='bx bx-left-arrow-alt text-black text-lg '></i>
                 <p class="poppins text-sm text-black">Back</p>
             </a>
         </div>
-        <div class="w-full flex flex-col md:flex-row md:space-x-4" >
+        <div class="w-full flex flex-col md:flex-row md:space-x-4">
             <div class="w-full md:w-1/2 " id="uploadFormWrapper">
-                <form action="{{ route('downloadables.update', $group->id) }}" method="POST" enctype="multipart/form-data" class="flex flex-col space-y-4">
+                <form action="{{ route('downloadables.update', $group->id) }}" method="POST"
+                    enctype="multipart/form-data" class="flex flex-col space-y-4">
                     @csrf
                     @method('PUT')
                     <div class="flex flex-col space-y-2">
@@ -20,16 +21,18 @@
                                     Group Name
                                     <span id="error" class="text-red-600 text-xs font-normal"></span>
                                 </label>
-                                <input name="groupName"  id="groupName" type="text" placeholder="Please provide a group name.."
+                                <input name="groupName" id="groupName" type="text"
+                                    placeholder="Please provide a group name.."
                                     class="poppins text-sm px-4 py-2 rounded border-2 border-gray-200"
                                     value="{{ $group->name }}">
                                 <div class="pt-2 flex justify-between">
                                     <!-- Add Files Button -->
-                                    <a id="addFilesBtn" class="px-4 py-2 text-sm bg-blue-600 text-white rounded cursor-pointer">
+                                    <a id="addFilesBtn"
+                                        class="px-4 py-2 text-sm bg-blue-600 text-white rounded cursor-pointer">
                                         Add Files
                                     </a>
                                     <button type="submit" id="submitBtn"
-                                    class="px-4 py-2 text-sm font-bold text-blue-600 bg-white border-2 border-blue-600 rounded cursor-pointer hover:bg-blue-600 hover:text-white">
+                                        class="px-4 py-2 text-sm font-bold text-blue-600 bg-white border-2 border-blue-600 rounded cursor-pointer hover:bg-blue-600 hover:text-white">
                                         Upload
                                     </button>
                                 </div>
@@ -48,8 +51,8 @@
                     <h1 class="poppins text-lg font-medium">CURRENT FILES</h1>
                     <div class="flex flex-col space-y-2">
                         <div class="border border-gray-100 bg-base-100 rounded-md shadow ">
-                            <div class="p-4 flex justify-between items-start bg-gray-200 rounded-t-md">
-                                <p class="poppins font-medium">{{$group->name}}</p>
+                            <div class="p-4 flex justify-between items-start bg-white rounded-t-md">
+                                <p class="poppins font-medium">{{ $group->name }}</p>
                             </div>
                             @foreach ($group->downloadableFiles as $file)
                                 <div class="flex justify-between items-center p-2 px-4 border-t border-gray-200">
@@ -76,7 +79,7 @@
 
 <script>
     // JavaScript to dynamically add and remove file upload containers
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         const addFilesBtn = document.getElementById('addFilesBtn');
         const fileContainers = document.getElementById('fileContainers');
         const submitBtn = document.getElementById('submitBtn');
@@ -84,7 +87,7 @@
         const uploadFormWrapper = document.getElementById('uploadFormWrapper');
         const errorMessage = document.getElementById('error');
 
-        uploadFormWrapper.addEventListener('submit', function (e) {
+        uploadFormWrapper.addEventListener('submit', function(e) {
             if (groupNameInput.value.trim() === '') {
                 e.preventDefault();
                 errorMessage.innerText = 'Please provide a group name before uploading files.';
@@ -93,7 +96,7 @@
             }
         });
 
-        groupNameInput.addEventListener('keyup', function () {
+        groupNameInput.addEventListener('keyup', function() {
             errorMessage.innerText = '';
         });
 
@@ -135,13 +138,13 @@
             submitBtn.style.display = hasFileContainers() ? 'block' : 'none';
         }
 
-        addFilesBtn.addEventListener('click', function () {
+        addFilesBtn.addEventListener('click', function() {
             const fileContainer = createFileContainer();
             fileContainers.appendChild(fileContainer);
 
             const deleteFileBtns = fileContainers.querySelectorAll('.deleteFileBtn');
-            deleteFileBtns.forEach(function (btn) {
-                btn.addEventListener('click', function () {
+            deleteFileBtns.forEach(function(btn) {
+                btn.addEventListener('click', function() {
                     fileContainers.removeChild(btn.parentElement.parentElement);
                     toggleSubmitButtonVisibility();
                 });
