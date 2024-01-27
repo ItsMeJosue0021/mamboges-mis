@@ -52,7 +52,7 @@
                                 type="file"
                                 name="fileName"
                                 accept=".pdf"
-                                value="{{ $calendar->fileName }}">
+                                value="{{ $calendar->fileName }}">+
                             </div>
                             <div class="pt-4">
                                 <button class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-700 text-white rounded cursor-pointer">

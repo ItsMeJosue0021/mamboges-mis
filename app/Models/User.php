@@ -57,14 +57,11 @@ class User extends Authenticatable
         );
 
         try {
-
             $details = [
                 'title' => 'Mail from Mambog Eelementary School',
                 'code' => $code
             ];
-
             Mail::to(auth()->user()->email)->send(new SendCodeMail($details));
-
         } catch (\Exception $e) {
             info("Error: ". $e->getMessage());
             dd($e);

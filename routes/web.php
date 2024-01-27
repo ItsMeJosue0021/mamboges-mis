@@ -108,7 +108,7 @@ Route::middleware('auth')->group(function () {
 */
 
 
-Route::middleware(['auth', 'role:guidance', '2fa'])->group(function () {
+Route::middleware(['auth', 'role:guidance'])->group(function () {
 
     Route::controller(ProfileController::class)->group(function () {
         Route::get('/guidance/profile', 'guidance')->name('guidance.profile');
@@ -324,7 +324,7 @@ Route::middleware(['auth', 'role:guidance', '2fa'])->group(function () {
 
 
 /*
-|--------------------------------------------------------------------------
+|--------------------------------------------------------------------------6
 | Faculty Routes
 |--------------------------------------------------------------------------
 |
@@ -333,7 +333,7 @@ Route::middleware(['auth', 'role:guidance', '2fa'])->group(function () {
 */
 
 
-Route::middleware(['auth', 'role:faculty', '2fa'])->group(function () { //''
+Route::middleware(['auth', 'role:faculty'])->group(function () { //''
 
     // CLASS RECORD
     Route::get('/classes', [ClassesController::class, 'index'])
@@ -348,12 +348,16 @@ Route::middleware(['auth', 'role:faculty', '2fa'])->group(function () { //''
     Route::post('/classes/{class}/record/release', [GradeController::class, 'release'])->name('grade.release');
     Route::post('/classes/{class}/record/unrelease', [GradeController::class, 'unrelease'])->name('grade.unrelease');
 
-    Route::put('/update-percentage/{classRecordEvaluationCriteria}/record/{classRecordId}',
-        [ClassRecordEvaluationCriteriaController::class, 'changePercentage'])
+    Route::put(
+        '/update-percentage/{classRecordEvaluationCriteria}/record/{classRecordId}',
+        [ClassRecordEvaluationCriteriaController::class, 'changePercentage']
+    )
         ->name('class.percentage.update');
 
-    Route::get('/get-percentage/{classRecordEvaluationCriteria}',
-        [ClassRecordEvaluationCriteriaController::class, 'getPercentage'])
+    Route::get(
+        '/get-percentage/{classRecordEvaluationCriteria}',
+        [ClassRecordEvaluationCriteriaController::class, 'getPercentage']
+    )
         ->name('class.percentage.get');
 
     // ACTIVITIES
@@ -380,7 +384,7 @@ Route::middleware(['auth', 'role:faculty', '2fa'])->group(function () { //''
 |
 */
 
-Route::middleware(['auth', 'role:student', '2fa'])->group(function () {
+Route::middleware(['auth', 'role:student'])->group(function () {
 
     Route::controller(PortalController::class)->group(function () {
         Route::get('/portal/classes', 'portal')->name('student.portal');
