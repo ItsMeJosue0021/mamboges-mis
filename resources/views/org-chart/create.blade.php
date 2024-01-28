@@ -126,7 +126,7 @@
                                     <p class="text-xs text-gray-500 dark:text-gray-400">PNG, JPG or GIF</p>
                                 </div>
                                 <img id="image-preview" src="#" alt="Preview"
-                                    class="hidden w-full h-full rounded-md" />
+                                    class="hidden w-full h-full rounded-md object-contain object-top" />
                                 <input id="dropzone-file" type="file" name="image" class="hidden"
                                     accept="image/png, image/jpeg, image/gif" onchange="previewCoverPhoto(this)" />
                             </label>
@@ -178,7 +178,7 @@
                                             class="font-semibold">Click to upload</span> or drag and drop</p>
                                     <p class="text-xs text-gray-500 dark:text-gray-400">PNG, JPG or GIF</p>
                                 </div>
-                                <img id="updateItem-image-preview" src="#" alt="Preview" class="hidden w-full h-full rounded-md" />
+                                <img id="updateItem-image-preview" src="#" alt="Preview" class="hidden w-full h-full object-contain object-top rounded-md" />
                                 <input id="update-dropzone-file" type="file" name="image" class="hidden"
                                     accept="image/png, image/jpeg, image/gif" onchange="previewUpdateCoverPhoto(this)" />
                             </label>

@@ -8,6 +8,7 @@
 
     <div class="py-12 p-4">
         <div class="max-w-7xl mx-auto lg:px-8 space-y-6">
+
             <div class="sm:p-8 bg-white rounded-lg md:border border-gray-300">
                 <div class="w-full">
                     @include('profile.partials.update-profile-information-form')
