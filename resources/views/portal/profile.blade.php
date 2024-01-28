@@ -38,7 +38,7 @@
                     </span>
                 </div>
                 <div class="flex items-center justify-between border-b border-gray-200 py-2">
-                    <span class="font-medium">Sex</span>
+                    <span class="font-medium">Gender</span>
                     <span>{{ $student->user->profile->sex }}</span>
                 </div>
                 <div class="flex items-center justify-between border-b border-gray-200 py-2">
