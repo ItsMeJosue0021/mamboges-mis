@@ -49,7 +49,12 @@
                                                         <div
                                                             class="flex justify-between py-2 px-4 border-t border-gray-200">
                                                             <span class="text-sm">{{ $grade->quarter->name }}</span>
-                                                            <span class="text-sm">{{ $grade->remarks }}</span>
+                                                            @if ($grade->remarks == 'Outstanding')
+                                                                <span class="text-sm text-white bg-green-500 py-1 px-2 rounded">{{ $grade->remarks }}</span>
+                                                            {{-- @else --}}
+
+                                                            @endif
+                                                            {{-- <span class="text-sm">{{ $grade->remarks }}</span> --}}
                                                         </div>
                                                     @endforeach
 
