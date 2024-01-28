@@ -55,7 +55,7 @@
                                                             @elseif($grade->remarks == 'Fairly Satisfactory')
                                                                 <span
                                                                     class="text-sm text-white bg-orange-500 py-1 px-2 rounded">{{ $grade->remarks }}</span>
-                                                            @elseif($grade->remarks == 'Did Not Meet Expectation')
+                                                            @elseif($grade->remarks == 'Did Not Meet Expectations')
                                                                 <span
                                                                     class="text-sm text-white bg-red-500 py-1 px-2 rounded">{{ $grade->remarks }}</span>
                                                             @endif
