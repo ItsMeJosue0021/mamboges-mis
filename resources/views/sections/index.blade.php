@@ -1,11 +1,11 @@
 <x-guidance-layout>
     <div id="container" class="w-full">
 
-        <div class="flex justify-between items-center px-4 py-3 border-b border-gray-300">
+        <div class="w-full flex justify-between items-center px-4 py-3 border-b border-gray-300 ">
             <h1 class="hidden md:block poppins text-xl font-medium">SECTIONS</h1>
             <div class="w-full md:w-2/3 flex">
-                <form action="/sections" class="flex w-full items-center justify-center md:justify-end space-x-4">
-                    <div class="w-full flex items-center space-x-2 p-1">
+                <form action="/sections" class="w-full flex items-center justify-end">
+                    <div class="flex items-center space-x-2 p-1">
                         <input name="search" type="text" placeholder="Type here.."
                             class="w-full md:w-[500px] poppins text-sm rounded py-2 px-4">
                         <button type="submit"

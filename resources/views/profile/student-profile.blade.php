@@ -7,8 +7,8 @@
         </x-slot>
 
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 px-4 space-y-4">
-                <div class="flex flex-col space-y-2 ">
+            <div class="max-w-[1400px] w-full mx-auto px-4 space-y-4">
+                <div class="flex flex-col space-y-2 pt-4">
                     <a href="{{ route('student.portal') }}" id="back"
                         class="flex w-fit justify-start items-center space-x-2 py-1 px-4 group rounded bg-gray-200 hover:bg-gray-300 cursor-pointer group">
                         <i class='bx bx-left-arrow-alt text-black text-lg '></i>
@@ -16,8 +16,8 @@
                     </a>
                 </div>
 
-                <div class="p-4 sm:p-8 bg-white shadow-sm sm:rounded-md">
-                    <div class="max-w-xl">
+                <div class="bg-white shadow-sm sm:rounded-md flex items-center justify-center">
+                    <div class="">
                         @include('profile.partials.update-password-form')
                     </div>
                 </div>

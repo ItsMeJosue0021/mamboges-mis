@@ -57,7 +57,7 @@
                                     </div>
                                 </div>
                                 <div class="p-2 px-4 border-t border-gray-200 bg-white">
-                                    <a href="{{ route('calendar.view', $calendar->id) }}" target="_blank"
+                                    <a href="{{ route('calendar.view', [$calendar->id, $calendar->name]) }}" target="_blank"
                                         class="poppins text-sm text-blue-600 hover:underline">
                                         {{substr($calendar->fileName, 0, 30)}}{{ strlen($calendar->fileName) > 45 ? "..." : "" }}
                                     </a>

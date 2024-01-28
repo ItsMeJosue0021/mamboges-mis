@@ -30,39 +30,39 @@
             <div class="flex flex-wrap gap-4">
                 @foreach ($modules as $module)
                 <div
-                class="relative w-full md:w-96 p-2 bg-white hover:shadow transition-all ease-in-out duration-200 flex items-center justify-between rounded border border-gray-200">
-                <div class="w-full flex flex-row items-center space-x-4">
-                    @if ($module->thumbnail)
-                        <img src="{{ $module->thumbnail ? asset('storage/' . $module->thumbnail) : ''}}"
-                        class="w-16 h-16 rounded object-cover border border-gray-200">
-                    @endif
-                    <div class="w-full flex flex-col">
-                        <h1 class="hidden md:block poppins text-sm text-black font-semibold">
-                            {!! substr($module->title, 0, 30) !!}{{ strlen($module->title) > 30 ? '...' : '' }}
-                        </h1>
-                        <h1 class="md:hidden poppins text-sm text-black font-semibold">
-                            {!! substr($module->title, 0, 20) !!}{{ strlen($module->title) > 20 ? '...' : '' }}
-                        </h1>
-                        <div class="flex items-center space-x-4">
-                            @php
-                                $subject = App\Models\Subjects::find($module->topic);
-                            @endphp
-                            <span class="poppins text-xs text-green-600">{{ $subject->name }}</span>
-                            <span class="poppins text-xs text-blue-500">
-                                @if ($module->grade == 'Kinder')
-                                    {{ $module->grade }}
-                                @else
-                                    Grade {{$module->grade}}
-                                @endif
-                            </span>
+                    class="relative h-fit w-full md:w-96 p-2 bg-white hover:shadow transition-all ease-in-out duration-200 flex items-center justify-between rounded border border-gray-200">
+                    <div class="w-full h-fit flex flex-row items-center space-x-4">
+                        @if ($module->thumbnail)
+                            <img src="{{ $module->thumbnail ? asset('storage/' . $module->thumbnail) : ''}}"
+                            class="w-16 h-16 rounded object-cover border border-gray-200">
+                        @endif
+                        <div class="w-full flex flex-col">
+                            <h1 class="hidden md:block poppins text-sm text-black font-semibold">
+                                {!! substr($module->title, 0, 30) !!}{{ strlen($module->title) > 30 ? '...' : '' }}
+                            </h1>
+                            <h1 class="md:hidden poppins text-sm text-black font-semibold">
+                                {!! substr($module->title, 0, 20) !!}{{ strlen($module->title) > 20 ? '...' : '' }}
+                            </h1>
+                            <div class="flex items-center space-x-4">
+                                @php
+                                    $subject = App\Models\Subjects::find($module->topic);
+                                @endphp
+                                <span class="poppins text-xs text-green-600">{{ $subject->name }}</span>
+                                <span class="poppins text-xs text-blue-500">
+                                    @if ($module->grade == 'Kinder')
+                                        {{ $module->grade }}
+                                    @else
+                                        Grade {{$module->grade}}
+                                    @endif
+                                </span>
+                            </div>
+                            <p class="poppins text-sm text-gray-600">
+                                {!! substr($module->description, 0, 45) !!}{{ strlen($module->description) > 45 ? '...' : '' }}</p>
+                            <a href="{{ route('module.view', [$module->id, $module->title]) }}" target="_blank"
+                                class="w-fit text-xs underline poppins text-blue-600 hover:underline text-center">Open</a>
                         </div>
-                        <p class="poppins text-sm text-gray-600">
-                            {!! substr($module->description, 0, 45) !!}{{ strlen($module->description) > 45 ? '...' : '' }}</p>
-                        <a href="{{ route('module.view', [$module->id, $module->title]) }}" target="_blank"
-                            class="w-fit text-xs underline poppins text-blue-600 hover:underline text-center">Open</a>
                     </div>
                 </div>
-            </div>
                 @endforeach
             </div>
             <div class="pt-4 poppins">

@@ -11,11 +11,11 @@
                                     <p class="poppins font-medium">{{$calendar->name}}</p>
                                 </div>
                                 <div class="flex justify-between items-center p-2 px-4 border-t border-gray-200 bg-white">
-                                    <a href="{{ route('calendar.view', $calendar->id) }}" target="_blank"
+                                    <a href="{{ route('calendar.view', [$calendar->id, $calendar->name]) }}" target="_blank"
                                         class="poppins text-sm hover:text-blue-600 hover:underline">
                                         {{ $calendar->name }}
                                     </a>
-                                    <a href="{{ route('calendar.view', $calendar->id) }}" target="_blank"
+                                    <a href="{{ route('calendar.view', [$calendar->id, $calendar->name]) }}" target="_blank"
                                         class="poppins text-sm hover:text-blue-600 hover:underline">
                                         View Calendar
                                     </a>

@@ -55,7 +55,8 @@
                                 <p class="poppins font-medium">{{ $group->name }}</p>
                             </div>
                             @foreach ($group->downloadableFiles as $file)
-                                <div class="flex justify-between items-center p-2 px-4 border-t border-gray-200">
+                                <div
+                                    class="flex justify-between items-center p-2 px-4 border-t border-gray-200 bg-white">
                                     <a href="{{ route('downloadables.view', $file->id) }}" target="_blank"
                                         class="poppins text-sm hover:text-blue-600 hover:underline">
                                         {{ $file->title }}

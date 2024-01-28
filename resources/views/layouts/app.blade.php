@@ -51,6 +51,15 @@
                             <li>
                                 <a id="link12"
                                     class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50"
+                                    href="{{ route('learner.profile') }}">
+                                    <i
+                                        class='bx bxs-user-detail text-xl text-lightblack group-hover:text-blue-600'></i>
+                                    <p class="poppins text-sm group-hover:text-blue-600">Profile</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="link12"
+                                    class="flex group items-center space-x-4 p-2 rounded hover:bg-blue-50 focus:bg-blue-50"
                                     href="{{ route('change.password') }}">
                                     <i
                                         class='bx bxs-user-detail text-xl text-lightblack group-hover:text-blue-600'></i>

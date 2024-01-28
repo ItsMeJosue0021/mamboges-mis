@@ -62,7 +62,7 @@
                                 </div>
                                 @foreach ($group->downloadableFiles as $file)
                                     <div class="flex justify-between items-center p-2 px-4 border-t border-gray-200">
-                                        <a href="{{ route('downloadables.view', $file->id) }}" target="_blank"
+                                        <a href="{{ route('downloadables.view', [$file->id, $file->title]) }}" target="_blank"
                                             class="poppins text-sm hover:text-blue-600 hover:underline">
                                             {{ $file->title }}
                                         </a>

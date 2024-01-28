@@ -66,11 +66,11 @@ Route::get('/schoool-achievements/{achievement}', [AchievementController::class,
 
 // DOWNLOADABLES
 Route::get('/downloadable-files', [DownloadableFileController::class, 'index'])->name('downloadables.index');
-Route::get('/downloadable/viewer/{fileId}', [DownloadableFileController::class, 'viewPDF'])->name('downloadables.view');
+Route::get('/downloadable/viewer/{fileId}/{fileTitle}', [DownloadableFileController::class, 'viewPDF'])->name('downloadables.view');
 
 // CALENDAR OF ACTIVITIES
 Route::get('/calendar-of-activities', [CalendarOfActivitiesController::class, 'show'])->name('calendar.show');
-Route::get('/viewer/{calendarOfActivities}', [CalendarOfActivitiesController::class, 'view'])->name('calendar.view');
+Route::get('/viewer/{calendarOfActivities}/{fileTitle}', [CalendarOfActivitiesController::class, 'view'])->name('calendar.view');
 
 // MODULES
 Route::get('/modules/viewer/{moduleId}/{fileTitle}', [ModuleController::class, 'view'])->name('module.view');
@@ -268,7 +268,7 @@ Route::middleware(['auth', 'role:guidance'])->group(function () {
     Route::delete('/achievements/{achievement}/delete-image/{achievementImage}', [AchievementImageController::class, 'destroy'])
         ->name('achievementImage.delete');
 
-    Route::prefix('achievement-images')->group(function () {
+    Route::prefix('downloadables')->group(function () {
         Route::controller(DownloadableFileController::class)->group(function () {
             Route::get('/list', 'list')->name('downloadables.list');
             Route::post('/save', 'store')->name('downloadables.store');
@@ -388,7 +388,8 @@ Route::middleware(['auth', 'role:student'])->group(function () {
 
     Route::controller(PortalController::class)->group(function () {
         Route::get('/portal/classes', 'portal')->name('student.portal');
-        Route::get('/student/account', 'account')->name('change.password');
+        Route::get('/learner/account', 'account')->name('change.password');
+        Route::get('/learner/profile', 'profile')->name('learner.profile');
     });
 
 });
@@ -405,7 +406,7 @@ Route::middleware(['auth', 'role:student'])->group(function () {
 */
 
 
-Route::middleware(['auth', 'role:lr', '2fa'])->group(function () {
+Route::middleware(['auth', 'role:lr'])->group(function () {
 
     Route::prefix('lr')->group(function () {
         Route::controller(LrController::class)->group(function () {

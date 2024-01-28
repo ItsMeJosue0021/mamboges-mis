@@ -32,6 +32,14 @@ class PortalController extends Controller
         ]);
     }
 
+    public function profile() {
+        $student = Student::where('lrn', Auth::user()->username)->first();
+
+        return view('portal.profile', [
+            'student' => $student,
+        ]);
+    }
+
     public function account(Request $request) {
         return view('profile.student-profile', [
             'user' => $request->user(),

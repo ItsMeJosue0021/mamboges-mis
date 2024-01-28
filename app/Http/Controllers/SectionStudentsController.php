@@ -24,7 +24,7 @@ class SectionStudentsController extends Controller
         if ($existingStudent) {
             return response()->json([
                 'success' => false,
-                'message' => 'Student already enrolled in this section.'
+                'message' => 'Student already enrolled.'
             ]);
         } else {
 
@@ -61,7 +61,7 @@ class SectionStudentsController extends Controller
     //     $scetionStudents = $section->sectionStudents->where('school_year_id', $current_school_year->id);
 
     //     $data = [];
-        
+
     //     foreach ($scetionStudents as $scetionStudent) {
     //         $data[] = [
     //             'id' => $scetionStudent->id,
@@ -84,7 +84,7 @@ class SectionStudentsController extends Controller
         $sectionStudents = $section->sectionStudents->where('school_year_id', $current_school_year->id);
 
         $data = [];
-        
+
         // Initialize the student count
         $studentCount = 0;
 
@@ -96,7 +96,7 @@ class SectionStudentsController extends Controller
                 'middleName' => $sectionStudent->student->user->profile->middleName,
                 'lastName' => $sectionStudent->student->user->profile->lastName,
             ];
-            
+
             // Increment the student count
             $studentCount++;
         }

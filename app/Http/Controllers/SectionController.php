@@ -23,7 +23,7 @@ class SectionController extends Controller
     public function index()
     {
         return view('sections.index', [
-            'sections' => Section::latest()->paginate(8),
+            'sections' => Section::latest()->filter(Request(['search']))->paginate(8),
             'faculties' => Faculty::all(),
         ]);
     }

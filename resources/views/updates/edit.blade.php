@@ -109,7 +109,7 @@
 
                         <div id="image-previews" class="flex flex-col space-y-2 h-[200px] max-h-[200px] overflow-y-auto z-20"></div>
 
-                        <div class="flex flex-col space-y-2 pb-4 border border-red-600 h-80 min-h-80 overflo-auto" id="images-container"></div>
+                        <div class="flex flex-col space-y-2 pb-4 h-80 min-h-80 overflo-auto" id="images-container"></div>
 
                         <script type="module">
                             $(document).ready(function () {
