@@ -9,11 +9,12 @@
                 </a>
             </div>
             <div class="flex flex-col space-y-2">
-                <div>
+                <div class="flex items-center justify-center">
                     @if ($student->user->profile->image)
-                        <img src="{{ asset('storage/' . $student->user->profile->image)}}" alt="image" class="w-48 h-48 rounded-full">
+                        <img src="{{ asset('storage/' . $student->user->profile->image) }}" alt="image"
+                            class="w-48 h-48 rounded-full">
                     @else
-                        @if ($student->user->profile->sex == "Male")
+                        @if ($student->user->profile->sex == 'Male')
                             <img src="{{ asset('image/male.png') }}" alt="male" class="w-48 h-48 rounded-full">
                         @else
                             <img src="{{ asset('image/female.png') }}" alt="female" class="w-48 h-48 rounded-full">
@@ -46,7 +47,8 @@
                 </div>
             </div>
             <div class="w-full md:w-80 flex items-center justify-start mt-4">
-                <a href="{{ route('change.password') }}" class="w-fit rounded px-4 py-2 bg-blue-700 text-sm text-white">Change Password</a>
+                <a href="{{ route('change.password') }}"
+                    class="w-fit rounded px-4 py-2 bg-blue-700 text-sm text-white">Change Password</a>
             </div>
         </div>
     </div>
