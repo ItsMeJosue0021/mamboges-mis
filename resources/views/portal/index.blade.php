@@ -12,7 +12,7 @@
                             @foreach ($classes as $class)
                                 <div tabindex="0"
                                     class="collapse collapse-arrow border border-gray-200 rounded bg-white shadow">
-                                    <div class="collapse-title">
+                                    <div class="collapse-title ">
                                         <p class="font-bold text-xl">
                                             @if ($class->section->gradeLevel != 'Kinder')
                                                 Grade {{ $class->section->gradeLevel }}
@@ -21,7 +21,7 @@
                                             @endif
                                             - {{ $class->section->name }}
                                         </p>
-                                        <p class="text-xl">
+                                        <p class="text-base">
                                             {{ $class->section->faculty ? $class->section->faculty->user->profile->firstName : '' }}
                                             {{ $class->section->faculty ? $class->section->faculty->user->profile->middleName : '' }}
                                             {{ $class->section->faculty ? $class->section->faculty->user->profile->lastName : '' }}
@@ -32,7 +32,7 @@
                                             <div class="border-b border-gray-200 bg-white mb-6 p-4">
                                                 <div class="border border=gray-300 p-2 mb-4 bg-gray-800">
                                                     <h2
-                                                        class="font-bold text-sm last:uppercase text-white w-full flex justify-between items-center">
+                                                        class="font-bold text-sm uppercase text-white w-full flex justify-between items-center">
                                                         <span>SUBJECT: {{ $sectionSubject->subjects->name }}</span>
                                                         <span class="">TEACHER:
                                                             {{ $sectionSubject->faculty ? $sectionSubject->faculty->user->profile->firstName : '' }}
